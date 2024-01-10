@@ -7,10 +7,10 @@ public class GameManager : MonoBehaviour
 {
     bool allTeamsSelected = true;
 
-    string DutchWestIndiaCompany;
-    string SixNations;
-    string Munsee;
-    string Philipses;
+    public string DutchWestIndiaCompany;
+    public string SixNations;
+    public string Munsee;
+    public string Philipses;
 
 
     // Start is called before the first frame update
