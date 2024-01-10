@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     bool allTeamsSelected = true;
+
+    string DutchWestIndiaCompany;
+    string SixNations;
+    string Munsee;
+    string Philipses;
+
+
     // Start is called before the first frame update
     void Start()
     {

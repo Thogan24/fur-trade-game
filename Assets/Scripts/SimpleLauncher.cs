@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class SimpleLauncher : MonoBehaviourPunCallbacks
 {
@@ -12,6 +13,8 @@ public class SimpleLauncher : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        AuthenticationValues authValues = new AuthenticationValues("0");
+        PhotonNetwork.AuthValues.UserId = 1.ToString();
     }
 
     public override void OnConnectedToMaster(){
