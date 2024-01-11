@@ -30,11 +30,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameobject = GameObject.FindWithTag("thedebugger");
-        debug = gameobject.GetComponent<Text>();
-        debug.text = DutchWestIndiaCompany + " | " + SixNations;
-        if (SixNationsJoined && MunseeJoined && DutchJoined && PhilipsesJoined)
+        //gameobject = GameObject.FindWithTag("thedebugger");
+        //debug = gameobject.GetComponent<Text>();
+        //debug.text = DutchWestIndiaCompany + " | " + SixNations;
+        if (SixNationsJoined && DutchJoined)
         {
+            Debug.Log("AAAA");
             SceneManager.LoadScene(1);
         }
     }
