@@ -8,10 +8,6 @@ using Photon.Realtime;
 
 public class TeamSelectHandler : MonoBehaviourPunCallbacks
 {
-    [SerializeField] bool IroquoisJoined = false;
-    [SerializeField] bool MunseeJoined = false;
-    [SerializeField] bool DutchJoined = false;
-    [SerializeField] bool PhilipsesJoined = false;
 
     [SerializeField] GameObject IroquoisButton;
     [SerializeField] GameObject IroquoisMenu;
@@ -30,17 +26,17 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     [SerializeField] Button PhilipsesClose;
     public GameManager gameManager;
 
+    public Text debug;
+
     bool menuOpen = false;
+    int userID = 1;
 
 
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
 
-/*        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.PublishUserId = true;
-        AuthenticationValues authValues = new AuthenticationValues("0");
-        PhotonNetwork.AuthValues.UserId = 1.ToString();*/
+        
 
         IroquoisButton.SetActive(true);
         IroquoisMenu.SetActive(false);
@@ -72,7 +68,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     }
 
 
-/*    public override void OnConnectedToMaster()
+    public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Master");
         PhotonNetwork.JoinRandomOrCreateRoom();
@@ -81,8 +77,12 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a room.");
-        
-    }*/
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.PublishUserId = true;
+        AuthenticationValues authValues = new AuthenticationValues("0");
+        PhotonNetwork.AuthValues.UserId = userID.ToString();
+        userID += 1;
+    }
 
 
     public void IroquoisButtonClicked()
@@ -153,33 +153,37 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     public void IroquoisTeamJoin()
     {
         Debug.Log(PhotonNetwork.AuthValues.UserId);
+        debug.text = PhotonNetwork.AuthValues.UserId;
         IroquoisClosedClicked();
         gameManager.SixNations = PhotonNetwork.AuthValues.UserId;
-        IroquoisJoined = true;
+        gameManager.IroquoisJoined = true;
         IroquoisButton.SetActive(false);
     }
     public void MunseeTeamJoin()
     {
         Debug.Log(PhotonNetwork.AuthValues.UserId);
+        debug.text = PhotonNetwork.AuthValues.UserId;
         MunseeClosedClicked();
         gameManager.Munsee = PhotonNetwork.AuthValues.UserId;
-        MunseeJoined = true;
+        gameManager.MunseeJoined = true;
         MunseeButton.SetActive(false);
     }
     public void DutchTeamJoin()
     {
         Debug.Log(PhotonNetwork.AuthValues.UserId);
+        debug.text = PhotonNetwork.AuthValues.UserId;
         DutchClosedClicked();
         gameManager.DutchWestIndiaCompany = PhotonNetwork.AuthValues.UserId;
-        DutchJoined = true;
+        gameManager.DutchJoined = true;
         DutchButton.SetActive(false);
     }
     public void PhilipsesTeamJoin()
     {
         Debug.Log(PhotonNetwork.AuthValues.UserId);
+        debug.text = PhotonNetwork.AuthValues.UserId;
         PhilipsesClosedClicked();
         gameManager.Philipses = PhotonNetwork.AuthValues.UserId;
-        PhilipsesJoined = true;
+        gameManager.PhilipsesJoined = true;
         PhilipsesButton.SetActive(false);
     }
 
