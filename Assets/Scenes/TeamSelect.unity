@@ -990,7 +990,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 458241159}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 551385842}
+        m_TargetAssemblyTypeName: TeamSelectHandler, Assembly-CSharp
+        m_MethodName: MunseeTeamJoin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &458241159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,6 +1164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3985bc695af7df9448a679885ab1680a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IroquoisJoined: 0
+  MunseeJoined: 0
+  DutchJoined: 0
+  PhilipsesJoined: 0
   IroquoisButton: {fileID: 1984045082}
   IroquoisMenu: {fileID: 2096569086}
   IroquoisClose: {fileID: 669884332}
@@ -1164,6 +1180,7 @@ MonoBehaviour:
   PhilipsesButton: {fileID: 1287575569}
   PhilipsesMenu: {fileID: 663857573}
   PhilipsesClose: {fileID: 907288944}
+  gameManager: {fileID: 571594271}
 --- !u!1 &571594267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,7 +1622,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 744171907}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 551385842}
+        m_TargetAssemblyTypeName: TeamSelectHandler, Assembly-CSharp
+        m_MethodName: PhilipsesTeamJoin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &744171907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1727,7 +1756,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 792924847}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 551385842}
+        m_TargetAssemblyTypeName: TeamSelectHandler, Assembly-CSharp
+        m_MethodName: DutchTeamJoin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &792924847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3195,7 +3236,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1889509824}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 551385842}
+        m_TargetAssemblyTypeName: TeamSelectHandler, Assembly-CSharp
+        m_MethodName: IroquoisTeamJoin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1889509824
 MonoBehaviour:
   m_ObjectHideFlags: 0
