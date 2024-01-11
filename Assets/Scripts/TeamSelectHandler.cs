@@ -27,6 +27,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     public GameManager gameManager;
 
     public Text debug;
+    public GameObject debugger;
 
     public PhotonView playerPrefab;
     public PhotonView SixNationsButton;
@@ -90,6 +91,9 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         Debug.Log("Joined a room.");
         GameObject SixNations = PhotonNetwork.Instantiate(SixNationsButton.name, Vector3.zero, Quaternion.identity);
         GameObject Dutch = PhotonNetwork.Instantiate(DutchButton.name, Vector3.zero, Quaternion.identity);
+        GameObject DEBUG = PhotonNetwork.Instantiate(debugger.name, Vector3.zero, Quaternion.identity);
+
+        
         SixNations.transform.parent = theCanvas.transform;
         Dutch.transform.parent = theCanvas.transform;
         Debug.Log(SixNations.transform.position);
@@ -98,6 +102,9 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         Debug.Log(SixNations.transform);
         SixNations.SetActive(true);
         Dutch.SetActive(true);
+        DEBUG.SetActive(true);
+        DEBUG.transform.position = new Vector3(400, 200, 0);
+
 
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.PublishUserId = true;

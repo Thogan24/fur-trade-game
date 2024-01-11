@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public bool PhilipsesJoined = false;
 
     public Text debug;
+    public GameObject gameobject;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameobject = GameObject.FindWithTag("thedebugger");
+        debug = gameobject.GetComponent<Text>();
         debug.text = DutchWestIndiaCompany + " | " + SixNations;
         if (SixNationsJoined && MunseeJoined && DutchJoined && PhilipsesJoined)
         {
