@@ -14,12 +14,12 @@ public class GameManager : MonoBehaviour
     public string Munsee;
     public string Philipses;
 
-    public bool IroquoisJoined = false;
+    public bool SixNationsJoined = false;
     public bool MunseeJoined = false;
     public bool DutchJoined = false;
     public bool PhilipsesJoined = false;
 
-
+    public Text debug;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (IroquoisJoined && MunseeJoined && DutchJoined && PhilipsesJoined)
+        debug.text = DutchWestIndiaCompany + " | " + SixNations;
+        if (SixNationsJoined && MunseeJoined && DutchJoined && PhilipsesJoined)
         {
             SceneManager.LoadScene(1);
         }
