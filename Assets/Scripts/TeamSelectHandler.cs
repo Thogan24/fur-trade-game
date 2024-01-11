@@ -17,7 +17,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     [SerializeField] GameObject MunseeMenu;
     [SerializeField] Button MunseeClose;
 
-    //[SerializeField] GameObject DutchButton;
+    [SerializeField] GameObject DutchButton;
     [SerializeField] GameObject DutchMenu;
     [SerializeField] Button DutchClose;
 
@@ -27,7 +27,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     public GameManager gameManager;
 
     public Text debug;
-    public GameObject debugger;
+/*    public GameObject debugger;
 
     public PhotonView playerPrefab;
     public PhotonView SixNationsButton;
@@ -36,7 +36,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
     public GameObject Dutch;
     public GameObject SixNations;
-    public GameObject theCanvas;
+    public GameObject theCanvas;*/
 
 
 
@@ -64,7 +64,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         MunseeButtonReal.onClick.AddListener(MunseeButtonClicked);
         MunseeClose.onClick.AddListener(MunseeClosedClicked);
 
-        //DutchButton.SetActive(true);
+        DutchButton.SetActive(true);
         DutchMenu.SetActive(false);
 
         Button DutchButtonReal = DutchButton.GetComponent<Button>();
@@ -89,7 +89,13 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a room.");
-        GameObject SixNations = PhotonNetwork.Instantiate(SixNationsButton.name, Vector3.zero, Quaternion.identity);
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.PublishUserId = true;
+        AuthenticationValues authValues = new AuthenticationValues("0");
+        PhotonNetwork.AuthValues.UserId = userID.ToString();
+        userID += 1;
+
+        /*GameObject SixNations = PhotonNetwork.Instantiate(SixNationsButton.name, Vector3.zero, Quaternion.identity);
         GameObject Dutch = PhotonNetwork.Instantiate(DutchButton.name, Vector3.zero, Quaternion.identity);
         GameObject DEBUG = PhotonNetwork.Instantiate(debugger.name, Vector3.zero, Quaternion.identity);
 
@@ -103,14 +109,10 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         SixNations.SetActive(true);
         Dutch.SetActive(true);
         DEBUG.SetActive(true);
-        DEBUG.transform.position = new Vector3(400, 200, 0);
+        DEBUG.transform.position = new Vector3(400, 200, 0);*/
 
 
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.PublishUserId = true;
-        AuthenticationValues authValues = new AuthenticationValues("0");
-        PhotonNetwork.AuthValues.UserId = userID.ToString();
-        userID += 1;
+
 
 
 
@@ -207,7 +209,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         DutchClosedClicked();
         gameManager.DutchWestIndiaCompany = PhotonNetwork.AuthValues.UserId;
         gameManager.DutchJoined = true;
-        Dutch.SetActive(false);
+        DutchButton.SetActive(false);
     }
     public void PhilipsesTeamJoin()
     {

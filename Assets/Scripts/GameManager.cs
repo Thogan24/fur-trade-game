@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         //gameobject = GameObject.FindWithTag("thedebugger");
         //debug = gameobject.GetComponent<Text>();
         //debug.text = DutchWestIndiaCompany + " | " + SixNations;
-        if (SixNationsJoined && DutchJoined)
+        if (SixNationsJoined && DutchJoined && MunseeJoined && PhilipsesJoined)
         {
             Debug.Log("AAAA");
             SceneManager.LoadScene(1);
