@@ -28,6 +28,10 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
     public Text debug;
 
+    public PhotonView playerPrefab;
+
+
+
     bool menuOpen = false;
     int userID = 1;
 
@@ -77,6 +81,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a room.");
+        PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.PublishUserId = true;
         AuthenticationValues authValues = new AuthenticationValues("0");

@@ -1165,10 +1165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3985bc695af7df9448a679885ab1680a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IroquoisJoined: 0
-  MunseeJoined: 0
-  DutchJoined: 0
-  PhilipsesJoined: 0
   IroquoisButton: {fileID: 1984045082}
   IroquoisMenu: {fileID: 2096569086}
   IroquoisClose: {fileID: 669884332}
@@ -1183,6 +1179,7 @@ MonoBehaviour:
   PhilipsesClose: {fileID: 907288944}
   gameManager: {fileID: 571594271}
   debug: {fileID: 1532805301}
+  playerPrefab: {fileID: -1715989839878773183, guid: fa3f7600f6fe6d240a53f033e6ecedd8, type: 3}
 --- !u!1 &571594267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,6 +1242,10 @@ MonoBehaviour:
   SixNations: 
   Munsee: 
   Philipses: 
+  IroquoisJoined: 0
+  MunseeJoined: 0
+  DutchJoined: 0
+  PhilipsesJoined: 0
 --- !u!1 &663857573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,7 +2542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
