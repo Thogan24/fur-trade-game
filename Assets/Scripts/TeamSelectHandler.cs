@@ -97,6 +97,10 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         PhotonNetwork.AuthValues.UserId = userID.ToString();
         userID += 1;
 
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+            Debug.Log(player);
+        }
 
         PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
 
