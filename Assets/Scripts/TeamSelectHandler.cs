@@ -95,7 +95,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         roomOptions.PublishUserId = true;
         AuthenticationValues authValues = new AuthenticationValues("0");
         PhotonNetwork.AuthValues.UserId = userID.ToString();
-        userID += 1;
+        gameManager.userID += 1;
 
         foreach (Player player in PhotonNetwork.PlayerList)
         {

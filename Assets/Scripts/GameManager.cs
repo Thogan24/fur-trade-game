@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public bool PhilipsesJoined = false;
 
     public Text debug;
+    public int userID;
     public GameObject gameobject;
     // Start is called before the first frame update
     void Start()
