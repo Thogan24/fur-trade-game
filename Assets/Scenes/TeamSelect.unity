@@ -1276,21 +1276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3985bc695af7df9448a679885ab1680a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sixNationsButton: {fileID: 0}
-  sixNationsMenu: {fileID: 0}
-  sixNationsClose: {fileID: 0}
-  MunseeButton: {fileID: 2000131569}
-  MunseeMenu: {fileID: 1263337658}
-  MunseeClose: {fileID: 1350385}
-  DutchButton: {fileID: 2141674117}
-  DutchMenu: {fileID: 912963737}
-  DutchClose: {fileID: 234458926}
-  PhilipsesButton: {fileID: 1287575569}
-  PhilipsesMenu: {fileID: 663857573}
-  PhilipsesClose: {fileID: 907288944}
   gameManager: {fileID: 571594271}
   debug: {fileID: 719271679}
   debugger: {fileID: 0}
+  playerPrefab: {fileID: -1715989839878773183, guid: fa3f7600f6fe6d240a53f033e6ecedd8, type: 3}
   sixNationsButtonInstantiated: {fileID: -1606575855223397521, guid: 1890d439821882c4282ddc88fb6e1c18, type: 3}
   dutchButtonInstantiated: {fileID: -4779400556894639686, guid: e04f6652140fc43439c8aec499210d70, type: 3}
   Dutch: {fileID: 0}
@@ -3955,8 +3944,3 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &2141674117 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1619290924361044846, guid: e04f6652140fc43439c8aec499210d70, type: 3}
-  m_PrefabInstance: {fileID: 1287287052}
-  m_PrefabAsset: {fileID: 0}

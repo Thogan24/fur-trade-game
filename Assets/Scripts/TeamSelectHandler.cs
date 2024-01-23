@@ -31,7 +31,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
     public GameObject debugger;
 
-    //public PhotonView playerPrefab;
+    public PhotonView playerPrefab;
     public PhotonView sixNationsButtonInstantiated;
     public PhotonView dutchButtonInstantiated;
 
@@ -97,6 +97,8 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         PhotonNetwork.AuthValues.UserId = userID.ToString();
         userID += 1;
 
+
+        PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
 
         // Instantiating buttons
         SixNations = PhotonNetwork.Instantiate(sixNationsButtonInstantiated.name, Vector3.zero, Quaternion.identity);
