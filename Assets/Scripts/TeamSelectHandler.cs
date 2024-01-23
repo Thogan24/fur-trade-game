@@ -100,6 +100,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         foreach (Player player in PhotonNetwork.PlayerList)
         {
             Debug.LogError(player);
+            Debug.LogError(userID);
         }
 
         PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
