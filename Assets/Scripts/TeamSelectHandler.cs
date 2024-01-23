@@ -9,9 +9,9 @@ using Photon.Realtime;
 public class TeamSelectHandler : MonoBehaviourPunCallbacks
 {
 
-    [SerializeField] GameObject IroquoisButton;
-    [SerializeField] GameObject IroquoisMenu;
-    [SerializeField] Button IroquoisClose;
+    [SerializeField] GameObject sixNationsButton;
+    [SerializeField] GameObject sixNationsMenu;
+    [SerializeField] Button sixNationsClose;
 
     [SerializeField] GameObject MunseeButton;
     [SerializeField] GameObject MunseeMenu;
@@ -50,12 +50,12 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
         
 
-        //IroquoisButton.SetActive(true);
-        IroquoisMenu.SetActive(false);
+        //sixNationsButton.SetActive(true);
+        sixNationsMenu.SetActive(false);
 
-        Button IroquoisButtonReal = IroquoisButton.GetComponent<Button>();
-        IroquoisButtonReal.onClick.AddListener(IroquoisButtonClicked);
-        IroquoisClose.onClick.AddListener(IroquoisClosedClicked);
+        Button sixNationsButtonReal = sixNationsButton.GetComponent<Button>();
+        sixNationsButtonReal.onClick.AddListener(sixNationsButtonClicked);
+        sixNationsClose.onClick.AddListener(sixNationsClosedClicked);
 
         MunseeButton.SetActive(true);
         MunseeMenu.SetActive(false);
@@ -119,19 +119,19 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     }
 
 
-    public void IroquoisButtonClicked()
+    public void sixNationsButtonClicked()
     {
         if (!menuOpen)
         {
             menuOpen = true;
-            IroquoisMenu.SetActive(true);
+            sixNationsMenu.SetActive(true);
         }
     }
 
-    public void IroquoisClosedClicked()
+    public void sixNationsClosedClicked()
     {
          menuOpen = false;
-         IroquoisMenu.SetActive(false);
+         sixNationsMenu.SetActive(false);
         
     }
 
@@ -184,14 +184,14 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     }
 
 
-    public void IroquoisTeamJoin()
+    public void sixNationsTeamJoin()
     {
         Debug.Log(PhotonNetwork.AuthValues.UserId);
         debug.text = PhotonNetwork.AuthValues.UserId;
-        IroquoisClosedClicked();
+        sixNationsClosedClicked();
         gameManager.SixNations = PhotonNetwork.AuthValues.UserId;
         gameManager.SixNationsJoined = true;
-        IroquoisButton.SetActive(false);
+        sixNationsButton.SetActive(false);
     }
     public void MunseeTeamJoin()
     {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8363170929160094412}
   - component: {fileID: 8363170929160094415}
   m_Layer: 5
-  m_Name: DEBUGGER
+  m_Name: Photon_In_Game_Debugger
   m_TagString: thedebugger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

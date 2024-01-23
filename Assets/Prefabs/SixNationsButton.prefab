@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1606575855223397521}
   - component: {fileID: -1858852046870835724}
   m_Layer: 5
-  m_Name: IroquoisButton
+  m_Name: SixNationsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
