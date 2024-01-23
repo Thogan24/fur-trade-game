@@ -10,6 +10,8 @@ public class DutchOnClickedScript : MonoBehaviourPunCallbacks
 {
     public GameManager gameManager;
     public GameObject gameObject;
+    public TeamSelectHandler teamSelectHandler;
+    public GameObject canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,9 @@ public class DutchOnClickedScript : MonoBehaviourPunCallbacks
 
     public void DutchButtonClicked()
     {
+        canvas = GameObject.Find("Canvas");
+        teamSelectHandler = canvas.GetComponent<TeamSelectHandler>();
+
         Debug.Log(PhotonNetwork.AuthValues.UserId);
         string Value = PhotonNetwork.AuthValues.UserId;
         Debug.Log(Value);
@@ -32,6 +37,8 @@ public class DutchOnClickedScript : MonoBehaviourPunCallbacks
         gameManager.DutchWestIndiaCompany = Value;
         gameManager.DutchJoined = true;
         Debug.Log(gameManager.DutchWestIndiaCompany);
+        Debug.Log(teamSelectHandler.Dutch);
+        PhotonNetwork.Destroy(teamSelectHandler.Dutch);
         
     }
 

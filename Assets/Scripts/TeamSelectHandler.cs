@@ -27,16 +27,17 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     public GameManager gameManager;
 
     public Text debug;
-/*    public GameObject debugger;
 
-    public PhotonView playerPrefab;
-    public PhotonView SixNationsButton;
-    public PhotonView DutchButton;
 
+    public GameObject debugger;
+
+    //public PhotonView playerPrefab;
+    public PhotonView sixNationsButtonInstantiated;
+    public PhotonView dutchButtonInstantiated;
 
     public GameObject Dutch;
     public GameObject SixNations;
-    public GameObject theCanvas;*/
+    public GameObject theCanvas;
 
 
 
@@ -88,6 +89,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        // User ID Assignment
         Debug.Log("Joined a room.");
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.PublishUserId = true;
@@ -95,11 +97,13 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         PhotonNetwork.AuthValues.UserId = userID.ToString();
         userID += 1;
 
-        /*GameObject SixNations = PhotonNetwork.Instantiate(SixNationsButton.name, Vector3.zero, Quaternion.identity);
-        GameObject Dutch = PhotonNetwork.Instantiate(DutchButton.name, Vector3.zero, Quaternion.identity);
-        GameObject DEBUG = PhotonNetwork.Instantiate(debugger.name, Vector3.zero, Quaternion.identity);
 
-        
+        // Instantiating buttons
+        SixNations = PhotonNetwork.Instantiate(sixNationsButtonInstantiated.name, Vector3.zero, Quaternion.identity);
+        Dutch = PhotonNetwork.Instantiate(dutchButtonInstantiated.name, Vector3.zero, Quaternion.identity);
+        //GameObject DEBUG = PhotonNetwork.Instantiate(debugger.name, Vector3.zero, Quaternion.identity);
+
+        Debug.Log("A");
         SixNations.transform.parent = theCanvas.transform;
         Dutch.transform.parent = theCanvas.transform;
         Debug.Log(SixNations.transform.position);
@@ -108,8 +112,8 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         Debug.Log(SixNations.transform);
         SixNations.SetActive(true);
         Dutch.SetActive(true);
-        DEBUG.SetActive(true);
-        DEBUG.transform.position = new Vector3(400, 200, 0);*/
+        //DEBUG.SetActive(true);
+        //DEBUG.transform.position = new Vector3(400, 200, 0);
 
 
 

@@ -663,7 +663,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1226297258046671246, guid: 1890d439821882c4282ddc88fb6e1c18, type: 3}
       propertyPath: m_Name
-      value: IroquoisButton
+      value: SixNationsButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226297258046671246, guid: 1890d439821882c4282ddc88fb6e1c18, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1226297258046671247, guid: 1890d439821882c4282ddc88fb6e1c18, type: 3}
       propertyPath: m_Pivot.x
@@ -1272,9 +1276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3985bc695af7df9448a679885ab1680a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IroquoisButton: {fileID: 792710232}
-  IroquoisMenu: {fileID: 2096569086}
-  IroquoisClose: {fileID: 669884332}
+  sixNationsButton: {fileID: 0}
+  sixNationsMenu: {fileID: 0}
+  sixNationsClose: {fileID: 0}
   MunseeButton: {fileID: 2000131569}
   MunseeMenu: {fileID: 1263337658}
   MunseeClose: {fileID: 1350385}
@@ -1286,6 +1290,12 @@ MonoBehaviour:
   PhilipsesClose: {fileID: 907288944}
   gameManager: {fileID: 571594271}
   debug: {fileID: 719271679}
+  debugger: {fileID: 0}
+  sixNationsButtonInstantiated: {fileID: -1606575855223397521, guid: 1890d439821882c4282ddc88fb6e1c18, type: 3}
+  dutchButtonInstantiated: {fileID: -4779400556894639686, guid: e04f6652140fc43439c8aec499210d70, type: 3}
+  Dutch: {fileID: 0}
+  SixNations: {fileID: 0}
+  theCanvas: {fileID: 551385837}
 --- !u!1 &571594267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,6 +1620,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DEBUGGER
       objectReference: {fileID: 0}
+    - target: {fileID: 8363170929160094414, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
 --- !u!114 &719271679 stripped
@@ -1897,11 +1911,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744171904}
   m_CullTransparentMesh: 1
---- !u!1 &792710232 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1226297258046671246, guid: 1890d439821882c4282ddc88fb6e1c18, type: 3}
-  m_PrefabInstance: {fileID: 184740037}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &792924844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,6 +2620,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DutchButton
       objectReference: {fileID: 0}
+    - target: {fileID: 1619290924361044846, guid: e04f6652140fc43439c8aec499210d70, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1619290924361044847, guid: e04f6652140fc43439c8aec499210d70, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2733,7 +2746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1287575570
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3678,7 +3691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2000131570
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3799,7 +3812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2066495120
 RectTransform:
   m_ObjectHideFlags: 0
