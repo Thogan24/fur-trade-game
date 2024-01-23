@@ -9,7 +9,7 @@ using Photon.Realtime;
 public class TeamSelectHandler : MonoBehaviourPunCallbacks
 {
 
-    [SerializeField] GameObject sixNationsButton;
+   /* [SerializeField] GameObject sixNationsButton;
     [SerializeField] GameObject sixNationsMenu;
     [SerializeField] Button sixNationsClose;
 
@@ -23,7 +23,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
     [SerializeField] GameObject PhilipsesButton;
     [SerializeField] GameObject PhilipsesMenu;
-    [SerializeField] Button PhilipsesClose;
+    [SerializeField] Button PhilipsesClose;*/
     public GameManager gameManager;
 
     public Text debug;
@@ -52,7 +52,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         
 
         //sixNationsButton.SetActive(true);
-        sixNationsMenu.SetActive(false);
+        /*sixNationsMenu.SetActive(false);
 
         Button sixNationsButtonReal = sixNationsButton.GetComponent<Button>();
         sixNationsButtonReal.onClick.AddListener(sixNationsButtonClicked);
@@ -77,7 +77,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
         Button PhilipsesButtonReal = PhilipsesButton.GetComponent<Button>();
         PhilipsesButtonReal.onClick.AddListener(PhilipsesButtonClicked);
-        PhilipsesClose.onClick.AddListener(PhilipsesClosedClicked);
+        PhilipsesClose.onClick.AddListener(PhilipsesClosedClicked);*/
     }
 
 
@@ -103,7 +103,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         Dutch = PhotonNetwork.Instantiate(dutchButtonInstantiated.name, Vector3.zero, Quaternion.identity);
         //GameObject DEBUG = PhotonNetwork.Instantiate(debugger.name, Vector3.zero, Quaternion.identity);
 
-        Debug.Log("A");
+        Debug.LogError(PhotonNetwork.AuthValues.UserId);
         SixNations.transform.parent = theCanvas.transform;
         Dutch.transform.parent = theCanvas.transform;
         Debug.Log(SixNations.transform.position);
@@ -123,7 +123,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     }
 
 
-    public void sixNationsButtonClicked()
+    /*public void sixNationsButtonClicked()
     {
         if (!menuOpen)
         {
@@ -224,6 +224,6 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         gameManager.PhilipsesJoined = true;
         PhilipsesButton.SetActive(false);
     }
-
+*/
 
 }

@@ -171,3 +171,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   gameObject: {fileID: 0}
+  teamSelectHandler: {fileID: 0}
+  canvas: {fileID: 0}
