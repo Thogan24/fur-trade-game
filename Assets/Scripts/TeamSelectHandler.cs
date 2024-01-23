@@ -42,7 +42,6 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
 
     bool menuOpen = false;
-    int userID = 1;
 
 
     void Start()
@@ -95,12 +94,12 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         roomOptions.PublishUserId = true;
         AuthenticationValues authValues = new AuthenticationValues("0");
         PhotonNetwork.AuthValues.UserId = userID.ToString();
-        gameManager.userID += 1;
+        int userID = gameManager.userID++;
 
         foreach (Player player in PhotonNetwork.PlayerList)
         {
             Debug.LogError(player);
-            Debug.LogError(userID);
+            Debug.LogError(gameManager.userID);
         }
 
         PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
