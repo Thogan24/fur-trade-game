@@ -93,13 +93,13 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.PublishUserId = true;
         AuthenticationValues authValues = new AuthenticationValues("0");
-        PhotonNetwork.AuthValues.UserId = userID.ToString();
-        int userID = gameManager.userID++;
+        PhotonNetwork.AuthValues.UserId = gameManager.userID.ToString();
+        gameManager.userID++;
 
         foreach (Player player in PhotonNetwork.PlayerList)
         {
-            Debug.LogError(player);
-            Debug.LogError(gameManager.userID);
+            Debug.LogError("Player:" + player);
+            Debug.LogError("GameManager UserID:" + gameManager.userID);
         }
 
         PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
@@ -112,10 +112,9 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         Debug.LogError(PhotonNetwork.AuthValues.UserId);
         SixNations.transform.parent = theCanvas.transform;
         Dutch.transform.parent = theCanvas.transform;
-        Debug.Log(SixNations.transform.position);
+        //Debug.Log(SixNations.transform.position);
         SixNations.transform.position = new Vector3(400, 400, 0);
         Dutch.transform.position = new Vector3(900, 200, 0);
-        Debug.Log(SixNations.transform);
         SixNations.SetActive(true);
         Dutch.SetActive(true);
         //DEBUG.SetActive(true);

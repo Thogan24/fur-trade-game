@@ -1,7 +1,6 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using 
 
 public class OnClick : MonoBehaviour
 {
@@ -28,3 +27,4 @@ public class OnClick : MonoBehaviour
         //change the visibility from LocalHost Player to include trading partner
     }
 }
+*/

@@ -24,14 +24,13 @@ public class SixNationsOnClickedScript : MonoBehaviourPunCallbacks
 
     public void SixNationsButtonClicked()
     {
-        Debug.Log(PhotonNetwork.AuthValues.UserId);
         string Value = PhotonNetwork.AuthValues.UserId;
-        Debug.Log(Value);
+        Debug.Log("Button PlayerID Value: " + Value);
         gameObject = GameObject.Find("GameManager");
         gameManager = gameObject.GetComponent<GameManager>();
         gameManager.SixNations = Value;
         gameManager.SixNationsJoined = true;
-        Debug.Log(gameManager.SixNations);
+        //Debug.Log(gameManager.SixNations);
 
     }
 

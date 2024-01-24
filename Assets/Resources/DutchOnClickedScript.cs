@@ -29,15 +29,15 @@ public class DutchOnClickedScript : MonoBehaviourPunCallbacks
         canvas = GameObject.Find("Canvas");
         teamSelectHandler = canvas.GetComponent<TeamSelectHandler>();
 
-        Debug.Log(PhotonNetwork.AuthValues.UserId);
+        //Debug.Log(PhotonNetwork.AuthValues.UserId);
         string Value = PhotonNetwork.AuthValues.UserId;
-        Debug.Log(Value);
+        Debug.Log("Button PlayerID Value: " + Value);
         gameObject = GameObject.Find("GameManager");
         gameManager = gameObject.GetComponent<GameManager>();
         gameManager.DutchWestIndiaCompany = Value;
         gameManager.DutchJoined = true;
-        Debug.Log(gameManager.DutchWestIndiaCompany);
-        Debug.Log(teamSelectHandler.Dutch);
+        //Debug.Log(gameManager.DutchWestIndiaCompany);
+        //Debug.Log(teamSelectHandler.Dutch);
         PhotonNetwork.Destroy(teamSelectHandler.Dutch);
         
     }
