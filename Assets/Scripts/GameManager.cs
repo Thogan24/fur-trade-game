@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(1);
         }
         
-        if (newUserID != 1)
+        if (userID != 1)
         {
             this.GetComponent<PhotonView>().RPC("changeUserID", RpcTarget.All, transform.position);
 
