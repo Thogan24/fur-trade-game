@@ -43,7 +43,10 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
     bool menuOpen = false;
 
-
+    private void Awake()
+    {
+        gameObject.AddComponent<PhotonView>();
+    }
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -95,11 +98,13 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         AuthenticationValues authValues = new AuthenticationValues("0");
         PhotonNetwork.AuthValues.UserId = gameManager.userID.ToString();
         gameManager.userID++;
+        gameManager.userID++;
         Debug.LogError(PhotonNetwork.AuthValues.UserId);
 
         foreach (Player player in PhotonNetwork.PlayerList)
         {
             Debug.LogError("Player:" + player);
+            Debug.LogError("Player AuthValue:" + PhotonNetwork.AuthValues.UserId);
             Debug.LogError("GameManager UserID:" + gameManager.userID);
         }
 
