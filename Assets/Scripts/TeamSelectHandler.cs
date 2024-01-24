@@ -95,6 +95,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         AuthenticationValues authValues = new AuthenticationValues("0");
         PhotonNetwork.AuthValues.UserId = gameManager.userID.ToString();
         gameManager.userID++;
+        Debug.LogError(PhotonNetwork.AuthValues.UserId);
 
         foreach (Player player in PhotonNetwork.PlayerList)
         {
