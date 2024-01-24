@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
 
 
     public int userID = 1;
+    public int newUserID = 0;
     public GameObject gameobject;
 
     void Start()
@@ -58,5 +60,18 @@ public class GameManager : MonoBehaviour
             Debug.Log("AAAA");
             SceneManager.LoadScene(1);
         }
+        
+        if (userID != 1)
+        {
+            this.GetComponent<PhotonView>().RPC("changeUserID", RpcTarget.All, transform.position);
+
+        }
+    }
+
+    [PunRPC]
+    void changeUserID(Vector3 transform)
+    {
+        userID = newUserID;
+        Debug.LogError("USERID HAS CHANGED!!!: " + userID);
     }
 }

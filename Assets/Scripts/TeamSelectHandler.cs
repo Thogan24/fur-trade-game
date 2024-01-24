@@ -91,19 +91,23 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+
         // User ID Assignment
         Debug.Log("Joined a room.");
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.PublishUserId = true;
         AuthenticationValues authValues = new AuthenticationValues("0");
         PhotonNetwork.AuthValues.UserId = gameManager.userID.ToString();
-        gameManager.userID++;
-        gameManager.userID++;
-        Debug.LogError(PhotonNetwork.AuthValues.UserId);
+        gameManager.newUserID = gameManager.userID++;
+
+        PhotonNetwork.NickName = gameManager.userID.ToString();
+        Debug.LogError("YOUR AuthValue:" + PhotonNetwork.AuthValues.UserId);
+
+
 
         foreach (Player player in PhotonNetwork.PlayerList)
         {
-            Debug.LogError("Player:" + player);
+            Debug.LogError("Player:" + PhotonNetwork.LocalPlayer.NickName);
             Debug.LogError("Player AuthValue:" + PhotonNetwork.AuthValues.UserId);
             Debug.LogError("GameManager UserID:" + gameManager.userID);
         }
