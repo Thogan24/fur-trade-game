@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(1);
         }
         
-        if (userID != 1)
+        if (newUserID != 1)
         {
             this.GetComponent<PhotonView>().RPC("changeUserID", RpcTarget.All, transform.position);
 
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     [PunRPC]
     void changeUserID(Vector3 transform)
     {
+        Debug.LogError(newUserID);
         userID = newUserID;
         Debug.LogError("USERID HAS CHANGED!!!: " + userID);
 
