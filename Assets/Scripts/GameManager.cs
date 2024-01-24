@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
         {
-            gameObject.AddComponent<PhotonView>();
+            //  gameObject.AddComponent<PhotonView>();
             
 
             DontDestroyOnLoad(gameObject);
@@ -73,5 +73,6 @@ public class GameManager : MonoBehaviour
     {
         userID = newUserID;
         Debug.LogError("USERID HAS CHANGED!!!: " + userID);
+
     }
 }

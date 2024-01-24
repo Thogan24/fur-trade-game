@@ -25,6 +25,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     [SerializeField] GameObject PhilipsesMenu;
     [SerializeField] Button PhilipsesClose;*/
     public GameManager gameManager;
+    public GameObject gameManagerPrefab;
 
     public Text debug;
 
@@ -91,10 +92,13 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-
         // User ID Assignment
         Debug.Log("Joined a room.");
         RoomOptions roomOptions = new RoomOptions();
+
+        GameObject instantiatedGameManager = PhotonNetwork.Instantiate(gameManagerPrefab.name, Vector3.zero, Quaternion.identity);
+        gameManager = instantiatedGameManager.GetComponent<GameManager>();
+
         roomOptions.PublishUserId = true;
         AuthenticationValues authValues = new AuthenticationValues("0");
         PhotonNetwork.AuthValues.UserId = gameManager.userID.ToString();
