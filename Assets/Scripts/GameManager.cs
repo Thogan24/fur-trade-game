@@ -7,7 +7,29 @@ using Photon.Pun;
 
 public class GameManager : MonoBehaviour
 {
-    bool allTeamsSelected = true;
+
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        CreateSingleton();
+    }
+
+    void CreateSingleton()
+    {
+        if (instance == null)
+        {
+            gameObject.AddComponent<PhotonView>();
+            
+
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else
+            Destroy(gameObject);
+
+        
+    }
 
     public string DutchWestIndiaCompany;
     public string SixNations;
@@ -19,21 +41,18 @@ public class GameManager : MonoBehaviour
     public bool DutchJoined = false;
     public bool PhilipsesJoined = false;
 
-    public Text debug;
+
     public int userID = 1;
     public GameObject gameobject;
-    // Start is called before the first frame update
+
     void Start()
     {
         Debug.Log(DutchWestIndiaCompany);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        //gameobject = GameObject.FindWithTag("thedebugger");
-        //debug = gameobject.GetComponent<Text>();
-        //debug.text = DutchWestIndiaCompany + " | " + SixNations;
         if (SixNationsJoined && DutchJoined && MunseeJoined && PhilipsesJoined)
         {
             Debug.Log("AAAA");
