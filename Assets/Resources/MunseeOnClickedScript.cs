@@ -6,13 +6,13 @@ using Photon.Pun;
 using UnityEngine.Events;
 using Photon.Realtime;
 
-public class DutchOnClickedScript : MonoBehaviour
+public class MunseeOnClickedScript : MonoBehaviour
 {
 
-    public GameObject myDutchButton;
+    public GameObject myMunseeButton;
     void Start()
     {
-        myDutchButton = this.gameObject;
+        myMunseeButton = this.gameObject;
     }
 
     void Update()
@@ -20,7 +20,7 @@ public class DutchOnClickedScript : MonoBehaviour
 
     }
 
-    public void DutchButtonClicked()
+    public void MunseeButtonClicked()
     {
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, this.transform.position, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
 
@@ -32,14 +32,14 @@ public class DutchOnClickedScript : MonoBehaviour
 
         Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine + " viewid: " + this.GetComponent<PhotonView>().ViewID);
         Debug.LogError("User ID: " + userIDOfClicker);
-        GameObject DutchButton = GameObject.FindGameObjectWithTag("Dutch Button");
+        GameObject MunseeButton = GameObject.FindGameObjectWithTag("Munsee Button");
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
 
-        gameManager.Dutch = userIDOfClicker;
+        gameManager.Munsee = userIDOfClicker;
 
 
-        PhotonNetwork.Destroy(DutchButton);
+        PhotonNetwork.Destroy(MunseeButton);
         // If it didn't get destroyed yet for any reason
-        PhotonNetwork.Destroy(myDutchButton);
+        PhotonNetwork.Destroy(myMunseeButton);
     }
 }

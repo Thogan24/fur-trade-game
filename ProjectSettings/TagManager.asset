@@ -7,6 +7,9 @@ TagManager:
   - thedebugger
   - Game Manager
   - Philipses Button
+  - Dutch Button
+  - Six Nations Button
+  - Munsee Button
   layers:
   - Default
   - TransparentFX

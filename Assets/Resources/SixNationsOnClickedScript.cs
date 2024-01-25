@@ -6,17 +6,15 @@ using Photon.Pun;
 using UnityEngine.Events;
 using Photon.Realtime;
 
-public class SixNationsOnClickedScript : MonoBehaviourPunCallbacks
+public class SixNationsOnClickedScript : MonoBehaviour
 {
-    public GameManager gameManager;
-    public GameObject gameObject;
-    // Start is called before the first frame update
+
+    public GameObject mySixNationsButton;
     void Start()
     {
-
+        mySixNationsButton = this.gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -24,15 +22,24 @@ public class SixNationsOnClickedScript : MonoBehaviourPunCallbacks
 
     public void SixNationsButtonClicked()
     {
-        string Value = PhotonNetwork.AuthValues.UserId;
-        Debug.Log("Button PlayerID Value: " + Value);
-        gameObject = GameObject.Find("GameManager");
-        gameManager = gameObject.GetComponent<GameManager>();
-        gameManager.SixNations = Value;
-        gameManager.SixNationsJoined = true;
-        //Debug.Log(gameManager.SixNations);
+        this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, this.transform.position, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
 
     }
 
+    [PunRPC]
+    void WhenClicked(Vector3 transform, string userIDOfClicker) // 
+    {
 
+        Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine + " viewid: " + this.GetComponent<PhotonView>().ViewID);
+        Debug.LogError("User ID: " + userIDOfClicker);
+        GameObject SixNationsButton = GameObject.FindGameObjectWithTag("Six Nations Button");
+        GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
+        gameManager.SixNations = userIDOfClicker;
+
+
+        PhotonNetwork.Destroy(SixNationsButton);
+        // If it didn't get destroyed yet for any reason
+        PhotonNetwork.Destroy(mySixNationsButton);
+    }
 }

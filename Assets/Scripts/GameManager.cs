@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         
     }
 
-    public string DutchWestIndiaCompany;
+    public string Dutch;
     public string SixNations;
     public string Munsee;
     public string Philipses;
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        Debug.Log(DutchWestIndiaCompany);
+        Debug.Log(Dutch);
         
     }
 
@@ -70,6 +70,25 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             this.GetComponent<PhotonView>().RPC("philipsesJoinedRPC", RpcTarget.All, Philipses);
         }
+        if (Dutch != "" && DutchJoined == false)
+        {
+            this.GetComponent<PhotonView>().RPC("dutchJoinedRPC", RpcTarget.All, Dutch);
+        }
+        if (SixNations != "" && SixNationsJoined == false)
+        {
+            this.GetComponent<PhotonView>().RPC("sixNationsJoinedRPC", RpcTarget.All, SixNations);
+        }
+        if (Munsee != "" && MunseeJoined == false)
+        {
+            this.GetComponent<PhotonView>().RPC("munseeJoinedRPC", RpcTarget.All, Munsee);
+        }
+
+
+
+
+
+
+
         if (PhotonNetwork.PlayerList.Length > OldPlayerListLength)
         {
             Debug.LogError("User ID: " + userID + " New User ID: " + newUserID);
@@ -105,5 +124,35 @@ public class GameManager : MonoBehaviourPunCallbacks
         // Mapping shit
     }
 
-    
+    [PunRPC]
+    void dutchJoinedRPC(string userIDDutch)
+    {
+        DutchJoined = true;
+        Dutch = userIDDutch;
+        Debug.LogError(DutchJoined);
+        Debug.LogError(Dutch);
+        // Mapping shit
+    }
+
+    [PunRPC]
+    void sixNationsJoinedRPC(string userIDSixNations)
+    {
+        SixNationsJoined = true;
+        SixNations = userIDSixNations;
+        Debug.LogError(SixNationsJoined);
+        Debug.LogError(SixNations);
+        // Mapping shit
+    }
+
+    [PunRPC]
+    void munseeJoinedRPC(string userIDMunsee)
+    {
+        MunseeJoined = true;
+        Munsee = userIDMunsee;
+        Debug.LogError(MunseeJoined);
+        Debug.LogError(Munsee);
+        // Mapping shit
+    }
+
+
 }

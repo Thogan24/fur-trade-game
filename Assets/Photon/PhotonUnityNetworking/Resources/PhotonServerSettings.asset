@@ -43,6 +43,9 @@ MonoBehaviour:
   - whenClicked
   - WhenClicked
   - philipsesJoinedRPC
+  - dutchJoinedRPC
+  - munseeJoinedRPC
+  - sixNationsJoinedRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -121,8 +121,8 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
 
         // Instantiating buttons
-        SixNations = PhotonNetwork.Instantiate(sixNationsButtonInstantiated.name, Vector3.zero, Quaternion.identity);
-        Dutch = PhotonNetwork.Instantiate(dutchButtonInstantiated.name, Vector3.zero, Quaternion.identity);
+        //SixNations = PhotonNetwork.Instantiate(sixNationsButtonInstantiated.name, Vector3.zero, Quaternion.identity);
+        //Dutch = PhotonNetwork.Instantiate(dutchButtonInstantiated.name, Vector3.zero, Quaternion.identity);
         //GameObject DEBUG = PhotonNetwork.Instantiate(debugger.name, Vector3.zero, Quaternion.identity);
 
         //Debug.LogError(PhotonNetwork.AuthValues.UserId);
