@@ -47,8 +47,9 @@ public class GameManager : MonoBehaviour
 
 
     public int userID = 1;
-    public int newUserID = 0;
+    public int newUserID = 100;
     public GameObject gameobject;
+    public int OldPlayerListLength;
 
     void Start()
     {
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(PhotonNetwork.PlayerList.Length);
         //Debug.Log(userID);
         if (SixNationsJoined && DutchJoined && MunseeJoined && PhilipsesJoined)
         {
@@ -65,9 +67,11 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(1);
         }
         
-        if (userID != 1)
+        if (PhotonNetwork.PlayerList.Length > OldPlayerListLength)
         {
+            Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | Old: " + OldPlayerListLength);
             this.GetComponent<PhotonView>().RPC("changeUserID", RpcTarget.All, transform.position);
+            OldPlayerListLength = PhotonNetwork.PlayerList.Length;
 
         }
     }
@@ -75,9 +79,11 @@ public class GameManager : MonoBehaviour
     [PunRPC]
     void changeUserID(Vector3 transform)
     {
-        Debug.LogError(newUserID);
+        Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | Old: " + OldPlayerListLength);
+        Debug.LogError("New User ID: " + newUserID);
+        Debug.LogError("User ID: " + userID);
+        
         userID++;
-        Debug.LogError("USERID HAS CHANGED!!!: " + userID);
 
     }
 }

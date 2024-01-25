@@ -70,6 +70,7 @@ MonoBehaviour:
   userID: 1
   newUserID: 0
   gameobject: {fileID: 0}
+  OldPlayerListLength: 0
 --- !u!114 &6133153684083027296
 MonoBehaviour:
   m_ObjectHideFlags: 0
