@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool PhilipsesJoined = false;
 
 
-    public int userID = 1;
+    public int userID = 0;
     public int newUserID = 100;
     public GameObject gameobject;
     public int OldPlayerListLength;
@@ -60,8 +60,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        //Debug.Log(PhotonNetwork.PlayerList.Length);
-        //Debug.Log(userID);
         if (SixNationsJoined && DutchJoined && MunseeJoined && PhilipsesJoined)
         {
             Debug.Log("AAAA");
@@ -70,6 +68,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         
         if (PhotonNetwork.PlayerList.Length > OldPlayerListLength)
         {
+            Debug.LogError("User ID: " + userID + " New User ID: " + newUserID);
             //Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | Old: " + OldPlayerListLength);
             this.GetComponent<PhotonView>().RPC("changeUserID", RpcTarget.All, transform.position);
             
@@ -80,9 +79,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void changeUserID(Vector3 transform)
     {
-        Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine + "viewid: " + this.GetComponent<PhotonView>().ViewID);
+        
+        Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine + " viewid: " + this.GetComponent<PhotonView>().ViewID);
         Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | OldPlayerList: " + OldPlayerListLength);
-        Debug.LogError("User ID: " + userID + "New User ID: " + newUserID);
+        Debug.LogError("User ID: " + userID + " New User ID: " + newUserID);
+
         if (PhotonNetwork.PlayerList.Length != OldPlayerListLength)
         {
             userID++;

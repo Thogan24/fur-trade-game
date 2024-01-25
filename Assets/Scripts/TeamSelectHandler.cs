@@ -102,7 +102,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         roomOptions.PublishUserId = true;
         AuthenticationValues authValues = new AuthenticationValues("0");
         PhotonNetwork.AuthValues.UserId = gameManager.userID.ToString();
-        gameManager.newUserID = gameManager.userID + 10;
+        //gameManager.newUserID = gameManager.userID + 10;
 
         Debug.LogError("PhotonView teamselecthandler: " + this.GetComponent<PhotonView>().ViewID);
 
