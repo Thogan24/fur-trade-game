@@ -118,7 +118,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
             //Debug.LogError("GameManager UserID:" + gameManager.userID);
         }
 
-        PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
+        //PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
 
         // Instantiating buttons
         //SixNations = PhotonNetwork.Instantiate(sixNationsButtonInstantiated.name, Vector3.zero, Quaternion.identity);
