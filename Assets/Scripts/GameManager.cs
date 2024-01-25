@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(userID);
+        //Debug.Log(userID);
         if (SixNationsJoined && DutchJoined && MunseeJoined && PhilipsesJoined)
         {
             Debug.Log("AAAA");
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     void changeUserID(Vector3 transform)
     {
         Debug.LogError(newUserID);
-        userID = newUserID;
+        userID++;
         Debug.LogError("USERID HAS CHANGED!!!: " + userID);
 
     }
