@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Start()
     {
         Debug.Log(Dutch);
-        
     }
 
 
