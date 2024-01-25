@@ -48,6 +48,11 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     {
         gameObject.AddComponent<PhotonView>();
     }*/
+    void Awake()
+    {
+        DontDestroyOnLoad(gameManager);
+    }
+
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
