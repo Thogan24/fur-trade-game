@@ -96,24 +96,26 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
         Debug.Log("Joined a room.");
         RoomOptions roomOptions = new RoomOptions();
 
-        GameObject instantiatedGameManager = PhotonNetwork.Instantiate(gameManagerPrefab.name, Vector3.zero, Quaternion.identity);
-        gameManager = instantiatedGameManager.GetComponent<GameManager>();
+        //GameObject instantiatedGameManager = PhotonNetwork.Instantiate(gameManagerPrefab.name, Vector3.zero, Quaternion.identity);
+        //gameManager = instantiatedGameManager.GetComponent<GameManager>();
 
         roomOptions.PublishUserId = true;
         AuthenticationValues authValues = new AuthenticationValues("0");
         PhotonNetwork.AuthValues.UserId = gameManager.userID.ToString();
         gameManager.newUserID = gameManager.userID + 10;
 
+        Debug.LogError("PhotonView teamselecthandler: " + this.GetComponent<PhotonView>().ViewID);
+
         PhotonNetwork.NickName = gameManager.userID.ToString();
-        Debug.LogError("YOUR AuthValue:" + PhotonNetwork.AuthValues.UserId);
+        //Debug.LogError("YOUR AuthValue:" + PhotonNetwork.AuthValues.UserId);
 
 
 
         foreach (Player player in PhotonNetwork.PlayerList)
         {
-            Debug.LogError("Player:" + PhotonNetwork.LocalPlayer.NickName);
-            Debug.LogError("Player AuthValue:" + PhotonNetwork.AuthValues.UserId);
-            Debug.LogError("GameManager UserID:" + gameManager.userID);
+            //Debug.LogError("Player:" + PhotonNetwork.LocalPlayer.NickName);
+            //Debug.LogError("Player AuthValue:" + PhotonNetwork.AuthValues.UserId);
+            //Debug.LogError("GameManager UserID:" + gameManager.userID);
         }
 
         PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);

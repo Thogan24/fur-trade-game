@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
 
     public static GameManager instance;
@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Debug.Log(DutchWestIndiaCompany);
+        
     }
 
 
@@ -69,9 +70,9 @@ public class GameManager : MonoBehaviour
         
         if (PhotonNetwork.PlayerList.Length > OldPlayerListLength)
         {
-            Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | Old: " + OldPlayerListLength);
+            //Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | Old: " + OldPlayerListLength);
             this.GetComponent<PhotonView>().RPC("changeUserID", RpcTarget.All, transform.position);
-            OldPlayerListLength = PhotonNetwork.PlayerList.Length;
+            
 
         }
     }
@@ -79,11 +80,16 @@ public class GameManager : MonoBehaviour
     [PunRPC]
     void changeUserID(Vector3 transform)
     {
-        Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | Old: " + OldPlayerListLength);
-        Debug.LogError("New User ID: " + newUserID);
+        Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine);
+        Debug.LogError("viewid: " + this.GetComponent<PhotonView>().ViewID);
+        Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | OldPlayerList: " + OldPlayerListLength);
+        //Debug.LogError("New User ID: " + newUserID);
         Debug.LogError("User ID: " + userID);
         
         userID++;
+        OldPlayerListLength = PhotonNetwork.PlayerList.Length;
 
     }
+
+    
 }
