@@ -4072,6 +4072,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2087320946161594446, guid: d542a2c808bbe5442ad05dbf15311618, type: 3}
+      propertyPath: m_TagString
+      value: Game Manager
+      objectReference: {fileID: 0}
     - target: {fileID: 6133153684083027296, guid: d542a2c808bbe5442ad05dbf15311618, type: 3}
       propertyPath: sceneViewId
       value: 3

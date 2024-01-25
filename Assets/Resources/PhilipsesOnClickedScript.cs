@@ -33,7 +33,10 @@ public class PhilipsesOnClickedScript : MonoBehaviour
         Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine + " viewid: " + this.GetComponent<PhotonView>().ViewID);
         Debug.LogError("User ID: " + userIDOfClicker);
         GameObject PhilipsesButton = GameObject.FindGameObjectWithTag("Philipses Button");
+        GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
 
+        gameManager.Philipses = userIDOfClicker;
+        
 
         PhotonNetwork.Destroy(PhilipsesButton);
         // If it didn't get destroyed yet for any reason

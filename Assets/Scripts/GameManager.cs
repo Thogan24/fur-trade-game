@@ -65,7 +65,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.Log("AAAA");
             SceneManager.LoadScene(1);
         }
-        
+        //Debug.Log(Philipses);
+        if (Philipses != "" && PhilipsesJoined == false)
+        {
+            this.GetComponent<PhotonView>().RPC("philipsesJoinedRPC", RpcTarget.All, Philipses);
+        }
         if (PhotonNetwork.PlayerList.Length > OldPlayerListLength)
         {
             Debug.LogError("User ID: " + userID + " New User ID: " + newUserID);
@@ -90,6 +94,15 @@ public class GameManager : MonoBehaviourPunCallbacks
             OldPlayerListLength = PhotonNetwork.PlayerList.Length;
         }
 
+    }
+    [PunRPC]
+    void philipsesJoinedRPC(string userIDPhilipses)
+    {
+        PhilipsesJoined = true;
+        Philipses = userIDPhilipses;
+        Debug.LogError(PhilipsesJoined);
+        Debug.LogError(Philipses);
+        // Mapping shit
     }
 
     
