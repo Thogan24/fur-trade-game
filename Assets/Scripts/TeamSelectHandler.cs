@@ -44,10 +44,10 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
     bool menuOpen = false;
 
-    private void Awake()
+    /*private void Awake()
     {
         gameObject.AddComponent<PhotonView>();
-    }
+    }*/
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();

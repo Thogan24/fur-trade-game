@@ -21,13 +21,16 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             //  gameObject.AddComponent<PhotonView>();
-            
+
 
             DontDestroyOnLoad(gameObject);
             instance = this;
         }
         else
+        {
+            Debug.Log("Destroyed");
             Destroy(gameObject);
+        }
 
         
     }
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(userID);
         if (SixNationsJoined && DutchJoined && MunseeJoined && PhilipsesJoined)
         {
             Debug.Log("AAAA");
