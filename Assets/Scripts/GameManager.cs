@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.PlayerList.Length != OldPlayerListLength)
         {
-            userID++;
+            userID = PhotonNetwork.PlayerList.Length;
             OldPlayerListLength = PhotonNetwork.PlayerList.Length;
         }
 

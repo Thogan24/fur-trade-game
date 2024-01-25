@@ -2701,13 +2701,15 @@ GameObject:
   - component: {fileID: 1287575573}
   - component: {fileID: 1287575572}
   - component: {fileID: 1287575571}
+  - component: {fileID: 1287575574}
+  - component: {fileID: 1287575575}
   m_Layer: 5
   m_Name: PhilipsesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1287575570
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2771,7 +2773,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1287575572}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1287575575}
+        m_TargetAssemblyTypeName: PhilipsesOnClickedScript, Assembly-CSharp
+        m_MethodName: PhilipsesButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1287575572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2810,6 +2824,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287575569}
   m_CullTransparentMesh: 1
+--- !u!114 &1287575574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287575569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 5
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1287575575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287575569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8f751117367874b80bb307e45eb321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPhilipsesButton: {fileID: 0}
 --- !u!1 &1342647236
 GameObject:
   m_ObjectHideFlags: 0
