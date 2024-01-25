@@ -80,14 +80,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void changeUserID(Vector3 transform)
     {
-        Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine);
-        Debug.LogError("viewid: " + this.GetComponent<PhotonView>().ViewID);
+        Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine + "viewid: " + this.GetComponent<PhotonView>().ViewID);
         Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | OldPlayerList: " + OldPlayerListLength);
-        //Debug.LogError("New User ID: " + newUserID);
-        Debug.LogError("User ID: " + userID);
-        
-        userID++;
-        OldPlayerListLength = PhotonNetwork.PlayerList.Length;
+        Debug.LogError("User ID: " + userID + "New User ID: " + newUserID);
+        if (PhotonNetwork.PlayerList.Length != OldPlayerListLength)
+        {
+            userID++;
+            OldPlayerListLength = PhotonNetwork.PlayerList.Length;
+        }
 
     }
 
