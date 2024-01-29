@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool DutchJoined = false;
     public bool PhilipsesJoined = false;
 
+    public GameObject DutchCamera;
+    public GameObject SixNationsCamera;
+    public GameObject MunseeCamera;
+    public GameObject PhilipsesCamera;
+
 
     public int userID = 0;
     public int newUserID = 100;
@@ -59,12 +64,17 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (SixNationsJoined && DutchJoined && MunseeJoined && PhilipsesJoined)
+        if (SixNationsJoined && DutchJoined) //  && MunseeJoined && PhilipsesJoined
         {
             Debug.Log("AAAA");
             SceneManager.LoadScene(1);
+            this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All, transform.position); 
         }
-        //Debug.Log(Philipses);
+
+            //Debug.Log(Philipses);
+
+
+
         if (Philipses != "" && PhilipsesJoined == false)
         {
             this.GetComponent<PhotonView>().RPC("philipsesJoinedRPC", RpcTarget.All, Philipses);
@@ -153,5 +163,24 @@ public class GameManager : MonoBehaviourPunCallbacks
         // Mapping shit
     }
 
+    void mainSceneCameraRPC(Vector3 transform)
+    {
+        if(PhotonNetwork.LocalPlayer.ToString() == Dutch)
+        {
+            DutchCamera.SetActive(true);
+        }
+        if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
+        {
+            SixNationsCamera.SetActive(true);
+        }
+        if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
+        {
+            MunseeCamera.SetActive(true);
+        }
+        if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
+        {
+            PhilipsesCamera.SetActive(true);
+        }
+    }
 
 }
