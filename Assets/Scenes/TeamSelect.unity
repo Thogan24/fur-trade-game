@@ -945,8 +945,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -660, y: 202}
-  m_SizeDelta: {x: 300, y: 180}
+  m_AnchoredPosition: {x: 769.99976, y: 232.91797}
+  m_SizeDelta: {x: 345.88, y: 207.864}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &450546957
 MonoBehaviour:
@@ -1953,8 +1953,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 525.06, y: -316}
-  m_SizeDelta: {x: 155.026, y: 86.627}
+  m_AnchoredPosition: {x: 771.95, y: -427}
+  m_SizeDelta: {x: 156.81, y: 86.627}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &752179952
 MonoBehaviour:
@@ -2817,8 +2817,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 392, y: 22}
-  m_SizeDelta: {x: 300, y: 180}
+  m_AnchoredPosition: {x: 770, y: 10.999}
+  m_SizeDelta: {x: 345.88, y: 202}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1287575571
 MonoBehaviour:
@@ -3010,6 +3010,10 @@ MonoBehaviour:
   MunseeJoined: 0
   DutchJoined: 0
   PhilipsesJoined: 0
+  DutchCamera: {fileID: 0}
+  SixNationsCamera: {fileID: 0}
+  MunseeCamera: {fileID: 0}
+  PhilipsesCamera: {fileID: 0}
   userID: 0
   newUserID: 100
   gameobject: {fileID: 0}
@@ -3859,8 +3863,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -506, y: -316}
-  m_SizeDelta: {x: 300, y: 180}
+  m_AnchoredPosition: {x: 770, y: -219.171}
+  m_SizeDelta: {x: 345.879, y: 202.938}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2000131571
 MonoBehaviour:
