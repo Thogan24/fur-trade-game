@@ -92,6 +92,7 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Master");
+        PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.JoinRandomOrCreateRoom();
     }
 

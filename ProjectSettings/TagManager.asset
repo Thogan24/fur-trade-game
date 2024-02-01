@@ -10,6 +10,9 @@ TagManager:
   - Dutch Button
   - Six Nations Button
   - Munsee Button
+  - DWIC Camera
+  - Philipse Camera
+  - Six Nations Camera
   layers:
   - Default
   - TransparentFX

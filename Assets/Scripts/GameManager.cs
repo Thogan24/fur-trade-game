@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int newUserID = 100;
     public GameObject gameobject;
     public int OldPlayerListLength;
+    public bool AlreadyLoaded = false;
 
     void Start()
     {
@@ -64,11 +65,17 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (SixNationsJoined && DutchJoined) //  && MunseeJoined && PhilipsesJoined
+        if (SixNationsJoined && DutchJoined && !AlreadyLoaded) //  && MunseeJoined && PhilipsesJoined
         {
             Debug.Log("AAAA");
-            SceneManager.LoadScene(1);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel(1);
+            }
+            
+            DutchCamera = GameObject.FindGameObjectWithTag("DWIC Camera");
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All, transform.position); 
+            AlreadyLoaded = true;
         }
 
             //Debug.Log(Philipses);
@@ -167,19 +174,26 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.LocalPlayer.ToString() == Dutch)
         {
+            Debug.LogError("B");
             DutchCamera.SetActive(true);
         }
         if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
         {
+            Debug.LogError("C");
+            DutchCamera = GameObject.FindGameObjectWithTag("Six Nations Camera");
+            DutchCamera.SetActive(false);
             SixNationsCamera.SetActive(true);
         }
         if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
         {
+            DutchCamera.SetActive(false);
             MunseeCamera.SetActive(true);
         }
         if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
         {
+            DutchCamera.SetActive(false);
             PhilipsesCamera.SetActive(true);
+
         }
     }
 

@@ -12235,11 +12235,11 @@ GameObject:
   - component: {fileID: 1223988160}
   m_Layer: 0
   m_Name: DWIC Camera
-  m_TagString: MainCamera
+  m_TagString: Munsee Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1223988157
 AudioListener:
   m_ObjectHideFlags: 0
@@ -21610,7 +21610,7 @@ GameObject:
   - component: {fileID: 2086051849}
   m_Layer: 0
   m_Name: Six Nations Camera
-  m_TagString: MainCamera
+  m_TagString: Six Nations Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
