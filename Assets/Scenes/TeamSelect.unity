@@ -3010,14 +3010,15 @@ MonoBehaviour:
   MunseeJoined: 0
   DutchJoined: 0
   PhilipsesJoined: 0
-  DutchCamera: {fileID: 0}
-  SixNationsCamera: {fileID: 0}
+  DutchCamera: {fileID: 72328550235293215, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
+  SixNationsCamera: {fileID: 8427730852707704412, guid: fefab2609986f8940993c17b4effe988, type: 3}
   MunseeCamera: {fileID: 0}
   PhilipsesCamera: {fileID: 0}
   userID: 0
   newUserID: 100
   gameobject: {fileID: 0}
   OldPlayerListLength: 0
+  AlreadyLoaded: 0
 --- !u!222 &1290858076
 CanvasRenderer:
   m_ObjectHideFlags: 0

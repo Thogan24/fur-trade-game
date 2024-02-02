@@ -13,6 +13,7 @@ TagManager:
   - DWIC Camera
   - Philipse Camera
   - Six Nations Camera
+  - Dutch Text Canvas
   layers:
   - Default
   - TransparentFX

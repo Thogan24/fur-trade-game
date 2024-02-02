@@ -45,15 +45,20 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool DutchJoined = false;
     public bool PhilipsesJoined = false;
 
-    public GameObject DutchCamera;
+    public PhotonView DutchCamera;
     public GameObject SixNationsCamera;
     public GameObject MunseeCamera;
     public GameObject PhilipsesCamera;
 
 
+    public GameObject DutchTextCanvasObject;
+    public GameObject DutchBackgroundCanvasObject;
+    public GameObject DutchCardsCanvasObject;
+
+
     public int userID = 0;
     public int newUserID = 100;
-    public GameObject gameobject;
+    //public GameObject gameobject;
     public int OldPlayerListLength;
     public bool AlreadyLoaded = false;
 
@@ -73,8 +78,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                 PhotonNetwork.LoadLevel(1);
             }
             
-            DutchCamera = GameObject.FindGameObjectWithTag("DWIC Camera");
-            this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All, transform.position); 
+            //DutchCamera = GameObject.FindGameObjectWithTag("DWIC Camera");
+            this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All, transform.position);
+            DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
+            //DutchBackgroundCanvasObject
+            //DutchCardsCanvasObject
+            DutchTextCanvasObject.GetComponent("Canvas").GetComponent("Render Camera") = DutchCamera;
             AlreadyLoaded = true;
         }
 
@@ -115,6 +124,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+
+    // TEAM SELECT STUFF
     [PunRPC]
     void changeUserID(Vector3 transform)
     {
@@ -170,28 +181,34 @@ public class GameManager : MonoBehaviourPunCallbacks
         // Mapping shit
     }
 
+
+    // MAIN SCENE STUFF
+
+    [PunRPC]
     void mainSceneCameraRPC(Vector3 transform)
     {
         if(PhotonNetwork.LocalPlayer.ToString() == Dutch)
         {
             Debug.LogError("B");
-            DutchCamera.SetActive(true);
+            DutchCamera = PhotonView.Instantiate(DutchCamera);
+            //DutchCamera.SetActive(true);
         }
         if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
         {
             Debug.LogError("C");
-            DutchCamera = GameObject.FindGameObjectWithTag("Six Nations Camera");
-            DutchCamera.SetActive(false);
-            SixNationsCamera.SetActive(true);
+            //SixNationsCamera = GameObject.FindGameObjectWithTag("Six Nations Camera");
+            PhotonView.Instantiate(SixNationsCamera);
+            // DutchCamera.SetActive(false);
+            //SixNationsCamera.SetActive(true);
         }
         if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
         {
-            DutchCamera.SetActive(false);
+            //DutchCamera.SetActive(false);
             MunseeCamera.SetActive(true);
         }
         if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
         {
-            DutchCamera.SetActive(false);
+            //DutchCamera.SetActive(false);
             PhilipsesCamera.SetActive(true);
 
         }
