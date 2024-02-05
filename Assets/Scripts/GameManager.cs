@@ -81,9 +81,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             //DutchCamera = GameObject.FindGameObjectWithTag("DWIC Camera");
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All, transform.position);
             DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
-            //DutchBackgroundCanvasObject
-            //DutchCardsCanvasObject
-            DutchTextCanvasObject.GetComponent("Canvas").GetComponent("Render Camera") = DutchCamera;
+            DutchBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Background Canvas");
+            DutchCardsCanvasObject = GameObject.FindGameObjectWithTag("Dutch Card Canvas");
+            DutchTextCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
+            DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
+            DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             AlreadyLoaded = true;
         }
 
@@ -187,10 +189,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void mainSceneCameraRPC(Vector3 transform)
     {
-        if(PhotonNetwork.LocalPlayer.ToString() == Dutch)
+        bool instantiatedCamera = false;
+        if(PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
-            Debug.LogError("B");
+            Debug.LogError("Instiated" + AlreadyLoaded);
             DutchCamera = PhotonView.Instantiate(DutchCamera);
+            instantiatedCamera = true;
             //DutchCamera.SetActive(true);
         }
         if (PhotonNetwork.LocalPlayer.ToString() == SixNations)

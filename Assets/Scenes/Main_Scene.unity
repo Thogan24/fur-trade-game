@@ -268,9 +268,11 @@ MonoBehaviour:
   SixNationsCamera: {fileID: 2086051845}
   MunseeCamera: {fileID: 1086032293}
   PhilipsesCamera: {fileID: 1060355716}
+  DutchTextCanvasObject: {fileID: 0}
+  DutchBackgroundCanvasObject: {fileID: 0}
+  DutchCardsCanvasObject: {fileID: 0}
   userID: 0
   newUserID: 100
-  gameobject: {fileID: 0}
   OldPlayerListLength: 0
   AlreadyLoaded: 0
 --- !u!4 &10186631
@@ -4879,7 +4881,7 @@ GameObject:
   - component: {fileID: 475746986}
   m_Layer: 0
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Dutch Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11980,7 +11982,7 @@ GameObject:
   - component: {fileID: 1181844083}
   m_Layer: 5
   m_Name: Cards
-  m_TagString: Untagged
+  m_TagString: Dutch Card Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

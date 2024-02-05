@@ -14,6 +14,8 @@ TagManager:
   - Philipse Camera
   - Six Nations Camera
   - Dutch Text Canvas
+  - Dutch Background Canvas
+  - Dutch Card Canvas
   layers:
   - Default
   - TransparentFX
