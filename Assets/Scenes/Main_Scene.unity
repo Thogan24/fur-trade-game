@@ -264,6 +264,10 @@ MonoBehaviour:
   MunseeJoined: 0
   DutchJoined: 0
   PhilipsesJoined: 0
+  DutchCameraGameObject: {fileID: 0}
+  SixNationsCameraGameObject: {fileID: 0}
+  MunseeCameraGameObject: {fileID: 0}
+  PhilipsesCameraGameObject: {fileID: 0}
   DutchCamera: {fileID: 1223988156}
   SixNationsCamera: {fileID: 2086051845}
   MunseeCamera: {fileID: 1086032293}
@@ -271,6 +275,15 @@ MonoBehaviour:
   DutchTextCanvasObject: {fileID: 0}
   DutchBackgroundCanvasObject: {fileID: 0}
   DutchCardsCanvasObject: {fileID: 0}
+  SixNationsTextCanvasObject: {fileID: 0}
+  SixNationsBackgroundCanvasObject: {fileID: 0}
+  SixNationsCardsCanvasObject: {fileID: 0}
+  MunseeTextCanvasObject: {fileID: 0}
+  MunseeBackgroundCanvasObject: {fileID: 0}
+  MunseeCardsCanvasObject: {fileID: 0}
+  PhilipsesTextCanvasObject: {fileID: 0}
+  PhilipsesBackgroundCanvasObject: {fileID: 0}
+  PhilipsesCardsCanvasObject: {fileID: 0}
   userID: 0
   newUserID: 100
   OldPlayerListLength: 0
@@ -536,7 +549,7 @@ GameObject:
   - component: {fileID: 33317834}
   m_Layer: 5
   m_Name: Cards (1)
-  m_TagString: Untagged
+  m_TagString: Philipses Card Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4777,7 +4790,7 @@ GameObject:
   - component: {fileID: 451320646}
   m_Layer: 5
   m_Name: Cards (3)
-  m_TagString: Untagged
+  m_TagString: Philipses Card Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5626,7 +5639,7 @@ GameObject:
   - component: {fileID: 543549403}
   m_Layer: 0
   m_Name: Background (1)
-  m_TagString: Untagged
+  m_TagString: Philipses Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6006,7 +6019,7 @@ GameObject:
   - component: {fileID: 589636900}
   m_Layer: 5
   m_Name: Cards (2)
-  m_TagString: Untagged
+  m_TagString: Six Nations Card Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8243,7 +8256,7 @@ GameObject:
   - component: {fileID: 876936724}
   m_Layer: 0
   m_Name: Background (3)
-  m_TagString: Untagged
+  m_TagString: Philipses Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10611,113 +10624,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055625576}
   m_CullTransparentMesh: 1
---- !u!1 &1060355716
+--- !u!1 &1060355716 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3642095162937260910, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+  m_PrefabInstance: {fileID: 3642095163695203818}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1060355719}
-  - component: {fileID: 1060355717}
-  - component: {fileID: 1060355718}
-  - component: {fileID: 1060355720}
-  m_Layer: 0
-  m_Name: Philipse Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!20 &1060355717
+--- !u!20 &1060355717 stripped
 Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3642095162937260911, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+  m_PrefabInstance: {fileID: 3642095163695203818}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060355716}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &1060355718
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060355716}
-  m_Enabled: 1
---- !u!4 &1060355719
+--- !u!4 &1060355719 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+  m_PrefabInstance: {fileID: 3642095163695203818}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060355716}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.068474, y: -14.697353, z: -11.584143}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 584114409}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1060355720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060355716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 2
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &1074483435
 GameObject:
   m_ObjectHideFlags: 0
@@ -11074,90 +10995,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084836197}
   m_CullTransparentMesh: 1
---- !u!1 &1086032293
+--- !u!1 &1086032293 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5917895076211833679, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+  m_PrefabInstance: {fileID: 5917895077276431082}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1086032296}
-  - component: {fileID: 1086032294}
-  - component: {fileID: 1086032295}
-  m_Layer: 0
-  m_Name: Munsee Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!20 &1086032294
+--- !u!20 &1086032294 stripped
 Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5917895076211833676, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+  m_PrefabInstance: {fileID: 5917895077276431082}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086032293}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &1086032295
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086032293}
-  m_Enabled: 1
---- !u!4 &1086032296
+--- !u!4 &1086032296 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+  m_PrefabInstance: {fileID: 5917895077276431082}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086032293}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 47.931526, y: -14.697353, z: -11.584143}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 647337646}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1097712344
 GameObject:
   m_ObjectHideFlags: 0
@@ -11252,7 +11104,7 @@ GameObject:
   - component: {fileID: 1098368572}
   m_Layer: 0
   m_Name: Text/UI (1)
-  m_TagString: Untagged
+  m_TagString: Philipses Text Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13644,7 +13496,7 @@ GameObject:
   - component: {fileID: 1360713066}
   m_Layer: 0
   m_Name: Text/UI (2)
-  m_TagString: Untagged
+  m_TagString: Six Nations Text Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13748,7 +13600,7 @@ GameObject:
   - component: {fileID: 1360828804}
   m_Layer: 0
   m_Name: Text/UI (3)
-  m_TagString: Untagged
+  m_TagString: Munsee Text Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15353,7 +15205,7 @@ GameObject:
   - component: {fileID: 1498845539}
   m_Layer: 0
   m_Name: Background (2)
-  m_TagString: Untagged
+  m_TagString: Six Nations Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21984,6 +21836,132 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
+--- !u!1001 &3642095163695203818
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 584114409}
+    m_Modifications:
+    - target: {fileID: 3642095162937260898, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.068474
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -14.697353
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.584143
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260910, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_Name
+      value: Philipse Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642095162937260910, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+--- !u!1001 &5917895077276431082
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 647337646}
+    m_Modifications:
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 47.931526
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -14.697353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.584143
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833679, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_Name
+      value: Munsee Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917895076211833679, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
 --- !u!1001 &6075063952486273129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22139,6 +22117,10 @@ PrefabInstance:
     - target: {fileID: 8427730852707704412, guid: fefab2609986f8940993c17b4effe988, type: 3}
       propertyPath: m_Name
       value: Six Nations Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427730852707704412, guid: fefab2609986f8940993c17b4effe988, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fefab2609986f8940993c17b4effe988, type: 3}

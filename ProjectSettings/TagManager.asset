@@ -16,6 +16,15 @@ TagManager:
   - Dutch Text Canvas
   - Dutch Background Canvas
   - Dutch Card Canvas
+  - Six Nations Text Canvas
+  - Six Nations Background Canvas
+  - Six Nations Card Canvas
+  - Munsee Text Canvas
+  - Munsee Background Canvas
+  - Munsee Card Canvas
+  - Philipses Text Canvas
+  - Philipses Background Canvas
+  - Philipses Card Canvas
   layers:
   - Default
   - TransparentFX
