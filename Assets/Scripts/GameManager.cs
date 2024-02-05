@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool DutchJoined = false;
     public bool PhilipsesJoined = false;
 
+    public GameObject DutchCameraGameObject;
     public PhotonView DutchCamera;
     public GameObject SixNationsCamera;
     public GameObject MunseeCamera;
@@ -77,8 +78,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 PhotonNetwork.LoadLevel(1);
             }
-            
+
             //DutchCamera = GameObject.FindGameObjectWithTag("DWIC Camera");
+
+            DutchCamera = DutchCameraGameObject.GetPhotonView();
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All, transform.position);
             DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
             DutchBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Background Canvas");
