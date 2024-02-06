@@ -1077,6 +1077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySixNationsButton: {fileID: 0}
+  teamJoined: 0
 --- !u!1 &458241156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,8 +1339,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1290858075}
   gameManagerPrefab: {fileID: 2087320946161594446, guid: d542a2c808bbe5442ad05dbf15311618, type: 3}
-  debug: {fileID: 719271679}
-  debugger: {fileID: 0}
   playerPrefab: {fileID: -1715989839878773183, guid: fa3f7600f6fe6d240a53f033e6ecedd8, type: 3}
   sixNationsButtonInstantiated: {fileID: -1606575855223397521, guid: 1890d439821882c4282ddc88fb6e1c18, type: 3}
   dutchButtonInstantiated: {fileID: -4779400556894639686, guid: e04f6652140fc43439c8aec499210d70, type: 3}
@@ -1630,17 +1629,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
---- !u!114 &719271679 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8363170929160094415, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-  m_PrefabInstance: {fileID: 719271678}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &719271680 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
@@ -1931,7 +1919,7 @@ GameObject:
   - component: {fileID: 752179952}
   m_Layer: 5
   m_Name: DutchButton
-  m_TagString: Untagged
+  m_TagString: Dutch Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1969,6 +1957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myDutchButton: {fileID: 0}
+  teamJoined: 0
 --- !u!114 &752179953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2795,7 +2784,7 @@ GameObject:
   - component: {fileID: 1287575575}
   m_Layer: 5
   m_Name: PhilipsesButton
-  m_TagString: Untagged
+  m_TagString: Philipses Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2949,6 +2938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPhilipsesButton: {fileID: 0}
+  teamJoined: 0
 --- !u!1 &1290858073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3016,6 +3006,8 @@ MonoBehaviour:
   PhilipsesCameraGameObject: {fileID: 3642095162937260910, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
   DutchCameraPrefab: {fileID: -1546711611119172669, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
   SixNationsCameraPrefab: {fileID: 3079714378151539690, guid: fefab2609986f8940993c17b4effe988, type: 3}
+  MunseeCameraPrefab: {fileID: 0}
+  PhilipsesCameraPrefab: {fileID: 0}
   DutchCamera: {fileID: -1546711611119172669, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
   SixNationsCamera: {fileID: 8427730852707704412, guid: fefab2609986f8940993c17b4effe988, type: 3}
   MunseeCamera: {fileID: 0}
@@ -3032,9 +3024,6 @@ MonoBehaviour:
   PhilipsesTextCanvasObject: {fileID: 0}
   PhilipsesBackgroundCanvasObject: {fileID: 0}
   PhilipsesCardsCanvasObject: {fileID: 0}
-  userID: 0
-  newUserID: 100
-  OldPlayerListLength: 0
   AlreadyLoaded: 0
 --- !u!222 &1290858076
 CanvasRenderer:
@@ -3991,6 +3980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMunseeButton: {fileID: 0}
+  teamJoined: 0
 --- !u!114 &2000131575
 MonoBehaviour:
   m_ObjectHideFlags: 0

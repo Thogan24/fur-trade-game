@@ -27,11 +27,6 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
     public GameManager gameManager;
     public GameObject gameManagerPrefab;
 
-    public Text debug;
-
-
-    public GameObject debugger;
-
     public PhotonView playerPrefab;
     public PhotonView sixNationsButtonInstantiated;
     public PhotonView dutchButtonInstantiated;
@@ -98,49 +93,38 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        // User ID Assignment
+        
         Debug.Log("Joined a room.");
         RoomOptions roomOptions = new RoomOptions();
 
-        //GameObject instantiatedGameManager = PhotonNetwork.Instantiate(gameManagerPrefab.name, Vector3.zero, Quaternion.identity);
-        //gameManager = instantiatedGameManager.GetComponent<GameManager>();
+        // UNUSED UserID Assignment
 
-        roomOptions.PublishUserId = true;
+        /*roomOptions.PublishUserId = true;
+            
         AuthenticationValues authValues = new AuthenticationValues("0");
-        PhotonNetwork.AuthValues.UserId = gameManager.userID.ToString();
+        PhotonNetwork.AuthValues.UserId = gameManager.userID.ToString();*/
         //gameManager.newUserID = gameManager.userID + 10;
 
-        Debug.LogError("PhotonView teamselecthandler: " + this.GetComponent<PhotonView>().ViewID);
-
-        PhotonNetwork.NickName = gameManager.userID.ToString();
+        /*PhotonNetwork.NickName = gameManager.userID.ToString();*/
         //Debug.LogError("YOUR AuthValue:" + PhotonNetwork.AuthValues.UserId);
 
 
-
+/*
         foreach (Player player in PhotonNetwork.PlayerList)
         {
             //Debug.LogError("Player:" + PhotonNetwork.LocalPlayer.NickName);
             //Debug.LogError("Player AuthValue:" + PhotonNetwork.AuthValues.UserId);
             //Debug.LogError("GameManager UserID:" + gameManager.userID);
-        }
+        }*/
 
         //PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
 
-        // Instantiating buttons
-        //SixNations = PhotonNetwork.Instantiate(sixNationsButtonInstantiated.name, Vector3.zero, Quaternion.identity);
-        //Dutch = PhotonNetwork.Instantiate(dutchButtonInstantiated.name, Vector3.zero, Quaternion.identity);
-        //GameObject DEBUG = PhotonNetwork.Instantiate(debugger.name, Vector3.zero, Quaternion.identity);
-
-        //Debug.LogError(PhotonNetwork.AuthValues.UserId);
         SixNations.transform.parent = theCanvas.transform;
         Dutch.transform.parent = theCanvas.transform;
-        //Debug.Log(SixNations.transform.position);
         SixNations.transform.position = new Vector3(400, 400, 0);
         Dutch.transform.position = new Vector3(900, 200, 0);
         SixNations.SetActive(true);
         Dutch.SetActive(true);
-        //DEBUG.SetActive(true);
-        //DEBUG.transform.position = new Vector3(400, 200, 0);
 
 
 

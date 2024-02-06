@@ -10,6 +10,7 @@ public class DutchOnClickedScript : MonoBehaviour
 {
 
     public GameObject myDutchButton;
+    public bool teamJoined = false;
     void Start()
     {
         myDutchButton = this.gameObject;
@@ -18,7 +19,7 @@ public class DutchOnClickedScript : MonoBehaviour
     public void DutchButtonClicked()
     {
         GameManager gameManager1 = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        if (gameManager1.Dutch != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Munsee != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Philipses != PhotonNetwork.LocalPlayer.ToString() && gameManager1.SixNations != PhotonNetwork.LocalPlayer.ToString())
+        if (gameManager1.Dutch != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Munsee != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Philipses != PhotonNetwork.LocalPlayer.ToString() && gameManager1.SixNations != PhotonNetwork.LocalPlayer.ToString() && teamJoined == false)
         {
             this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, this.transform.position, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
         }
@@ -33,11 +34,10 @@ public class DutchOnClickedScript : MonoBehaviour
         GameObject DutchButton = GameObject.FindGameObjectWithTag("Dutch Button");
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
 
+        DutchButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.3f);
         gameManager.Dutch = userIDOfClicker;
 
 
-        PhotonNetwork.Destroy(DutchButton);
-        // If it didn't get destroyed yet for any reason
-        PhotonNetwork.Destroy(myDutchButton);
+        teamJoined = true;
     }
 }

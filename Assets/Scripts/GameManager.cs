@@ -84,11 +84,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
     // Unused
-    public int userID = 0;
+/*    public int userID = 0;
     public int newUserID = 100;
     //public GameObject gameobject;
     public int OldPlayerListLength;
-
+*/
     
 
 
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-
+/*
         if (PhotonNetwork.PlayerList.Length > OldPlayerListLength)
         {
             Debug.LogError("User ID: " + userID + " New User ID: " + newUserID);
@@ -145,12 +145,13 @@ public class GameManager : MonoBehaviourPunCallbacks
             this.GetComponent<PhotonView>().RPC("changeUserID", RpcTarget.All, transform.position);
             
 
-        }
+        }*/
     }
 
 
     // TEAM SELECT STUFF
-    [PunRPC]
+
+/*    [PunRPC]
     void changeUserID(Vector3 transform)
     {
         
@@ -164,7 +165,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             OldPlayerListLength = PhotonNetwork.PlayerList.Length;
         }
 
-    }
+    }*/
+
+
     [PunRPC]
     void philipsesJoinedRPC(string userIDPhilipses)
     {

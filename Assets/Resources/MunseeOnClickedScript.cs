@@ -10,6 +10,7 @@ public class MunseeOnClickedScript : MonoBehaviour
 {
 
     public GameObject myMunseeButton;
+    public bool teamJoined = false;
     void Start()
     {
         myMunseeButton = this.gameObject;
@@ -17,7 +18,7 @@ public class MunseeOnClickedScript : MonoBehaviour
     public void MunseeButtonClicked()
     {
         GameManager gameManager1 = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        if (gameManager1.Dutch != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Munsee != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Philipses != PhotonNetwork.LocalPlayer.ToString() && gameManager1.SixNations != PhotonNetwork.LocalPlayer.ToString())
+        if (gameManager1.Dutch != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Munsee != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Philipses != PhotonNetwork.LocalPlayer.ToString() && gameManager1.SixNations != PhotonNetwork.LocalPlayer.ToString() && teamJoined == false)
         {
             this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, this.transform.position, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
         }
@@ -32,11 +33,10 @@ public class MunseeOnClickedScript : MonoBehaviour
         GameObject MunseeButton = GameObject.FindGameObjectWithTag("Munsee Button");
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
 
+        MunseeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.3f);
         gameManager.Munsee = userIDOfClicker;
 
 
-        PhotonNetwork.Destroy(MunseeButton);
-        // If it didn't get destroyed yet for any reason
-        PhotonNetwork.Destroy(myMunseeButton);
+        teamJoined = true;
     }
 }
