@@ -3014,6 +3014,8 @@ MonoBehaviour:
   SixNationsCameraGameObject: {fileID: 8427730852707704412, guid: fefab2609986f8940993c17b4effe988, type: 3}
   MunseeCameraGameObject: {fileID: 5917895076211833679, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
   PhilipsesCameraGameObject: {fileID: 3642095162937260910, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
+  DutchCameraPrefab: {fileID: -1546711611119172669, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
+  SixNationsCameraPrefab: {fileID: 3079714378151539690, guid: fefab2609986f8940993c17b4effe988, type: 3}
   DutchCamera: {fileID: -1546711611119172669, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
   SixNationsCamera: {fileID: 8427730852707704412, guid: fefab2609986f8940993c17b4effe988, type: 3}
   MunseeCamera: {fileID: 0}

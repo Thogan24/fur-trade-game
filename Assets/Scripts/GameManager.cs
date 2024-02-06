@@ -35,50 +35,62 @@ public class GameManager : MonoBehaviourPunCallbacks
         
     }
 
+    // Stores individual userID
     public string Dutch;
     public string SixNations;
     public string Munsee;
     public string Philipses;
 
+    // Whether or not a team is joined
     public bool SixNationsJoined = false;
     public bool MunseeJoined = false;
     public bool DutchJoined = false;
     public bool PhilipsesJoined = false;
 
+    // Prefab Gameobject of Camera
     public GameObject DutchCameraGameObject;
     public GameObject SixNationsCameraGameObject;
     public GameObject MunseeCameraGameObject;
     public GameObject PhilipsesCameraGameObject;
 
+    // Prefab PhotonView of Camera
+    public PhotonView DutchCameraPrefab;
+    public PhotonView SixNationsCameraPrefab;
+    public PhotonView MunseeCameraPrefab;
+    public PhotonView PhilipsesCameraPrefab;
+
+    // Actual in-game PhotonView (post-instantiation)
     public PhotonView DutchCamera;
     public PhotonView SixNationsCamera;
     public PhotonView MunseeCamera;
     public PhotonView PhilipsesCamera;
 
 
-
+    // Canvases which attach instantiated camera later on
     public GameObject DutchTextCanvasObject;
     public GameObject DutchBackgroundCanvasObject;
     public GameObject DutchCardsCanvasObject;
-
     public GameObject SixNationsTextCanvasObject;
     public GameObject SixNationsBackgroundCanvasObject;
     public GameObject SixNationsCardsCanvasObject;
-
     public GameObject MunseeTextCanvasObject;
     public GameObject MunseeBackgroundCanvasObject;
     public GameObject MunseeCardsCanvasObject;
-
     public GameObject PhilipsesTextCanvasObject;
     public GameObject PhilipsesBackgroundCanvasObject;
     public GameObject PhilipsesCardsCanvasObject;
 
+    public bool AlreadyLoaded = false;
 
+
+    // Unused
     public int userID = 0;
     public int newUserID = 100;
     //public GameObject gameobject;
     public int OldPlayerListLength;
-    public bool AlreadyLoaded = false;
+
+    
+
 
     void Start()
     {
@@ -88,25 +100,21 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
+        // Main Scene
         if (SixNationsJoined && DutchJoined && !AlreadyLoaded) //  && MunseeJoined && PhilipsesJoined
         {
-            Debug.Log("AAAA");
+            Debug.Log("Teans joined, loading main screen");
             if (PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel(1);
             }
-
-            //DutchCamera = GameObject.FindGameObjectWithTag("DWIC Camera");
-
-            
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All, transform.position);
             AlreadyLoaded = true;
         }
 
-            //Debug.Log(Philipses);
+        // Team Select Scene
 
-
-
+        // Passes in userID into variables
         if (Philipses != "" && PhilipsesJoined == false)
         {
             this.GetComponent<PhotonView>().RPC("philipsesJoinedRPC", RpcTarget.All, Philipses);
@@ -206,8 +214,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if(PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
-            DutchCamera = DutchCameraGameObject.GetPhotonView();
-            DutchCamera = PhotonView.Instantiate(DutchCamera);
+            DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
+            DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
             DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
             DutchBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Background Canvas");
             DutchCardsCanvasObject = GameObject.FindGameObjectWithTag("Dutch Card Canvas");
@@ -216,10 +224,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             //DutchCamera.SetActive(true);
         }
-        if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
+        if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false)
         {
-            SixNationsCamera = SixNationsCameraGameObject.GetPhotonView();
-            SixNationsCamera = PhotonView.Instantiate(SixNationsCamera);
+            SixNationsCameraPrefab = SixNationsCameraGameObject.GetPhotonView();
+            SixNationsCamera = PhotonView.Instantiate(SixNationsCameraPrefab);
             SixNationsTextCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Text Canvas");
             SixNationsBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Background Canvas");
             SixNationsCardsCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Card Canvas");
@@ -228,10 +236,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             SixNationsCardsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
 
         }
-        if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
+        if (PhotonNetwork.LocalPlayer.ToString() == Munsee && AlreadyLoaded == false)
         {
-            MunseeCamera = MunseeCameraGameObject.GetPhotonView();
-            MunseeCamera = PhotonView.Instantiate(MunseeCamera);
+            MunseeCameraPrefab = MunseeCameraGameObject.GetPhotonView();
+            MunseeCamera = PhotonView.Instantiate(MunseeCameraPrefab);
             MunseeTextCanvasObject = GameObject.FindGameObjectWithTag("Munsee Text Canvas");
             MunseeBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Background Canvas");
             MunseeCardsCanvasObject = GameObject.FindGameObjectWithTag("Munsee Card Canvas");
@@ -239,10 +247,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
         }
-        if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
+        if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false)
         {
-            PhilipsesCamera = PhilipsesCameraGameObject.GetPhotonView();
-            PhilipsesCamera = PhotonView.Instantiate(PhilipsesCamera);
+            PhilipsesCameraPrefab = PhilipsesCameraGameObject.GetPhotonView();
+            PhilipsesCamera = PhotonView.Instantiate(PhilipsesCameraPrefab);
             PhilipsesTextCanvasObject = GameObject.FindGameObjectWithTag("Philipses Text Canvas");
             PhilipsesBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Background Canvas");
             PhilipsesCardsCanvasObject = GameObject.FindGameObjectWithTag("Philipses Card Canvas");
