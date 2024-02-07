@@ -101,12 +101,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Update()
     {
         // Main Scene
-        if (SixNationsJoined && DutchJoined && !AlreadyLoaded) //  && MunseeJoined && PhilipsesJoined
+        if (SixNationsJoined && DutchJoined && MunseeJoined && PhilipsesJoined && !AlreadyLoaded) //  && MunseeJoined && PhilipsesJoined
         {
             Debug.Log("Teans joined, loading main screen");
             if (PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel(1);
+                SceneManager.LoadScene(1);
             }
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All, transform.position);
             AlreadyLoaded = true;
@@ -215,6 +216,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void mainSceneCameraRPC(Vector3 transform)
     {
+        Debug.LogError(SceneManager.GetActiveScene().name);
         if(PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
             DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
