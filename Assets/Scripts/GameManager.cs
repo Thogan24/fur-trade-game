@@ -8,7 +8,7 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-
+    // Instantiating Singleton GameManager
     public static GameManager instance;
 
     private void Awake()
@@ -82,14 +82,16 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public bool AlreadyLoaded = false;
 
+    // Currently Trading Teams
+    public bool DutchTrading = false;
+    public bool SixNationsTrading = false;
+    public bool MunseeTrading = false;
+    public bool PhilipsesTrading = false;
 
-    // Unused
-/*    public int userID = 0;
-    public int newUserID = 100;
-    //public GameObject gameobject;
-    public int OldPlayerListLength;
-*/
-    
+    public GameObject DutchTradeButton;
+    public GameObject SixNationsTradeButton;
+    public GameObject MunseeTradeButton;
+    public GameObject PhilipsesTradeButton;
 
 
     void Start()
@@ -101,7 +103,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Update()
     {
         // Main Scene
-        if (SixNationsJoined && DutchJoined && MunseeJoined && PhilipsesJoined && !AlreadyLoaded) //  && MunseeJoined && PhilipsesJoined
+        if (SixNationsJoined && DutchJoined && !AlreadyLoaded) //  && MunseeJoined && PhilipsesJoined
         {
             Debug.Log("Teans joined, loading main screen");
             if (PhotonNetwork.IsMasterClient)
@@ -112,6 +114,30 @@ public class GameManager : MonoBehaviourPunCallbacks
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All, transform.position);
             AlreadyLoaded = true;
         }
+
+        if (DutchTrading)
+        {
+            DutchTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+        }
+        if (SixNationsTrading)
+        {
+            SixNationsTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+        }
+        if (MunseeTrading)
+        {
+            MunseeTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+        }
+        if (PhilipsesTrading)
+        {
+            PhilipsesTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+        }
+
+
+
+
+
+
+
 
         // Team Select Scene
 
@@ -132,41 +158,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             this.GetComponent<PhotonView>().RPC("munseeJoinedRPC", RpcTarget.All, Munsee);
         }
-
-
-
-
-
-
-/*
-        if (PhotonNetwork.PlayerList.Length > OldPlayerListLength)
-        {
-            Debug.LogError("User ID: " + userID + " New User ID: " + newUserID);
-            //Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | Old: " + OldPlayerListLength);
-            this.GetComponent<PhotonView>().RPC("changeUserID", RpcTarget.All, transform.position);
-            
-
-        }*/
     }
 
-
-    // TEAM SELECT STUFF
-
-/*    [PunRPC]
-    void changeUserID(Vector3 transform)
-    {
-        
-        Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine + " viewid: " + this.GetComponent<PhotonView>().ViewID);
-        Debug.LogError("PlayerList: " + PhotonNetwork.PlayerList.Length + " | OldPlayerList: " + OldPlayerListLength);
-        Debug.LogError("User ID: " + userID + " New User ID: " + newUserID);
-
-        if (PhotonNetwork.PlayerList.Length != OldPlayerListLength)
-        {
-            userID = PhotonNetwork.PlayerList.Length;
-            OldPlayerListLength = PhotonNetwork.PlayerList.Length;
-        }
-
-    }*/
 
 
     [PunRPC]
@@ -216,7 +209,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void mainSceneCameraRPC(Vector3 transform)
     {
-        Debug.LogError(SceneManager.GetActiveScene().name);
+        //Debug.LogError(SceneManager.GetActiveScene().name);
         if(PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
             DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
@@ -265,4 +258,24 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+
+
+
+    public string findPlayerTeam(string userID)
+    {
+        if(userID == Dutch)
+        {
+            return "Dutch";
+        }
+        if(userID == SixNations)
+        {
+            return "SixNations";
+        }
+        if(userID == Philipses)
+        {
+            return "Philipses";
+        }
+        return "Munsee";
+
+    }
 }

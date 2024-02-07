@@ -39,5 +39,6 @@ public class DutchOnClickedScript : MonoBehaviour
 
 
         teamJoined = true;
+        
     }
 }
