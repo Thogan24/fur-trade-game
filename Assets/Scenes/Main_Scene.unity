@@ -268,6 +268,10 @@ MonoBehaviour:
   SixNationsCameraGameObject: {fileID: 0}
   MunseeCameraGameObject: {fileID: 0}
   PhilipsesCameraGameObject: {fileID: 0}
+  DutchCameraPrefab: {fileID: 0}
+  SixNationsCameraPrefab: {fileID: 0}
+  MunseeCameraPrefab: {fileID: 0}
+  PhilipsesCameraPrefab: {fileID: 0}
   DutchCamera: {fileID: 1223988156}
   SixNationsCamera: {fileID: 2086051845}
   MunseeCamera: {fileID: 1086032293}
@@ -284,9 +288,6 @@ MonoBehaviour:
   PhilipsesTextCanvasObject: {fileID: 0}
   PhilipsesBackgroundCanvasObject: {fileID: 0}
   PhilipsesCardsCanvasObject: {fileID: 0}
-  userID: 0
-  newUserID: 100
-  OldPlayerListLength: 0
   AlreadyLoaded: 0
 --- !u!4 &10186631
 Transform:
@@ -4790,7 +4791,7 @@ GameObject:
   - component: {fileID: 451320646}
   m_Layer: 5
   m_Name: Cards (3)
-  m_TagString: Philipses Card Canvas
+  m_TagString: Munsee Card Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8256,7 +8257,7 @@ GameObject:
   - component: {fileID: 876936724}
   m_Layer: 0
   m_Name: Background (3)
-  m_TagString: Philipses Background Canvas
+  m_TagString: Munsee Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21959,6 +21960,10 @@ PrefabInstance:
     - target: {fileID: 5917895076211833679, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241015009350287954, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
+      propertyPath: sceneViewId
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
