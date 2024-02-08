@@ -227,91 +227,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
---- !u!1 &10186629
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 10186631}
-  - component: {fileID: 10186630}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Game Manager
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &10186630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10186629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a41e6e850948f541a611bf7bc10dfe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Dutch: 
-  SixNations: 
-  Munsee: 
-  Philipses: 
-  SixNationsJoined: 0
-  MunseeJoined: 0
-  DutchJoined: 0
-  PhilipsesJoined: 0
-  DutchCameraGameObject: {fileID: 0}
-  SixNationsCameraGameObject: {fileID: 0}
-  MunseeCameraGameObject: {fileID: 0}
-  PhilipsesCameraGameObject: {fileID: 0}
-  DutchCameraPrefab: {fileID: 0}
-  SixNationsCameraPrefab: {fileID: 0}
-  MunseeCameraPrefab: {fileID: 0}
-  PhilipsesCameraPrefab: {fileID: 0}
-  DutchCamera: {fileID: 1223988156}
-  SixNationsCamera: {fileID: 2086051845}
-  MunseeCamera: {fileID: 1086032293}
-  PhilipsesCamera: {fileID: 1060355716}
-  DutchTextCanvasObject: {fileID: 0}
-  DutchBackgroundCanvasObject: {fileID: 0}
-  DutchCardsCanvasObject: {fileID: 0}
-  SixNationsTextCanvasObject: {fileID: 0}
-  SixNationsBackgroundCanvasObject: {fileID: 0}
-  SixNationsCardsCanvasObject: {fileID: 0}
-  MunseeTextCanvasObject: {fileID: 0}
-  MunseeBackgroundCanvasObject: {fileID: 0}
-  MunseeCardsCanvasObject: {fileID: 0}
-  PhilipsesTextCanvasObject: {fileID: 0}
-  PhilipsesBackgroundCanvasObject: {fileID: 0}
-  PhilipsesCardsCanvasObject: {fileID: 0}
-  AlreadyLoaded: 0
-  DutchTrading: 0
-  SixNationsTrading: 0
-  MunseeTrading: 0
-  PhilipsesTrading: 0
-  DutchTradeButton: {fileID: 0}
-  SixNationsTradeButton: {fileID: 0}
-  MunseeTradeButton: {fileID: 0}
-  PhilipsesTradeButton: {fileID: 0}
---- !u!4 &10186631
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10186629}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 561.41394, y: 276.52625, z: -12.878888}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &24032485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,7 +1900,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138698962}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1998,8 +1913,8 @@ RectTransform:
   - {fileID: 1792045104}
   - {fileID: 1007419432}
   - {fileID: 329571028}
-  m_Father: {fileID: 475746989}
-  m_RootOrder: 1
+  m_Father: {fileID: 144965662}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2039,6 +1954,8 @@ RectTransform:
   - {fileID: 1914309192}
   - {fileID: 601639050}
   - {fileID: 1221714154}
+  - {fileID: 138698963}
+  - {fileID: 1795866433}
   m_Father: {fileID: 475746989}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2382,7 +2299,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475746989}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2940,7 +2857,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475746989}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3498,8 +3415,8 @@ GameObject:
   - component: {fileID: 341831936}
   - component: {fileID: 341831937}
   m_Layer: 3
-  m_Name: Enemy Flag 1
-  m_TagString: Untagged
+  m_Name: Six Nations Trading Button
+  m_TagString: Six Nations Trading
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3517,7 +3434,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475746989}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3537,7 +3454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3587,7 +3504,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.872, g: 0.872, b: 0.872, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -5077,8 +4994,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 144965662}
-  - {fileID: 138698963}
-  - {fileID: 1795866433}
   - {fileID: 598795678}
   - {fileID: 341831931}
   - {fileID: 1695744049}
@@ -5684,7 +5599,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475746989}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6269,7 +6184,7 @@ GameObject:
   - component: {fileID: 598795682}
   m_Layer: 3
   m_Name: Flag
-  m_TagString: Untagged
+  m_TagString: Dutch Trading
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6287,7 +6202,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475746989}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9432,7 +9347,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475746989}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10796,11 +10711,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055625576}
   m_CullTransparentMesh: 1
---- !u!1 &1060355716 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3642095162937260910, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
-  m_PrefabInstance: {fileID: 3642095163695203818}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1060355717 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 3642095162937260911, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
@@ -10842,7 +10752,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475746989}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11167,11 +11077,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084836197}
   m_CullTransparentMesh: 1
---- !u!1 &1086032293 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5917895076211833679, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
-  m_PrefabInstance: {fileID: 5917895077276431082}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1086032294 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5917895076211833676, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
@@ -12248,11 +12153,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221714153}
   m_CullTransparentMesh: 1
---- !u!1 &1223988156 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 72328550235293215, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
-  m_PrefabInstance: {fileID: 72328549281846691}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1223988158 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 72328550235293213, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
@@ -14979,7 +14879,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475746989}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16968,8 +16868,8 @@ GameObject:
   - component: {fileID: 1695744052}
   - component: {fileID: 1695744053}
   m_Layer: 3
-  m_Name: Enemy Flag 2
-  m_TagString: Untagged
+  m_Name: Munsee Trading Button
+  m_TagString: Munsee Trading
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16987,7 +16887,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475746989}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17007,7 +16907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -18244,7 +18144,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795866432}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18254,8 +18154,8 @@ RectTransform:
   - {fileID: 1549884789}
   - {fileID: 554617830}
   - {fileID: 979163916}
-  m_Father: {fileID: 475746989}
-  m_RootOrder: 2
+  m_Father: {fileID: 144965662}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19433,8 +19333,8 @@ GameObject:
   - component: {fileID: 1870563071}
   - component: {fileID: 1870563072}
   m_Layer: 3
-  m_Name: 'Enemy Flag 3 '
-  m_TagString: Untagged
+  m_Name: Philipses Trading Button
+  m_TagString: Philipses Trading
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19452,7 +19352,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475746989}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19472,7 +19372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -21622,11 +21522,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079524520}
   m_CullTransparentMesh: 1
---- !u!1 &2086051845 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8427730852707704412, guid: fefab2609986f8940993c17b4effe988, type: 3}
-  m_PrefabInstance: {fileID: 8427730850764340825}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &2086051846 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8427730852707704415, guid: fefab2609986f8940993c17b4effe988, type: 3}

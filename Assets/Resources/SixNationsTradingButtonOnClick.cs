@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -18,8 +19,7 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
     public void SixNationsTradingOnClick()
     {
         Debug.Log("Hello");
-        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        Debug.Log(gameManager);
+        
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
 
     }
@@ -27,41 +27,75 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
     [PunRPC]
     void WhenClicked(string userIDOfClicker) // 
     {
-        Debug.LogError("UserID of Clicker: " + userIDOfClicker);
-        if (gameManager.SixNations == userIDOfClicker)
-        {
-            // Skip to next turn
-        }
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        Debug.Log(gameManager);
 
-        else
-        {
+        Debug.Log("RPC is running");
+        Debug.Log("UserID of Clicker: " + userIDOfClicker);
+        Debug.LogError("UserID of Clicker: " + userIDOfClicker);
+        //if (gameManager.SixNations == userIDOfClicker)
+        //{
+            //Debug.Log("This happened.");
+            // Skip to next turn
+        //}
+
+        //else
+        //{
+            Debug.Log("Works right, " + userIDOfClicker);
             gameManager.SixNationsTrading = true;
             string team = gameManager.findPlayerTeam(userIDOfClicker);
+
             Debug.LogError("Team Selected: " + team);
+            if (team == "Dutch")
+            {
+                Debug.LogError("Dutch is Trading");
+                gameManager.DutchTrading = true;
+                Debug.LogError(gameManager.DutchTrading);
+            }
+            if (team == "Philipses")
+            {
+                Debug.LogError("Philipses is Trading");
+                gameManager.PhilipsesTrading = true;
+            }
+            if (team == "SixNations")
+            {
+                Debug.LogError("Six Nations is Trading");
+                gameManager.SixNationsTrading = true;
+            }
+            if (team == "Munsee")
+            {
+                Debug.LogError("Munsee is Trading");
+                gameManager.MunseeTrading = true;
+            }
             teamsThatAreTrading(team);
+            greyOutButtons();
 
-
-        }
+        //}
 
     }
 
     void teamsThatAreTrading(string team)
     {
-        if (team == "Dutch")
+        
+    }
+
+    void greyOutButtons()
+    {
+        if (!gameManager.DutchTrading)
         {
-            gameManager.DutchTrading = true;
+            gameManager.DutchTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
         }
-        if (team == "Philipses")
+        if (!gameManager.SixNationsTrading)
         {
-            gameManager.PhilipsesTrading = true;
+            gameManager.SixNationsTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
         }
-        if (team == "SixNations")
+        if (!gameManager.MunseeTrading)
         {
-            gameManager.SixNationsTrading = true;
+            gameManager.MunseeTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
         }
-        if (team == "Munsee")
+        if (!gameManager.PhilipsesTrading)
         {
-            gameManager.MunseeTrading = true;
+            gameManager.PhilipsesTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
         }
     }
 

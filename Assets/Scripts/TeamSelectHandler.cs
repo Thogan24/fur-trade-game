@@ -119,12 +119,12 @@ public class TeamSelectHandler : MonoBehaviourPunCallbacks
 
         //PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
 
-        SixNations.transform.parent = theCanvas.transform;
+/*        SixNations.transform.parent = theCanvas.transform;
         Dutch.transform.parent = theCanvas.transform;
         SixNations.transform.position = new Vector3(400, 400, 0);
         Dutch.transform.position = new Vector3(900, 200, 0);
         SixNations.SetActive(true);
-        Dutch.SetActive(true);
+        Dutch.SetActive(true);*/
 
 
 

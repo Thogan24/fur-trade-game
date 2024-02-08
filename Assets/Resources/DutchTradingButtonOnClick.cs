@@ -17,7 +17,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
 
     public void DutchTradingOnClick()
     {
-        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
         
     }
@@ -26,7 +26,8 @@ public class DutchTradingButtonOnClick : MonoBehaviour
     void WhenClicked(string userIDOfClicker) // 
     {
         Debug.LogError(userIDOfClicker);
-        if(gameManager.Dutch == userIDOfClicker)
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        if (gameManager.Dutch == userIDOfClicker)
         {
             // Skip to next turn
         }
@@ -36,6 +37,22 @@ public class DutchTradingButtonOnClick : MonoBehaviour
             gameManager.DutchTrading = true;
             string team = gameManager.findPlayerTeam(userIDOfClicker);
             Debug.Log(team);
+            if (team == "Dutch")
+            {
+                gameManager.DutchTrading = true;
+            }
+            if (team == "Philipses")
+            {
+                gameManager.PhilipsesTrading = true;
+            }
+            if (team == "SixNations")
+            {
+                gameManager.SixNationsTrading = true;
+            }
+            if (team == "Munsee")
+            {
+                gameManager.MunseeTrading = true;
+            }
             teamsThatAreTrading(team);
 
 
@@ -45,22 +62,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
 
     void teamsThatAreTrading(string team)
     {
-        if (team == "Dutch")
-        {
-            gameManager.DutchTrading = true;
-        }
-        if (team == "Philipses")
-        {
-            gameManager.PhilipsesTrading = true;
-        }
-        if (team == "SixNations")
-        {
-            gameManager.SixNationsTrading = true;
-        }
-        if (team == "Munsee")
-        {
-            gameManager.MunseeTrading = true;
-        }
+        
     }
 
     // Update is called once per frame

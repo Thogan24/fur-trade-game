@@ -93,10 +93,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject MunseeTradeButton;
     public GameObject PhilipsesTradeButton;
 
+    public GameObject gameManager; // This Object
 
     void Start()
     {
         Debug.Log(Dutch);
+        gameManager = this.gameObject;
     }
 
 
@@ -111,27 +113,30 @@ public class GameManager : MonoBehaviourPunCallbacks
                 PhotonNetwork.LoadLevel(1);
                 SceneManager.LoadScene(1);
             }
-            this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All, transform.position);
+            this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
+
             AlreadyLoaded = true;
         }
-
-        if (DutchTrading)
-        {
-            DutchTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-        }
-        if (SixNationsTrading)
-        {
-            SixNationsTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-        }
-        if (MunseeTrading)
-        {
-            MunseeTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-        }
-        if (PhilipsesTrading)
-        {
-            PhilipsesTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-        }
-
+        //Debug.Log(PhotonNetwork.PlayerList.Length + " - " + DutchTrading + " - " + gameManager.GetPhotonView().ViewID);
+        Debug.LogError(PhotonNetwork.PlayerList.Length + " | " + DutchTrading + " - " + gameManager.GetPhotonView().ViewID); 
+        /*
+                if (DutchTrading)
+                {
+                    DutchTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+                if (SixNationsTrading)
+                {
+                    SixNationsTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+                if (MunseeTrading)
+                {
+                    MunseeTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+                if (PhilipsesTrading)
+                {
+                    PhilipsesTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+        */
 
 
 
@@ -207,7 +212,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // MAIN SCENE STUFF
 
     [PunRPC]
-    void mainSceneCameraRPC(Vector3 transform)
+    void mainSceneCameraRPC()
     {
         //Debug.LogError(SceneManager.GetActiveScene().name);
         if(PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
@@ -256,6 +261,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
         }
+        DutchTradeButton = GameObject.FindGameObjectWithTag("Dutch Trading");
+        SixNationsTradeButton = GameObject.FindGameObjectWithTag("Six Nations Trading");
+        MunseeTradeButton = GameObject.FindGameObjectWithTag("Munsee Trading");
+        PhilipsesTradeButton = GameObject.FindGameObjectWithTag("Philipses Trading");
+
     }
 
 

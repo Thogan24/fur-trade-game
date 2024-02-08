@@ -25,6 +25,10 @@ TagManager:
   - Philipses Text Canvas
   - Philipses Background Canvas
   - Philipses Card Canvas
+  - Six Nations Trading
+  - Munsee Trading
+  - Philipses Trading
+  - Dutch Trading
   layers:
   - Default
   - TransparentFX
