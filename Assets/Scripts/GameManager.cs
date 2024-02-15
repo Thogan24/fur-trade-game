@@ -311,6 +311,16 @@ public class GameManager : MonoBehaviourPunCallbacks
                 enemyTeamButtonPos = SixNationsTradeButton.transform.position;
                 Debug.LogError(enemyTeamButtonPos);
             }
+            if (MunseeTrading == true)
+            {
+                enemyTeamButtonPos = MunseeTradeButton.transform.position;
+                Debug.LogError(enemyTeamButtonPos);
+            }
+            if (PhilipsesTrading == true)
+            {
+                enemyTeamButtonPos = PhilipsesTradeButton.transform.position;
+                Debug.LogError(enemyTeamButtonPos);
+            }
         }
         Vector3 pos = enemyTeamButtonPos; // enemyTeamButtonPos + 37445.25
         Debug.LogError("Adding card...");
