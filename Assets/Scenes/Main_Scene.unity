@@ -2731,6 +2731,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1575388848}
     m_Modifications:
+    - target: {fileID: -2369355850094137095, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
+      propertyPath: sceneViewId
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2963,7 +2967,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288558002}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -42.068474, y: -14.697353, z: -1.5841422}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3886,7 +3890,7 @@ GameObject:
   - component: {fileID: 386194269}
   - component: {fileID: 386194271}
   - component: {fileID: 386194270}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4405,7 +4409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431403321}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.068474, y: 14.697353, z: 1.5841422}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4656,7 +4660,7 @@ GameObject:
   - component: {fileID: 444225197}
   - component: {fileID: 444225199}
   - component: {fileID: 444225198}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5105,7 +5109,7 @@ GameObject:
   - component: {fileID: 489459071}
   - component: {fileID: 489459073}
   - component: {fileID: 489459072}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5301,7 +5305,7 @@ GameObject:
   - component: {fileID: 511087155}
   - component: {fileID: 511087157}
   - component: {fileID: 511087156}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6013,7 +6017,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584114408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.068474, y: 14.697353, z: 1.5841422}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6667,7 +6671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647337645}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.068474, y: 14.697353, z: 1.5841422}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6917,7 +6921,7 @@ GameObject:
   - component: {fileID: 662882565}
   - component: {fileID: 662882567}
   - component: {fileID: 662882566}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7268,6 +7272,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1602506182}
     m_Modifications:
+    - target: {fileID: -2369355850094137095, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7374,7 +7382,7 @@ GameObject:
   - component: {fileID: 715061849}
   - component: {fileID: 715061851}
   - component: {fileID: 715061850}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9023,7 +9031,7 @@ GameObject:
   - component: {fileID: 923225375}
   - component: {fileID: 923225377}
   - component: {fileID: 923225376}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9721,7 +9729,7 @@ GameObject:
   - component: {fileID: 963179733}
   - component: {fileID: 963179735}
   - component: {fileID: 963179734}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10890,7 +10898,7 @@ GameObject:
   - component: {fileID: 1077799098}
   - component: {fileID: 1077799100}
   - component: {fileID: 1077799099}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11909,7 +11917,7 @@ GameObject:
   - component: {fileID: 1181844085}
   - component: {fileID: 1181844084}
   - component: {fileID: 1181844083}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Cards
   m_TagString: Dutch Card Canvas
   m_Icon: {fileID: 0}
@@ -13104,7 +13112,7 @@ GameObject:
   - component: {fileID: 1318592313}
   - component: {fileID: 1318592315}
   - component: {fileID: 1318592314}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13413,7 +13421,7 @@ GameObject:
   - component: {fileID: 1347566791}
   - component: {fileID: 1347566793}
   - component: {fileID: 1347566792}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14351,6 +14359,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1432973948}
     m_Modifications:
+    - target: {fileID: -2369355850094137095, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -14783,7 +14795,7 @@ GameObject:
   - component: {fileID: 1455465722}
   - component: {fileID: 1455465724}
   - component: {fileID: 1455465723}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Line (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16050,7 +16062,7 @@ GameObject:
   - component: {fileID: 1599951855}
   - component: {fileID: 1599951857}
   - component: {fileID: 1599951856}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16126,7 +16138,7 @@ GameObject:
   - component: {fileID: 1602435383}
   - component: {fileID: 1602435385}
   - component: {fileID: 1602435384}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Card (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21042,7 +21054,7 @@ GameObject:
   - component: {fileID: 1992460886}
   - component: {fileID: 1992460888}
   - component: {fileID: 1992460887}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Line (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21131,7 +21143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007664352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.068474, y: 14.697353, z: 1.5841422}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21891,7 +21903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2141675228}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Inventory Cards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21946,15 +21958,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 72328550235293212, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -42.068474
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 72328550235293212, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.697353
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 72328550235293212, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.584143
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 72328550235293212, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22011,15 +22023,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.068474
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.697353
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.584143
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3642095162937260909, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22072,15 +22084,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47.931526
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.697353
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.584143
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5917895076211833666, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22131,6 +22143,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2141675228}
     m_Modifications:
+    - target: {fileID: -2369355850094137095, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
+      propertyPath: sceneViewId
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -22219,6 +22235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card
       objectReference: {fileID: 0}
+    - target: {fileID: 6075063951732973871, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
 --- !u!1001 &8427730850764340825
@@ -22238,15 +22258,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8427730852707704401, guid: fefab2609986f8940993c17b4effe988, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.931526
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8427730852707704401, guid: fefab2609986f8940993c17b4effe988, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.697353
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8427730852707704401, guid: fefab2609986f8940993c17b4effe988, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.584143
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8427730852707704401, guid: fefab2609986f8940993c17b4effe988, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22296,6 +22316,10 @@ PrefabInstance:
     - target: {fileID: 8467486979893556977, guid: ad5d2e7d00dfaac448869f1c067a8c58, type: 3}
       propertyPath: m_Name
       value: Card (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467486979893556977, guid: ad5d2e7d00dfaac448869f1c067a8c58, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8467486979893556978, guid: ad5d2e7d00dfaac448869f1c067a8c58, type: 3}
       propertyPath: m_Pivot.x

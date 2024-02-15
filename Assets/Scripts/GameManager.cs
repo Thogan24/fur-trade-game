@@ -95,6 +95,17 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public GameObject gameManager; // This Object
 
+
+
+    // TRADING VARIABLES
+
+    public int CardsInTrade = 0;
+    public Vector3 enemyTeamButtonPos;
+
+    public GameObject BeaverCard;
+
+
+
     void Start()
     {
         Debug.Log(Dutch);
@@ -105,7 +116,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Update()
     {
         // Main Scene
-        if (SixNationsJoined && DutchJoined && !AlreadyLoaded) //  && MunseeJoined && PhilipsesJoined
+        if (DutchJoined && !AlreadyLoaded) // && SixNationsJoined && MunseeJoined && PhilipsesJoined
         {
             Debug.Log("Teans joined, loading main screen");
             if (PhotonNetwork.IsMasterClient)
@@ -117,8 +128,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             AlreadyLoaded = true;
         }
-        //Debug.Log(PhotonNetwork.PlayerList.Length + " - " + DutchTrading + " - " + gameManager.GetPhotonView().ViewID);
-        Debug.LogError(PhotonNetwork.PlayerList.Length + " | " + DutchTrading + " - " + gameManager.GetPhotonView().ViewID); 
+        
+        //Debug.LogError(PhotonNetwork.PlayerList.Length + " | " + DutchTrading + " - " + gameManager.GetPhotonView().ViewID); 
+
+
         /*
                 if (DutchTrading)
                 {
@@ -268,9 +281,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     }
 
-
-
-
     public string findPlayerTeam(string userID)
     {
         if(userID == Dutch)
@@ -287,5 +297,36 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         return "Munsee";
 
+    }
+
+    
+
+    public void addCardToTrade(string tag)
+    {
+        
+        if (PhotonNetwork.LocalPlayer.ToString() == Dutch && DutchTrading == true)
+        {
+            if (SixNationsTrading == true)
+            {
+                enemyTeamButtonPos = SixNationsTradeButton.transform.position;
+                Debug.LogError(enemyTeamButtonPos);
+            }
+        }
+        Vector3 pos = enemyTeamButtonPos; // enemyTeamButtonPos + 37445.25
+        Debug.LogError("Adding card...");
+        
+
+        if (tag == "Beaver")
+        {
+            Debug.LogError("Beaver Card Added");
+            GameObject instantiatedBeaverCard = PhotonNetwork.Instantiate("BeaverCard", pos + new Vector3(2 + ((float) 0.3 * CardsInTrade), (float) 0.2, 0), Quaternion.identity);
+            instantiatedBeaverCard.transform.SetParent(DutchCardsCanvasObject.transform);
+            instantiatedBeaverCard.transform.position = new Vector3(instantiatedBeaverCard.transform.position.x, instantiatedBeaverCard.transform.position.y, 10);
+            Debug.LogError(instantiatedBeaverCard.transform.position);
+        }
+
+
+
+        CardsInTrade++;
     }
 }

@@ -19,7 +19,7 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
     public void SixNationsTradingOnClick()
     {
         Debug.Log("Hello");
-        
+        Debug.LogError("ItsWhenClickingHere");
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
 
     }
@@ -69,7 +69,7 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
             }
             teamsThatAreTrading(team);
             greyOutButtons();
-
+        return;
         //}
 
     }
