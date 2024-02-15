@@ -5,18 +5,18 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class DutchTradingButtonOnClick : MonoBehaviour
+public class PhilipsesTradingButtonOnClick : MonoBehaviour
 {
-    public GameObject DutchTradingButton;
+    public GameObject PhilipsesTradingButton;
     public GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        DutchTradingButton = this.gameObject;
+        PhilipsesTradingButton = this.gameObject;
     }
 
-    public void DutchTradingOnClick()
+    public void PhilipsesTradingOnClick()
     {
         Debug.Log("Hello");
         Debug.LogError("ItsWhenClickingHere");
@@ -33,7 +33,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         Debug.Log("RPC is running");
         Debug.Log("UserID of Clicker: " + userIDOfClicker);
         Debug.LogError("UserID of Clicker: " + userIDOfClicker);
-        //if (gameManager.Dutch == userIDOfClicker)
+        //if (gameManager.Philipses == userIDOfClicker)
         //{
         //Debug.Log("This happened.");
         // Skip to next turn
@@ -42,7 +42,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         //else
         //{
         Debug.Log("Works right, " + userIDOfClicker);
-        gameManager.DutchTrading = true;
+        gameManager.PhilipsesTrading = true;
         string team = gameManager.findPlayerTeam(userIDOfClicker);
 
         Debug.LogError("Team Selected: " + team);
@@ -57,15 +57,15 @@ public class DutchTradingButtonOnClick : MonoBehaviour
             Debug.LogError("Philipses is Trading");
             gameManager.PhilipsesTrading = true;
         }
-        if (team == "Dutch")
+        if (team == "Philipses")
         {
             Debug.LogError("Six Nations is Trading");
-            gameManager.DutchTrading = true;
+            gameManager.PhilipsesTrading = true;
         }
-        if (team == "Dutch")
+        if (team == "Munsee")
         {
-            Debug.LogError("Dutch is Trading");
-            gameManager.DutchTrading = true;
+            Debug.LogError("Munsee is Trading");
+            gameManager.MunseeTrading = true;
         }
         teamsThatAreTrading(team);
         greyOutButtons();
@@ -85,6 +85,10 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         {
             gameManager.DutchTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
         }
+        if (!gameManager.PhilipsesTrading)
+        {
+            gameManager.PhilipsesTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+        }
         if (!gameManager.MunseeTrading)
         {
             gameManager.MunseeTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
@@ -92,10 +96,6 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         if (!gameManager.SixNationsTrading)
         {
             gameManager.SixNationsTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
-        }
-        if (!gameManager.PhilipsesTrading)
-        {
-            gameManager.PhilipsesTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
         }
     }
 

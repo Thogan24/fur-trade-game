@@ -5,18 +5,18 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class DutchTradingButtonOnClick : MonoBehaviour
+public class MunseeTradingButtonOnClick : MonoBehaviour
 {
-    public GameObject DutchTradingButton;
+    public GameObject MunseeTradingButton;
     public GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        DutchTradingButton = this.gameObject;
+        MunseeTradingButton = this.gameObject;
     }
 
-    public void DutchTradingOnClick()
+    public void MunseeTradingOnClick()
     {
         Debug.Log("Hello");
         Debug.LogError("ItsWhenClickingHere");
@@ -33,7 +33,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         Debug.Log("RPC is running");
         Debug.Log("UserID of Clicker: " + userIDOfClicker);
         Debug.LogError("UserID of Clicker: " + userIDOfClicker);
-        //if (gameManager.Dutch == userIDOfClicker)
+        //if (gameManager.Munsee == userIDOfClicker)
         //{
         //Debug.Log("This happened.");
         // Skip to next turn
@@ -42,7 +42,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         //else
         //{
         Debug.Log("Works right, " + userIDOfClicker);
-        gameManager.DutchTrading = true;
+        gameManager.MunseeTrading = true;
         string team = gameManager.findPlayerTeam(userIDOfClicker);
 
         Debug.LogError("Team Selected: " + team);
@@ -57,15 +57,15 @@ public class DutchTradingButtonOnClick : MonoBehaviour
             Debug.LogError("Philipses is Trading");
             gameManager.PhilipsesTrading = true;
         }
-        if (team == "Dutch")
+        if (team == "Munsee")
         {
             Debug.LogError("Six Nations is Trading");
-            gameManager.DutchTrading = true;
+            gameManager.MunseeTrading = true;
         }
-        if (team == "Dutch")
+        if (team == "Munsee")
         {
-            Debug.LogError("Dutch is Trading");
-            gameManager.DutchTrading = true;
+            Debug.LogError("Munsee is Trading");
+            gameManager.MunseeTrading = true;
         }
         teamsThatAreTrading(team);
         greyOutButtons();
