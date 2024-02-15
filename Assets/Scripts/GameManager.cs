@@ -314,18 +314,25 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         Vector3 pos = enemyTeamButtonPos; // enemyTeamButtonPos + 37445.25
         Debug.LogError("Adding card...");
-        
+        GameObject instantiatedBeaverCard = null;
 
         if (tag == "Beaver")
         {
             Debug.LogError("Beaver Card Added");
-            GameObject instantiatedBeaverCard = PhotonNetwork.Instantiate("BeaverCard", pos + new Vector3(2 + ((float) 0.3 * CardsInTrade), (float) 0.2, 0), Quaternion.identity);
-            instantiatedBeaverCard.transform.SetParent(DutchCardsCanvasObject.transform);
-            instantiatedBeaverCard.transform.position = new Vector3(instantiatedBeaverCard.transform.position.x, instantiatedBeaverCard.transform.position.y, 10);
-            Debug.LogError(instantiatedBeaverCard.transform.position);
+            instantiatedBeaverCard = PhotonNetwork.Instantiate("BeaverCard", pos + new Vector3(2 + ((float) 0.3 * CardsInTrade), (float) 0.2, 0), Quaternion.identity);
+            
+        }
+        if (tag == "Duffels")
+        {
+            Debug.LogError("Duffels Card Added");
+            instantiatedBeaverCard = PhotonNetwork.Instantiate("DuffelsBlanketCard", pos + new Vector3(2 + ((float)0.3 * CardsInTrade), (float)0.2, 0), Quaternion.identity);
+
         }
 
-
+        instantiatedBeaverCard.GetComponent<Button>().enabled = false;
+        instantiatedBeaverCard.transform.SetParent(DutchCardsCanvasObject.transform);
+        instantiatedBeaverCard.transform.position = new Vector3(instantiatedBeaverCard.transform.position.x, instantiatedBeaverCard.transform.position.y, 10);
+        Debug.LogError(instantiatedBeaverCard.transform.position);
 
         CardsInTrade++;
     }
