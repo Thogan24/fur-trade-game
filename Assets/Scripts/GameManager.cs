@@ -200,6 +200,61 @@ Strings of Beads - 20 cards
     public int BeadsAmountDutch = 20;
     public int ScissorsAmountDutch = 3;
 
+    public GameObject SixNationsBeaverAmountObject;
+    public GameObject SixNationsDeerskinsAmountObject;
+    public GameObject SixNationsBearAmountObject;
+    public GameObject SixNationsFisherAmountObject;
+    public GameObject SixNationsFoxAmountObject;
+    public GameObject SixNationsSchepelsAmountObject;
+    public GameObject SixNationsDuffelsAmountObject;
+    public GameObject SixNationsLinenAmountObject;
+    public GameObject SixNationsStockingsAmountObject;
+    public GameObject SixNationsStroudsAmountObject;
+    public GameObject SixNationsAxesAmountObject;
+    public GameObject SixNationsBeadsAmountObject;
+    public GameObject SixNationsScissorsAmountObject;
+
+    public GameObject MunseeBeaverAmountObject;
+    public GameObject MunseeDeerskinsAmountObject;
+    public GameObject MunseeBearAmountObject;
+    public GameObject MunseeFisherAmountObject;
+    public GameObject MunseeFoxAmountObject;
+    public GameObject MunseeSchepelsAmountObject;
+    public GameObject MunseeDuffelsAmountObject;
+    public GameObject MunseeLinenAmountObject;
+    public GameObject MunseeStockingsAmountObject;
+    public GameObject MunseeStroudsAmountObject;
+    public GameObject MunseeAxesAmountObject;
+    public GameObject MunseeBeadsAmountObject;
+    public GameObject MunseeScissorsAmountObject;
+
+    public GameObject PhilipsesBeaverAmountObject;
+    public GameObject PhilipsesDeerskinsAmountObject;
+    public GameObject PhilipsesBearAmountObject;
+    public GameObject PhilipsesFisherAmountObject;
+    public GameObject PhilipsesFoxAmountObject;
+    public GameObject PhilipsesSchepelsAmountObject;
+    public GameObject PhilipsesDuffelsAmountObject;
+    public GameObject PhilipsesLinenAmountObject;
+    public GameObject PhilipsesStockingsAmountObject;
+    public GameObject PhilipsesStroudsAmountObject;
+    public GameObject PhilipsesAxesAmountObject;
+    public GameObject PhilipsesBeadsAmountObject;
+    public GameObject PhilipsesScissorsAmountObject;
+
+    public GameObject DutchBeaverAmountObject;
+    public GameObject DutchDeerskinsAmountObject;
+    public GameObject DutchBearAmountObject;
+    public GameObject DutchFisherAmountObject;
+    public GameObject DutchFoxAmountObject;
+    public GameObject DutchSchepelsAmountObject;
+    public GameObject DutchDuffelsAmountObject;
+    public GameObject DutchLinenAmountObject;
+    public GameObject DutchStockingsAmountObject;
+    public GameObject DutchStroudsAmountObject;
+    public GameObject DutchAxesAmountObject;
+    public GameObject DutchBeadsAmountObject;
+    public GameObject DutchScissorsAmountObject;
 
 
 
@@ -422,11 +477,56 @@ Strings of Beads - 20 cards
     }
 
 
+    /*
+                DeerskinsAmountDutch 
+                BearAmountDutch
+                FisherAmountDutch
+                FoxAmountDutch
+                SchepelsAmountDutch
+                DuffelsAmountDutch
+                LinenAmountDutch
+                StockingsAmountDutch
+                StroudsAmountDutch
+                AxesAmountDutch
+                BeadsAmountDutch
+                ScissorsAmountDutch
+     */
+
     [PunRPC]
     void mainSceneInventorySetupRPC()
     {
+        if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
+        {
+            DutchBeaverAmountObject.GetComponent<Text>().text = BeaverAmountDutch.ToString();
+            DutchDeerskinsAmountObject.GetComponent<Text>().text = DeerskinsAmountDutch.ToString();
+            DutchBearAmountObject.GetComponent<Text>().text = BearAmountDutch.ToString();
+            DutchFisherAmountObject.GetComponent<Text>().text = FisherAmountDutch.ToString();
+            DutchFoxAmountObject.GetComponent<Text>().text = FoxAmountDutch.ToString();
+            DutchSchepelsAmountObject.GetComponent<Text>().text = SchepelsAmountDutch.ToString();
+            DutchDuffelsAmountObject.GetComponent<Text>().text = DuffelsAmountDutch.ToString();
+            DutchLinenAmountObject.GetComponent<Text>().text = LinenAmountDutch.ToString();
+            DutchStockingsAmountObject.GetComponent<Text>().text = StockingsAmountDutch.ToString();
+            DutchStroudsAmountObject.GetComponent<Text>().text = StroudsAmountDutch.ToString();
+            DutchAxesAmountObject.GetComponent<Text>().text = AxesAmountDutch.ToString();
+            DutchBeadsAmountObject.GetComponent<Text>().text = BeadsAmountDutch.ToString();
+            DutchScissorsAmountObject.GetComponent<Text>().text = ScissorsAmountDutch.ToString();
+        }
+        if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false)
+        {
+            
 
+        }
+        if (PhotonNetwork.LocalPlayer.ToString() == Munsee && AlreadyLoaded == false)
+        {
+            
+        }
+        if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false)
+        {
+            
+        }
     }
+
+
 
 
     public string findPlayerTeam(string userID)
