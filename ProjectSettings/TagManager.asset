@@ -31,6 +31,10 @@ TagManager:
   - Dutch Trading
   - Beaver
   - Duffels
+  - Inventory
+  - Wishlist
+  - Giving
+  - Receiving
   layers:
   - Default
   - TransparentFX
