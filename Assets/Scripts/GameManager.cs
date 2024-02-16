@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             Destroy(gameObject);
         }
 
-        
+
     }
 
     // Stores individual userID
@@ -104,8 +104,103 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Vector3 enemyTeamButtonPos;
 
     public GameObject BeaverCard;
-    public GameObject DuffelsBlanketCard;
+    public GameObject DuffelsCard;
     public GameObject DeerSkinCard;
+
+
+
+    /*
+ * STARTING INVENTORIES
+
+Six Nations 
+Beaver Pelts - 12 cards
+Deerskins - 5 cards
+Bear Pelts - 6 cards
+Fisher Pelts - 4 cards
+Fox Pelts - 3 cards 
+
+Munsee
+Beaver Pelts - 10 cards
+Deerskins - 6 cards
+Bear Pelts - 2 cards
+Fisher Pelts - 5 cards
+Fox Pelts - 13 cards
+Schepels of Corn - 6 cards
+
+Philipses
+Duffels Blankets - 3 cards
+Linen Shirts - 8 cards
+Pairs of Stockings - 10 cards
+Ells of Strouds - 4 cards
+Large Axes - 2 cards
+Strings of Beads - 12 cards
+Scissors - 5 cards
+
+Dutch
+Duffels Blankets - 12 cards
+Ells of Strouds - 9 cards
+Large Axes - 5 cards
+Scissors - 3 cards
+Strings of Beads - 20 cards
+
+*/
+    public int BeaverAmountSixNations = 12;
+    public int DeerskinsAmountSixNations = 5;
+    public int BearAmountSixNations = 6;
+    public int FisherAmountSixNations = 4;
+    public int FoxAmountSixNations = 3;
+    public int SchepelsAmountSixNations = 0;
+    public int DuffelsAmountSixNations = 0;
+    public int LinenAmountSixNations = 0;
+    public int StockingsAmountSixNations = 0;
+    public int StroudsAmountSixNations = 0;
+    public int AxesAmountSixNations = 0;
+    public int BeadsAmountSixNations = 0;
+    public int ScissorsAmountSixNations = 0;
+
+    public int BeaverAmountMunsee;
+    public int DeerskinsAmountMunsee;
+    public int BearAmountMunsee;
+    public int FisherAmountMunsee;
+    public int FoxAmountMunsee;
+    public int SchepelsAmountMunsee;
+    public int DuffelsAmountMunsee;
+    public int LinenAmountMunsee = 0;
+    public int StockingsAmountMunsee;
+    public int StroudsAmountMunsee;
+    public int AxesAmountMunsee;
+    public int BeadsAmountMunsee;
+    public int ScissorsAmountMunsee;
+
+    public int BeaverAmountPhilipses;
+    public int DeerskinsAmountPhilipses;
+    public int BearAmountPhilipses;
+    public int FisherAmountPhilipses;
+    public int FoxAmountPhilipses;
+    public int SchepelsAmountPhilipses;
+    public int DuffelsAmountPhilipses;
+    public int LinenAmountPhilipses = 8;
+    public int StockingsAmountPhilipses;
+    public int StroudsAmountPhilipses;
+    public int AxesAmountPhilipses;
+    public int BeadsAmountPhilipses;
+    public int ScissorsAmountPhilipses;
+
+    public int BeaverAmountDutch = 0;
+    public int DeerskinsAmountDutch = 0;
+    public int BearAmountDutch = 0;
+    public int FisherAmountDutch = 0;
+    public int FoxAmountDutch = 0;
+    public int SchepelsAmountDutch = 0;
+    public int DuffelsAmountDutch = 12;
+    public int LinenAmountDutch = 0;
+    public int StockingsAmountDutch = 0;
+    public int StroudsAmountDutch = 9;
+    public int AxesAmountDutch = 5;
+    public int BeadsAmountDutch = 20;
+    public int ScissorsAmountDutch = 3;
+
+
 
 
 
@@ -128,10 +223,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                 SceneManager.LoadScene(1);
             }
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
+            this.GetComponent<PhotonView>().RPC("mainSceneInventorySetupRPC", RpcTarget.All);
 
             AlreadyLoaded = true;
         }
-        
+
         //Debug.LogError(PhotonNetwork.PlayerList.Length + " | " + DutchTrading + " - " + gameManager.GetPhotonView().ViewID); 
 
 
@@ -200,7 +296,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         Dutch = userIDDutch;
         Debug.LogError(DutchJoined);
         Debug.LogError(Dutch);
-        
+
         // Mapping shit
     }
 
@@ -225,13 +321,54 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 
-    // MAIN SCENE STUFF
+    // MAIN SCENE
+
+    /*
+     * STARTING INVENTORIES
+    
+    Six Nations 
+    Beaver Pelts - 12 cards
+    Deerskins - 5 cards
+    Bear Pelts - 6 cards
+    Fisher Pelts - 4 cards
+    Fox Pelts - 3 cards 
+
+    Munsee
+    Beaver Pelts - 10 cards
+    Deerskins - 6 cards
+    Bear Pelts - 2 cards
+    Fisher Pelts - 5 cards
+    Fox Pelts - 13 cards
+    Schepels of Corn - 6 cards
+
+    Philipses
+    Duffels Blankets - 3 cards
+    Linen Shirts - 8 cards
+    Pairs of Stockings - 10 cards
+    Ells of Strouds - 4 cards
+    Large Axes - 2 cards
+    Strings of Beads - 12 cards
+    Scissors - 5 cards
+
+    Dutch
+    Duffels Blankets - 12 cards
+    Ells of Strouds - 9 cards
+    Large Axes - 5 cards
+    Scissors - 3 cards
+    Strings of Beads - 20 cards
+     
+    */
+
+
+
+
+
 
     [PunRPC]
     void mainSceneCameraRPC()
     {
         //Debug.LogError(SceneManager.GetActiveScene().name);
-        if(PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
+        if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
             DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
             DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
@@ -284,6 +421,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     }
 
+
+    [PunRPC]
+    void mainSceneInventorySetupRPC()
+    {
+
+    }
+
+
     public string findPlayerTeam(string userID)
     {
         if(userID == Dutch)
@@ -325,11 +470,13 @@ public class GameManager : MonoBehaviourPunCallbacks
                 Debug.LogError(enemyTeamButtonPos);
             }
         }
-        Vector3 pos = enemyTeamButtonPos; // enemyTeamButtonPos + 37445.25
+
+        Vector3 pos = enemyTeamButtonPos;
         Debug.LogError("Adding card...");
         GameObject instantiatedCard = null;
         int isParentWishlist = 0;
         int isParentInventory = 1;
+
 
         if (parentTag == "Wishlist")
         {
@@ -341,7 +488,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log(isParentInventory + " " + isParentWishlist);
         if (tag == "Beaver")
         {
-            
             Debug.LogError("Beaver Card Added");
             instantiatedCard = PhotonNetwork.Instantiate("BeaverCard", pos + new Vector3((2 + ((float) 0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float) 0.3 * WishlistCardsInTrade)), (float) 0.2, 0), Quaternion.identity);
             
@@ -349,18 +495,18 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (tag == "Duffels")
         {
             Debug.LogError("Duffels Card Added");
-            instantiatedCard = PhotonNetwork.Instantiate("DuffelsBlanketCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * 3 + (float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+            instantiatedCard = PhotonNetwork.Instantiate("DuffelsCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
 
         }
         if (tag == "DeerSkin")
         {
             Debug.LogError("Deer Skin Card Added");
-            instantiatedCard = PhotonNetwork.Instantiate("DeerSkinCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * 3 + (float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+            instantiatedCard = PhotonNetwork.Instantiate("DeerSkinCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
 
         }
 
         instantiatedCard.GetComponent<Button>().enabled = false;
-        instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(0));
+        
         instantiatedCard.transform.position = new Vector3(instantiatedCard.transform.position.x, instantiatedCard.transform.position.y, 10);
         Debug.LogError(instantiatedCard.transform.position);
 
@@ -368,11 +514,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             WishlistCardsInTrade++;
             Debug.Log(WishlistCardsInTrade);
+            instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(1));
         }
         else
         {
             InventoryCardsInTrade++;
             Debug.Log(InventoryCardsInTrade);
+            instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(0));
         }
 
     }

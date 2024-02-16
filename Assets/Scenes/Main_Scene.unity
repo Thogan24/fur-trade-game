@@ -2583,7 +2583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 261613927}
   m_Layer: 0
-  m_Name: Trade Receiving Cards
+  m_Name: Trade Receiving Cards (Wishlist)
   m_TagString: Receiving
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9667,7 +9667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 975397768}
   m_Layer: 0
-  m_Name: Trade Giving Cards
+  m_Name: Trade Giving Cards (Inventory)
   m_TagString: Giving
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
