@@ -99,10 +99,13 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     // TRADING VARIABLES
 
-    public int CardsInTrade = 0;
+    public int InventoryCardsInTrade = 0;
+    public int WishlistCardsInTrade = 0;
     public Vector3 enemyTeamButtonPos;
 
     public GameObject BeaverCard;
+    public GameObject DuffelsBlanketCard;
+    public GameObject DeerSkinCard;
 
 
 
@@ -324,40 +327,53 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         Vector3 pos = enemyTeamButtonPos; // enemyTeamButtonPos + 37445.25
         Debug.LogError("Adding card...");
-        GameObject instantiatedBeaverCard = null;
+        GameObject instantiatedCard = null;
         int isParentWishlist = 0;
+        int isParentInventory = 1;
 
         if (parentTag == "Wishlist")
         {
             isParentWishlist = 1;
+            isParentInventory = 0;
         }
 
 
-
+        Debug.Log(isParentInventory + " " + isParentWishlist);
         if (tag == "Beaver")
         {
+            
             Debug.LogError("Beaver Card Added");
-            instantiatedBeaverCard = PhotonNetwork.Instantiate("BeaverCard", pos + new Vector3(2 + ((float) 0.3 * CardsInTrade) + (isParentWishlist * 3), (float) 0.2, 0), Quaternion.identity);
+            instantiatedCard = PhotonNetwork.Instantiate("BeaverCard", pos + new Vector3((2 + ((float) 0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float) 0.3 * WishlistCardsInTrade)), (float) 0.2, 0), Quaternion.identity);
             
         }
         if (tag == "Duffels")
         {
             Debug.LogError("Duffels Card Added");
-            instantiatedBeaverCard = PhotonNetwork.Instantiate("DuffelsBlanketCard", pos + new Vector3(2 + ((float)0.3 * CardsInTrade) + (isParentWishlist * 3), (float)0.2, 0), Quaternion.identity);
+            instantiatedCard = PhotonNetwork.Instantiate("DuffelsBlanketCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * 3 + (float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
 
         }
         if (tag == "DeerSkin")
         {
             Debug.LogError("Deer Skin Card Added");
-            instantiatedBeaverCard = PhotonNetwork.Instantiate("DeerSkinCard", pos + new Vector3(2 + ((float)0.3 * CardsInTrade) + (isParentWishlist * 3), (float)0.2, 0), Quaternion.identity);
+            instantiatedCard = PhotonNetwork.Instantiate("DeerSkinCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * 3 + (float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
 
         }
 
-        instantiatedBeaverCard.GetComponent<Button>().enabled = false;
-        instantiatedBeaverCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(0));
-        instantiatedBeaverCard.transform.position = new Vector3(instantiatedBeaverCard.transform.position.x, instantiatedBeaverCard.transform.position.y, 10);
-        Debug.LogError(instantiatedBeaverCard.transform.position);
+        instantiatedCard.GetComponent<Button>().enabled = false;
+        instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(0));
+        instantiatedCard.transform.position = new Vector3(instantiatedCard.transform.position.x, instantiatedCard.transform.position.y, 10);
+        Debug.LogError(instantiatedCard.transform.position);
 
-        CardsInTrade++;
+        if (parentTag == "Wishlist")
+        {
+            WishlistCardsInTrade++;
+            Debug.Log(WishlistCardsInTrade);
+        }
+        else
+        {
+            InventoryCardsInTrade++;
+            Debug.Log(InventoryCardsInTrade);
+        }
+
     }
 }
