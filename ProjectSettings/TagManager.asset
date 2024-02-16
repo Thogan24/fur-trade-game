@@ -35,6 +35,7 @@ TagManager:
   - Wishlist
   - Giving
   - Receiving
+  - DeerSkin
   layers:
   - Default
   - TransparentFX
