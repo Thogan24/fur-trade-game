@@ -398,48 +398,16 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 
+
+
     // MAIN SCENE
 
-    /*
-     * STARTING INVENTORIES
-    
-    Six Nations 
-    Beaver Pelts - 12 cards
-    Deerskins - 5 cards
-    Bear Pelts - 6 cards
-    Fisher Pelts - 4 cards
-    Fox Pelts - 3 cards 
-
-    Munsee
-    Beaver Pelts - 10 cards
-    Deerskins - 6 cards
-    Bear Pelts - 2 cards
-    Fisher Pelts - 5 cards
-    Fox Pelts - 13 cards
-    Schepels of Corn - 6 cards
-
-    Philipses
-    Duffels Blankets - 3 cards
-    Linen Shirts - 8 cards
-    Pairs of Stockings - 10 cards
-    Ells of Strouds - 4 cards
-    Large Axes - 2 cards
-    Strings of Beads - 12 cards
-    Scissors - 5 cards
-
-    Dutch
-    Duffels Blankets - 12 cards
-    Ells of Strouds - 9 cards
-    Large Axes - 5 cards
-    Scissors - 3 cards
-    Strings of Beads - 20 cards
-     
-    */
 
 
 
 
 
+  
 
     [PunRPC]
     void mainSceneCameraRPC()
@@ -572,8 +540,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     
-    //NEED TO MAKE AN RPC
-    public void addCardToTrade(string tag, string parentTag)
+    [PunRPC]
+    void addCardToTrade(string tag, string parentTag)
     {
         
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && DutchTrading == true)
@@ -662,7 +630,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void cardSwitchTeams()
+    void cardSwitchTeams() // TODO
     {
         // Team who's turn it is recieves their items
         if (DutchAccepted && turn == 1)
@@ -694,7 +662,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (DutchAccepted)
         {
-            // Dutch inventory + Trade Receiving Cards - Trade Giving Cards
+            // Dutch inventory + Trade Receiving Cards - Trade Giving Cards - TODO
             DutchAccepted = false;
             DutchTrading = false;
         }
@@ -725,7 +693,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void clearAllTradesAndMoveTurns()
     {
-        // Clear all trades
+        // CLEAR ALL TRADES -- TODO
+
 
         if (turn == 4)
         {

@@ -49,6 +49,8 @@ MonoBehaviour:
   - mainSceneCameraRPC
   - mainSceneInventorySetupRPC
   - cardSwitchTeams
+  - clearAllTradesAndMoveTurns
+  - addCardToTrade
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
