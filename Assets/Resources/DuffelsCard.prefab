@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5442418541069168030}
   - component: {fileID: 7443822141615371246}
   m_Layer: 5
-  m_Name: DuffelsBlanketCard
+  m_Name: DuffelsCard
   m_TagString: Duffels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

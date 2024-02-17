@@ -88,6 +88,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool MunseeTrading = false;
     public bool PhilipsesTrading = false;
 
+    public bool DutchAccepted = false;
+    public bool SixNationsAccepted = false;
+    public bool MunseeAccepted = false;
+    public bool PhilipsesAccepted = false;
+
     public GameObject DutchTradeButton;
     public GameObject SixNationsTradeButton;
     public GameObject MunseeTradeButton;
@@ -110,40 +115,40 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
     /*
- * STARTING INVENTORIES
+    STARTING INVENTORIES
 
-Six Nations 
-Beaver Pelts - 12 cards
-Deerskins - 5 cards
-Bear Pelts - 6 cards
-Fisher Pelts - 4 cards
-Fox Pelts - 3 cards 
+    Six Nations 
+    Beaver Pelts - 12 cards
+    Deerskins - 5 cards
+    Bear Pelts - 6 cards
+    Fisher Pelts - 4 cards
+    Fox Pelts - 3 cards 
 
-Munsee
-Beaver Pelts - 10 cards
-Deerskins - 6 cards
-Bear Pelts - 2 cards
-Fisher Pelts - 5 cards
-Fox Pelts - 13 cards
-Schepels of Corn - 6 cards
+    Munsee
+    Beaver Pelts - 10 cards
+    Deerskins - 6 cards
+    Bear Pelts - 2 cards
+    Fisher Pelts - 5 cards
+    Fox Pelts - 13 cards
+    Schepels of Corn - 6 cards
 
-Philipses
-Duffels Blankets - 3 cards
-Linen Shirts - 8 cards
-Pairs of Stockings - 10 cards
-Ells of Strouds - 4 cards
-Large Axes - 2 cards
-Strings of Beads - 12 cards
-Scissors - 5 cards
+    Philipses
+    Duffels Blankets - 3 cards
+    Linen Shirts - 8 cards
+    Pairs of Stockings - 10 cards
+    Ells of Strouds - 4 cards
+    Large Axes - 2 cards
+    Strings of Beads - 12 cards
+    Scissors - 5 cards
 
-Dutch
-Duffels Blankets - 12 cards
-Ells of Strouds - 9 cards
-Large Axes - 5 cards
-Scissors - 3 cards
-Strings of Beads - 20 cards
+    Dutch
+    Duffels Blankets - 12 cards
+    Ells of Strouds - 9 cards
+    Large Axes - 5 cards
+    Scissors - 3 cards
+    Strings of Beads - 20 cards
 
-*/
+    */
     public int BeaverAmountSixNations = 12;
     public int DeerskinsAmountSixNations = 5;
     public int BearAmountSixNations = 6;
@@ -497,8 +502,10 @@ Strings of Beads - 20 cards
     {
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
-            DutchBeaverAmountObject.GetComponent<Text>().text = BeaverAmountDutch.ToString();
-            DutchDeerskinsAmountObject.GetComponent<Text>().text = DeerskinsAmountDutch.ToString();
+            DutchBeaverAmountObject = GameObject.FindGameObjectWithTag("BeaverAmount");
+            DutchBeaverAmountObject.GetComponent<Text>().text = BeaverAmountDutch.ToString() + "x";
+
+            /*DutchDeerskinsAmountObject.GetComponent<Text>().text = DeerskinsAmountDutch.ToString();
             DutchBearAmountObject.GetComponent<Text>().text = BearAmountDutch.ToString();
             DutchFisherAmountObject.GetComponent<Text>().text = FisherAmountDutch.ToString();
             DutchFoxAmountObject.GetComponent<Text>().text = FoxAmountDutch.ToString();
@@ -509,7 +516,7 @@ Strings of Beads - 20 cards
             DutchStroudsAmountObject.GetComponent<Text>().text = StroudsAmountDutch.ToString();
             DutchAxesAmountObject.GetComponent<Text>().text = AxesAmountDutch.ToString();
             DutchBeadsAmountObject.GetComponent<Text>().text = BeadsAmountDutch.ToString();
-            DutchScissorsAmountObject.GetComponent<Text>().text = ScissorsAmountDutch.ToString();
+            DutchScissorsAmountObject.GetComponent<Text>().text = ScissorsAmountDutch.ToString();*/
         }
         if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false)
         {
@@ -586,23 +593,30 @@ Strings of Beads - 20 cards
 
 
         Debug.Log(isParentInventory + " " + isParentWishlist);
-        if (tag == "Beaver" && BeaverAmountDutch > 0)
+        if (tag == "Beaver" && ((BeaverAmountDutch > 0 && isParentInventory == 1) || isParentWishlist == 1))
         {
             Debug.LogError("Beaver Card Added");
             instantiatedCard = PhotonNetwork.Instantiate("BeaverCard", pos + new Vector3((2 + ((float) 0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float) 0.3 * WishlistCardsInTrade)), (float) 0.2, 0), Quaternion.identity);
-            
+            BeaverAmountDutch--;
+
+
         }
-        if (tag == "Duffels" && DuffelsAmountDutch > 0)
+        else if (tag == "Duffels" && ((DuffelsAmountDutch > 0 && isParentInventory == 1) || isParentWishlist == 1))
         {
             Debug.LogError("Duffels Card Added");
             instantiatedCard = PhotonNetwork.Instantiate("DuffelsCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
-
+            DuffelsAmountDutch--;
         }
-        if (tag == "DeerSkin" && DeerskinsAmountDutch > 0)
+        else if (tag == "DeerSkin" && ((DeerskinsAmountDutch > 0 && isParentInventory == 1) || isParentWishlist == 1))
         {
             Debug.LogError("Deer Skin Card Added");
             instantiatedCard = PhotonNetwork.Instantiate("DeerSkinCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
-
+            DeerskinsAmountDutch--;
+        }
+        else
+        {
+            Debug.LogError("None of specified card left");
+            return;
         }
 
         instantiatedCard.GetComponent<Button>().enabled = false;
