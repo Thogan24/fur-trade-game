@@ -93,6 +93,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool MunseeAccepted = false;
     public bool PhilipsesAccepted = false;
 
+    public int numberOfAcceptedTeams = 0;
+
     public GameObject DutchTradeButton;
     public GameObject SixNationsTradeButton;
     public GameObject MunseeTradeButton;
@@ -264,9 +266,24 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
+    // TURN SYSTEM VARIABLES
+    public int turn = 1;
+    public int totalTurnNumber = 0;
+    
+    /*
+     Turn numbers:
+     Dutch - 1
+     Philipses - 2
+     Six Nations - 3
+     Munsee - 4
+     
+     
+     */
+
+
+
     void Start()
     {
-        Debug.Log(Dutch);
         gameManager = this.gameObject;
     }
 
@@ -637,7 +654,87 @@ public class GameManager : MonoBehaviourPunCallbacks
             instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(0));
         }
 
+        DutchAccepted = false;
+        PhilipsesAccepted = false;
+        MunseeAccepted = false;
+        SixNationsAccepted = false;
+
     }
 
+    [PunRPC]
+    void cardSwitchTeams()
+    {
+        // Team who's turn it is recieves their items
+        if (DutchAccepted && turn == 1)
+        {
+            // Dutch inventory + Trade Receiving Cards - Trade Giving Cards
+            DutchAccepted = false;
+            DutchTrading = false;
+        }
+        else if (PhilipsesAccepted && turn == 2)
+        {
+            // Philipses inventory + Trade Receiving Cards - Trade Giving Cards
+            PhilipsesAccepted = false;
+            PhilipsesTrading = false;
+        }
+        else if (SixNationsAccepted && turn == 3)
+        {
+            // Six Nations inventory + Trade Receiving Cards - Trade Giving Cards
+            SixNationsAccepted = false;
+            SixNationsTrading = false;
+        }
+        else if (MunseeAccepted && turn == 4)
+        {
+            // Munsee inventory + Trade Receiving Cards - Trade Giving Cards
+            MunseeAccepted = false;
+            MunseeTrading = false;
+        }
+
+        // Team who accepted the trade recieves their items
+
+        if (DutchAccepted)
+        {
+            // Dutch inventory + Trade Receiving Cards - Trade Giving Cards
+            DutchAccepted = false;
+            DutchTrading = false;
+        }
+        else if (PhilipsesAccepted)
+        {
+            // Philipses inventory + Trade Receiving Cards - Trade Giving Cards
+            PhilipsesAccepted = false;
+            PhilipsesTrading = false;
+        }
+        else if (SixNationsAccepted)
+        {
+            // Six Nations inventory + Trade Receiving Cards - Trade Giving Cards
+            SixNationsAccepted = false;
+            SixNationsTrading = false;
+        }
+        else if (MunseeAccepted)
+        {
+            // Munsee inventory + Trade Receiving Cards - Trade Giving Cards
+            MunseeAccepted = false;
+            MunseeTrading = false;
+        }
+
+        this.GetComponent<PhotonView>().RPC("clearAllTradesAndMoveTurns", RpcTarget.All);
+
+
+    }
+
+    [PunRPC]
+    void clearAllTradesAndMoveTurns()
+    {
+        // Clear all trades
+
+        if (turn == 4)
+        {
+            turn = 1;
+        }
+        else
+        {
+            turn++;
+        }
+    }
 
 }
