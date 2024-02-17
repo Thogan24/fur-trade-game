@@ -548,7 +548,7 @@ Strings of Beads - 20 cards
     }
 
     
-
+    //NEED TO MAKE AN RPC
     public void addCardToTrade(string tag, string parentTag)
     {
         
@@ -586,19 +586,19 @@ Strings of Beads - 20 cards
 
 
         Debug.Log(isParentInventory + " " + isParentWishlist);
-        if (tag == "Beaver")
+        if (tag == "Beaver" && BeaverAmountDutch > 0)
         {
             Debug.LogError("Beaver Card Added");
             instantiatedCard = PhotonNetwork.Instantiate("BeaverCard", pos + new Vector3((2 + ((float) 0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float) 0.3 * WishlistCardsInTrade)), (float) 0.2, 0), Quaternion.identity);
             
         }
-        if (tag == "Duffels")
+        if (tag == "Duffels" && DuffelsAmountDutch > 0)
         {
             Debug.LogError("Duffels Card Added");
             instantiatedCard = PhotonNetwork.Instantiate("DuffelsCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
 
         }
-        if (tag == "DeerSkin")
+        if (tag == "DeerSkin" && DeerskinsAmountDutch > 0)
         {
             Debug.LogError("Deer Skin Card Added");
             instantiatedCard = PhotonNetwork.Instantiate("DeerSkinCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
@@ -624,4 +624,6 @@ Strings of Beads - 20 cards
         }
 
     }
+
+
 }
