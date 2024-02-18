@@ -276,8 +276,6 @@ public class GameManager : MonoBehaviourPunCallbacks
      Philipses - 2
      Six Nations - 3
      Munsee - 4
-     
-     
      */
 
 
@@ -304,32 +302,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             AlreadyLoaded = true;
         }
-
-        //Debug.LogError(PhotonNetwork.PlayerList.Length + " | " + DutchTrading + " - " + gameManager.GetPhotonView().ViewID); 
-
-
-        /*
-                if (DutchTrading)
-                {
-                    DutchTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-                }
-                if (SixNationsTrading)
-                {
-                    SixNationsTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-                }
-                if (MunseeTrading)
-                {
-                    MunseeTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-                }
-                if (PhilipsesTrading)
-                {
-                    PhilipsesTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-                }
-        */
-
-
-
-
 
 
 
@@ -483,7 +455,7 @@ public class GameManager : MonoBehaviourPunCallbacks
      */
 
     [PunRPC]
-    void mainSceneInventorySetupRPC()
+    void mainSceneInventorySetupRPC() // TO DO
     {
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
@@ -635,7 +607,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         // Team who's turn it is recieves their items
         if (DutchAccepted && turn == 1)
         {
-            // Dutch inventory + Trade Receiving Cards - Trade Giving Cards
+            // Dutch inventory + Trade Receiving Cards - Trade Giving Cards - TODO
             DutchAccepted = false;
             DutchTrading = false;
         }
@@ -662,7 +634,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (DutchAccepted)
         {
-            // Dutch inventory + Trade Receiving Cards - Trade Giving Cards - TODO
+            // Dutch inventory + Trade Receiving Cards - Trade Giving Cards
             DutchAccepted = false;
             DutchTrading = false;
         }
