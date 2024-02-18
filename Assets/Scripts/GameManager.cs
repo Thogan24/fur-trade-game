@@ -152,8 +152,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     */
 
-    29.68
-    45.3
     public int BeaverAmountSixNations = 12;
     public int DeerskinsAmountSixNations = 5;
     public int BearAmountSixNations = 6;
