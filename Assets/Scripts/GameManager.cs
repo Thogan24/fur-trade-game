@@ -151,6 +151,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     Strings of Beads - 20 cards
 
     */
+
+    29.68
+    45.3
     public int BeaverAmountSixNations = 12;
     public int DeerskinsAmountSixNations = 5;
     public int BearAmountSixNations = 6;

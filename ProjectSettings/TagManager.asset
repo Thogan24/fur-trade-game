@@ -37,6 +37,7 @@ TagManager:
   - Receiving
   - DeerSkin
   - BeaverAmount
+  - Fisher
   layers:
   - Default
   - TransparentFX

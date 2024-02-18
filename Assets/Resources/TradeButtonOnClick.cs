@@ -30,6 +30,7 @@ public class TradeButtonOnClick : MonoBehaviour
     [PunRPC]
     void WhenClicked(string userIDOfClicker) // 
     {
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         string team = gameManager.findPlayerTeam(userIDOfClicker);
 
         Debug.LogError("Team Selected: " + team);
