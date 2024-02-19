@@ -276,10 +276,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] PhilipsesAmountsGameObjects = { };
     public GameObject[] DutchAmountsGameObjects = { };
     public GameObject[] Prefabs;
-    public string[] tags = {};
+    public string[] tags = { };
 
 
-
+    public string[] teamNames = { "Dutch", "Six Nations", "Munsee", "Philipses" }; // FOR ENEMY TEAM BUTTONS
+    public string[] cameras = { "Dutch", "Philipses", "Six Nations", "Munsee"}; // FOR CAMERA 
+    
     // TURN SYSTEM VARIABLES
     public int turn = 1;
     public int totalTurnNumber = 0;
@@ -456,7 +458,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         SixNationsTradeButton = GameObject.FindGameObjectWithTag("Six Nations Trading");
         MunseeTradeButton = GameObject.FindGameObjectWithTag("Munsee Trading");
         PhilipsesTradeButton = GameObject.FindGameObjectWithTag("Philipses Trading");
-
+        
+        
     }
 
 

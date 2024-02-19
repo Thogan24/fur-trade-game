@@ -4817,7 +4817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 431403322}
   m_Layer: 0
-  m_Name: DWIC
+  m_Name: Dutch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
