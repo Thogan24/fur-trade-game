@@ -264,11 +264,17 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject DutchBeadsAmountObject;
     public GameObject DutchScissorsAmountObject;
 
-    public int[] SixNationsAmounts = {12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0};
-    public int[] MunseeAmounts =     {10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0};
-    public int[] PhilipsesAmounts =  {0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5};
-    public int[] DutchAmounts =      {0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3};
-    public GameObject[] AmountsGameObjects;
+    // Note: First 13 Elements are the inventory amounts, last 13 elements are the wishlisted amounts. A comment indicator has been placed when wishlist starts
+    public int[] SixNationsAmounts = {12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 9, 4, 6, 3, 3, 20, 2};
+    public int[] MunseeAmounts =     {10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6};
+    public int[] PhilipsesAmounts =  {0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0};
+    public int[] DutchAmounts =      {0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0};
+
+
+    public GameObject[] SixNationsAmountsGameObjects = { };
+    public GameObject[] MunseeAmountsGameObjects = { };
+    public GameObject[] PhilipsesAmountsGameObjects = { };
+    public GameObject[] DutchAmountsGameObjects = { };
     public GameObject[] Prefabs;
     public string[] tags = {};
 
@@ -313,7 +319,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 SceneManager.LoadScene(1);
             }
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
-            this.GetComponent<PhotonView>().RPC("mainSceneInventorySetupRPC", RpcTarget.All);
+            this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
 
             AlreadyLoaded = true;
         }
@@ -470,14 +476,38 @@ public class GameManager : MonoBehaviourPunCallbacks
      */
 
     [PunRPC]
-    void mainSceneInventorySetupRPC() // TO DO
+    void mainSceneSetInventoryAmountsRPC() // TO DO
     {
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
-            DutchBeaverAmountObject = GameObject.FindGameObjectWithTag("BeaverAmount");
-            DutchBeaverAmountObject.GetComponent<Text>().text = BeaverAmountDutch.ToString() + "x";
+            for (int i = 0; i < DutchAmounts.Length; i++)
+            {
+                if (i < 13)
+                {
+                    Debug.Log(i);
+                    DutchAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i] + "Amount");
+                    DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                }
+                // Part of Wishlist
+                else
+                {
+                    if(DutchAmounts[i] == 0)
+                    {
+                        DutchAmountsGameObjects[i] = null;
+                    }
+                    else
+                    {
+                        DutchAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i - 13] + "Amount Wishlist");
+                        DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                    }
+                }
+                
+                
+            }
 
-            /*DutchDeerskinsAmountObject.GetComponent<Text>().text = DeerskinsAmountDutch.ToString();
+            /*DutchBeaverAmountObject = GameObject.FindGameObjectWithTag("BeaverAmount");
+            DutchBeaverAmountObject.GetComponent<Text>().text = BeaverAmountDutch.ToString() + "x";
+            DutchDeerskinsAmountObject.GetComponent<Text>().text = DeerskinsAmountDutch.ToString();
             DutchBearAmountObject.GetComponent<Text>().text = BearAmountDutch.ToString();
             DutchFisherAmountObject.GetComponent<Text>().text = FisherAmountDutch.ToString();
             DutchFoxAmountObject.GetComponent<Text>().text = FoxAmountDutch.ToString();
@@ -592,8 +622,22 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (tag == tags[i] && ((DutchAmounts[i] > 0 && isParentInventory == 1) || isParentWishlist == 1))
             {
                 instantiatedCard = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
-                Debug.Log(DutchAmounts[i]);
-                DutchAmounts[i]--;
+                if (isParentInventory == 1)
+                {
+                    Debug.Log(DutchAmounts[i]);
+                    DutchAmounts[i]--;
+                    DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                }
+                else
+                {
+                    Debug.Log(DutchAmounts[i + 13]);
+                    if (DutchAmountsGameObjects[i+13] != null)
+                    {
+                        DutchAmounts[i + 13]--;
+                        DutchAmountsGameObjects[i+13].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                    }
+                }
+                
                 break;
             }
             else

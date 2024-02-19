@@ -40,13 +40,25 @@ TagManager:
   - Bear
   - Fisher
   - Fox
-  - Shepels
   - Linen
   - Stockings
   - Strouds
   - Beads
   - Scissors
   - Axes
+  - DeerSkinAmount
+  - BearAmount
+  - FisherAmount
+  - FoxAmount
+  - SchepelsAmount
+  - DuffelsAmount
+  - LinenAmount
+  - StockingsAmount
+  - StroudsAmount
+  - AxesAmount
+  - BeadsAmount
+  - ScissorsAmount
+  - Schepels
   layers:
   - Default
   - TransparentFX

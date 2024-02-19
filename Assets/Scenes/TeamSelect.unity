@@ -3149,8 +3149,27 @@ MonoBehaviour:
   DutchAxesAmountObject: {fileID: 0}
   DutchBeadsAmountObject: {fileID: 0}
   DutchScissorsAmountObject: {fileID: 0}
-  Amounts: 
-  AmountsGameObjects: []
+  SixNationsAmounts: 0c000000050000000600000004000000030000000000000000000000000000000000000000000000000000000000000000000000
+  MunseeAmounts: 0a0000000600000002000000050000000d0000000600000000000000000000000000000000000000000000000000000000000000
+  PhilipsesAmounts: 00000000000000000000000000000000000000000000000003000000080000000a00000004000000020000000300000005000000
+  DutchAmounts: 0000000000000000000000000000000000000000000000000c000000000000000000000009000000050000001400000003000000
+  SixNationsAmountsGameObjects: []
+  MunseeAmountsGameObjects: []
+  PhilipsesAmountsGameObjects: []
+  DutchAmountsGameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Prefabs:
   - {fileID: 6075063951732973871, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
   - {fileID: 6075063951732973871, guid: c1a65b9d374ef5c478ed8b0a8eccdc07, type: 3}
