@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - thedebugger
   - Game Manager
   - Philipses Button
   - Dutch Button
@@ -59,6 +58,11 @@ TagManager:
   - BeadsAmount
   - ScissorsAmount
   - Schepels
+  - Beaver Amount Wishlist
+  - Bear Amount Wishlist
+  - Fox Amount Wishlist
+  - Fisher Amount Wishlist
+  - DeerSkin Amount Wishlist
   layers:
   - Default
   - TransparentFX

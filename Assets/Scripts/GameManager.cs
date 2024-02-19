@@ -268,7 +268,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int[] SixNationsAmounts = {12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 9, 4, 6, 3, 3, 20, 2};
     public int[] MunseeAmounts =     {10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6};
     public int[] PhilipsesAmounts =  {0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0};
-    public int[] DutchAmounts =      {0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0};
+    public int[] DutchAmounts =      {0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3, 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
     public GameObject[] SixNationsAmountsGameObjects = { };
@@ -497,7 +497,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
                     else
                     {
-                        DutchAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i - 13] + "Amount Wishlist");
+                        DutchAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i - 13] + " Amount Wishlist");
                         DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
                     }
                 }
@@ -560,7 +560,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void addCardToTrade(string tag, string parentTag)
     {
-        
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && DutchTrading == true)
         {
             if (SixNationsTrading == true)
@@ -568,15 +567,20 @@ public class GameManager : MonoBehaviourPunCallbacks
                 enemyTeamButtonPos = SixNationsTradeButton.transform.position;
                 Debug.LogError(enemyTeamButtonPos);
             }
-            if (MunseeTrading == true)
+            else if (MunseeTrading == true)
             {
                 enemyTeamButtonPos = MunseeTradeButton.transform.position;
                 Debug.LogError(enemyTeamButtonPos);
             }
-            if (PhilipsesTrading == true)
+            else if (PhilipsesTrading == true)
             {
                 enemyTeamButtonPos = PhilipsesTradeButton.transform.position;
                 Debug.LogError(enemyTeamButtonPos);
+            }
+            else
+            {
+                Debug.LogError("No Enemy Team Selected");
+                return;
             }
         }
 
@@ -621,9 +625,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.Log(tag + " " + tags[i]);
             if (tag == tags[i] && ((DutchAmounts[i] > 0 && isParentInventory == 1) || isParentWishlist == 1))
             {
-                instantiatedCard = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                
                 if (isParentInventory == 1)
                 {
+                    instantiatedCard = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                     Debug.Log(DutchAmounts[i]);
                     DutchAmounts[i]--;
                     DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
@@ -631,10 +636,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                 else
                 {
                     Debug.Log(DutchAmounts[i + 13]);
-                    if (DutchAmountsGameObjects[i+13] != null)
+                    if (DutchAmountsGameObjects[i+13] != null && DutchAmounts[i+13] > 0)
                     {
+                        instantiatedCard = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                         DutchAmounts[i + 13]--;
-                        DutchAmountsGameObjects[i+13].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                        DutchAmountsGameObjects[i+13].GetComponent<Text>().text = DutchAmounts[i+13].ToString() + "x";
+
+                        break;
+                    }
+                    else
+                    {
+                        Debug.LogError("None of specified card left");
+                        return;
                     }
                 }
                 

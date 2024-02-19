@@ -885,7 +885,7 @@ GameObject:
   - component: {fileID: 34699283}
   m_Layer: 0
   m_Name: Beaver Amount Wishlist
-  m_TagString: Untagged
+  m_TagString: Beaver Amount Wishlist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2651,7 +2651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8467486979893556978, guid: 63258326bae4a144fabc33e3fec1dae6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4010.572
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8467486979893556978, guid: 63258326bae4a144fabc33e3fec1dae6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7590,7 +7590,7 @@ GameObject:
   - component: {fileID: 687242701}
   m_Layer: 0
   m_Name: Bear Amount Wishlist
-  m_TagString: Untagged
+  m_TagString: Bear Amount Wishlist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8814,7 +8814,7 @@ GameObject:
   - component: {fileID: 875029990}
   m_Layer: 0
   m_Name: Deer Amount Wishlist
-  m_TagString: Untagged
+  m_TagString: DeerSkin Amount Wishlist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12190,7 +12190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: b64e9fb171b799240ab65c4e5ecff491, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4010.572
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: b64e9fb171b799240ab65c4e5ecff491, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13842,7 +13842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4010.572
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16798,7 +16798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: c1a65b9d374ef5c478ed8b0a8eccdc07, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4010.572
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: c1a65b9d374ef5c478ed8b0a8eccdc07, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22543,7 +22543,7 @@ GameObject:
   - component: {fileID: 1965040462}
   m_Layer: 0
   m_Name: Fox Amount Wishlist
-  m_TagString: Untagged
+  m_TagString: Fox Amount Wishlist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23194,7 +23194,7 @@ GameObject:
   - component: {fileID: 2023332222}
   m_Layer: 0
   m_Name: Fisher Amount Wishlist
-  m_TagString: Untagged
+  m_TagString: Fisher Amount Wishlist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23842,7 +23842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: 14a58e973ad55ac42bf2794b47c25c17, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4010.572
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: 14a58e973ad55ac42bf2794b47c25c17, type: 3}
       propertyPath: m_LocalRotation.w
