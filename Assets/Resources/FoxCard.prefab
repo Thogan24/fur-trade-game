@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2748529761858803057}
   m_Layer: 5
   m_Name: FoxCard
-  m_TagString: Beaver
+  m_TagString: Fox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

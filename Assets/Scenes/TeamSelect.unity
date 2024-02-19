@@ -3029,6 +3029,11 @@ MonoBehaviour:
   SixNationsTrading: 0
   MunseeTrading: 0
   PhilipsesTrading: 0
+  DutchAccepted: 0
+  SixNationsAccepted: 0
+  MunseeAccepted: 0
+  PhilipsesAccepted: 0
+  numberOfAcceptedTeams: 0
   DutchTradeButton: {fileID: 0}
   SixNationsTradeButton: {fileID: 0}
   MunseeTradeButton: {fileID: 0}
@@ -3040,8 +3045,142 @@ MonoBehaviour:
   BeaverCard: {fileID: 6075063951732973871, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
   DuffelsCard: {fileID: 8467486979893556977, guid: ad5d2e7d00dfaac448869f1c067a8c58, type: 3}
   DeerSkinCard: {fileID: 6075063951732973871, guid: c1a65b9d374ef5c478ed8b0a8eccdc07, type: 3}
-  BeaverAmount: 0
-  DeerAmount: 0
+  BeaverAmountSixNations: 12
+  DeerskinsAmountSixNations: 5
+  BearAmountSixNations: 6
+  FisherAmountSixNations: 4
+  FoxAmountSixNations: 3
+  SchepelsAmountSixNations: 0
+  DuffelsAmountSixNations: 0
+  LinenAmountSixNations: 0
+  StockingsAmountSixNations: 0
+  StroudsAmountSixNations: 0
+  AxesAmountSixNations: 0
+  BeadsAmountSixNations: 0
+  ScissorsAmountSixNations: 0
+  BeaverAmountMunsee: 0
+  DeerskinsAmountMunsee: 0
+  BearAmountMunsee: 0
+  FisherAmountMunsee: 0
+  FoxAmountMunsee: 0
+  SchepelsAmountMunsee: 0
+  DuffelsAmountMunsee: 0
+  LinenAmountMunsee: 0
+  StockingsAmountMunsee: 0
+  StroudsAmountMunsee: 0
+  AxesAmountMunsee: 0
+  BeadsAmountMunsee: 0
+  ScissorsAmountMunsee: 0
+  BeaverAmountPhilipses: 0
+  DeerskinsAmountPhilipses: 0
+  BearAmountPhilipses: 0
+  FisherAmountPhilipses: 0
+  FoxAmountPhilipses: 0
+  SchepelsAmountPhilipses: 0
+  DuffelsAmountPhilipses: 0
+  LinenAmountPhilipses: 8
+  StockingsAmountPhilipses: 0
+  StroudsAmountPhilipses: 0
+  AxesAmountPhilipses: 0
+  BeadsAmountPhilipses: 0
+  ScissorsAmountPhilipses: 0
+  BeaverAmountDutch: 0
+  DeerskinsAmountDutch: 0
+  BearAmountDutch: 0
+  FisherAmountDutch: 0
+  FoxAmountDutch: 0
+  SchepelsAmountDutch: 0
+  DuffelsAmountDutch: 12
+  LinenAmountDutch: 0
+  StockingsAmountDutch: 0
+  StroudsAmountDutch: 9
+  AxesAmountDutch: 5
+  BeadsAmountDutch: 20
+  ScissorsAmountDutch: 3
+  SixNationsBeaverAmountObject: {fileID: 0}
+  SixNationsDeerskinsAmountObject: {fileID: 0}
+  SixNationsBearAmountObject: {fileID: 0}
+  SixNationsFisherAmountObject: {fileID: 0}
+  SixNationsFoxAmountObject: {fileID: 0}
+  SixNationsSchepelsAmountObject: {fileID: 0}
+  SixNationsDuffelsAmountObject: {fileID: 0}
+  SixNationsLinenAmountObject: {fileID: 0}
+  SixNationsStockingsAmountObject: {fileID: 0}
+  SixNationsStroudsAmountObject: {fileID: 0}
+  SixNationsAxesAmountObject: {fileID: 0}
+  SixNationsBeadsAmountObject: {fileID: 0}
+  SixNationsScissorsAmountObject: {fileID: 0}
+  MunseeBeaverAmountObject: {fileID: 0}
+  MunseeDeerskinsAmountObject: {fileID: 0}
+  MunseeBearAmountObject: {fileID: 0}
+  MunseeFisherAmountObject: {fileID: 0}
+  MunseeFoxAmountObject: {fileID: 0}
+  MunseeSchepelsAmountObject: {fileID: 0}
+  MunseeDuffelsAmountObject: {fileID: 0}
+  MunseeLinenAmountObject: {fileID: 0}
+  MunseeStockingsAmountObject: {fileID: 0}
+  MunseeStroudsAmountObject: {fileID: 0}
+  MunseeAxesAmountObject: {fileID: 0}
+  MunseeBeadsAmountObject: {fileID: 0}
+  MunseeScissorsAmountObject: {fileID: 0}
+  PhilipsesBeaverAmountObject: {fileID: 0}
+  PhilipsesDeerskinsAmountObject: {fileID: 0}
+  PhilipsesBearAmountObject: {fileID: 0}
+  PhilipsesFisherAmountObject: {fileID: 0}
+  PhilipsesFoxAmountObject: {fileID: 0}
+  PhilipsesSchepelsAmountObject: {fileID: 0}
+  PhilipsesDuffelsAmountObject: {fileID: 0}
+  PhilipsesLinenAmountObject: {fileID: 0}
+  PhilipsesStockingsAmountObject: {fileID: 0}
+  PhilipsesStroudsAmountObject: {fileID: 0}
+  PhilipsesAxesAmountObject: {fileID: 0}
+  PhilipsesBeadsAmountObject: {fileID: 0}
+  PhilipsesScissorsAmountObject: {fileID: 0}
+  DutchBeaverAmountObject: {fileID: 0}
+  DutchDeerskinsAmountObject: {fileID: 0}
+  DutchBearAmountObject: {fileID: 0}
+  DutchFisherAmountObject: {fileID: 0}
+  DutchFoxAmountObject: {fileID: 0}
+  DutchSchepelsAmountObject: {fileID: 0}
+  DutchDuffelsAmountObject: {fileID: 0}
+  DutchLinenAmountObject: {fileID: 0}
+  DutchStockingsAmountObject: {fileID: 0}
+  DutchStroudsAmountObject: {fileID: 0}
+  DutchAxesAmountObject: {fileID: 0}
+  DutchBeadsAmountObject: {fileID: 0}
+  DutchScissorsAmountObject: {fileID: 0}
+  Amounts: 
+  AmountsGameObjects: []
+  Prefabs:
+  - {fileID: 6075063951732973871, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
+  - {fileID: 6075063951732973871, guid: c1a65b9d374ef5c478ed8b0a8eccdc07, type: 3}
+  - {fileID: 6075063951732973871, guid: b64e9fb171b799240ab65c4e5ecff491, type: 3}
+  - {fileID: 8467486979893556977, guid: 63258326bae4a144fabc33e3fec1dae6, type: 3}
+  - {fileID: 6075063951732973871, guid: 14a58e973ad55ac42bf2794b47c25c17, type: 3}
+  - {fileID: 6075063951732973871, guid: e2bc0d74607011d4fb9e39ec789c9352, type: 3}
+  - {fileID: 8467486979893556977, guid: ad5d2e7d00dfaac448869f1c067a8c58, type: 3}
+  - {fileID: 6075063951732973871, guid: d4ac5e281eec9ee4c91c74c8c8b79b31, type: 3}
+  - {fileID: 6075063951732973871, guid: f1cc3ef5a6fdf314c8c850f6b27612ce, type: 3}
+  - {fileID: 6075063951732973871, guid: 74eeb69e6bf968e4db219dca361620bc, type: 3}
+  - {fileID: 6075063951732973871, guid: 9cd281a3bce387f4683229ad1bf46f1a, type: 3}
+  - {fileID: 6075063951732973871, guid: 5e2dcaa3c6ef1474b8a4195ff6335e86, type: 3}
+  - {fileID: 6075063951732973871, guid: f2f5cb9a78bfb8e4ba276598f1707fa8, type: 3}
+  tags:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  turn: 1
+  totalTurnNumber: 0
 --- !u!222 &1290858076
 CanvasRenderer:
   m_ObjectHideFlags: 0

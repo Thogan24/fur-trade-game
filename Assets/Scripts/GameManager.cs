@@ -264,6 +264,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject DutchBeadsAmountObject;
     public GameObject DutchScissorsAmountObject;
 
+    public int[] SixNationsAmounts = {12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0};
+    public int[] MunseeAmounts =     {10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0};
+    public int[] PhilipsesAmounts =  {0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5};
+    public int[] DutchAmounts =      {0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3};
+    public GameObject[] AmountsGameObjects;
+    public GameObject[] Prefabs;
+    public string[] tags = {};
 
 
 
@@ -283,7 +290,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        Debug.Log(Prefabs.Length);
         gameManager = this.gameObject;
+        Debug.Log(Prefabs[0]);
+        for(int i = 0; i < Prefabs.Length; i++)
+        {
+            Debug.Log(i);
+            tags[i] = Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 29);
+        }
     }
 
 
@@ -551,7 +565,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
         Debug.Log(isParentInventory + " " + isParentWishlist);
-        if (tag == "Beaver" && ((BeaverAmountDutch > 0 && isParentInventory == 1) || isParentWishlist == 1))
+/*        if (tag == "Beaver" && ((BeaverAmountDutch > 0 && isParentInventory == 1) || isParentWishlist == 1))
         {
             Debug.LogError("Beaver Card Added");
             instantiatedCard = PhotonNetwork.Instantiate("BeaverCard", pos + new Vector3((2 + ((float) 0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float) 0.3 * WishlistCardsInTrade)), (float) 0.2, 0), Quaternion.identity);
@@ -571,10 +585,25 @@ public class GameManager : MonoBehaviourPunCallbacks
             instantiatedCard = PhotonNetwork.Instantiate("DeerSkinCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
             DeerskinsAmountDutch--;
         }
-        else
+*/
+        for (int i = 0; i < tags.Length; i++)
         {
-            Debug.LogError("None of specified card left");
-            return;
+            Debug.Log(tag + " " + tags[i]);
+            if (tag == tags[i] && ((DutchAmounts[i] > 0 && isParentInventory == 1) || isParentWishlist == 1))
+            {
+                instantiatedCard = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                Debug.Log(DutchAmounts[i]);
+                DutchAmounts[i]--;
+                break;
+            }
+            else
+            {
+                Debug.LogError("None of specified card left");
+                if (i+1 == tags.Length)
+                {
+                    return;
+                }
+            }
         }
 
         instantiatedCard.GetComponent<Button>().enabled = false;

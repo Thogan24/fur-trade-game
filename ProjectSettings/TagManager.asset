@@ -29,15 +29,24 @@ TagManager:
   - Munsee Trading
   - Philipses Trading
   - Dutch Trading
-  - Beaver
-  - Duffels
   - Inventory
   - Wishlist
   - Giving
   - Receiving
-  - DeerSkin
   - BeaverAmount
+  - Beaver
+  - Duffels
+  - DeerSkin
+  - Bear
   - Fisher
+  - Fox
+  - Shepels
+  - Linen
+  - Stockings
+  - Strouds
+  - Beads
+  - Scissors
+  - Axes
   layers:
   - Default
   - TransparentFX
