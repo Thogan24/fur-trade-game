@@ -20,9 +20,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (instance == null)
         {
-            //  gameObject.AddComponent<PhotonView>();
-
-
             DontDestroyOnLoad(gameObject);
             instance = this;
         }
@@ -151,118 +148,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     Strings of Beads - 20 cards
 
     */
-
-    public int BeaverAmountSixNations = 12;
-    public int DeerskinsAmountSixNations = 5;
-    public int BearAmountSixNations = 6;
-    public int FisherAmountSixNations = 4;
-    public int FoxAmountSixNations = 3;
-    public int SchepelsAmountSixNations = 0;
-    public int DuffelsAmountSixNations = 0;
-    public int LinenAmountSixNations = 0;
-    public int StockingsAmountSixNations = 0;
-    public int StroudsAmountSixNations = 0;
-    public int AxesAmountSixNations = 0;
-    public int BeadsAmountSixNations = 0;
-    public int ScissorsAmountSixNations = 0;
-
-    public int BeaverAmountMunsee;
-    public int DeerskinsAmountMunsee;
-    public int BearAmountMunsee;
-    public int FisherAmountMunsee;
-    public int FoxAmountMunsee;
-    public int SchepelsAmountMunsee;
-    public int DuffelsAmountMunsee;
-    public int LinenAmountMunsee = 0;
-    public int StockingsAmountMunsee;
-    public int StroudsAmountMunsee;
-    public int AxesAmountMunsee;
-    public int BeadsAmountMunsee;
-    public int ScissorsAmountMunsee;
-
-    public int BeaverAmountPhilipses;
-    public int DeerskinsAmountPhilipses;
-    public int BearAmountPhilipses;
-    public int FisherAmountPhilipses;
-    public int FoxAmountPhilipses;
-    public int SchepelsAmountPhilipses;
-    public int DuffelsAmountPhilipses;
-    public int LinenAmountPhilipses = 8;
-    public int StockingsAmountPhilipses;
-    public int StroudsAmountPhilipses;
-    public int AxesAmountPhilipses;
-    public int BeadsAmountPhilipses;
-    public int ScissorsAmountPhilipses;
-
-    public int BeaverAmountDutch = 0;
-    public int DeerskinsAmountDutch = 0;
-    public int BearAmountDutch = 0;
-    public int FisherAmountDutch = 0;
-    public int FoxAmountDutch = 0;
-    public int SchepelsAmountDutch = 0;
-    public int DuffelsAmountDutch = 12;
-    public int LinenAmountDutch = 0;
-    public int StockingsAmountDutch = 0;
-    public int StroudsAmountDutch = 9;
-    public int AxesAmountDutch = 5;
-    public int BeadsAmountDutch = 20;
-    public int ScissorsAmountDutch = 3;
-
-    public GameObject SixNationsBeaverAmountObject;
-    public GameObject SixNationsDeerskinsAmountObject;
-    public GameObject SixNationsBearAmountObject;
-    public GameObject SixNationsFisherAmountObject;
-    public GameObject SixNationsFoxAmountObject;
-    public GameObject SixNationsSchepelsAmountObject;
-    public GameObject SixNationsDuffelsAmountObject;
-    public GameObject SixNationsLinenAmountObject;
-    public GameObject SixNationsStockingsAmountObject;
-    public GameObject SixNationsStroudsAmountObject;
-    public GameObject SixNationsAxesAmountObject;
-    public GameObject SixNationsBeadsAmountObject;
-    public GameObject SixNationsScissorsAmountObject;
-
-    public GameObject MunseeBeaverAmountObject;
-    public GameObject MunseeDeerskinsAmountObject;
-    public GameObject MunseeBearAmountObject;
-    public GameObject MunseeFisherAmountObject;
-    public GameObject MunseeFoxAmountObject;
-    public GameObject MunseeSchepelsAmountObject;
-    public GameObject MunseeDuffelsAmountObject;
-    public GameObject MunseeLinenAmountObject;
-    public GameObject MunseeStockingsAmountObject;
-    public GameObject MunseeStroudsAmountObject;
-    public GameObject MunseeAxesAmountObject;
-    public GameObject MunseeBeadsAmountObject;
-    public GameObject MunseeScissorsAmountObject;
-
-    public GameObject PhilipsesBeaverAmountObject;
-    public GameObject PhilipsesDeerskinsAmountObject;
-    public GameObject PhilipsesBearAmountObject;
-    public GameObject PhilipsesFisherAmountObject;
-    public GameObject PhilipsesFoxAmountObject;
-    public GameObject PhilipsesSchepelsAmountObject;
-    public GameObject PhilipsesDuffelsAmountObject;
-    public GameObject PhilipsesLinenAmountObject;
-    public GameObject PhilipsesStockingsAmountObject;
-    public GameObject PhilipsesStroudsAmountObject;
-    public GameObject PhilipsesAxesAmountObject;
-    public GameObject PhilipsesBeadsAmountObject;
-    public GameObject PhilipsesScissorsAmountObject;
-
-    public GameObject DutchBeaverAmountObject;
-    public GameObject DutchDeerskinsAmountObject;
-    public GameObject DutchBearAmountObject;
-    public GameObject DutchFisherAmountObject;
-    public GameObject DutchFoxAmountObject;
-    public GameObject DutchSchepelsAmountObject;
-    public GameObject DutchDuffelsAmountObject;
-    public GameObject DutchLinenAmountObject;
-    public GameObject DutchStockingsAmountObject;
-    public GameObject DutchStroudsAmountObject;
-    public GameObject DutchAxesAmountObject;
-    public GameObject DutchBeadsAmountObject;
-    public GameObject DutchScissorsAmountObject;
 
     // Note: First 13 Elements are the inventory amounts, last 13 elements are the wishlisted amounts. A comment indicator has been placed when wishlist starts
     public int[] SixNationsAmounts = {12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 9, 4, 6, 3, 3, 20, 2};
@@ -507,21 +392,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                 
                 
             }
-
-            /*DutchBeaverAmountObject = GameObject.FindGameObjectWithTag("BeaverAmount");
-            DutchBeaverAmountObject.GetComponent<Text>().text = BeaverAmountDutch.ToString() + "x";
-            DutchDeerskinsAmountObject.GetComponent<Text>().text = DeerskinsAmountDutch.ToString();
-            DutchBearAmountObject.GetComponent<Text>().text = BearAmountDutch.ToString();
-            DutchFisherAmountObject.GetComponent<Text>().text = FisherAmountDutch.ToString();
-            DutchFoxAmountObject.GetComponent<Text>().text = FoxAmountDutch.ToString();
-            DutchSchepelsAmountObject.GetComponent<Text>().text = SchepelsAmountDutch.ToString();
-            DutchDuffelsAmountObject.GetComponent<Text>().text = DuffelsAmountDutch.ToString();
-            DutchLinenAmountObject.GetComponent<Text>().text = LinenAmountDutch.ToString();
-            DutchStockingsAmountObject.GetComponent<Text>().text = StockingsAmountDutch.ToString();
-            DutchStroudsAmountObject.GetComponent<Text>().text = StroudsAmountDutch.ToString();
-            DutchAxesAmountObject.GetComponent<Text>().text = AxesAmountDutch.ToString();
-            DutchBeadsAmountObject.GetComponent<Text>().text = BeadsAmountDutch.ToString();
-            DutchScissorsAmountObject.GetComponent<Text>().text = ScissorsAmountDutch.ToString();*/
         }
         if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false)
         {
@@ -602,27 +472,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
         Debug.Log(isParentInventory + " " + isParentWishlist);
-/*        if (tag == "Beaver" && ((BeaverAmountDutch > 0 && isParentInventory == 1) || isParentWishlist == 1))
-        {
-            Debug.LogError("Beaver Card Added");
-            instantiatedCard = PhotonNetwork.Instantiate("BeaverCard", pos + new Vector3((2 + ((float) 0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float) 0.3 * WishlistCardsInTrade)), (float) 0.2, 0), Quaternion.identity);
-            BeaverAmountDutch--;
-
-
-        }
-        else if (tag == "Duffels" && ((DuffelsAmountDutch > 0 && isParentInventory == 1) || isParentWishlist == 1))
-        {
-            Debug.LogError("Duffels Card Added");
-            instantiatedCard = PhotonNetwork.Instantiate("DuffelsCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
-            DuffelsAmountDutch--;
-        }
-        else if (tag == "DeerSkin" && ((DeerskinsAmountDutch > 0 && isParentInventory == 1) || isParentWishlist == 1))
-        {
-            Debug.LogError("Deer Skin Card Added");
-            instantiatedCard = PhotonNetwork.Instantiate("DeerSkinCard", pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
-            DeerskinsAmountDutch--;
-        }
-*/
         for (int i = 0; i < tags.Length; i++)
         {
             Debug.Log(tag + " " + tags[i]);
