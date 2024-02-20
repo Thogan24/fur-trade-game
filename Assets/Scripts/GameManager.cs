@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     */
 
+    // CHECK AMOUNTS IN INSPECTOR THEY MIGHT NOT MATCH
     // Note: First 13 Elements are the inventory amounts, last 13 elements are the wishlisted amounts. A comment indicator has been placed when wishlist starts
     public int[] SixNationsAmounts = {12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 9, 4, 6, 3, 3, 20, 2};
     public int[] MunseeAmounts =     {10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6};
@@ -166,6 +167,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public string[] teamNames = { "Dutch", "Six Nations", "Munsee", "Philipses" }; // FOR ENEMY TEAM BUTTONS
     public string[] cameras = { "Dutch", "Philipses", "Six Nations", "Munsee"}; // FOR CAMERA 
+
+
+    public GameObject[] tradeGivingCardsParent = { };
+    public GameObject[] tradeReceivingCardsParent = { };
+
     
     // TURN SYSTEM VARIABLES
     public int turn = 1;
@@ -191,7 +197,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.Log(i);
             tags[i] = Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 29);
         }
-    }
+
+}
 
 
     void Update()
@@ -391,6 +398,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             
         }
+
+        tradeGivingCardsParent = GameObject.FindGameObjectsWithTag("Giving");
+        tradeReceivingCardsParent = GameObject.FindGameObjectsWithTag("Receiving");
     }
 
 
@@ -581,17 +591,33 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeTrading = false;
         }
 
-        this.GetComponent<PhotonView>().RPC("clearAllTradesAndMoveTurns", RpcTarget.All);
+        this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+        this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
 
 
     }
 
     [PunRPC]
-    void clearAllTradesAndMoveTurns()
+    void clearAllTrades()
     {
         // CLEAR ALL TRADES -- TODO
+        for (int i = 0; i < tradeGivingCardsParent.Length; i++)
+        {
+            while(tradeGivingCardsParent[i].transform.GetChildCount() > 0)
+            {
+                PhotonView.Destroy(tradeGivingCardsParent[i].transform.GetChild(0).gameObject);
+            }
+            while (tradeReceivingCardsParent[i].transform.GetChildCount() > 0)
+            {
+                PhotonView.Destroy(tradeGivingCardsParent[i].transform.GetChild(0).gameObject);
+            }
+        }
 
+    }
 
+    [PunRPC]
+    void MoveTurns()
+    {
         if (turn == 4)
         {
             turn = 1;

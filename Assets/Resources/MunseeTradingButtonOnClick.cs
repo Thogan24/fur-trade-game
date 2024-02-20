@@ -78,7 +78,7 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
     {
 
     }
-
+    [PunRPC]
     void greyOutButtons()
     {
         if (!gameManager.DutchTrading)

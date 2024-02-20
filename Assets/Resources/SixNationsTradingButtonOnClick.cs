@@ -78,7 +78,7 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
     {
         
     }
-
+    [PunRPC]
     void greyOutButtons()
     {
         if (!gameManager.DutchTrading)
