@@ -348,21 +348,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 
-    /*
-                DeerskinsAmountDutch 
-                BearAmountDutch
-                FisherAmountDutch
-                FoxAmountDutch
-                SchepelsAmountDutch
-                DuffelsAmountDutch
-                LinenAmountDutch
-                StockingsAmountDutch
-                StroudsAmountDutch
-                AxesAmountDutch
-                BeadsAmountDutch
-                ScissorsAmountDutch
-     */
-
     [PunRPC]
     void mainSceneSetInventoryAmountsRPC() // TO DO
     {
