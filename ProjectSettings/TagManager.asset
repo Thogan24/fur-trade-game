@@ -63,6 +63,8 @@ TagManager:
   - Fox Amount Wishlist
   - Fisher Amount Wishlist
   - DeerSkin Amount Wishlist
+  - Seasonal Timer
+  - Turn Timer
   layers:
   - Default
   - TransparentFX

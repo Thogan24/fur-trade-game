@@ -39,8 +39,12 @@ public class TradeButtonOnClick : MonoBehaviour
             Debug.LogError("Dutch Accepted");
             if (gameManager.DutchTrading)
             {
+                if (gameManager.DutchAccepted == false)
+                {
+                    gameManager.numberOfAcceptedTeams++;
+                }
                 gameManager.DutchAccepted = true;
-                gameManager.numberOfAcceptedTeams++;
+                
                 if(gameManager.numberOfAcceptedTeams == 2)
                 {
                     Debug.LogError("Cards being switched, calling RPC");

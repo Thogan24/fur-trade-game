@@ -19,7 +19,7 @@ public class ClearTradeButtonOnClick : MonoBehaviour
 
     }
 
-    public void TradeButtonOnClicked()
+    public void ClearTradeButtonOnClicked()
     {
         Debug.Log("Clear Trade Button Clicked");
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString());

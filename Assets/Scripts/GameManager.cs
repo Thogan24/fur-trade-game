@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
+
     /*
     STARTING INVENTORIES
 
@@ -165,7 +166,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public string[] tags = { };
 
 
-    public string[] teamNames = { "Dutch", "Six Nations", "Munsee", "Philipses" }; // FOR ENEMY TEAM BUTTONS
+    public string[] teamNames = { "Dutch", "Philipses", "Six Nations", "Munsee" }; // FOR ENEMY TEAM BUTTONS
     public string[] cameras = { "Dutch", "Philipses", "Six Nations", "Munsee"}; // FOR CAMERA 
 
 
@@ -175,7 +176,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     
     // TURN SYSTEM VARIABLES
     public int turn = 1;
-    public int totalTurnNumber = 0;
+    public int totalTurnNumber = 1;
+    public float TurnTimer = 90.0f;
+    
+    public GameObject[] SeasonalTimers = { };
     
     /*
      Turn numbers:
@@ -401,6 +405,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         tradeGivingCardsParent = GameObject.FindGameObjectsWithTag("Giving");
         tradeReceivingCardsParent = GameObject.FindGameObjectsWithTag("Receiving");
+        SeasonalTimers = GameObject.FindGameObjectsWithTag("Seasonal Timer");
+        for (int k = 0; k < SeasonalTimers.Length; k++)
+        {
+            SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " | Turn: " + teamNames[turn - 1].ToString();
+        }
     }
 
 
@@ -538,6 +547,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void cardSwitchTeams() // TODO
     {
+        Debug.Log("how many times did this run");
         // Team who's turn it is recieves their items
         if (DutchAccepted && turn == 1)
         {
@@ -600,16 +610,22 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void clearAllTrades()
     {
-        // CLEAR ALL TRADES -- TODO
+        // Note; int j is utilized in case of crashing. It will not run over 150 iterations
         for (int i = 0; i < tradeGivingCardsParent.Length; i++)
         {
-            while(tradeGivingCardsParent[i].transform.GetChildCount() > 0)
+            int j = 0;
+            while(tradeGivingCardsParent[i].transform.childCount > 0 && j < 150)
             {
                 PhotonView.Destroy(tradeGivingCardsParent[i].transform.GetChild(0).gameObject);
+                j++;
+                Debug.Log(tradeGivingCardsParent[i].transform.childCount);
+                Debug.Log(tradeGivingCardsParent[i].transform.GetChild(0).gameObject);
             }
-            while (tradeReceivingCardsParent[i].transform.GetChildCount() > 0)
+            j = 0;
+            while (tradeReceivingCardsParent[i].transform.childCount > 0 && j < 150)
             {
-                PhotonView.Destroy(tradeGivingCardsParent[i].transform.GetChild(0).gameObject);
+                PhotonView.Destroy(tradeReceivingCardsParent[i].transform.GetChild(0).gameObject);
+                j++;
             }
         }
 
@@ -618,13 +634,23 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void MoveTurns()
     {
+        totalTurnNumber++;
+        Debug.Log("Called");
         if (turn == 4)
         {
             turn = 1;
+            Debug.Log("This ran bruh");
         }
         else
         {
             turn++;
+            Debug.Log("turn++");
+        }
+        Debug.Log(turn);
+        
+        for(int k = 0; k < SeasonalTimers.Length; k++)
+        {
+            SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber+1600).ToString() + " | Turn: " + teamNames[turn-1].ToString();
         }
     }
 
