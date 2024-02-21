@@ -84,19 +84,32 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
     {
         if (!gameManager.DutchTrading)
         {
-            gameManager.DutchTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+            for (int i = 0; i < gameManager.DutchTradeButton.Length; i++)
+            {
+                gameManager.DutchTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+            }
+                
         }
         if (!gameManager.PhilipsesTrading)
         {
-            gameManager.PhilipsesTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+            for (int i = 0; i < gameManager.PhilipsesTradeButton.Length; i++)
+            {
+                gameManager.PhilipsesTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+            }
         }
         if (!gameManager.MunseeTrading)
         {
-            gameManager.MunseeTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+            for (int i = 0; i < gameManager.MunseeTradeButton.Length; i++)
+            {
+                gameManager.MunseeTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+            }
         }
         if (!gameManager.SixNationsTrading)
         {
-            gameManager.SixNationsTradeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+            for (int i = 0; i < gameManager.SixNationsTradeButton.Length; i++)
+            {
+                gameManager.SixNationsTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+            }
         }
     }
 

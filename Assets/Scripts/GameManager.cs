@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject PhilipsesBackgroundCanvasObject;
     public GameObject PhilipsesCardsCanvasObject;
 
+    
+
     public bool AlreadyLoaded = false;
 
     // Currently Trading Teams
@@ -92,10 +94,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public int numberOfAcceptedTeams = 0;
 
-    public GameObject DutchTradeButton;
-    public GameObject SixNationsTradeButton;
-    public GameObject MunseeTradeButton;
-    public GameObject PhilipsesTradeButton;
+    public GameObject[] DutchTradeButton = { };
+    public GameObject[] SixNationsTradeButton = { };
+    public GameObject[] MunseeTradeButton = { };
+    public GameObject[] PhilipsesTradeButton = { };
 
     public GameObject gameManager; // This Object
 
@@ -105,7 +107,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public int InventoryCardsInTrade = 0;
     public int WishlistCardsInTrade = 0;
-    public Vector3 enemyTeamButtonPos;
+    
 
     public GameObject BeaverCard;
     public GameObject DuffelsCard;
@@ -304,13 +306,17 @@ public class GameManager : MonoBehaviourPunCallbacks
     void mainSceneCameraRPC()
     {
         //Debug.LogError(SceneManager.GetActiveScene().name);
+        DutchCardsCanvasObject = GameObject.FindGameObjectWithTag("Dutch Card Canvas");
+        PhilipsesCardsCanvasObject = GameObject.FindGameObjectWithTag("Philipses Card Canvas");
+        SixNationsCardsCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Card Canvas");
+        MunseeCardsCanvasObject = GameObject.FindGameObjectWithTag("Munsee Card Canvas");
+
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
             DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
             DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
             DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
             DutchBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Background Canvas");
-            DutchCardsCanvasObject = GameObject.FindGameObjectWithTag("Dutch Card Canvas");
             DutchTextCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
@@ -322,7 +328,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             SixNationsCamera = PhotonView.Instantiate(SixNationsCameraPrefab);
             SixNationsTextCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Text Canvas");
             SixNationsBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Background Canvas");
-            SixNationsCardsCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Card Canvas");
             SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsCardsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
@@ -334,7 +339,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeCamera = PhotonView.Instantiate(MunseeCameraPrefab);
             MunseeTextCanvasObject = GameObject.FindGameObjectWithTag("Munsee Text Canvas");
             MunseeBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Background Canvas");
-            MunseeCardsCanvasObject = GameObject.FindGameObjectWithTag("Munsee Card Canvas");
             MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
@@ -345,16 +349,15 @@ public class GameManager : MonoBehaviourPunCallbacks
             PhilipsesCamera = PhotonView.Instantiate(PhilipsesCameraPrefab);
             PhilipsesTextCanvasObject = GameObject.FindGameObjectWithTag("Philipses Text Canvas");
             PhilipsesBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Background Canvas");
-            PhilipsesCardsCanvasObject = GameObject.FindGameObjectWithTag("Philipses Card Canvas");
             PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
         }
-        DutchTradeButton = GameObject.FindGameObjectWithTag("Dutch Trading");
-        SixNationsTradeButton = GameObject.FindGameObjectWithTag("Six Nations Trading");
-        MunseeTradeButton = GameObject.FindGameObjectWithTag("Munsee Trading");
-        PhilipsesTradeButton = GameObject.FindGameObjectWithTag("Philipses Trading");
-        
+        DutchTradeButton = GameObject.FindGameObjectsWithTag("Dutch Trading");
+        SixNationsTradeButton = GameObject.FindGameObjectsWithTag("Six Nations Trading");  
+        MunseeTradeButton = GameObject.FindGameObjectsWithTag("Munsee Trading");
+        PhilipsesTradeButton = GameObject.FindGameObjectsWithTag("Philipses Trading");
+
         
     }
 
@@ -437,22 +440,55 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void addCardToTrade(string tag, string parentTag)
     {
+        Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0)};
+        bool[] addToReceiving = { false, false, false, false };
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && DutchTrading == true)
         {
             if (SixNationsTrading == true)
             {
-                enemyTeamButtonPos = SixNationsTradeButton.transform.position;
-                Debug.LogError(enemyTeamButtonPos);
+                for (int a = 0; a < SixNationsTradeButton.Length; a++)
+                {
+/*                    Debug.Log(SixNationsTradeButton.Length);
+                    Debug.Log(enemyTeamButtonPos.Length);
+                    Debug.Log(a);
+                    Debug.LogError(SixNationsTradeButton[a]);
+                    Debug.LogError(SixNationsTradeButton[a].gameObject.name);
+                    Debug.LogError(enemyTeamButtonPos[a]);*/
+                    enemyTeamButtonPos[a] = SixNationsTradeButton[a].transform.position;
+                    if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations")
+                    {
+                        addToReceiving[a] = true;
+                        if(DutchTrading == true)
+                        {
+                            enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
+                        }
+                        else if(PhilipsesTrading == true)
+                        {
+                            enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;
+                        }
+                        else if (MunseeTrading == true)
+                        {
+                            enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
+                        }
+                    }
+                }
+                
             }
             else if (MunseeTrading == true)
             {
-                enemyTeamButtonPos = MunseeTradeButton.transform.position;
-                Debug.LogError(enemyTeamButtonPos);
+                for (int k = 0; k < MunseeTradeButton.Length; k++)
+                {
+                    enemyTeamButtonPos[k] = MunseeTradeButton[k].transform.position;
+                    Debug.LogError(enemyTeamButtonPos[k]);
+                }
             }
             else if (PhilipsesTrading == true)
             {
-                enemyTeamButtonPos = PhilipsesTradeButton.transform.position;
-                Debug.LogError(enemyTeamButtonPos);
+                for (int k = 0; k < PhilipsesTradeButton.Length; k++)
+                {
+                    enemyTeamButtonPos[k] = PhilipsesTradeButton[k].transform.position;
+                    Debug.LogError(enemyTeamButtonPos[k]);
+                }
             }
             else
             {
@@ -461,9 +497,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
 
-        Vector3 pos = enemyTeamButtonPos;
+        
         Debug.LogError("Adding card...");
-        GameObject instantiatedCard = null;
+        GameObject[] instantiatedCard = {null, null, null, null};
         int isParentWishlist = 0;
         int isParentInventory = 1;
 
@@ -484,7 +520,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                 
                 if (isParentInventory == 1)
                 {
-                    instantiatedCard = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                    for (int b = 0; b < enemyTeamButtonPos.Length; b++)
+                    {
+                        if(addToReceiving[b] == true)
+                        {
+                            instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentWishlist)) + (isParentInventory * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                        }
+                        else
+                        {
+                            instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                        }
+                        
+                    }
                     Debug.Log(DutchAmounts[i]);
                     DutchAmounts[i]--;
                     DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
@@ -494,7 +541,19 @@ public class GameManager : MonoBehaviourPunCallbacks
                     Debug.Log(DutchAmounts[i + 13]);
                     if (DutchAmountsGameObjects[i+13] != null && DutchAmounts[i+13] > 0)
                     {
-                        instantiatedCard = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), pos + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+
+                        for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                        {
+                            if (addToReceiving[j] == true)
+                            {
+                                instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentWishlist)) + (isParentInventory * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                            }
+                            else
+                            {
+                                instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                            }
+                            
+                        }
                         DutchAmounts[i + 13]--;
                         DutchAmountsGameObjects[i+13].GetComponent<Text>().text = DutchAmounts[i+13].ToString() + "x";
 
@@ -519,28 +578,51 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
 
-        instantiatedCard.GetComponent<Button>().enabled = false;
+        GameObject[] CardsCanvasObjects = {DutchCardsCanvasObject, PhilipsesCardsCanvasObject, SixNationsCardsCanvasObject, MunseeCardsCanvasObject};
+
+
+        for (int j = 0; j < instantiatedCard.Length; j++)
+        {
+            instantiatedCard[j].GetComponent<Button>().enabled = false;
+
+            instantiatedCard[j].transform.position = new Vector3(instantiatedCard[j].transform.position.x, instantiatedCard[j].transform.position.y, 10);
+            Debug.LogError(instantiatedCard[j].transform.position);
+
+            if (parentTag == "Wishlist")
+            {
+                WishlistCardsInTrade++;
+                Debug.Log(WishlistCardsInTrade);
+                if (addToReceiving[j] == true)
+                {
+                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(0)); // SETS IT TO GIVING CARD
+                }
+                else
+                {
+                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(1)); // SETS IT TO RECEIVING CARD
+                }
+                
+            }
+            else
+            {
+                InventoryCardsInTrade++;
+                Debug.Log(InventoryCardsInTrade);
+                if (addToReceiving[j] == true)
+                {
+                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(1)); // SETS IT TO RECEIVING CARD
+                }
+                else
+                {
+                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(0)); // SETS IT TO GIVING CARD
+                }
+                    
+            }
+
+            DutchAccepted = false;
+            PhilipsesAccepted = false;
+            MunseeAccepted = false;
+            SixNationsAccepted = false;
+        }
         
-        instantiatedCard.transform.position = new Vector3(instantiatedCard.transform.position.x, instantiatedCard.transform.position.y, 10);
-        Debug.LogError(instantiatedCard.transform.position);
-
-        if (parentTag == "Wishlist")
-        {
-            WishlistCardsInTrade++;
-            Debug.Log(WishlistCardsInTrade);
-            instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(1)); // SETS IT TO RECEIVING CARD
-        }
-        else
-        {
-            InventoryCardsInTrade++;
-            Debug.Log(InventoryCardsInTrade);
-            instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(0)); // SETS IT TO GIVING CARD
-        }
-
-        DutchAccepted = false;
-        PhilipsesAccepted = false;
-        MunseeAccepted = false;
-        SixNationsAccepted = false;
 
     }
 
