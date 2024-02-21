@@ -170,10 +170,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public string[] cameras = { "Dutch", "Philipses", "Six Nations", "Munsee"}; // FOR CAMERA 
 
 
-    public GameObject[] tradeGivingCardsParent = { };
-    public GameObject[] tradeReceivingCardsParent = { };
+    public GameObject[] tradeGivingCardsParent = { }; // All giving card parents
+    public GameObject[] tradeReceivingCardsParent = { }; // All receiving card parents
 
-    
+
     // TURN SYSTEM VARIABLES
     public int turn = 1;
     public int totalTurnNumber = 1;
@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         Philipses = userIDPhilipses;
         Debug.LogError(PhilipsesJoined);
         Debug.LogError(Philipses);
-        // Mapping shit
+        // Mapping
     }
 
     [PunRPC]
@@ -265,7 +265,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.LogError(DutchJoined);
         Debug.LogError(Dutch);
 
-        // Mapping shit
+        // Mapping
     }
 
     [PunRPC]
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         SixNations = userIDSixNations;
         Debug.LogError(SixNationsJoined);
         Debug.LogError(SixNations);
-        // Mapping shit
+        // Mapping
     }
 
     [PunRPC]
@@ -285,7 +285,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         Munsee = userIDMunsee;
         Debug.LogError(MunseeJoined);
         Debug.LogError(Munsee);
-        // Mapping shit
+        // Mapping
     }
 
 
@@ -528,13 +528,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             WishlistCardsInTrade++;
             Debug.Log(WishlistCardsInTrade);
-            instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(1));
+            instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(1)); // SETS IT TO RECEIVING CARD
         }
         else
         {
             InventoryCardsInTrade++;
             Debug.Log(InventoryCardsInTrade);
-            instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(0));
+            instantiatedCard.transform.SetParent(DutchCardsCanvasObject.transform.GetChild(0)); // SETS IT TO GIVING CARD
         }
 
         DutchAccepted = false;
