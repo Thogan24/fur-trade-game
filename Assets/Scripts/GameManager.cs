@@ -317,6 +317,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
             DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
             DutchBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Background Canvas");
+            DutchCamera.transform.parent = DutchTextCanvasObject.transform.parent;
             DutchTextCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
@@ -328,6 +329,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             SixNationsCamera = PhotonView.Instantiate(SixNationsCameraPrefab);
             SixNationsTextCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Text Canvas");
             SixNationsBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Background Canvas");
+            SixNationsCamera.transform.parent = SixNationsTextCanvasObject.transform.parent;
             SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsCardsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
@@ -339,6 +341,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeCamera = PhotonView.Instantiate(MunseeCameraPrefab);
             MunseeTextCanvasObject = GameObject.FindGameObjectWithTag("Munsee Text Canvas");
             MunseeBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Background Canvas");
+            MunseeCamera.transform.parent = MunseeTextCanvasObject.transform.parent;
             MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
@@ -349,6 +352,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             PhilipsesCamera = PhotonView.Instantiate(PhilipsesCameraPrefab);
             PhilipsesTextCanvasObject = GameObject.FindGameObjectWithTag("Philipses Text Canvas");
             PhilipsesBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Background Canvas");
+            PhilipsesCamera.transform.parent = PhilipsesTextCanvasObject.transform.parent;
             PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
