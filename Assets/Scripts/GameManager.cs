@@ -372,8 +372,32 @@ public class GameManager : MonoBehaviourPunCallbacks
                 DutchCamerasCheckArray[a].SetActive(false);
             }
         }
+        GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
+        for (int a = 0; a < SixNationsCamerasCheckArray.Length; a++)
+        {
+            if (DutchTextCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>())
+            {
+                SixNationsCamerasCheckArray[a].SetActive(false);
+            }
+        }
+        GameObject[] MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
+        for (int a = 0; a < MunseeCamerasCheckArray.Length; a++)
+        {
+            if (MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeCamerasCheckArray[a].GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>())
+            {
+                MunseeCamerasCheckArray[a].SetActive(false);
+            }
+        }
+        GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipses Camera");
+        for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
+        {
+            if (PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>())
+            {
+                PhilipsesCamerasCheckArray[a].SetActive(false);
+            }
+        }
 
-        
+
     }
 
 
