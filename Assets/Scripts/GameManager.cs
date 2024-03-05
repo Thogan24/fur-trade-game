@@ -388,7 +388,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 MunseeCamerasCheckArray[a].SetActive(false);
             }
         }
-        GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipses Camera");
+        GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
         for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
         {
             if (PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>())
@@ -480,27 +480,22 @@ public class GameManager : MonoBehaviourPunCallbacks
     void addCardToTrade(string tag, string parentTag)
     {
         Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0)};
-        bool[] addToReceiving = { false, false, false, false };
+        bool[] addToReceiving = { false, false, false, false }; // Add to the receiving side of the trade (right) instead of the giving side (left)
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && DutchTrading == true)
         {
-            if (SixNationsTrading == true)
+            if (SixNationsTrading == true) // If six nations is the enemy team
             {
-                for (int a = 0; a < SixNationsTradeButton.Length; a++)
+                for (int a = 0; a < SixNationsTradeButton.Length; a++) 
                 {
-/*                    Debug.Log(SixNationsTradeButton.Length);
-                    Debug.Log(enemyTeamButtonPos.Length);
-                    Debug.Log(a);
-                    Debug.LogError(SixNationsTradeButton[a]);
-                    Debug.LogError(SixNationsTradeButton[a].gameObject.name);
-                    Debug.LogError(enemyTeamButtonPos[a]);*/
                     enemyTeamButtonPos[a] = SixNationsTradeButton[a].transform.position;
-                    if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations")
+                    if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations") // If the screen is Six Nations
                     {
                         addToReceiving[a] = true;
                         if(DutchTrading == true)
                         {
                             enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
                         }
+
                         else if(PhilipsesTrading == true)
                         {
                             enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;
@@ -554,7 +549,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         for (int i = 0; i < tags.Length; i++)
         {
             Debug.Log(tag + " " + tags[i]);
-            if (tag == tags[i] && ((DutchAmounts[i] > 0 && isParentInventory == 1) || isParentWishlist == 1))
+            if (tag == tags[i] && ((DutchAmounts[i] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
             {
                 
                 if (isParentInventory == 1)
