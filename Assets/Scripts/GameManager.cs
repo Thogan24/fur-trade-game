@@ -362,6 +362,17 @@ public class GameManager : MonoBehaviourPunCallbacks
         MunseeTradeButton = GameObject.FindGameObjectsWithTag("Munsee Trading");
         PhilipsesTradeButton = GameObject.FindGameObjectsWithTag("Philipses Trading");
 
+
+        // If there is somehow than one of specified camera
+        GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
+        for(int a = 0; a < DutchCamerasCheckArray.Length; a++)
+        {
+            if (DutchTextCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>() || DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>())
+            {
+                DutchCamerasCheckArray[a].SetActive(false);
+            }
+        }
+
         
     }
 
