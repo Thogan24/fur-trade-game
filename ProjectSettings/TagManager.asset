@@ -65,6 +65,8 @@ TagManager:
   - DeerSkin Amount Wishlist
   - Seasonal Timer
   - Turn Timer
+  - thedebugger
+  - Munsee Camera
   layers:
   - Default
   - TransparentFX

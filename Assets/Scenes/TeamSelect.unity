@@ -1316,7 +1316,6 @@ RectTransform:
   - {fileID: 912963738}
   - {fileID: 663857574}
   - {fileID: 2066495120}
-  - {fileID: 719271680}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1528,112 +1527,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669884330}
   m_CullTransparentMesh: 1
---- !u!1001 &719271678
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 551385841}
-    m_Modifications:
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 486.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094414, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_Name
-      value: DEBUGGER
-      objectReference: {fileID: 0}
-    - target: {fileID: 8363170929160094414, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
---- !u!224 &719271680 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8363170929160094413, guid: 9b1f04d0b864abe4c8df212cd6c0611e, type: 3}
-  m_PrefabInstance: {fileID: 719271678}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &738787671
 GameObject:
   m_ObjectHideFlags: 0
@@ -3034,14 +2927,17 @@ MonoBehaviour:
   MunseeAccepted: 0
   PhilipsesAccepted: 0
   numberOfAcceptedTeams: 0
-  DutchTradeButton: {fileID: 0}
-  SixNationsTradeButton: {fileID: 0}
-  MunseeTradeButton: {fileID: 0}
-  PhilipsesTradeButton: {fileID: 0}
+  DutchTradeButton:
+  - {fileID: 0}
+  SixNationsTradeButton:
+  - {fileID: 0}
+  MunseeTradeButton:
+  - {fileID: 0}
+  PhilipsesTradeButton:
+  - {fileID: 0}
   gameManager: {fileID: 0}
   InventoryCardsInTrade: 0
   WishlistCardsInTrade: 0
-  enemyTeamButtonPos: {x: 0, y: 0, z: 0}
   BeaverCard: {fileID: 6075063951732973871, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
   DuffelsCard: {fileID: 8467486979893556977, guid: ad5d2e7d00dfaac448869f1c067a8c58, type: 3}
   DeerSkinCard: {fileID: 6075063951732973871, guid: c1a65b9d374ef5c478ed8b0a8eccdc07, type: 3}
@@ -3117,8 +3013,12 @@ MonoBehaviour:
   - Philipses
   - Six Nations
   - Munsee
+  tradeGivingCardsParent: []
+  tradeReceivingCardsParent: []
   turn: 1
   totalTurnNumber: 0
+  TurnTimer: 90
+  SeasonalTimers: []
 --- !u!222 &1290858076
 CanvasRenderer:
   m_ObjectHideFlags: 0

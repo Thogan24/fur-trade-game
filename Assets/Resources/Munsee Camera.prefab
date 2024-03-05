@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7241015009350287954}
   m_Layer: 0
   m_Name: Munsee Camera
-  m_TagString: MainCamera
+  m_TagString: Munsee Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
