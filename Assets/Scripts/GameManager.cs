@@ -491,7 +491,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations") // If the screen is Six Nations
                     {
                         addToReceiving[a] = true;
-                        if(DutchTrading == true)
+                        enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
+/*                        if (DutchTrading == true)
                         {
                             enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
                         }
@@ -503,25 +504,35 @@ public class GameManager : MonoBehaviourPunCallbacks
                         else if (MunseeTrading == true)
                         {
                             enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
-                        }
+                        }*/
                     }
                 }
                 
             }
             else if (MunseeTrading == true)
             {
-                for (int k = 0; k < MunseeTradeButton.Length; k++)
+                for (int a = 0; a < MunseeTradeButton.Length; a++)
                 {
-                    enemyTeamButtonPos[k] = MunseeTradeButton[k].transform.position;
-                    Debug.LogError(enemyTeamButtonPos[k]);
+                    enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
+                    if (MunseeTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
+                    {
+                        addToReceiving[a] = true;
+                        enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
+                        
+                    }
                 }
             }
             else if (PhilipsesTrading == true)
             {
-                for (int k = 0; k < PhilipsesTradeButton.Length; k++)
+                for (int a = 0; a < PhilipsesTradeButton.Length; a++)
                 {
-                    enemyTeamButtonPos[k] = PhilipsesTradeButton[k].transform.position;
-                    Debug.LogError(enemyTeamButtonPos[k]);
+                    enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;
+                    if (PhilipsesTradeButton[a].transform.parent.parent.name == "Philipses") // If the screen is Philipses
+                    {
+                        addToReceiving[a] = true;
+                        enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
+
+                    }
                 }
             }
             else
@@ -556,13 +567,13 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     for (int b = 0; b < enemyTeamButtonPos.Length; b++)
                     {
-                        if(addToReceiving[b] == true)
+                        if(addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
                         {
-                            instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentWishlist)) + (isParentInventory * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                            instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float) 3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
                         }
                         else
                         {
-                            instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                            instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float) 2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                         }
                         
                     }
@@ -578,13 +589,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         for (int j = 0; j < enemyTeamButtonPos.Length; j++)
                         {
-                            if (addToReceiving[j] == true)
+                            if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
                             {
-                                instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentWishlist)) + (isParentInventory * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
                             }
                             else
                             {
-                                instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((2 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * (3 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                
+                                instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                             }
                             
                         }
@@ -599,7 +611,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                         return;
                     }
                 }
-                
+                //
+
+
                 break;
             }
             else
@@ -614,7 +628,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         GameObject[] CardsCanvasObjects = {DutchCardsCanvasObject, PhilipsesCardsCanvasObject, SixNationsCardsCanvasObject, MunseeCardsCanvasObject};
 
-
+        if (parentTag == "Wishlist")
+        {
+            WishlistCardsInTrade++;
+        }
+        else
+        {
+            InventoryCardsInTrade++;
+        }
         for (int j = 0; j < instantiatedCard.Length; j++)
         {
             instantiatedCard[j].GetComponent<Button>().enabled = false;
@@ -624,7 +645,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             if (parentTag == "Wishlist")
             {
-                WishlistCardsInTrade++;
+                
                 Debug.Log(WishlistCardsInTrade);
                 if (addToReceiving[j] == true)
                 {
@@ -638,7 +659,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             else
             {
-                InventoryCardsInTrade++;
                 Debug.Log(InventoryCardsInTrade);
                 if (addToReceiving[j] == true)
                 {

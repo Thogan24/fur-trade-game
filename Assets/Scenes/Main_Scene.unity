@@ -29355,7 +29355,7 @@ GameObject:
   - component: {fileID: 1908247379}
   m_Layer: 3
   m_Name: 'Enemy Flag 3 '
-  m_TagString: Untagged
+  m_TagString: Philipses Trading
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29857,7 +29857,7 @@ GameObject:
   - component: {fileID: 1928171586}
   m_Layer: 3
   m_Name: 'Enemy Flag 3 '
-  m_TagString: Untagged
+  m_TagString: Philipses Trading
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
