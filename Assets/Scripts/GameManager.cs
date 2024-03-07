@@ -683,6 +683,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void cardSwitchTeams() // TODO
     {
+        
         Debug.Log("how many times did this run");
         // Team who's turn it is recieves their items
         if (DutchAccepted && turn == 1)
@@ -747,22 +748,42 @@ public class GameManager : MonoBehaviourPunCallbacks
     void clearAllTrades()
     {
         // Note; int j is utilized in case of crashing. It will not run over 150 iterations
-        for (int i = 0; i < tradeGivingCardsParent.Length; i++)
+        for (int i = 0; i < tradeGivingCardsParent.Length; i++) // For every Trade giving card object, destroy all their child objects
         {
             int j = 0;
-            while(tradeGivingCardsParent[i].transform.childCount > 0 && j < 150)
+            /*while(tradeGivingCardsParent[i].transform.childCount > 0 && j < 150)
             {
                 PhotonView.Destroy(tradeGivingCardsParent[i].transform.GetChild(0).gameObject);
                 j++;
                 Debug.Log(tradeGivingCardsParent[i].transform.childCount);
                 Debug.Log(tradeGivingCardsParent[i].transform.GetChild(0).gameObject);
+            }*/
+
+            int b = 0;
+            while (tradeGivingCardsParent[i].transform.childCount != b && j < 500)
+            {
+                tradeGivingCardsParent[i].transform.GetChild(b).gameObject.SetActive(false);
+                j++;
+                Debug.Log(tradeGivingCardsParent[i].transform.GetChild(b).gameObject);
+                b++;
             }
+
+
+
             j = 0;
-            while (tradeReceivingCardsParent[i].transform.childCount > 0 && j < 150)
+            b = 0;
+            while (tradeReceivingCardsParent[i].transform.childCount != b && j < 500)
+            {
+                tradeReceivingCardsParent[i].transform.GetChild(b).gameObject.SetActive(false);
+                Debug.Log(tradeReceivingCardsParent[i].transform.GetChild(b).gameObject);
+                b++;
+                j++;
+            }
+            /*while (tradeReceivingCardsParent[i].transform.childCount > 0 && j < 150)
             {
                 PhotonView.Destroy(tradeReceivingCardsParent[i].transform.GetChild(0).gameObject);
                 j++;
-            }
+            }*/
         }
 
     }
@@ -783,6 +804,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.Log("turn++");
         }
         Debug.Log(turn);
+        Debug.Log("Total turn number: " + totalTurnNumber);
         
         for(int k = 0; k < SeasonalTimers.Length; k++)
         {

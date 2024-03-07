@@ -41,7 +41,7 @@ public class TradeButtonOnClick : MonoBehaviour
             {
                 if (gameManager.DutchAccepted == false)
                 {
-                    gameManager.numberOfAcceptedTeams++;
+                    gameManager.numberOfAcceptedTeams++; tradeReceivingCardsParent
                 }
                 gameManager.DutchAccepted = true;
                 
