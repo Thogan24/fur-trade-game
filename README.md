@@ -1,3 +1,3 @@
 # fur-trade-game
-This demo integrates the two main parts of our project: Unity (our 'front end') and Photon Unity Networking 2 (PUN2) (our 'back end', how we manage multiplayer and communicating across machines)
-The scene & squares are created using Unity, while the multiplayer scripts are part of the Photon Unity Networking system.
+A digital version of the card game "Fur Trade Game", created for the Philipse Manor Hall. This is an educational trading game made for the purpose of teaching students history in real life classrooms.
+This project utilizes multiple pieces of software: The Unity Game Engine editor, Visual Studio Code (Using C#), and the Unity Package Photon Unity Networking 2 (PUN2) (how we communicate across machines)
