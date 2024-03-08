@@ -377,7 +377,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
         for (int a = 0; a < SixNationsCamerasCheckArray.Length; a++)
         {
-            if (DutchTextCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>())
+            if (SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>())
             {
                 SixNationsCamerasCheckArray[a].SetActive(false);
             }
@@ -482,7 +482,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     void addCardToTrade(string tag, string parentTag)
     {
         string playerString = PhotonNetwork.LocalPlayer.ToString();
-        if ((turn == 1 && playerString == "Dutch") || (turn == 2 && playerString == "Philipses") || (turn == 3 && playerString == "Six Nations") || (turn == 4 && playerString == "Munsee"))
+        Debug.Log(playerString);
+        Debug.Log((turn == 1 && playerString == Dutch));
+        if ((turn == 1 && playerString == Dutch) || (turn == 2 && playerString == Philipses) || (turn == 3 && playerString == SixNations) || (turn == 4 && playerString == Munsee))
         {
             Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
             bool[] addToReceiving = { false, false, false, false }; // Add to the receiving side of the trade (right) instead of the giving side (left)
@@ -693,25 +695,47 @@ public class GameManager : MonoBehaviourPunCallbacks
         // Team who's turn it is recieves their items
         if (DutchAccepted && turn == 1)
         {
-            // Dutch inventory + Trade Receiving Cards - Trade Giving Cards - TODO
+            // Dutch inventory + Trade Receiving Cards - TODO
+            int c = 0;
+
+            while (tradeReceivingCardsParent[0].transform.childCount != c && c < 500)
+            {
+
+                Debug.Log(tradeReceivingCardsParent[0].transform.GetChild(c));
+                string cardTag = tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.tag;
+                GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                for(int d = 0; d < cardAmountObjects.Length; d++)
+                {
+                    if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Dutch")
+                    {
+                        Debug.Log(cardAmountObjects[d]);
+                        int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                        DutchAmounts[childIndex]++;
+                        cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
+                    }
+                }
+                c++;
+            }
             DutchAccepted = false;
             DutchTrading = false;
         }
+
         else if (PhilipsesAccepted && turn == 2)
         {
-            // Philipses inventory + Trade Receiving Cards - Trade Giving Cards
+            // Philipses inventory + Trade Receiving Cards
+
             PhilipsesAccepted = false;
             PhilipsesTrading = false;
         }
         else if (SixNationsAccepted && turn == 3)
         {
-            // Six Nations inventory + Trade Receiving Cards - Trade Giving Cards
+            // Six Nations inventory + Trade Receiving Cards
             SixNationsAccepted = false;
             SixNationsTrading = false;
         }
         else if (MunseeAccepted && turn == 4)
         {
-            // Munsee inventory + Trade Receiving Cards - Trade Giving Cards
+            // Munsee inventory + Trade Receiving Cards
             MunseeAccepted = false;
             MunseeTrading = false;
         }
@@ -754,7 +778,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if(theSender == info.Sender.ToString())
         {
-            // Note; int j is utilized in case of crashing. It will not run over 150 iterations
+            // Note; int j is utilized in case of crashing. It will not run over 500 iterations
             for (int i = 0; i < tradeGivingCardsParent.Length; i++) // For every Trade giving card object, destroy all their child objects
             {
                 int j = 0;
@@ -771,7 +795,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     tradeGivingCardsParent[i].transform.GetChild(b).gameObject.SetActive(false);
                     j++;
-                    Debug.Log(tradeGivingCardsParent[i].transform.GetChild(b).gameObject);
+                    //Debug.Log(tradeGivingCardsParent[i].transform.GetChild(b).gameObject);
                     b++;
                 }
 
@@ -782,7 +806,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 while (tradeReceivingCardsParent[i].transform.childCount != b && j < 500)
                 {
                     tradeReceivingCardsParent[i].transform.GetChild(b).gameObject.SetActive(false);
-                    Debug.Log(tradeReceivingCardsParent[i].transform.GetChild(b).gameObject);
+                    //Debug.Log(tradeReceivingCardsParent[i].transform.GetChild(b).gameObject);
                     b++;
                     j++;
                 }
