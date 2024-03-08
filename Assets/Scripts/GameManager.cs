@@ -481,205 +481,208 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void addCardToTrade(string tag, string parentTag)
     {
-        Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0)};
-        bool[] addToReceiving = { false, false, false, false }; // Add to the receiving side of the trade (right) instead of the giving side (left)
-        if (PhotonNetwork.LocalPlayer.ToString() == Dutch && DutchTrading == true)
+        string playerString = PhotonNetwork.LocalPlayer.ToString();
+        if ((turn == 1 && playerString == "Dutch") || (turn == 2 && playerString == "Philipses") || (turn == 3 && playerString == "Six Nations") || (turn == 4 && playerString == "Munsee"))
         {
-            if (SixNationsTrading == true) // If six nations is the enemy team
+            Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+            bool[] addToReceiving = { false, false, false, false }; // Add to the receiving side of the trade (right) instead of the giving side (left)
+            if (PhotonNetwork.LocalPlayer.ToString() == Dutch && DutchTrading == true)
             {
-                for (int a = 0; a < SixNationsTradeButton.Length; a++) 
+                if (SixNationsTrading == true) // If six nations is the enemy team
                 {
-                    enemyTeamButtonPos[a] = SixNationsTradeButton[a].transform.position;
-                    if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations") // If the screen is Six Nations
+                    for (int a = 0; a < SixNationsTradeButton.Length; a++)
                     {
-                        addToReceiving[a] = true;
-                        enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
-/*                        if (DutchTrading == true)
+                        enemyTeamButtonPos[a] = SixNationsTradeButton[a].transform.position;
+                        if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations") // If the screen is Six Nations
                         {
+                            addToReceiving[a] = true;
                             enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
-                        }
+                            /*                        if (DutchTrading == true)
+                                                    {
+                                                        enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
+                                                    }
 
-                        else if(PhilipsesTrading == true)
-                        {
-                            enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;
+                                                    else if(PhilipsesTrading == true)
+                                                    {
+                                                        enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;
+                                                    }
+                                                    else if (MunseeTrading == true)
+                                                    {
+                                                        enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
+                                                    }*/
                         }
-                        else if (MunseeTrading == true)
+                    }
+
+                }
+                else if (MunseeTrading == true)
+                {
+                    for (int a = 0; a < MunseeTradeButton.Length; a++)
+                    {
+                        enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
+                        if (MunseeTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
                         {
-                            enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
-                        }*/
+                            addToReceiving[a] = true;
+                            enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
+
+                        }
                     }
                 }
-                
-            }
-            else if (MunseeTrading == true)
-            {
-                for (int a = 0; a < MunseeTradeButton.Length; a++)
+                else if (PhilipsesTrading == true)
                 {
-                    enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
-                    if (MunseeTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
+                    for (int a = 0; a < PhilipsesTradeButton.Length; a++)
                     {
-                        addToReceiving[a] = true;
-                        enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
-                        
-                    }
-                }
-            }
-            else if (PhilipsesTrading == true)
-            {
-                for (int a = 0; a < PhilipsesTradeButton.Length; a++)
-                {
-                    enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;
-                    if (PhilipsesTradeButton[a].transform.parent.parent.name == "Philipses") // If the screen is Philipses
-                    {
-                        addToReceiving[a] = true;
-                        enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
-
-                    }
-                }
-            }
-            else
-            {
-                Debug.LogError("No Enemy Team Selected");
-                return;
-            }
-        }
-
-        
-        Debug.LogError("Adding card...");
-        GameObject[] instantiatedCard = {null, null, null, null};
-        int isParentWishlist = 0;
-        int isParentInventory = 1;
-
-
-        if (parentTag == "Wishlist")
-        {
-            isParentWishlist = 1;
-            isParentInventory = 0;
-        }
-
-
-        Debug.Log(isParentInventory + " " + isParentWishlist);
-        for (int i = 0; i < tags.Length; i++)
-        {
-            Debug.Log(tag + " " + tags[i]);
-            if (tag == tags[i] && ((DutchAmounts[i] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
-            {
-                
-                if (isParentInventory == 1)
-                {
-                    for (int b = 0; b < enemyTeamButtonPos.Length; b++)
-                    {
-                        if(addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
+                        enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;
+                        if (PhilipsesTradeButton[a].transform.parent.parent.name == "Philipses") // If the screen is Philipses
                         {
-                            instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float) 3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
+                            addToReceiving[a] = true;
+                            enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
+
                         }
-                        else
-                        {
-                            instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float) 2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
-                        }
-                        
                     }
-                    Debug.Log(DutchAmounts[i]);
-                    DutchAmounts[i]--;
-                    DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
                 }
                 else
                 {
-                    Debug.Log(DutchAmounts[i + 13]);
-                    if (DutchAmountsGameObjects[i+13] != null && DutchAmounts[i+13] > 0)
-                    {
-
-                        for (int j = 0; j < enemyTeamButtonPos.Length; j++)
-                        {
-                            if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
-                            {
-                                instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
-                            }
-                            else
-                            {
-                                
-                                instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
-                            }
-                            
-                        }
-                        DutchAmounts[i + 13]--;
-                        DutchAmountsGameObjects[i+13].GetComponent<Text>().text = DutchAmounts[i+13].ToString() + "x";
-
-                        break;
-                    }
-                    else
-                    {
-                        Debug.LogError("None of specified card left");
-                        return;
-                    }
-                }
-                //
-
-
-                break;
-            }
-            else
-            {
-                Debug.LogError("None of specified card left");
-                if (i+1 == tags.Length)
-                {
+                    Debug.LogError("No Enemy Team Selected");
                     return;
                 }
             }
-        }
 
-        GameObject[] CardsCanvasObjects = {DutchCardsCanvasObject, PhilipsesCardsCanvasObject, SixNationsCardsCanvasObject, MunseeCardsCanvasObject};
 
-        if (parentTag == "Wishlist")
-        {
-            WishlistCardsInTrade++;
-        }
-        else
-        {
-            InventoryCardsInTrade++;
-        }
-        for (int j = 0; j < instantiatedCard.Length; j++)
-        {
-            instantiatedCard[j].GetComponent<Button>().enabled = false;
+            Debug.LogError("Adding card...");
+            GameObject[] instantiatedCard = { null, null, null, null };
+            int isParentWishlist = 0;
+            int isParentInventory = 1;
 
-            instantiatedCard[j].transform.position = new Vector3(instantiatedCard[j].transform.position.x, instantiatedCard[j].transform.position.y, 10);
-            Debug.LogError(instantiatedCard[j].transform.position);
 
             if (parentTag == "Wishlist")
             {
-                
-                Debug.Log(WishlistCardsInTrade);
-                if (addToReceiving[j] == true)
+                isParentWishlist = 1;
+                isParentInventory = 0;
+            }
+
+
+            Debug.Log(isParentInventory + " " + isParentWishlist);
+            for (int i = 0; i < tags.Length; i++)
+            {
+                Debug.Log(tag + " " + tags[i]);
+                if (tag == tags[i] && ((DutchAmounts[i] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
                 {
-                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(0)); // SETS IT TO GIVING CARD
+
+                    if (isParentInventory == 1)
+                    {
+                        for (int b = 0; b < enemyTeamButtonPos.Length; b++)
+                        {
+                            if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
+                            {
+                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
+                            }
+                            else
+                            {
+                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                            }
+
+                        }
+                        Debug.Log(DutchAmounts[i]);
+                        DutchAmounts[i]--;
+                        DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                    }
+                    else
+                    {
+                        Debug.Log(DutchAmounts[i + 13]);
+                        if (DutchAmountsGameObjects[i + 13] != null && DutchAmounts[i + 13] > 0)
+                        {
+
+                            for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                            {
+                                if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                {
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+                                }
+                                else
+                                {
+
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                }
+
+                            }
+                            DutchAmounts[i + 13]--;
+                            DutchAmountsGameObjects[i + 13].GetComponent<Text>().text = DutchAmounts[i + 13].ToString() + "x";
+
+                            break;
+                        }
+                        else
+                        {
+                            Debug.LogError("None of specified card left");
+                            return;
+                        }
+                    }
+                    //
+
+
+                    break;
                 }
                 else
                 {
-                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(1)); // SETS IT TO RECEIVING CARD
+                    Debug.LogError("None of specified card left");
+                    if (i + 1 == tags.Length)
+                    {
+                        return;
+                    }
                 }
-                
+            }
+
+            GameObject[] CardsCanvasObjects = { DutchCardsCanvasObject, PhilipsesCardsCanvasObject, SixNationsCardsCanvasObject, MunseeCardsCanvasObject };
+
+            if (parentTag == "Wishlist")
+            {
+                WishlistCardsInTrade++;
             }
             else
             {
-                Debug.Log(InventoryCardsInTrade);
-                if (addToReceiving[j] == true)
+                InventoryCardsInTrade++;
+            }
+            for (int j = 0; j < instantiatedCard.Length; j++)
+            {
+                instantiatedCard[j].GetComponent<Button>().enabled = false;
+
+                instantiatedCard[j].transform.position = new Vector3(instantiatedCard[j].transform.position.x, instantiatedCard[j].transform.position.y, 10);
+                Debug.LogError(instantiatedCard[j].transform.position);
+
+                if (parentTag == "Wishlist")
                 {
-                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(1)); // SETS IT TO RECEIVING CARD
+
+                    Debug.Log(WishlistCardsInTrade);
+                    if (addToReceiving[j] == true)
+                    {
+                        instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(0)); // SETS IT TO GIVING CARD
+                    }
+                    else
+                    {
+                        instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(1)); // SETS IT TO RECEIVING CARD
+                    }
+
                 }
                 else
                 {
-                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(0)); // SETS IT TO GIVING CARD
+                    Debug.Log(InventoryCardsInTrade);
+                    if (addToReceiving[j] == true)
+                    {
+                        instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(1)); // SETS IT TO RECEIVING CARD
+                    }
+                    else
+                    {
+                        instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(0)); // SETS IT TO GIVING CARD
+                    }
+
                 }
-                    
+
+                DutchAccepted = false;
+                PhilipsesAccepted = false;
+                MunseeAccepted = false;
+                SixNationsAccepted = false;
             }
 
-            DutchAccepted = false;
-            PhilipsesAccepted = false;
-            MunseeAccepted = false;
-            SixNationsAccepted = false;
         }
-        
-
     }
 
     [PunRPC]
@@ -799,6 +802,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (theSender == info.Sender.ToString())
         {
+            
             totalTurnNumber++;
             Debug.Log("Called");
             if (turn == 4)

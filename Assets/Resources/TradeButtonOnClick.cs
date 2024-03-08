@@ -56,17 +56,56 @@ public class TradeButtonOnClick : MonoBehaviour
         if (team == "Philipses")
         {
             Debug.LogError("Philipses Accepted");
-            gameManager.PhilipsesTrading = true;
+            if (gameManager.PhilipsesTrading)
+            {
+                if (gameManager.PhilipsesAccepted == false)
+                {
+                    gameManager.numberOfAcceptedTeams++;
+                }
+                gameManager.PhilipsesAccepted = true;
+
+                if (gameManager.numberOfAcceptedTeams == 2)
+                {
+                    Debug.LogError("Cards being switched, calling RPC");
+                    gameManager.gameObject.GetComponent<PhotonView>().RPC("cardSwitchTeams", RpcTarget.All);
+                }
+            }
         }
         if (team == "SixNations")
         {
             Debug.LogError("Six Nations Accepted");
-            gameManager.SixNationsTrading = true;
+            if (gameManager.SixNationsTrading)
+            {
+                if (gameManager.SixNationsAccepted == false)
+                {
+                    gameManager.numberOfAcceptedTeams++;
+                }
+                gameManager.SixNationsAccepted = true;
+
+                if (gameManager.numberOfAcceptedTeams == 2)
+                {
+                    Debug.LogError("Cards being switched, calling RPC");
+                    gameManager.gameObject.GetComponent<PhotonView>().RPC("cardSwitchTeams", RpcTarget.All);
+                }
+            }
         }
         if (team == "Munsee")
         {
             Debug.LogError("Munsee Accepted");
-            gameManager.MunseeTrading = true;
+            if (gameManager.MunseeTrading)
+            {
+                if (gameManager.MunseeAccepted == false)
+                {
+                    gameManager.numberOfAcceptedTeams++;
+                }
+                gameManager.MunseeAccepted = true;
+
+                if (gameManager.numberOfAcceptedTeams == 2)
+                {
+                    Debug.LogError("Cards being switched, calling RPC");
+                    gameManager.gameObject.GetComponent<PhotonView>().RPC("cardSwitchTeams", RpcTarget.All);
+                }
+            }
         }
     }
 }
