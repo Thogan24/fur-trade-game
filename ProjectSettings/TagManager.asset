@@ -67,6 +67,14 @@ TagManager:
   - Turn Timer
   - thedebugger
   - Munsee Camera
+  - Duffels Amount Wishlist
+  - Schepels Amount Wishlist
+  - Linen Amount Wishlist
+  - Stockings Amount Wishlist
+  - Strouds Amount Wishlist
+  - Axes Amount Wishlist
+  - Beads Amount Wishlist
+  - ScissorsAmountWishlist
   layers:
   - Default
   - TransparentFX
