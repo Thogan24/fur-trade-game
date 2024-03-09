@@ -648,6 +648,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
             bool[] addToReceiving = { false, false, false, false }; // Add to the receiving side of the trade (right) instead of the giving side (left)
+            
+
+            // Sets up enemy team button positions & addToReceiving
             if (PhotonNetwork.LocalPlayer.ToString() == Dutch && DutchTrading == true)
             {
                 if (SixNationsTrading == true) // If six nations is the enemy team
@@ -676,6 +679,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
 
                 }
+
                 else if (MunseeTrading == true)
                 {
                     for (int a = 0; a < MunseeTradeButton.Length; a++)
@@ -689,6 +693,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         }
                     }
                 }
+
                 else if (PhilipsesTrading == true)
                 {
                     for (int a = 0; a < PhilipsesTradeButton.Length; a++)
@@ -702,6 +707,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         }
                     }
                 }
+
                 else
                 {
                     Debug.LogError("No Enemy Team Selected");
