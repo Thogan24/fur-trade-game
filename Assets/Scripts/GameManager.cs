@@ -408,6 +408,60 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void mainSceneSetInventoryAmountsRPC() // TO DO
     {
+        GameObject[] AmountsGameObjectsWithTag = { };
+        if (!AlreadyLoaded)
+        {
+            for (int i = 0; i < DutchAmounts.Length; i++)
+            {
+                if (i < 13)
+                {
+                    Debug.Log(i);
+                    AmountsGameObjectsWithTag = GameObject.FindGameObjectsWithTag(tags[i] + "Amount");
+                    for(int j = 0; j < AmountsGameObjectsWithTag.Length; j++)
+                    {
+                        if(AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Dutch")
+                        {
+                            DutchAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
+                            DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                        }
+                        else if(AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Philipses")
+                        {
+                            PhilipsesAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
+                            PhilipsesAmountsGameObjects[i].GetComponent<Text>().text = PhilipsesAmounts[i].ToString() + "x";
+                        }
+                        else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            SixNationsAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
+                            SixNationsAmountsGameObjects[i].GetComponent<Text>().text = SixNationsAmounts[i].ToString() + "x";
+                        }
+                        else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Munsee")
+                        {
+                            MunseeAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
+                            MunseeAmountsGameObjects[i].GetComponent<Text>().text = MunseeAmounts[i].ToString() + "x";
+                        }
+                    }
+                    
+                }
+                // Part of Wishlist
+                else
+                {
+                    if (DutchAmounts[i] == 0)
+                    {
+                        DutchAmountsGameObjects[i] = null;
+                    }
+                    else
+                    {
+                        DutchAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i - 13] + " Amount Wishlist");
+                        DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                    }
+                }
+
+
+            }
+        }
+
+
+
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
             for (int i = 0; i < DutchAmounts.Length; i++)
@@ -415,6 +469,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 if (i < 13)
                 {
                     Debug.Log(i);
+                    AmountsGameObjectsWithTag = GameObject.FindGameObjectsWithTag(tags[i] + "Amount");
                     DutchAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i] + "Amount");
                     DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
                 }
