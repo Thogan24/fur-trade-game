@@ -408,7 +408,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void mainSceneSetInventoryAmountsRPC() // TO DO
     {
-/*        GameObject[] AmountsGameObjectsWithTag = { };
+        GameObject[] AmountsGameObjectsWithTag = { };
         if (!AlreadyLoaded)
         {
             for (int i = 0; i < DutchAmounts.Length; i++)
@@ -493,8 +493,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
             }
-        }*/
-
+        }
+/*
 
 
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
@@ -605,7 +605,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 
                 
             }
-        }
+        }*/
 
         tradeGivingCardsParent = GameObject.FindGameObjectsWithTag("Giving");
         tradeReceivingCardsParent = GameObject.FindGameObjectsWithTag("Receiving");
@@ -934,8 +934,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             while (tradeGivingCardsParent[0].transform.childCount != c && c < 500)
             {
-                Debug.Log(tradeReceivingCardsParent[1].transform.GetChild(c));
-                string cardTag = tradeReceivingCardsParent[1].transform.GetChild(c).gameObject.tag;
+                Debug.Log(tradeGivingCardsParent[1].transform.GetChild(c));
+                string cardTag = tradeGivingCardsParent[1].transform.GetChild(c).gameObject.tag;
                 GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                 for (int d = 0; d < cardAmountObjects.Length; d++)
                 {

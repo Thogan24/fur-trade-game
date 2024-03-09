@@ -28857,7 +28857,7 @@ GameObject:
   - component: {fileID: 1265544416}
   m_Layer: 0
   m_Name: Scissors Amount Wishlist (3)
-  m_TagString: ScissorsAmountWishlist
+  m_TagString: Scissors Amount Wishlist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45746,7 +45746,7 @@ GameObject:
   - component: {fileID: 1951877454}
   m_Layer: 0
   m_Name: Scissors Amount Wishlist (2)
-  m_TagString: ScissorsAmountWishlist
+  m_TagString: Scissors Amount Wishlist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
