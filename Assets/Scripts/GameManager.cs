@@ -449,11 +449,46 @@ public class GameManager : MonoBehaviourPunCallbacks
                     {
                         DutchAmountsGameObjects[i] = null;
                     }
-                    else
+                    if (PhilipsesAmounts[i] == 0)
                     {
-                        DutchAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i - 13] + " Amount Wishlist");
-                        DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                        DutchAmountsGameObjects[i] = null;
                     }
+                    if (SixNationsAmounts[i] == 0)
+                    {
+                        DutchAmountsGameObjects[i] = null;
+                    }
+                    if (MunseeAmounts[i] == 0)
+                    {
+                        DutchAmountsGameObjects[i] = null;
+                    }
+                    
+                    
+                    AmountsGameObjectsWithTag = GameObject.FindGameObjectsWithTag(tags[i - 13] + " Amount Wishlist");
+                    for (int j = 0; j < AmountsGameObjectsWithTag.Length; j++)
+                    {
+                        if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Dutch")
+                        {
+                            DutchAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
+                            DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                        }
+                        else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Philipses")
+                        {
+                            PhilipsesAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
+                            PhilipsesAmountsGameObjects[i].GetComponent<Text>().text = PhilipsesAmounts[i].ToString() + "x";
+                        }
+                        else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            SixNationsAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
+                            SixNationsAmountsGameObjects[i].GetComponent<Text>().text = SixNationsAmounts[i].ToString() + "x";
+                        }
+                        else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Munsee")
+                        {
+                            MunseeAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
+                            MunseeAmountsGameObjects[i].GetComponent<Text>().text = MunseeAmounts[i].ToString() + "x";
+                        }
+                    }
+                        
+                    
                 }
 
 
@@ -462,7 +497,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-        if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
+        /*if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
         {
             for (int i = 0; i < DutchAmounts.Length; i++)
             {
@@ -570,7 +605,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 
                 
             }
-        }
+        }*/
 
         tradeGivingCardsParent = GameObject.FindGameObjectsWithTag("Giving");
         tradeReceivingCardsParent = GameObject.FindGameObjectsWithTag("Receiving");
