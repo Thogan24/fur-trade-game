@@ -27,6 +27,7 @@ public class CardOnClick : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         string tag = this.gameObject.tag;
         string parentTag = this.gameObject.transform.parent.tag;
+        Debug.Log(tag);
         gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag);
 
     }

@@ -50,6 +50,11 @@ public class TradeButtonOnClick : MonoBehaviour
                     Debug.LogError("Cards being switched, calling RPC");
                     gameManager.gameObject.GetComponent<PhotonView>().RPC("cardSwitchTeams", RpcTarget.All);
                 }
+                else if(gameManager.numberOfAcceptedTeams > 2)
+                {
+                    Debug.LogError("Number of accepted teams above 2, something is wrong");
+                    gameManager.gameObject.GetComponent<PhotonView>().RPC("cardSwitchTeams", RpcTarget.All);
+                }
             }
             
         }
