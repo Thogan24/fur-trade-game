@@ -2941,13 +2941,92 @@ MonoBehaviour:
   BeaverCard: {fileID: 6075063951732973871, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
   DuffelsCard: {fileID: 8467486979893556977, guid: ad5d2e7d00dfaac448869f1c067a8c58, type: 3}
   DeerSkinCard: {fileID: 6075063951732973871, guid: c1a65b9d374ef5c478ed8b0a8eccdc07, type: 3}
+  theSender: 
   SixNationsAmounts: 0c00000005000000060000000400000003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   MunseeAmounts: 0a0000000600000002000000050000000d000000060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   PhilipsesAmounts: 00000000000000000000000000000000000000000000000003000000080000000a0000000400000002000000030000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000
   DutchAmounts: 0000000000000000000000000000000000000000000000000c0000000000000000000000090000000500000014000000030000000c0000000400000004000000050000000a0000000000000000000000000000000000000000000000000000000000000000000000
-  SixNationsAmountsGameObjects: []
-  MunseeAmountsGameObjects: []
-  PhilipsesAmountsGameObjects: []
+  SixNationsAmountsGameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MunseeAmountsGameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PhilipsesAmountsGameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   DutchAmountsGameObjects:
   - {fileID: 0}
   - {fileID: 0}
