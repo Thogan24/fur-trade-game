@@ -62,7 +62,7 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
                 Debug.LogError("Philipses is Trading");
                 gameManager.PhilipsesTrading = true;
             }
-            if (team == "Munsee")
+            if (team == "SixNations")
             {
                 Debug.LogError("Six Nations is Trading");
                 gameManager.MunseeTrading = true;
