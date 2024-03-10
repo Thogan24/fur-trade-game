@@ -26,9 +26,9 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
     }
 
     [PunRPC]
-    void WhenClicked(string userIDOfClicker) // 
+    void WhenClicked(string userIDOfClicker, PhotonMessageInfo info) // 
     {
-
+        Debug.Log(info.Sender.ToString());
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         string playerString = PhotonNetwork.LocalPlayer.ToString();
         if ((gameManager.turn == 1 && playerString == gameManager.Dutch) || (gameManager.turn == 2 && playerString == gameManager.Philipses) || (gameManager.turn == 3 && playerString == gameManager.SixNations) || (gameManager.turn == 4 && playerString == gameManager.Munsee))
