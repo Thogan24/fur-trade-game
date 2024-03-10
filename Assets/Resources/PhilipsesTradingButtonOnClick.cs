@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
+// FOR ENEMY TEAM TRADING BUTTON
 public class PhilipsesTradingButtonOnClick : MonoBehaviour
 {
     public GameObject PhilipsesTradingButton;
@@ -82,6 +83,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
     [PunRPC]
     void greyOutButtons()
     {
+        Debug.Log("greyying out");
         if (!gameManager.DutchTrading)
         {
             for (int i = 0; i < gameManager.DutchTradeButton.Length; i++)

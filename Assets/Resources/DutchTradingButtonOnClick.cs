@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
+// FOR ENEMY TEAM TRADING BUTTON
 public class DutchTradingButtonOnClick : MonoBehaviour
 {
     public GameObject DutchTradingButton;

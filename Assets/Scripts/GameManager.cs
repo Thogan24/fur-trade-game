@@ -1051,10 +1051,45 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             for (int k = 0; k < SeasonalTimers.Length; k++)
             {
-                SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " | Turn: " + teamNames[turn - 1].ToString();
+                SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " | Turn: " + teamNames[(turn - 1)].ToString();
+            }
+
+            if (!DutchTrading)
+            {
+                for (int i = 0; i < DutchTradeButton.Length; i++)
+                {
+                     DutchTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+
+            }
+            if (!PhilipsesTrading)
+            {
+                for (int i = 0; i < PhilipsesTradeButton.Length; i++)
+                {
+                    PhilipsesTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+            }
+            if (!MunseeTrading)
+            {
+                for (int i = 0; i < MunseeTradeButton.Length; i++)
+                {
+                    MunseeTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+            }
+            if (!SixNationsTrading)
+            {
+                for (int i = 0; i < SixNationsTradeButton.Length; i++)
+                {
+                    SixNationsTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
             }
         }
-        
+
+        /*PhilipsesTradingButtonOnClick philipsesTradingButtonOnClick = new PhilipsesTradingButtonOnClick();
+        philipsesTradingButtonOnClick.GetComponent<PhotonView>().RPC("greyOutButtons", RpcTarget.All);*/
+
     }
+        
+    
 
 }

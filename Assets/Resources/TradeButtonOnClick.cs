@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
+// Green trade button
 public class TradeButtonOnClick : MonoBehaviour
 {
 

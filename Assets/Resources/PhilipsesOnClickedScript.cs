@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.Events;
 using Photon.Realtime;
+ 
+
+// FOR TEAM SELECT
 
 public class PhilipsesOnClickedScript : MonoBehaviour
 {
