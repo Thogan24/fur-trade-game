@@ -206,6 +206,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             tags[i] = Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 29);
         }
 
+
 }
 
 
@@ -857,6 +858,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void cardSwitchTeams(PhotonMessageInfo info) // TODO
     {
         theSender = info.Sender.ToString();
+
         Debug.Log("how many times did this run");
         // Team who's turn it is recieves their items
         if (DutchAccepted && turn == 1)
@@ -938,6 +940,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
                 c++;
             }
+            c = 0;
             while (tradeGivingCardsParent[1].transform.childCount != c && tradeGivingCardsParent[1].transform.childCount > c && c < 500)
             {
                 Debug.Log(c);
@@ -981,6 +984,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void clearAllTrades(PhotonMessageInfo info)
     {
+        Debug.Log(info.Sender.ToString());
         if(theSender == info.Sender.ToString())
         {
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
@@ -1048,7 +1052,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             Debug.Log(turn);
             Debug.Log("Total turn number: " + totalTurnNumber);
-
             for (int k = 0; k < SeasonalTimers.Length; k++)
             {
                 SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " | Turn: " + teamNames[(turn - 1)].ToString();
