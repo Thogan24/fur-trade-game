@@ -29,50 +29,53 @@ public class DutchTradingButtonOnClick : MonoBehaviour
     void WhenClicked(string userIDOfClicker) // 
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        Debug.Log(gameManager);
-
-        Debug.Log("RPC is running");
-        Debug.Log("UserID of Clicker: " + userIDOfClicker);
-        Debug.LogError("UserID of Clicker: " + userIDOfClicker);
-        //if (gameManager.Dutch == userIDOfClicker)
-        //{
-        //Debug.Log("This happened.");
-        // Skip to next turn
-        //}
-
-        //else
-        //{
-        Debug.Log("Works right, " + userIDOfClicker);
-        gameManager.DutchTrading = true;
-        string team = gameManager.findPlayerTeam(userIDOfClicker);
-
-        Debug.LogError("Team Selected: " + team);
-        if (team == "Dutch")
+        string playerString = PhotonNetwork.LocalPlayer.ToString();
+        if ((gameManager.turn == 1 && playerString == gameManager.Dutch) || (gameManager.turn == 2 && playerString == gameManager.Philipses) || (gameManager.turn == 3 && playerString == gameManager.SixNations) || (gameManager.turn == 4 && playerString == gameManager.Munsee))
         {
-            Debug.LogError("Dutch is Trading");
+            Debug.Log(gameManager);
+
+            Debug.Log("RPC is running");
+            Debug.Log("UserID of Clicker: " + userIDOfClicker);
+            Debug.LogError("UserID of Clicker: " + userIDOfClicker);
+            //if (gameManager.Dutch == userIDOfClicker)
+            //{
+            //Debug.Log("This happened.");
+            // Skip to next turn
+            //}
+
+            //else
+            //{
+            Debug.Log("Works right, " + userIDOfClicker);
             gameManager.DutchTrading = true;
-            Debug.LogError(gameManager.DutchTrading);
-        }
-        if (team == "Philipses")
-        {
-            Debug.LogError("Philipses is Trading");
-            gameManager.PhilipsesTrading = true;
-        }
-        if (team == "Dutch")
-        {
-            Debug.LogError("Six Nations is Trading");
-            gameManager.DutchTrading = true;
-        }
-        if (team == "Dutch")
-        {
-            Debug.LogError("Dutch is Trading");
-            gameManager.DutchTrading = true;
-        }
-        teamsThatAreTrading(team);
-        greyOutButtons();
-        return;
-        //}
+            string team = gameManager.findPlayerTeam(userIDOfClicker);
 
+            Debug.LogError("Team Selected: " + team);
+            if (team == "Dutch")
+            {
+                Debug.LogError("Dutch is Trading");
+                gameManager.DutchTrading = true;
+                Debug.LogError(gameManager.DutchTrading);
+            }
+            if (team == "Philipses")
+            {
+                Debug.LogError("Philipses is Trading");
+                gameManager.PhilipsesTrading = true;
+            }
+            if (team == "Dutch")
+            {
+                Debug.LogError("Six Nations is Trading");
+                gameManager.DutchTrading = true;
+            }
+            if (team == "Dutch")
+            {
+                Debug.LogError("Dutch is Trading");
+                gameManager.DutchTrading = true;
+            }
+            teamsThatAreTrading(team);
+            greyOutButtons();
+            return;
+            //}
+        }
     }
 
     void teamsThatAreTrading(string team)

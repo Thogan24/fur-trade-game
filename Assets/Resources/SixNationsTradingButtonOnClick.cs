@@ -29,19 +29,22 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
     void WhenClicked(string userIDOfClicker) // 
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        Debug.Log(gameManager);
+        string playerString = PhotonNetwork.LocalPlayer.ToString();
+        if ((gameManager.turn == 1 && playerString == gameManager.Dutch) || (gameManager.turn == 2 && playerString == gameManager.Philipses) || (gameManager.turn == 3 && playerString == gameManager.SixNations) || (gameManager.turn == 4 && playerString == gameManager.Munsee))
+        {
+            Debug.Log(gameManager);
 
-        Debug.Log("RPC is running");
-        Debug.Log("UserID of Clicker: " + userIDOfClicker);
-        Debug.LogError("UserID of Clicker: " + userIDOfClicker);
-        //if (gameManager.SixNations == userIDOfClicker)
-        //{
+            Debug.Log("RPC is running");
+            Debug.Log("UserID of Clicker: " + userIDOfClicker);
+            Debug.LogError("UserID of Clicker: " + userIDOfClicker);
+            //if (gameManager.SixNations == userIDOfClicker)
+            //{
             //Debug.Log("This happened.");
             // Skip to next turn
-        //}
+            //}
 
-        //else
-        //{
+            //else
+            //{
             Debug.Log("Works right, " + userIDOfClicker);
             gameManager.SixNationsTrading = true;
             string team = gameManager.findPlayerTeam(userIDOfClicker);
@@ -68,11 +71,11 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
                 Debug.LogError("Munsee is Trading");
                 gameManager.MunseeTrading = true;
             }
-            
-            greyOutButtons();
-        return;
-        //}
 
+            greyOutButtons();
+            return;
+            //}
+        }
     }
 
     void teamsThatAreTrading(string team)
