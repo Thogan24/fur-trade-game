@@ -25,10 +25,18 @@ public class CardOnClick : MonoBehaviour
         Debug.LogError("Card Clicked");
         // REMEMBER THIS IS HERE
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        string tag = this.gameObject.tag;
-        string parentTag = this.gameObject.transform.parent.tag;
-        Debug.Log(tag);
-        gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag);
+        if(!gameManager.DutchTrading && !gameManager.PhilipsesTrading && !gameManager.SixNationsTrading && !gameManager.MunseeTrading)
+        {
+            Debug.LogError("Bruh no ones trading");
+        }
+        else
+        {
+            string tag = this.gameObject.tag;
+            string parentTag = this.gameObject.transform.parent.tag;
+            Debug.Log(tag);
+            gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag);
+        }
+        
 
     }
 }
