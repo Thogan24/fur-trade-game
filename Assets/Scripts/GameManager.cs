@@ -988,7 +988,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void clearAllTrades(PhotonMessageInfo info)
     {
         Debug.Log(info.Sender.ToString());
-        if(theSender == info.Sender.ToString())
+        if(theSender == info.Sender.ToString() && info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString())
         {
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
             for (int i = 0; i < tradeGivingCardsParent.Length; i++) // For every Trade giving card object, destroy all their child objects
