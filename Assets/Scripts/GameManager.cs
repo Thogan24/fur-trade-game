@@ -657,6 +657,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             // Sets up enemy team button positions & addToReceiving
             if (playerString == Dutch && DutchTrading == true)
             {
+
+                // FIX ORDER FOR OTHER TWO ASAP!!
+
+
                 if (SixNationsTrading == true) // If six nations is the enemy team
                 {
                     for (int a = 0; a < SixNationsTradeButton.Length; a++)
@@ -689,12 +693,24 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     for (int a = 0; a < PhilipsesTradeButton.Length; a++)
                     {
-                        enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;
-                        if (PhilipsesTradeButton[a].transform.parent.parent.name == "Philipses") // If the screen is Philipses
+                        if(PhilipsesTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            enemyTeamButtonPos[0] = PhilipsesTradeButton[a].transform.position;
+                        }
+                        /*enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;*/
+                        else if (PhilipsesTradeButton[a].transform.parent.parent.name == "Philipses") // If the screen is Philipses
                         {
                             addToReceiving[a] = true;
-                            enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
+                            enemyTeamButtonPos[1] = DutchTradeButton[a].transform.position;
 
+                        }
+                        else if (PhilipsesTradeButton[a].transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            enemyTeamButtonPos[2] = PhilipsesTradeButton[a].transform.position;
+                        }
+                        else if (PhilipsesTradeButton[a].transform.parent.transform.parent.name == "Munsee")
+                        {
+                            enemyTeamButtonPos[3] = PhilipsesTradeButton[a].transform.position;
                         }
                     }
                 }
