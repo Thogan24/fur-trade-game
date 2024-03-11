@@ -76,10 +76,10 @@ public class DutchTradingButtonOnClick : MonoBehaviour
             Debug.LogError("Six Nations is Trading");
             gameManager.DutchTrading = true;
         }
-        if (team == "Dutch")
+        if (team == "Munsee")
         {
-            Debug.LogError("Dutch is Trading");
-            gameManager.DutchTrading = true;
+            Debug.LogError("Munsee is Trading");
+            gameManager.MunseeTrading = true;
         }
         teamsThatAreTrading(team);
         greyOutButtons();

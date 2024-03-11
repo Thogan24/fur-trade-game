@@ -80,7 +80,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
             if (team == "SixNations")
             {
                 Debug.LogError("Six Nations is Trading");
-                gameManager.PhilipsesTrading = true;
+                gameManager.SixNationsTrading = true;
             }
             if (team == "Munsee")
             {
