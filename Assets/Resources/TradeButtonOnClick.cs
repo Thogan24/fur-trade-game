@@ -31,6 +31,8 @@ public class TradeButtonOnClick : MonoBehaviour
     [PunRPC]
     void WhenClicked(string userIDOfClicker) // 
     {
+        Debug.Log(userIDOfClicker);
+        Debug.Log(PhotonNetwork.LocalPlayer.ToString());
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         string team = gameManager.findPlayerTeam(userIDOfClicker);
 
