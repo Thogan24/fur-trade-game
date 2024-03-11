@@ -640,10 +640,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     
     [PunRPC]
-    void addCardToTrade(string tag, string parentTag)
+    void addCardToTrade(string tag, string parentTag, PhotonMessageInfo info)
     {
         string playerString = PhotonNetwork.LocalPlayer.ToString();
-        Debug.Log(playerString);
+        Debug.Log("Player: " + playerString);
+        Debug.Log("Sender: " + info.Sender.ToString());
         Debug.Log((turn == 1 && playerString == Dutch));
         if ((turn == 1 && playerString == Dutch) || (turn == 2 && playerString == Philipses) || (turn == 3 && playerString == SixNations) || (turn == 4 && playerString == Munsee))
         {
