@@ -125,7 +125,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
     [PunRPC]
     void greyOutButtons()
     {
-        Debug.Log("greyying out");
+        Debug.Log("greying out");
         if (!gameManager.DutchTrading)
         {
             for (int i = 0; i < gameManager.DutchTradeButton.Length; i++)
