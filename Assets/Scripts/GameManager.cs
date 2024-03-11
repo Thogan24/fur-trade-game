@@ -174,8 +174,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public string[] cameras = { "Dutch", "Philipses", "Six Nations", "Munsee"}; // FOR CAMERA 
 
 
-    public GameObject[] tradeGivingCardsParent = { }; // All giving card parents
-    public GameObject[] tradeReceivingCardsParent = { }; // All receiving card parents
+    public GameObject[] tradeGivingCardsParent = {null, null, null, null }; // All giving card parents
+    public GameObject[] tradeReceivingCardsParent = {null, null, null, null }; // All receiving card parents
 
 
     // TURN SYSTEM VARIABLES
@@ -608,8 +608,59 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }*/
 
-        tradeGivingCardsParent = GameObject.FindGameObjectsWithTag("Giving");
-        tradeReceivingCardsParent = GameObject.FindGameObjectsWithTag("Receiving");
+        GameObject[] tradeGivingCardsParentfake = GameObject.FindGameObjectsWithTag("Giving");
+
+        for (int y = 0; y < tradeGivingCardsParentfake.Length; y++)
+        {
+            if (tradeGivingCardsParentfake[y].transform.parent.parent.name == "Dutch")
+            {
+                tradeGivingCardsParent[0] = tradeGivingCardsParentfake[y];
+            }
+            else if (tradeGivingCardsParentfake[y].transform.parent.parent.name == "Philipses")
+            {
+                tradeGivingCardsParent[1] = tradeGivingCardsParentfake[y];
+            }
+            else if (tradeGivingCardsParentfake[y].transform.parent.parent.name == "Six Nations")
+            {
+                tradeGivingCardsParent[2] = tradeGivingCardsParentfake[y];
+            }
+            else if (tradeGivingCardsParentfake[y].transform.parent.parent.name == "Munsee")
+            {
+                tradeGivingCardsParent[3] = tradeGivingCardsParentfake[y];
+            }
+            else
+            {
+                Debug.Log("smth isn't working");
+            }
+
+        }
+
+        GameObject[] tradeReceivingCardsParentfake = GameObject.FindGameObjectsWithTag("Receiving");
+        
+        for (int y = 0; y < tradeReceivingCardsParentfake.Length; y++)
+        {
+            if (tradeReceivingCardsParentfake[y].transform.parent.parent.name == "Dutch")
+            {
+                tradeReceivingCardsParent[0] = tradeReceivingCardsParentfake[y];
+            }
+            else if (tradeReceivingCardsParentfake[y].transform.parent.parent.name == "Philipses")
+            {
+                tradeReceivingCardsParent[1] = tradeReceivingCardsParentfake[y];
+            }
+            else if (tradeReceivingCardsParentfake[y].transform.parent.parent.name == "Six Nations")
+            {
+                tradeReceivingCardsParent[2] = tradeReceivingCardsParentfake[y];
+            }
+            else if (tradeReceivingCardsParentfake[y].transform.parent.parent.name == "Munsee")
+            {
+                tradeReceivingCardsParent[3] = tradeReceivingCardsParentfake[y];
+            }
+            else
+            {
+                Debug.Log("smth isn't working");
+            }
+
+        }
         SeasonalTimers = GameObject.FindGameObjectsWithTag("Seasonal Timer");
         for (int k = 0; k < SeasonalTimers.Length; k++)
         {
