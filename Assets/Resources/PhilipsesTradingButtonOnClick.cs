@@ -29,12 +29,25 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
     void WhenClicked(string userIDOfClicker, PhotonMessageInfo info) // 
     {
         Debug.Log(info.Sender.ToString());
-        if(info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString())
+        Debug.Log(PhotonNetwork.LocalPlayer.ToString());
+        Debug.Log("UserID of Clicker: " + userIDOfClicker);
+        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString())
         {
-            
 
-            this.GetComponent<PhotonView>().RPC("teamsThatAreTrading", RpcTarget.All, userIDOfClicker);
-                /*Debug.Log("Works right, " + userIDOfClicker);
+            gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+            string playerString = PhotonNetwork.LocalPlayer.ToString();
+            Debug.Log((gameManager.turn == 1 && playerString == gameManager.Dutch));
+            Debug.Log(gameManager.turn == 2 && playerString == gameManager.Philipses);
+            Debug.Log(playerString);
+            if ((gameManager.turn == 1 && playerString == gameManager.Dutch) || (gameManager.turn == 2 && playerString == gameManager.Philipses) || (gameManager.turn == 3 && playerString == gameManager.SixNations) || (gameManager.turn == 4 && playerString == gameManager.Munsee))
+            {
+                Debug.Log(gameManager);
+
+                Debug.Log("RPC is running");
+                Debug.LogError("UserID of Clicker: " + userIDOfClicker);
+                this.GetComponent<PhotonView>().RPC("teamsThatAreTrading", RpcTarget.All, userIDOfClicker, gameManager);
+            }
+/*                Debug.Log("Works right, " + userIDOfClicker);
 
                 gameManager.PhilipsesTrading = true;
                 string team = gameManager.findPlayerTeam(userIDOfClicker);
@@ -72,20 +85,9 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
     }
 
     [PunRPC]
-    void teamsThatAreTrading(string userIDOfClicker)
+    void teamsThatAreTrading(string userIDOfClicker, GameManager gameManager)
     {
-        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        string playerString = PhotonNetwork.LocalPlayer.ToString();
-        Debug.Log((gameManager.turn == 1 && playerString == gameManager.Dutch));
-        Debug.Log(gameManager.turn == 2 && playerString == gameManager.Philipses);
-        Debug.Log(playerString);
-        if ((gameManager.turn == 1 && playerString == gameManager.Dutch) || (gameManager.turn == 2 && playerString == gameManager.Philipses) || (gameManager.turn == 3 && playerString == gameManager.SixNations) || (gameManager.turn == 4 && playerString == gameManager.Munsee))
-        {
-            Debug.Log(gameManager);
-
-            Debug.Log("RPC is running");
-            Debug.Log("UserID of Clicker: " + userIDOfClicker);
-            Debug.LogError("UserID of Clicker: " + userIDOfClicker);
+        
 
 
 
@@ -116,7 +118,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
             }
             greyOutButtons();
             return;
-        }
+        
     }
     
     
