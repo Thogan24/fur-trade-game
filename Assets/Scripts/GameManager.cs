@@ -223,6 +223,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
             this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
+            DeactivateAllOtherButtons();
 
             AlreadyLoaded = true;
         }
@@ -671,6 +672,28 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public void DeactivateAllOtherButtons()
+    {
+        GameObject[] inventoryCards = GameObject.FindGameObjectsWithTag("Inventory");
+        GameObject[] wishlistCards = GameObject.FindGameObjectsWithTag("Wishlist");
+
+        for (int x = 0; x < inventoryCards.Length; x++)
+        {
+            if(inventoryCards[x].transform.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                inventoryCards[x].gameObject.SetActive(false);
+            }
+                
+        }
+        for (int x = 0; x < wishlistCards.Length; x++)
+        {
+            if (wishlistCards[x].transform.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                wishlistCards[x].gameObject.SetActive(false);
+            }
+
+        }
+    }
 
 
 
@@ -685,6 +708,24 @@ public class GameManager : MonoBehaviourPunCallbacks
             return "SixNations";
         }
         if(userID == Philipses)
+        {
+            return "Philipses";
+        }
+        return "Munsee";
+
+    }
+
+    public string findPlayerTeamForDeactivation(string userID)
+    {
+        if (userID == Dutch)
+        {
+            return "Dutch";
+        }
+        if (userID == SixNations)
+        {
+            return "Six Nations";
+        }
+        if (userID == Philipses)
         {
             return "Philipses";
         }
