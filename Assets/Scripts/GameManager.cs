@@ -642,7 +642,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void addCardToTrade(string tag, string parentTag, PhotonMessageInfo info)
     {
-        string playerString = PhotonNetwork.LocalPlayer.ToString();
+        string playerString = info.Sender.ToString();
         Debug.Log("Player: " + playerString);
         Debug.Log("Sender: " + info.Sender.ToString());
         Debug.Log((turn == 1 && playerString == Dutch));
@@ -653,7 +653,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             
 
             // Sets up enemy team button positions & addToReceiving
-            if (PhotonNetwork.LocalPlayer.ToString() == Dutch && DutchTrading == true)
+            if (playerString == Dutch && DutchTrading == true)
             {
                 if (SixNationsTrading == true) // If six nations is the enemy team
                 {
