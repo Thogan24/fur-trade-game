@@ -816,10 +816,13 @@ public class GameManager : MonoBehaviourPunCallbacks
                     Debug.Log(WishlistCardsInTrade);
                     if (addToReceiving[j] == true)
                     {
+                        Debug.Log(CardsCanvasObjects[j]);
+                        Debug.Log(j);
                         instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(0)); // SETS IT TO GIVING CARD
                     }
                     else
                     {
+                        Debug.Log(CardsCanvasObjects[j]);
                         instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(1)); // SETS IT TO RECEIVING CARD
                     }
 
@@ -829,10 +832,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                     Debug.Log(InventoryCardsInTrade);
                     if (addToReceiving[j] == true)
                     {
+                        Debug.Log(CardsCanvasObjects[j]);
                         instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(1)); // SETS IT TO RECEIVING CARD
                     }
                     else
                     {
+                        Debug.Log(CardsCanvasObjects[j]);
                         instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(0)); // SETS IT TO GIVING CARD
                     }
 
