@@ -1038,7 +1038,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void MoveTurns(PhotonMessageInfo info)
     {
-        if (theSender == info.Sender.ToString())
+        Debug.Log(info.Sender.ToString());
+        if (theSender == info.Sender.ToString() && info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString())
         {
             
             totalTurnNumber++;
