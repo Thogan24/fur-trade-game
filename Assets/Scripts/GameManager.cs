@@ -719,12 +719,30 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     for (int a = 0; a < SixNationsTradeButton.Length; a++)
                     {
-                        enemyTeamButtonPos[a] = SixNationsTradeButton[a].transform.position;
+                        
+                        if (SixNationsTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            enemyTeamButtonPos[0] = SixNationsTradeButton[a].transform.position;
+                        }
+                        else if (SixNationsTradeButton[1].transform.parent.parent.name == "Philipses") // If the screen is Philipses
+                        {
+                            enemyTeamButtonPos[1] = SixNationsTradeButton[a].transform.position;
+
+                        }
                         if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations") // If the screen is Six Nations
                         {
-                            addToReceiving[a] = true;
-                            enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
+                            addToReceiving[2] = true;
+                            enemyTeamButtonPos[2] = DutchTradeButton[a].transform.position;
                         }
+
+                        else if (SixNationsTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
+                        {
+                            addToReceiving[3] = true;
+                            enemyTeamButtonPos[3] = SixNationsTradeButton[a].transform.position;
+
+                        }
+
+                        
                     }
 
                 }
@@ -733,11 +751,24 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     for (int a = 0; a < MunseeTradeButton.Length; a++)
                     {
-                        enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
-                        if (MunseeTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
+                        if (MunseeTradeButton[a].transform.parent.transform.parent.name == "Dutch")
                         {
-                            addToReceiving[a] = true;
-                            enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
+                            enemyTeamButtonPos[0] = MunseeTradeButton[a].transform.position;
+                        }
+                        else if (MunseeTradeButton[1].transform.parent.parent.name == "Philipses") // If the screen is Philipses
+                        {
+                            enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
+
+                        }
+                        else if (MunseeTradeButton[2].transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            enemyTeamButtonPos[2] = MunseeTradeButton[a].transform.position;
+                        }
+                        
+                        else if (MunseeTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
+                        {
+                            addToReceiving[3] = true;
+                            enemyTeamButtonPos[3] = MunseeTradeButton[a].transform.position;
 
                         }
                     }
