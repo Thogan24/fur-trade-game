@@ -638,7 +638,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     }
 
-    
+    public Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+    public GameObject[] instantiatedCard = { null, null, null, null };
+    public GameObject[] CardsCanvasObjects = { null, null, null, null };
     [PunRPC]
     void addCardToTrade(string tag, string parentTag, PhotonMessageInfo info)
     {
@@ -648,7 +650,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log((turn == 1 && playerString == Dutch));
         if ((turn == 1 && playerString == Dutch) || (turn == 2 && playerString == Philipses) || (turn == 3 && playerString == SixNations) || (turn == 4 && playerString == Munsee))
         {
-            Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+            //Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
             bool[] addToReceiving = { false, false, false, false }; // Add to the receiving side of the trade (right) instead of the giving side (left)
             
 
@@ -664,19 +666,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             addToReceiving[a] = true;
                             enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
-                            /*                        if (DutchTrading == true)
-                                                    {
-                                                        enemyTeamButtonPos[a] = DutchTradeButton[a].transform.position;
-                                                    }
-
-                                                    else if(PhilipsesTrading == true)
-                                                    {
-                                                        enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;
-                                                    }
-                                                    else if (MunseeTrading == true)
-                                                    {
-                                                        enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
-                                                    }*/
                         }
                     }
 
@@ -719,7 +708,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
             Debug.LogError("Adding card...");
-            GameObject[] instantiatedCard = { null, null, null, null };
+            /*GameObject[] instantiatedCard = { null, null, null, null };*/
             int isParentWishlist = 0;
             int isParentInventory = 1;
 
@@ -800,8 +789,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
                 }
             }
-
-            GameObject[] CardsCanvasObjects = { DutchCardsCanvasObject, PhilipsesCardsCanvasObject, SixNationsCardsCanvasObject, MunseeCardsCanvasObject };
+            CardsCanvasObjects[0] = DutchCardsCanvasObject;
+            CardsCanvasObjects[1] = PhilipsesCardsCanvasObject;
+            CardsCanvasObjects[2] = SixNationsCardsCanvasObject;
+            CardsCanvasObjects[3] = MunseeCardsCanvasObject;
+            /*CardsCanvasObjects = {DutchCardsCanvasObject, PhilipsesCardsCanvasObject, SixNationsCardsCanvasObject, MunseeCardsCanvasObject };*/
 
             if (parentTag == "Wishlist")
             {
