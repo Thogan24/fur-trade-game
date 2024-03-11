@@ -47,35 +47,6 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
                 Debug.LogError("UserID of Clicker: " + userIDOfClicker);
                 this.GetComponent<PhotonView>().RPC("teamsThatAreTrading", RpcTarget.All, userIDOfClicker);
             }
-/*                Debug.Log("Works right, " + userIDOfClicker);
-
-                gameManager.PhilipsesTrading = true;
-                string team = gameManager.findPlayerTeam(userIDOfClicker);
-
-                Debug.LogError("Team Selected: " + team);
-                if (team == "Dutch")
-                {
-                    Debug.LogError("Dutch is Trading");
-                    gameManager.DutchTrading = true;
-                    Debug.LogError(gameManager.DutchTrading);
-                }
-                if (team == "Philipses")
-                {
-                    Debug.LogError("Philipses is Trading");
-                    gameManager.PhilipsesTrading = true;
-                }
-                if (team == "SixNations")
-                {
-                    Debug.LogError("Six Nations is Trading");
-                    gameManager.PhilipsesTrading = true;
-                }
-                if (team == "Munsee")
-                {
-                    Debug.LogError("Munsee is Trading");
-                    gameManager.MunseeTrading = true;
-                }
-                teamsThatAreTrading(team);
-                greyOutButtons();*/
                 return;
             }
         

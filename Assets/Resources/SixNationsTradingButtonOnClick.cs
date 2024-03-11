@@ -47,17 +47,6 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
                 Debug.LogError("UserID of Clicker: " + userIDOfClicker);
                 this.GetComponent<PhotonView>().RPC("teamsThatAreTrading", RpcTarget.All, userIDOfClicker);
             }
-            //if (gameManager.SixNations == userIDOfClicker)
-            //{
-            //Debug.Log("This happened.");
-            // Skip to next turn
-            //}
-
-            //else
-            //{
-            //Debug.Log("Works right, " + userIDOfClicker);
-                
-            
         }
        
     }
@@ -65,6 +54,8 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
     [PunRPC]
     void teamsThatAreTrading(string userIDOfClicker)
     {
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
         gameManager.SixNationsTrading = true;
         string team = gameManager.findPlayerTeam(userIDOfClicker);
 

@@ -47,17 +47,6 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
                 Debug.LogError("UserID of Clicker: " + userIDOfClicker);
                 this.GetComponent<PhotonView>().RPC("teamsThatAreTrading", RpcTarget.All, userIDOfClicker);
             }
-            //if (gameManager.Munsee == userIDOfClicker)
-            //{
-            //Debug.Log("This happened.");
-            // Skip to next turn
-            //}
-
-            //else
-            //{
-            //Debug.Log("Works right, " + userIDOfClicker);
-
-            //}
         }
         
     }

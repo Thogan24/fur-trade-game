@@ -709,10 +709,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             
 
             // Sets up enemy team button positions & addToReceiving
+
+            // MAKE OTHER TEAMS BESIDES DUTCH ASAP
             if (playerString == Dutch && DutchTrading == true)
             {
-
-                // FIX ORDER FOR OTHER TWO ASAP!!
 
 
                 if (SixNationsTrading == true) // If six nations is the enemy team
@@ -959,6 +959,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void cardSwitchTeams(PhotonMessageInfo info) // TODO
     {
+        // Switching things for every team do ASAP
         theSender = info.Sender.ToString();
         if (theSender == PhotonNetwork.LocalPlayer.ToString())
         {
@@ -1093,14 +1094,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(theSender == info.Sender.ToString() && info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString())
         {
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
-            for (int i = 0; i < tradeGivingCardsParent.Length; i++) // For every Trade giving card object, destroy all their child objects
+            for (int i = 0; i < tradeGivingCardsParent.Length; i++) // For every Trade giving card object, set inactive
             {
                 
                 int b = 0;
                 while (tradeGivingCardsParent[i].transform.childCount != b && b < 1000)
                 {
                     tradeGivingCardsParent[i].transform.GetChild(b).gameObject.SetActive(false);
-                    //Debug.Log(tradeGivingCardsParent[i].transform.GetChild(b).gameObject);
                     b++;
                 }
 
@@ -1108,12 +1108,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 
                 b = 0;
-                while (tradeReceivingCardsParent[i].transform.childCount != b && b < 1000)
+                while (tradeReceivingCardsParent[i].transform.childCount != b && b < 1000) // For every Trade receiving card object, set inactive
                 {
                     tradeReceivingCardsParent[i].transform.GetChild(b).gameObject.SetActive(false);
-                    //Debug.Log(tradeReceivingCardsParent[i].transform.GetChild(b).gameObject);
                     b++;
                 }
+
+
+                // DESTROYING METHOD (not working)
 
                 /*
                  * 
