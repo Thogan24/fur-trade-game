@@ -45,7 +45,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
 
                 Debug.Log("RPC is running");
                 Debug.LogError("UserID of Clicker: " + userIDOfClicker);
-                this.GetComponent<PhotonView>().RPC("teamsThatAreTrading", RpcTarget.All, userIDOfClicker, gameManager);
+                this.GetComponent<PhotonView>().RPC("teamsThatAreTrading", RpcTarget.All, userIDOfClicker);
             }
 /*                Debug.Log("Works right, " + userIDOfClicker);
 
@@ -85,9 +85,9 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
     }
 
     [PunRPC]
-    void teamsThatAreTrading(string userIDOfClicker, GameManager gameManager)
+    void teamsThatAreTrading(string userIDOfClicker)
     {
-        
+            gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
 
 
 
