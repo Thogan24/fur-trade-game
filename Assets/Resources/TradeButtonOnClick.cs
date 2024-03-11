@@ -29,12 +29,13 @@ public class TradeButtonOnClick : MonoBehaviour
     }
 
     [PunRPC]
-    void WhenClicked(string userIDOfClicker) // 
+    void WhenClicked(string userIDOfClicker, PhotonMessageInfo info) // 
     {
         Debug.Log(userIDOfClicker);
         Debug.Log(PhotonNetwork.LocalPlayer.ToString());
+        Debug.Log(info.Sender.ToString());
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        string team = gameManager.findPlayerTeam(userIDOfClicker);
+        string team = gameManager.findPlayerTeam(info.Sender.ToString()); // userIdOfClicker
 
         Debug.LogError("Team Selected: " + team);
         if (team == "Dutch")
