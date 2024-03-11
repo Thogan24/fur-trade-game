@@ -3092,12 +3092,35 @@ MonoBehaviour:
   - Philipses
   - Six Nations
   - Munsee
-  tradeGivingCardsParent: []
-  tradeReceivingCardsParent: []
+  tradeGivingCardsParent:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  tradeReceivingCardsParent:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   turn: 1
   totalTurnNumber: 0
   TurnTimer: 90
   SeasonalTimers: []
+  enemyTeamButtonPos:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  instantiatedCard:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CardsCanvasObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!222 &1290858076
 CanvasRenderer:
   m_ObjectHideFlags: 0
