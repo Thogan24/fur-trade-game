@@ -33,8 +33,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
         {
             
 
-
-                this.GetComponent<PhotonView>().RPC("teamsThatAreTrading", RpcTarget.All, userIDOfClicker);
+            this.GetComponent<PhotonView>().RPC("teamsThatAreTrading", RpcTarget.All, userIDOfClicker);
                 /*Debug.Log("Works right, " + userIDOfClicker);
 
                 gameManager.PhilipsesTrading = true;
@@ -117,6 +116,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
             }
             greyOutButtons();
             return;
+        }
     }
     
     
