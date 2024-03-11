@@ -700,7 +700,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         /*enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;*/
                         else if (PhilipsesTradeButton[a].transform.parent.parent.name == "Philipses") // If the screen is Philipses
                         {
-                            addToReceiving[a] = true;
+                            addToReceiving[1] = true;
                             enemyTeamButtonPos[1] = DutchTradeButton[a].transform.position;
 
                         }
