@@ -80,7 +80,7 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
             Debug.LogError("Munsee is Trading");
             gameManager.MunseeTrading = true;
         }
-        teamsThatAreTrading(team);
+        
         greyOutButtons();
         return;
     }
