@@ -612,6 +612,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         for (int y = 0; y < tradeGivingCardsParentfake.Length; y++)
         {
+            Debug.Log(y);
+            Debug.Log(tradeGivingCardsParent[0]);
+            Debug.Log(y);
             if (tradeGivingCardsParentfake[y].transform.parent.parent.name == "Dutch")
             {
                 tradeGivingCardsParent[0] = tradeGivingCardsParentfake[y];
