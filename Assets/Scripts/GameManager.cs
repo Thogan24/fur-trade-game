@@ -704,14 +704,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             //Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
             bool[] addToReceiving = { false, false, false, false }; // Add to the receiving side of the trade (right) instead of the giving side (left)
-            
+
 
             // Sets up enemy team button positions & addToReceiving
 
-            // MAKE OTHER TEAMS BESIDES DUTCH ASAP
+            #region
+
+
             if (playerString == Dutch && DutchTrading == true)
             {
-
+                
 
                 if (SixNationsTrading == true) // If six nations is the enemy team
                 {
@@ -753,7 +755,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             enemyTeamButtonPos[0] = MunseeTradeButton[a].transform.position;
                         }
-                        else if (MunseeTradeButton[1].transform.parent.parent.name == "Philipses") // If the screen is Philipses
+                        else if (MunseeTradeButton[1].transform.parent.parent.name == "Philipses") 
                         {
                             enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
 
@@ -793,7 +795,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         }
                         else if (PhilipsesTradeButton[a].transform.parent.transform.parent.name == "Munsee")
                         {
-                            enemyTeamButtonPos[3] = PhilipsesTradeButton[a].transform.position;
+                            enemyTeamButtonPos[3] = DutchTradeButton[a].transform.position;
                         }
                     }
                 }
@@ -805,6 +807,298 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
 
+            // AHHH
+
+
+            if (playerString == Philipses && PhilipsesTrading == true)
+            {
+
+
+                if (SixNationsTrading == true) // If six nations is the enemy team
+                {
+                    for (int a = 0; a < SixNationsTradeButton.Length; a++)
+                    {
+
+                        if (SixNationsTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            enemyTeamButtonPos[0] = SixNationsTradeButton[a].transform.position;
+                        }
+                        else if (SixNationsTradeButton[1].transform.parent.parent.name == "Philipses") // If the screen is Philipses
+                        {
+                            enemyTeamButtonPos[1] = SixNationsTradeButton[a].transform.position;
+
+                        }
+                        if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations") // If the screen is Six Nations
+                        {
+                            addToReceiving[2] = true;
+                            enemyTeamButtonPos[2] = PhilipsesTradeButton[a].transform.position;
+                        }
+
+                        else if (SixNationsTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
+                        {
+                            enemyTeamButtonPos[3] = SixNationsTradeButton[a].transform.position;
+
+                        }
+
+
+                    }
+
+                }
+
+                else if (MunseeTrading == true)
+                {
+                    for (int a = 0; a < MunseeTradeButton.Length; a++)
+                    {
+                        if (MunseeTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            enemyTeamButtonPos[0] = MunseeTradeButton[a].transform.position;
+                        }
+                        else if (MunseeTradeButton[1].transform.parent.parent.name == "Philipses") 
+                        {
+                            enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
+
+                        }
+                        else if (MunseeTradeButton[2].transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            enemyTeamButtonPos[2] = MunseeTradeButton[a].transform.position;
+                        }
+
+                        else if (MunseeTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
+                        {
+                            addToReceiving[3] = true;
+                            enemyTeamButtonPos[3] = PhilipsesTradeButton[a].transform.position;
+
+                        }
+                    }
+                }
+
+                else if (DutchTrading == true)
+                {
+                    for (int a = 0; a < PhilipsesTradeButton.Length; a++)
+                    {
+                        if (DutchTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            addToReceiving[0] = true;
+                            enemyTeamButtonPos[0] = PhilipsesTradeButton[a].transform.position;
+                        }
+                        /*enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;*/
+                        else if (DutchTradeButton[a].transform.parent.parent.name == "Philipses")
+                        {
+                            enemyTeamButtonPos[1] = DutchTradeButton[a].transform.position;
+
+                        }
+                        else if (DutchTradeButton[a].transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            enemyTeamButtonPos[2] = DutchTradeButton[a].transform.position;
+                        }
+                        else if (DutchTradeButton[a].transform.parent.transform.parent.name == "Munsee")
+                        {
+                            enemyTeamButtonPos[3] = DutchTradeButton[a].transform.position;
+                        }
+                    }
+                }
+
+                else
+                {
+                    Debug.LogError("No Enemy Team Selected");
+                    return;
+                }
+            }
+            // A
+
+            if (playerString == SixNations && SixNationsTrading == true)
+            {
+
+
+                if (PhilipsesTrading == true)
+                {
+                    for (int a = 0; a < PhilipsesTradeButton.Length; a++)
+                    {
+                        if (PhilipsesTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            enemyTeamButtonPos[0] = PhilipsesTradeButton[a].transform.position;
+                        }
+                        /*enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;*/
+                        else if (PhilipsesTradeButton[a].transform.parent.parent.name == "Philipses") // If the screen is Philipses
+                        {
+                            addToReceiving[1] = true;
+                            enemyTeamButtonPos[1] = SixNationsTradeButton[a].transform.position;
+
+                        }
+                        else if (PhilipsesTradeButton[a].transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            enemyTeamButtonPos[2] = PhilipsesTradeButton[a].transform.position;
+                        }
+                        else if (PhilipsesTradeButton[a].transform.parent.transform.parent.name == "Munsee")
+                        {
+                            enemyTeamButtonPos[3] = DutchTradeButton[a].transform.position;
+                        }
+                    }
+                }
+
+                else if (MunseeTrading == true)
+                {
+                    for (int a = 0; a < MunseeTradeButton.Length; a++)
+                    {
+                        if (MunseeTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            enemyTeamButtonPos[0] = MunseeTradeButton[a].transform.position;
+                        }
+                        else if (MunseeTradeButton[1].transform.parent.parent.name == "Philipses")
+                        {
+                            enemyTeamButtonPos[a] = MunseeTradeButton[a].transform.position;
+
+                        }
+                        else if (MunseeTradeButton[2].transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            enemyTeamButtonPos[2] = MunseeTradeButton[a].transform.position;
+                        }
+
+                        else if (MunseeTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
+                        {
+                            addToReceiving[3] = true;
+                            enemyTeamButtonPos[3] = SixNationsTradeButton[a].transform.position;
+
+                        }
+                    }
+                }
+
+                else if (DutchTrading == true)
+                {
+                    for (int a = 0; a < PhilipsesTradeButton.Length; a++)
+                    {
+                        if (DutchTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            addToReceiving[0] = true;
+                            enemyTeamButtonPos[0] = SixNationsTradeButton[a].transform.position;
+                        }
+                        /*enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;*/
+                        else if (DutchTradeButton[a].transform.parent.parent.name == "Philipses")
+                        {
+                            enemyTeamButtonPos[1] = DutchTradeButton[a].transform.position;
+
+                        }
+                        else if (DutchTradeButton[a].transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            enemyTeamButtonPos[2] = DutchTradeButton[a].transform.position;
+                        }
+                        else if (DutchTradeButton[a].transform.parent.transform.parent.name == "Munsee")
+                        {
+                            enemyTeamButtonPos[3] = DutchTradeButton[a].transform.position;
+                        }
+                    }
+                }
+
+                else
+                {
+                    Debug.LogError("No Enemy Team Selected");
+                    return;
+                }
+            }
+
+            // A
+
+            if (playerString == Munsee && MunseeTrading == true)
+            {
+
+
+                if (PhilipsesTrading == true)
+                {
+                    for (int a = 0; a < PhilipsesTradeButton.Length; a++)
+                    {
+                        if (PhilipsesTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            enemyTeamButtonPos[0] = PhilipsesTradeButton[a].transform.position;
+                        }
+                        /*enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;*/
+                        else if (PhilipsesTradeButton[a].transform.parent.parent.name == "Philipses") // If the screen is Philipses
+                        {
+                            addToReceiving[1] = true;
+                            enemyTeamButtonPos[1] = MunseeTradeButton[a].transform.position;
+
+                        }
+                        else if (PhilipsesTradeButton[a].transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            enemyTeamButtonPos[2] = PhilipsesTradeButton[a].transform.position;
+                        }
+                        else if (PhilipsesTradeButton[a].transform.parent.transform.parent.name == "Munsee")
+                        {
+                            enemyTeamButtonPos[3] = DutchTradeButton[a].transform.position;
+                        }
+                    }
+                }
+
+                else if (SixNationsTrading == true) // If six nations is the enemy team
+                {
+                    for (int a = 0; a < SixNationsTradeButton.Length; a++)
+                    {
+
+                        if (SixNationsTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            enemyTeamButtonPos[0] = SixNationsTradeButton[a].transform.position;
+                        }
+                        else if (SixNationsTradeButton[1].transform.parent.parent.name == "Philipses") // If the screen is Philipses
+                        {
+                            enemyTeamButtonPos[1] = SixNationsTradeButton[a].transform.position;
+
+                        }
+                        if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations") // If the screen is Six Nations
+                        {
+                            addToReceiving[2] = true;
+                            enemyTeamButtonPos[2] = MunseeTradeButton[a].transform.position;
+                        }
+
+                        else if (SixNationsTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
+                        {
+                            enemyTeamButtonPos[3] = SixNationsTradeButton[a].transform.position;
+
+                        }
+
+
+                    }
+
+                }
+
+                else if (DutchTrading == true)
+                {
+                    for (int a = 0; a < PhilipsesTradeButton.Length; a++)
+                    {
+                        if (DutchTradeButton[a].transform.parent.transform.parent.name == "Dutch")
+                        {
+                            addToReceiving[0] = true;
+                            enemyTeamButtonPos[0] = MunseeTradeButton[a].transform.position;
+                        }
+                        /*enemyTeamButtonPos[a] = PhilipsesTradeButton[a].transform.position;*/
+                        else if (DutchTradeButton[a].transform.parent.parent.name == "Philipses")
+                        {
+                            enemyTeamButtonPos[1] = DutchTradeButton[a].transform.position;
+
+                        }
+                        else if (DutchTradeButton[a].transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            enemyTeamButtonPos[2] = DutchTradeButton[a].transform.position;
+                        }
+                        else if (DutchTradeButton[a].transform.parent.transform.parent.name == "Munsee")
+                        {
+                            enemyTeamButtonPos[3] = DutchTradeButton[a].transform.position;
+                        }
+                    }
+                }
+
+                else
+                {
+                    Debug.LogError("No Enemy Team Selected");
+                    return;
+                }
+            }
+
+            #endregion // This 
+
+            //
+            // 
+            // ACTUALLY ADDING CARD PORTION
+            //
+            //
 
             Debug.LogError("Adding card...");
             /*GameObject[] instantiatedCard = { null, null, null, null };*/
