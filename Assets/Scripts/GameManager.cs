@@ -1106,20 +1106,79 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 // Philipses inventory + Trade Receiving Cards
 
+                int c = 0;
+
+                while (tradeReceivingCardsParent[1].transform.childCount != c && c < 500)
+                {
+
+                    Debug.Log(tradeReceivingCardsParent[1].transform.GetChild(c));
+                    string cardTag = tradeReceivingCardsParent[1].transform.GetChild(c).gameObject.tag;
+                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    {
+                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Philipses")
+                        {
+                            Debug.Log(cardAmountObjects[d]);
+                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                            PhilipsesAmounts[childIndex]++;
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex].ToString() + "x";
+                        }
+                    }
+                    c++;
+                }
                 PhilipsesAccepted = false;
                 PhilipsesTrading = false;
+
             }
             else if (SixNationsAccepted && turn == 3)
             {
                 // Six Nations inventory + Trade Receiving Cards
+                int c = 0;
 
+                while (tradeReceivingCardsParent[2].transform.childCount != c && c < 500)
+                {
+
+                    Debug.Log(tradeReceivingCardsParent[2].transform.GetChild(c));
+                    string cardTag = tradeReceivingCardsParent[2].transform.GetChild(c).gameObject.tag;
+                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    {
+                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            Debug.Log(cardAmountObjects[d]);
+                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                            SixNationsAmounts[childIndex]++;
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
+                        }
+                    }
+                    c++;
+                }
                 SixNationsAccepted = false;
                 SixNationsTrading = false;
             }
             else if (MunseeAccepted && turn == 4)
             {
                 // Munsee inventory + Trade Receiving Cards
+                int c = 0;
 
+                while (tradeReceivingCardsParent[3].transform.childCount != c && c < 500)
+                {
+
+                    Debug.Log(tradeReceivingCardsParent[3].transform.GetChild(c));
+                    string cardTag = tradeReceivingCardsParent[3].transform.GetChild(c).gameObject.tag;
+                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    {
+                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Munsee")
+                        {
+                            Debug.Log(cardAmountObjects[d]);
+                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                            MunseeAmounts[childIndex]++;
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
+                        }
+                    }
+                    c++;
+                }
                 MunseeAccepted = false;
                 MunseeTrading = false;
             }
@@ -1129,6 +1188,44 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (DutchAccepted)
             {
                 // Dutch inventory + Trade Receiving Cards - Trade Giving Cards
+                int c = 0;
+
+                while (tradeReceivingCardsParent[0].transform.childCount != c && c < 500)
+                {
+                    Debug.Log(tradeReceivingCardsParent[0].transform.GetChild(c));
+                    string cardTag = tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.tag;
+                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    {
+                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Dutch")
+                        {
+                            Debug.Log(cardAmountObjects[d]);
+                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                            DutchAmounts[childIndex]++;
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
+                        }
+                    }
+                    c++;
+                }
+                c = 0;
+                while (tradeGivingCardsParent[0].transform.childCount != c && tradeGivingCardsParent[0].transform.childCount > c && c < 500)
+                {
+                    Debug.Log(c);
+                    Debug.Log(tradeGivingCardsParent[0].transform.GetChild(c));
+                    string cardTag = tradeGivingCardsParent[0].transform.GetChild(c).gameObject.tag;
+                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    {
+                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Dutch")
+                        {
+                            Debug.Log(cardAmountObjects[d]);
+                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                            DutchAmounts[childIndex]--;
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
+                        }
+                    }
+                    c++;
+                }
                 DutchAccepted = false;
                 DutchTrading = false;
             }
@@ -1179,12 +1276,88 @@ public class GameManager : MonoBehaviourPunCallbacks
             else if (SixNationsAccepted)
             {
                 // Six Nations inventory + Trade Receiving Cards - Trade Giving Cards
+                int c = 0;
+
+                while (tradeReceivingCardsParent[2].transform.childCount != c && c < 500)
+                {
+                    Debug.Log(tradeReceivingCardsParent[2].transform.GetChild(c));
+                    string cardTag = tradeReceivingCardsParent[2].transform.GetChild(c).gameObject.tag;
+                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    {
+                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            Debug.Log(cardAmountObjects[d]);
+                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                            SixNationsAmounts[childIndex]++;
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
+                        }
+                    }
+                    c++;
+                }
+                c = 0;
+                while (tradeGivingCardsParent[2].transform.childCount != c && tradeGivingCardsParent[2].transform.childCount > c && c < 500)
+                {
+                    Debug.Log(c);
+                    Debug.Log(tradeGivingCardsParent[2].transform.GetChild(c));
+                    string cardTag = tradeGivingCardsParent[2].transform.GetChild(c).gameObject.tag;
+                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    {
+                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Six Nations")
+                        {
+                            Debug.Log(cardAmountObjects[d]);
+                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                            SixNationsAmounts[childIndex]--;
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
+                        }
+                    }
+                    c++;
+                }
                 SixNationsAccepted = false;
                 SixNationsTrading = false;
             }
             else if (MunseeAccepted)
             {
                 // Munsee inventory + Trade Receiving Cards - Trade Giving Cards
+                int c = 0;
+
+                while (tradeReceivingCardsParent[3].transform.childCount != c && c < 500)
+                {
+                    Debug.Log(tradeReceivingCardsParent[3].transform.GetChild(c));
+                    string cardTag = tradeReceivingCardsParent[3].transform.GetChild(c).gameObject.tag;
+                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    {
+                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Munsee")
+                        {
+                            Debug.Log(cardAmountObjects[d]);
+                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                            MunseeAmounts[childIndex]++;
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
+                        }
+                    }
+                    c++;
+                }
+                c = 0;
+                while (tradeGivingCardsParent[3].transform.childCount != c && tradeGivingCardsParent[3].transform.childCount > c && c < 500)
+                {
+                    Debug.Log(c);
+                    Debug.Log(tradeGivingCardsParent[3].transform.GetChild(c));
+                    string cardTag = tradeGivingCardsParent[3].transform.GetChild(c).gameObject.tag;
+                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    {
+                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Munsee")
+                        {
+                            Debug.Log(cardAmountObjects[d]);
+                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                            MunseeAmounts[childIndex]--;
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
+                        }
+                    }
+                    c++;
+                }
                 MunseeAccepted = false;
                 MunseeTrading = false;
             }
