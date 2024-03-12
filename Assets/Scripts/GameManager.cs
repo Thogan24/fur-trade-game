@@ -679,20 +679,42 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         for (int x = 0; x < inventoryCards.Length; x++)
         {
-            if(inventoryCards[x].transform.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            if (inventoryCards[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
             {
                 inventoryCards[x].gameObject.SetActive(false);
             }
-                
+
         }
         for (int x = 0; x < wishlistCards.Length; x++)
         {
-            if (wishlistCards[x].transform.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            if (wishlistCards[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
             {
                 wishlistCards[x].gameObject.SetActive(false);
             }
 
         }
+
+        for (int x = 0; x < teamNames.Length; x++)
+        {
+            
+            if (DutchTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                DutchTradeButton[x].gameObject.SetActive(false);
+            }
+            if (PhilipsesTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                PhilipsesTradeButton[x].gameObject.SetActive(false);
+            }
+            if (MunseeTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                MunseeTradeButton[x].gameObject.SetActive(false);
+            }
+            if (SixNationsTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                SixNationsTradeButton[x].gameObject.SetActive(false);
+            }
+        }
+        
     }
 
 
