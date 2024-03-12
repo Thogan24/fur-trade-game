@@ -1121,6 +1121,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
             Debug.Log("Is inventory: " + isParentInventory + "| Is wishlist: " + isParentWishlist);
+            Debug.Log("equals: " + playerString == Dutch);
+            Debug.Log("equals2: " + playerString == Philipses);
             // The Dutch Region
             #region
             if (playerString == Dutch && DutchTrading == true)
@@ -1196,7 +1198,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             #endregion
             // The Philipses Region
-/*
+
             #region 
             if (playerString == Philipses && PhilipsesTrading == true)
             {
@@ -1417,7 +1419,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
                 }
             }
-            #endregion*/
+            #endregion
             CardsCanvasObjects[0] = DutchCardsCanvasObject;
             CardsCanvasObjects[1] = PhilipsesCardsCanvasObject;
             CardsCanvasObjects[2] = SixNationsCardsCanvasObject;
