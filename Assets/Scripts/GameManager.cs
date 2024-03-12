@@ -1189,13 +1189,14 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             #endregion
             // The Philipses Region
+/*
             #region 
-            if (playerString == Dutch && DutchTrading == true)
+            if (playerString == Philipses && PhilipsesTrading == true)
             {
                 for (int z = 0; z < tags.Length; z++)
                 {
                     Debug.Log(tag + " " + tags[z]);
-                    if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
+                    if (tag == tags[z] && ((PhilipsesAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
                     {
 
                         if (isParentInventory == 1)
@@ -1212,14 +1213,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
 
                             }
-                            Debug.Log(DutchAmounts[z]);
-                            DutchAmounts[z]--;
-                            DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
+                            Debug.Log(PhilipsesAmounts[z]);
+                            PhilipsesAmounts[z]--;
+                            PhilipsesAmountsGameObjects[z].GetComponent<Text>().text = PhilipsesAmounts[z].ToString() + "x";
                         }
                         else
                         {
-                            Debug.Log(DutchAmounts[z + 13]);
-                            if (DutchAmountsGameObjects[z + 13] != null && DutchAmounts[z + 13] > 0)
+                            Debug.Log(PhilipsesAmounts[z + 13]);
+                            if (PhilipsesAmountsGameObjects[z + 13] != null && PhilipsesAmounts[z + 13] > 0)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1235,8 +1236,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     }
 
                                 }
-                                DutchAmounts[z + 13]--;
-                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "x";
+                                PhilipsesAmounts[z + 13]--;
+                                PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "x";
 
                                 break;
                             }
@@ -1264,12 +1265,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             #endregion
             // The Six Nations Region
             #region
-            if (playerString == Dutch && DutchTrading == true)
+            if (playerString == SixNations && SixNationsTrading == true)
             {
                 for (int z = 0; z < tags.Length; z++)
                 {
                     Debug.Log(tag + " " + tags[z]);
-                    if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
+                    if (tag == tags[z] && ((SixNationsAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
                     {
 
                         if (isParentInventory == 1)
@@ -1286,14 +1287,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
 
                             }
-                            Debug.Log(DutchAmounts[z]);
-                            DutchAmounts[z]--;
-                            DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
+                            Debug.Log(SixNationsAmounts[z]);
+                            SixNationsAmounts[z]--;
+                            SixNationsAmountsGameObjects[z].GetComponent<Text>().text = SixNationsAmounts[z].ToString() + "x";
                         }
                         else
                         {
-                            Debug.Log(DutchAmounts[z + 13]);
-                            if (DutchAmountsGameObjects[z + 13] != null && DutchAmounts[z + 13] > 0)
+                            Debug.Log(SixNationsAmounts[z + 13]);
+                            if (SixNationsAmountsGameObjects[z + 13] != null && SixNationsAmounts[z + 13] > 0)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1309,8 +1310,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     }
 
                                 }
-                                DutchAmounts[z + 13]--;
-                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "x";
+                                SixNationsAmounts[z + 13]--;
+                                SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "x";
 
                                 break;
                             }
@@ -1338,12 +1339,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             #endregion
             // The Munsee Region
             #region
-            if (playerString == Dutch && DutchTrading == true)
+            if (playerString == Munsee && MunseeTrading == true)
             {
                 for (int z = 0; z < tags.Length; z++)
                 {
                     Debug.Log(tag + " " + tags[z]);
-                    if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
+                    if (tag == tags[z] && ((MunseeAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
                     {
 
                         if (isParentInventory == 1)
@@ -1360,14 +1361,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
 
                             }
-                            Debug.Log(DutchAmounts[z]);
-                            DutchAmounts[z]--;
-                            DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
+                            Debug.Log(MunseeAmounts[z]);
+                            MunseeAmounts[z]--;
+                            MunseeAmountsGameObjects[z].GetComponent<Text>().text = MunseeAmounts[z].ToString() + "x";
                         }
                         else
                         {
-                            Debug.Log(DutchAmounts[z + 13]);
-                            if (DutchAmountsGameObjects[z + 13] != null && DutchAmounts[z + 13] > 0)
+                            Debug.Log(MunseeAmounts[z + 13]);
+                            if (MunseeAmountsGameObjects[z + 13] != null && MunseeAmounts[z + 13] > 0)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1383,8 +1384,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     }
 
                                 }
-                                DutchAmounts[z + 13]--;
-                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "x";
+                                MunseeAmounts[z + 13]--;
+                                MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "x";
 
                                 break;
                             }
@@ -1409,7 +1410,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
                 }
             }
-            #endregion
+            #endregion*/
             CardsCanvasObjects[0] = DutchCardsCanvasObject;
             CardsCanvasObjects[1] = PhilipsesCardsCanvasObject;
             CardsCanvasObjects[2] = SixNationsCardsCanvasObject;
