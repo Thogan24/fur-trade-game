@@ -497,118 +497,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             }
         }
-/*
-
-
-        if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
-        {
-            for (int i = 0; i < DutchAmounts.Length; i++)
-            {
-                if (i < 13)
-                {
-                    Debug.Log(i);
-
-                    DutchAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i] + "Amount");
-                    DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
-                }
-                // Part of Wishlist
-                else
-                {
-                    if(DutchAmounts[i] == 0)
-                    {
-                        DutchAmountsGameObjects[i] = null;
-                    }
-                    else
-                    {
-                        DutchAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i - 13] + " Amount Wishlist");
-                        DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
-                    }
-                }
-                
-                
-            }
-        }
-        if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false)
-        {
-            for (int i = 0; i < SixNationsAmounts.Length; i++)
-            {
-                if (i < 13)
-                {
-                    Debug.Log(i);
-                    SixNationsAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i] + "Amount");
-                    SixNationsAmountsGameObjects[i].GetComponent<Text>().text = SixNationsAmounts[i].ToString() + "x";
-                }
-                // Part of Wishlist
-                else
-                {
-                    if (SixNationsAmounts[i] == 0)
-                    {
-                        SixNationsAmountsGameObjects[i] = null;
-                    }
-                    else
-                    {
-                        SixNationsAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i - 13] + " Amount Wishlist");
-                        SixNationsAmountsGameObjects[i].GetComponent<Text>().text = SixNationsAmounts[i].ToString() + "x";
-                    }
-                }
-
-
-            }
-        }
-        if (PhotonNetwork.LocalPlayer.ToString() == Munsee && AlreadyLoaded == false)
-        {
-            for (int i = 0; i < MunseeAmounts.Length; i++)
-            {
-                if (i < 13)
-                {
-                    Debug.Log(i);
-                    MunseeAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i] + "Amount");
-                    MunseeAmountsGameObjects[i].GetComponent<Text>().text = MunseeAmounts[i].ToString() + "x";
-                }
-                // Part of Wishlist
-                else
-                {
-                    if (MunseeAmounts[i] == 0)
-                    {
-                        MunseeAmountsGameObjects[i] = null;
-                    }
-                    else
-                    {
-                        MunseeAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i - 13] + " Amount Wishlist");
-                        MunseeAmountsGameObjects[i].GetComponent<Text>().text = MunseeAmounts[i].ToString() + "x";
-                    }
-                }
-
-
-            }
-        }
-        if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false)
-        {
-            for (int i = 0; i < PhilipsesAmounts.Length; i++)
-            {
-                if (i < 13)
-                {
-                    Debug.Log(i);
-                    PhilipsesAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i] + "Amount");
-                    PhilipsesAmountsGameObjects[i].GetComponent<Text>().text = PhilipsesAmounts[i].ToString() + "x";
-                }
-                // Part of Wishlist
-                else
-                {
-                    if(PhilipsesAmounts[i] == 0)
-                    {
-                        PhilipsesAmountsGameObjects[i] = null;
-                    }
-                    else
-                    {
-                        PhilipsesAmountsGameObjects[i] = GameObject.FindGameObjectWithTag(tags[i - 13] + " Amount Wishlist");
-                        PhilipsesAmountsGameObjects[i].GetComponent<Text>().text = PhilipsesAmounts[i].ToString() + "x";
-                    }
-                }
-                
-                
-            }
-        }*/
 
         GameObject[] tradeGivingCardsParentfake = GameObject.FindGameObjectsWithTag("Giving");
 
@@ -1449,6 +1337,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                 SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " | Turn: " + teamNames[(turn - 1)].ToString();
             }
 
+            numberOfAcceptedTeams = 0;
+            DutchAccepted = false;
+            SixNationsAccepted = false;
+            MunseeAccepted = false;
+            PhilipsesAccepted = false;
+
             if (!DutchTrading)
             {
                 for (int i = 0; i < DutchTradeButton.Length; i++)
@@ -1479,6 +1373,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
         }
+        
 
         /*PhilipsesTradingButtonOnClick philipsesTradingButtonOnClick = new PhilipsesTradingButtonOnClick();
         philipsesTradingButtonOnClick.GetComponent<PhotonView>().RPC("greyOutButtons", RpcTarget.All);*/
