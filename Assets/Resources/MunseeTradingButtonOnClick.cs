@@ -82,7 +82,7 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
         }
         
         greyOutButtons();
-        gameManager.ReactivateTeamFlags();
+        gameManager.CallReactivateTeamFlagsRPC();
         return;
     }
     [PunRPC]

@@ -77,7 +77,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject PhilipsesBackgroundCanvasObject;
     public GameObject PhilipsesCardsCanvasObject;
 
-    
+    public GameObject DutchObject;
+    public GameObject PhilipsesObject;
+    public GameObject SixNationsObject;
+    public GameObject MunseeObject;
 
     public bool AlreadyLoaded = false;
 
@@ -411,6 +414,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void mainSceneSetInventoryAmountsRPC() // TO DO
     {
+        DutchObject = GameObject.FindGameObjectWithTag("Dutch");
+        PhilipsesObject = GameObject.FindGameObjectWithTag("Philipses");
+        SixNationsObject = GameObject.FindGameObjectWithTag("Six Nations");
+        MunseeObject = GameObject.FindGameObjectWithTag("Munsee");
         GameObject[] AmountsGameObjectsWithTag = { };
         if (!AlreadyLoaded)
         {
@@ -1896,8 +1903,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
         }
+        DutchObject.SetActive(false);
+        DutchObject.SetActive(true);
+        MunseeObject.SetActive(false);
+        MunseeObject.SetActive(true);
+        Debug.Log("did");
         
-
         /*PhilipsesTradingButtonOnClick philipsesTradingButtonOnClick = new PhilipsesTradingButtonOnClick();
         philipsesTradingButtonOnClick.GetComponent<PhotonView>().RPC("greyOutButtons", RpcTarget.All);*/
 

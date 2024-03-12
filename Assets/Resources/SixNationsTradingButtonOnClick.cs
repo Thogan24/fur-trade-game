@@ -83,7 +83,7 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
         }
 
         greyOutButtons();
-        gameManager.ReactivateTeamFlags();
+        gameManager.CallReactivateTeamFlagsRPC();
         return;
     
     }
