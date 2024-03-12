@@ -694,7 +694,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         }
 
-        for (int x = 0; x < teamNames.Length; x++)
+/*        for (int x = 0; x < teamNames.Length; x++)
         {
             
             if (DutchTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
@@ -713,7 +713,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 SixNationsTradeButton[x].gameObject.SetActive(false);
             }
-        }
+        }*/
         
     }
 
