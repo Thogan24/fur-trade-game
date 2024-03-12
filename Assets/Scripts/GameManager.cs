@@ -711,22 +711,23 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             if (DutchTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
             {
-                DutchOriginalPositions[x] = DutchTradeButton[x].transform.parent.position;
+                
+                DutchOriginalPositions[x] = DutchTradeButton[x].transform.position;
                 DutchTradeButton[x].gameObject.transform.position = new Vector3(1000, 1000, 1000);
             }
             if (PhilipsesTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
             {
-                PhilipsesOriginalPositions[x] = DutchTradeButton[x].transform.parent.position;
+                PhilipsesOriginalPositions[x] = PhilipsesTradeButton[x].transform.position;
                 PhilipsesTradeButton[x].gameObject.transform.position = new Vector3(1000, 1000, 1000);
             }
             if (SixNationsTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
             {
-                SixNationsOriginalPositions[x] = DutchTradeButton[x].transform.parent.position;
+                SixNationsOriginalPositions[x] = SixNationsTradeButton[x].transform.position;
                 SixNationsTradeButton[x].gameObject.transform.position = new Vector3(1000, 1000, 1000);
             }
             if (MunseeTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
             {
-                MunseeOriginalPositions[x] = DutchTradeButton[x].transform.parent.position;
+                MunseeOriginalPositions[x] = MunseeTradeButton[x].transform.position;
                 MunseeTradeButton[x].gameObject.transform.position = new Vector3(1000, 1000, 1000);
             }
             
