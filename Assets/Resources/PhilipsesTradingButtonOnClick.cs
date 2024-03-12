@@ -88,7 +88,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
             gameManager.MunseeTrading = true;
         }
         greyOutButtons();
-        gameManager.ReactivateTeamFlags();
+        gameManager.CallReactivateTeamFlagsRPC();
         return;
         
     }

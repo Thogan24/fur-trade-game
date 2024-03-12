@@ -734,6 +734,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public void CallReactivateTeamFlagsRPC()
+    {
+        this.GetComponent<PhotonView>().RPC("ReactivateTeamFlags", RpcTarget.All);
+    }
+    [PunRPC]
     public void ReactivateTeamFlags()
     {
         for (int x = 0; x < teamNames.Length; x++)
@@ -1247,6 +1252,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void MoveTurns(PhotonMessageInfo info)
     {
+        DeactivateTeamFlags();
         Debug.Log(info.Sender.ToString());
         if (theSender == info.Sender.ToString() && info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString())
         {
@@ -1305,6 +1311,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         philipsesTradingButtonOnClick.GetComponent<PhotonView>().RPC("greyOutButtons", RpcTarget.All);*/
 
     }
+    
         
     
 
