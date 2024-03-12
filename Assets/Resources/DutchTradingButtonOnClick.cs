@@ -83,6 +83,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         }
         
         greyOutButtons();
+        gameManager.ReactivateTeamFlags();
         return;
             //}
         }

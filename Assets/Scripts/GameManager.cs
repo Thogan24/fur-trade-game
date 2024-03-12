@@ -224,6 +224,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
             this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
             DeactivateAllOtherButtons();
+            DeactivateTeamFlags();
 
             AlreadyLoaded = true;
         }
@@ -693,28 +694,68 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
 
         }
+   
+    }
 
-/*        for (int x = 0; x < teamNames.Length; x++)
+
+    Vector3[] DutchOriginalPositions = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+    Vector3[] PhilipsesOriginalPositions = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+    Vector3[] SixNationsOriginalPositions = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+    Vector3[] MunseeOriginalPositions = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+
+    public void DeactivateTeamFlags()
+    {
+        
+        for (int x = 0; x < teamNames.Length; x++)
         {
-            
+
             if (DutchTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
             {
-                DutchTradeButton[x].gameObject.SetActive(false);
+                DutchOriginalPositions[x] = DutchTradeButton[x].transform.parent.position;
+                DutchTradeButton[x].gameObject.transform.position = new Vector3(1000, 1000, 1000);
             }
             if (PhilipsesTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
             {
-                PhilipsesTradeButton[x].gameObject.SetActive(false);
-            }
-            if (MunseeTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
-            {
-                MunseeTradeButton[x].gameObject.SetActive(false);
+                PhilipsesOriginalPositions[x] = DutchTradeButton[x].transform.parent.position;
+                PhilipsesTradeButton[x].gameObject.transform.position = new Vector3(1000, 1000, 1000);
             }
             if (SixNationsTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
             {
-                SixNationsTradeButton[x].gameObject.SetActive(false);
+                SixNationsOriginalPositions[x] = DutchTradeButton[x].transform.parent.position;
+                SixNationsTradeButton[x].gameObject.transform.position = new Vector3(1000, 1000, 1000);
             }
-        }*/
-        
+            if (MunseeTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                MunseeOriginalPositions[x] = DutchTradeButton[x].transform.parent.position;
+                MunseeTradeButton[x].gameObject.transform.position = new Vector3(1000, 1000, 1000);
+            }
+            
+        }
+    }
+
+    public void ReactivateTeamFlags()
+    {
+        for (int x = 0; x < teamNames.Length; x++)
+        {
+
+            if (DutchTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                DutchTradeButton[x].gameObject.transform.position = DutchOriginalPositions[x];
+            }
+            if (PhilipsesTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                PhilipsesTradeButton[x].gameObject.transform.position = PhilipsesOriginalPositions[x];
+            }
+            if (SixNationsTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                SixNationsTradeButton[x].gameObject.transform.position = SixNationsOriginalPositions[x];
+            }
+            if (MunseeTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
+            {
+                MunseeTradeButton[x].gameObject.transform.position = MunseeOriginalPositions[x];
+            }
+            
+        }
     }
 
 
