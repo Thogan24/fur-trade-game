@@ -1092,7 +1092,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
 
-            #endregion // This 
+            #endregion // This  
 
             //
             // 
@@ -1114,74 +1114,302 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
             Debug.Log("Is inventory: " + isParentInventory + "| Is wishlist: " + isParentWishlist);
-            for (int z = 0; z < tags.Length; z++)
+            // The Dutch Region
+            #region
+            if (playerString == Dutch && DutchTrading == true)
             {
-                Debug.Log(tag + " " + tags[z]);
-                if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
+                for (int z = 0; z < tags.Length; z++)
                 {
-
-                    if (isParentInventory == 1)
+                    Debug.Log(tag + " " + tags[z]);
+                    if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
                     {
-                        for (int b = 0; b < enemyTeamButtonPos.Length; b++)
-                        {
-                            if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
-                            {
-                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
-                            }
-                            else
-                            {
-                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
-                            }
 
-                        }
-                        Debug.Log(DutchAmounts[z]);
-                        DutchAmounts[z]--;
-                        DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
-                    }
-                    else
-                    {
-                        Debug.Log(DutchAmounts[z + 13]);
-                        if (DutchAmountsGameObjects[z + 13] != null && DutchAmounts[z + 13] > 0)
+                        if (isParentInventory == 1)
                         {
-
-                            for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                            for (int b = 0; b < enemyTeamButtonPos.Length; b++)
                             {
-                                if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
                                 {
-                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
                                 }
                                 else
                                 {
-
-                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                                 }
 
                             }
-                            DutchAmounts[z + 13]--;
-                            DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "x";
-
-                            break;
+                            Debug.Log(DutchAmounts[z]);
+                            DutchAmounts[z]--;
+                            DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
                         }
                         else
                         {
-                            Debug.LogError("None of specified card left");
+                            Debug.Log(DutchAmounts[z + 13]);
+                            if (DutchAmountsGameObjects[z + 13] != null && DutchAmounts[z + 13] > 0)
+                            {
+
+                                for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                                {
+                                    if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                    {
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+                                    }
+                                    else
+                                    {
+
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                    }
+
+                                }
+                                DutchAmounts[z + 13]--;
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "x";
+
+                                break;
+                            }
+                            else
+                            {
+                                Debug.LogError("None of specified card left");
+                                return;
+                            }
+                        }
+                        //
+
+
+                        break;
+                    }
+                    else
+                    {
+                        Debug.LogError("None of specified card left");
+                        if (z + 1 == tags.Length)
+                        {
                             return;
                         }
                     }
-                    //
-
-
-                    break;
                 }
-                else
+            }
+            #endregion
+            // The Philipses Region
+            #region 
+            if (playerString == Dutch && DutchTrading == true)
+            {
+                for (int z = 0; z < tags.Length; z++)
                 {
-                    Debug.LogError("None of specified card left");
-                    if (z + 1 == tags.Length)
+                    Debug.Log(tag + " " + tags[z]);
+                    if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
                     {
-                        return;
+
+                        if (isParentInventory == 1)
+                        {
+                            for (int b = 0; b < enemyTeamButtonPos.Length; b++)
+                            {
+                                if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
+                                {
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
+                                }
+                                else
+                                {
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                }
+
+                            }
+                            Debug.Log(DutchAmounts[z]);
+                            DutchAmounts[z]--;
+                            DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
+                        }
+                        else
+                        {
+                            Debug.Log(DutchAmounts[z + 13]);
+                            if (DutchAmountsGameObjects[z + 13] != null && DutchAmounts[z + 13] > 0)
+                            {
+
+                                for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                                {
+                                    if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                    {
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+                                    }
+                                    else
+                                    {
+
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                    }
+
+                                }
+                                DutchAmounts[z + 13]--;
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "x";
+
+                                break;
+                            }
+                            else
+                            {
+                                Debug.LogError("None of specified card left");
+                                return;
+                            }
+                        }
+                        //
+
+
+                        break;
+                    }
+                    else
+                    {
+                        Debug.LogError("None of specified card left");
+                        if (z + 1 == tags.Length)
+                        {
+                            return;
+                        }
                     }
                 }
             }
+            #endregion
+            // The Six Nations Region
+            #region
+            if (playerString == Dutch && DutchTrading == true)
+            {
+                for (int z = 0; z < tags.Length; z++)
+                {
+                    Debug.Log(tag + " " + tags[z]);
+                    if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
+                    {
+
+                        if (isParentInventory == 1)
+                        {
+                            for (int b = 0; b < enemyTeamButtonPos.Length; b++)
+                            {
+                                if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
+                                {
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
+                                }
+                                else
+                                {
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                }
+
+                            }
+                            Debug.Log(DutchAmounts[z]);
+                            DutchAmounts[z]--;
+                            DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
+                        }
+                        else
+                        {
+                            Debug.Log(DutchAmounts[z + 13]);
+                            if (DutchAmountsGameObjects[z + 13] != null && DutchAmounts[z + 13] > 0)
+                            {
+
+                                for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                                {
+                                    if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                    {
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+                                    }
+                                    else
+                                    {
+
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                    }
+
+                                }
+                                DutchAmounts[z + 13]--;
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "x";
+
+                                break;
+                            }
+                            else
+                            {
+                                Debug.LogError("None of specified card left");
+                                return;
+                            }
+                        }
+                        //
+
+
+                        break;
+                    }
+                    else
+                    {
+                        Debug.LogError("None of specified card left");
+                        if (z + 1 == tags.Length)
+                        {
+                            return;
+                        }
+                    }
+                }
+            }
+            #endregion
+            // The Munsee Region
+            #region
+            if (playerString == Dutch && DutchTrading == true)
+            {
+                for (int z = 0; z < tags.Length; z++)
+                {
+                    Debug.Log(tag + " " + tags[z]);
+                    if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
+                    {
+
+                        if (isParentInventory == 1)
+                        {
+                            for (int b = 0; b < enemyTeamButtonPos.Length; b++)
+                            {
+                                if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
+                                {
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
+                                }
+                                else
+                                {
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                }
+
+                            }
+                            Debug.Log(DutchAmounts[z]);
+                            DutchAmounts[z]--;
+                            DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
+                        }
+                        else
+                        {
+                            Debug.Log(DutchAmounts[z + 13]);
+                            if (DutchAmountsGameObjects[z + 13] != null && DutchAmounts[z + 13] > 0)
+                            {
+
+                                for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                                {
+                                    if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                    {
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+                                    }
+                                    else
+                                    {
+
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                    }
+
+                                }
+                                DutchAmounts[z + 13]--;
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "x";
+
+                                break;
+                            }
+                            else
+                            {
+                                Debug.LogError("None of specified card left");
+                                return;
+                            }
+                        }
+                        //
+
+
+                        break;
+                    }
+                    else
+                    {
+                        Debug.LogError("None of specified card left");
+                        if (z + 1 == tags.Length)
+                        {
+                            return;
+                        }
+                    }
+                }
+            }
+            #endregion
             CardsCanvasObjects[0] = DutchCardsCanvasObject;
             CardsCanvasObjects[1] = PhilipsesCardsCanvasObject;
             CardsCanvasObjects[2] = SixNationsCardsCanvasObject;
