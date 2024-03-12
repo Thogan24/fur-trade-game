@@ -1910,6 +1910,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         MunseeObject.SetActive(false);
         MunseeObject.SetActive(true);
         Debug.Log("did");
+
+        InventoryCardsInTrade = 0;
+        WishlistCardsInTrade = 0;
         
         /*PhilipsesTradingButtonOnClick philipsesTradingButtonOnClick = new PhilipsesTradingButtonOnClick();
         philipsesTradingButtonOnClick.GetComponent<PhotonView>().RPC("greyOutButtons", RpcTarget.All);*/
