@@ -39,6 +39,7 @@ public class DutchOnClickedScript : MonoBehaviour
 
 
         teamJoined = true;
-        
+
+        gameManager.moveSceneIfReadyCaller();
     }
 }

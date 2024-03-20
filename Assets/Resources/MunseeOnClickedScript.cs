@@ -38,5 +38,7 @@ public class MunseeOnClickedScript : MonoBehaviour
 
 
         teamJoined = true;
+
+        gameManager.moveSceneIfReadyCaller();
     }
 }

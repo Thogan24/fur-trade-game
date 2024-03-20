@@ -216,22 +216,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Update()
     {
         // Main Scene
-        if (DutchJoined && !AlreadyLoaded) // && SixNationsJoined && MunseeJoined && PhilipsesJoined
-        {
-            Debug.Log("Teans joined, loading main screen");
-            if (PhotonNetwork.IsMasterClient)
-            {
-                PhotonNetwork.LoadLevel(1);
-                SceneManager.LoadScene(1);
-                this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
-                this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
-            }
-            
-            DeactivateAllOtherButtons();
-            DeactivateTeamFlags();
-
-            AlreadyLoaded = true;
-        }
+        
 
 
 
@@ -253,6 +238,32 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (Munsee != "" && MunseeJoined == false)
         {
             this.GetComponent<PhotonView>().RPC("munseeJoinedRPC", RpcTarget.All, Munsee);
+        }
+    }
+
+
+    public void moveSceneIfReadyCaller()
+    {
+        this.GetComponent<PhotonView>().RPC("moveSceneIfReady", RpcTarget.All);
+    }
+    [PunRPC]
+    void moveSceneIfReady()
+    {
+        if (DutchJoined && !AlreadyLoaded) // && SixNationsJoined && MunseeJoined && PhilipsesJoined
+        {
+            Debug.Log("Teans joined, loading main screen");
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel(1);
+                SceneManager.LoadScene(1);
+                this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
+                this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
+            }
+
+            DeactivateAllOtherButtons();
+            DeactivateTeamFlags();
+
+            AlreadyLoaded = true;
         }
     }
 
@@ -373,6 +384,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         MunseeTradeButton = GameObject.FindGameObjectsWithTag("Munsee Trading");
         PhilipsesTradeButton = GameObject.FindGameObjectsWithTag("Philipses Trading");
 
+        for (int aa = 0; aa < DutchTradeButton.Length; aa++)
+        {
+            Debug.Log("Dutch Trade Button sub " + aa + ": " + DutchTradeButton[aa]);
+        }
 
         // If there is somehow than one of specified camera
         GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
@@ -422,10 +437,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameObject[] AmountsGameObjectsWithTag = { };
         if (!AlreadyLoaded)
         {
+            Debug.Log("DID I RUN?");
             for (int i = 0; i < DutchAmounts.Length; i++)
             {
                 if (i < 13)
                 {
+                    Debug.Log("DID I RUN??");
                     Debug.Log(i);
                     AmountsGameObjectsWithTag = GameObject.FindGameObjectsWithTag(tags[i] + "Amount");
                     for(int j = 0; j < AmountsGameObjectsWithTag.Length; j++)
@@ -604,7 +621,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         
         for (int x = 0; x < teamNames.Length; x++)
         {
-
+            Debug.Log("X: " + x);
             if (DutchTradeButton[x].transform.parent.parent.name != findPlayerTeamForDeactivation(PhotonNetwork.LocalPlayer.ToString()))
             {
                 

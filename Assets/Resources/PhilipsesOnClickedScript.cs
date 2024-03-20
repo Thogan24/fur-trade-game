@@ -42,5 +42,7 @@ public class PhilipsesOnClickedScript : MonoBehaviour
 
 
         teamJoined = true;
+
+        gameManager.moveSceneIfReadyCaller();
     }
 }

@@ -50,5 +50,7 @@ public class SixNationsOnClickedScript : MonoBehaviour
 
         // If it didn't get destroyed yet for any reason
         //PhotonNetwork.Destroy(mySixNationsButton);
+
+        gameManager.moveSceneIfReadyCaller();
     }
 }
