@@ -216,7 +216,24 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Update()
     {
         // Main Scene
-        
+        Debug.Log(DutchJoined);
+
+        if (DutchJoined && !AlreadyLoaded) // && SixNationsJoined && MunseeJoined && PhilipsesJoined
+        {
+            Debug.Log("Teans joined, loading main screen");
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel(1);
+                SceneManager.LoadScene(1);
+                this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
+                this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
+            }
+
+            DeactivateAllOtherButtons();
+            DeactivateTeamFlags();
+
+            AlreadyLoaded = true;
+        }
 
 
 
@@ -251,7 +268,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC] 
     void moveSceneIfReady()
     {
-        Debug.Log(DutchJoined);
+        /*Debug.Log(DutchJoined);
 
         if (DutchJoined && !AlreadyLoaded) // && SixNationsJoined && MunseeJoined && PhilipsesJoined
         {
@@ -268,7 +285,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             DeactivateTeamFlags();
 
             AlreadyLoaded = true;
-        }
+        }*/
     }
 
 
