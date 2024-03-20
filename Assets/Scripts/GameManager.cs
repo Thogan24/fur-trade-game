@@ -223,9 +223,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 PhotonNetwork.LoadLevel(1);
                 SceneManager.LoadScene(1);
+                this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
+                this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
             }
-            this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
-            this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
+            
             DeactivateAllOtherButtons();
             DeactivateTeamFlags();
 
