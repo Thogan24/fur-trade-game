@@ -419,6 +419,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 DutchCamerasCheckArray[a].SetActive(false);
             }
+            else
+            {
+                DutchCamerasCheckArray[a].SetActive(true);
+            }
         }
         GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
         for (int a = 0; a < SixNationsCamerasCheckArray.Length; a++)
@@ -426,6 +430,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>())
             {
                 SixNationsCamerasCheckArray[a].SetActive(false);
+            }
+            else
+            {
+                SixNationsCamerasCheckArray[a].SetActive(true);
             }
         }
         GameObject[] MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
@@ -435,6 +443,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 MunseeCamerasCheckArray[a].SetActive(false);
             }
+            else
+            {
+                MunseeCamerasCheckArray[a].SetActive(true);
+            }
         }
         GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
         for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
@@ -442,6 +454,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>())
             {
                 PhilipsesCamerasCheckArray[a].SetActive(false);
+            }
+            else
+            {
+                PhilipsesCamerasCheckArray[a].SetActive(true);
             }
         }
 
