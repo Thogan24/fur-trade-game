@@ -245,10 +245,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void moveSceneIfReadyCaller()
     {
         this.GetComponent<PhotonView>().RPC("moveSceneIfReady", RpcTarget.All);
+        Debug.Log("did i get called");
     }
-    [PunRPC]
+
+    [PunRPC] 
     void moveSceneIfReady()
     {
+        Debug.Log(DutchJoined);
+
         if (DutchJoined && !AlreadyLoaded) // && SixNationsJoined && MunseeJoined && PhilipsesJoined
         {
             Debug.Log("Teans joined, loading main screen");
