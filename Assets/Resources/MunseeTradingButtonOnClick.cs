@@ -51,6 +51,7 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
         
     }
 
+    [PunRPC]
     void teamsThatAreTrading(string userIDOfClicker)
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
