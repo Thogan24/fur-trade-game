@@ -34,12 +34,12 @@ public class CardOnClick : MonoBehaviour
             string tag = this.gameObject.tag;
             string parentTag = this.gameObject.transform.parent.tag;
             Debug.Log(tag);
-            if (CanWishlist)
+            if (CanWishlist())
             {
                 gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag);
             } else
             {
-                StartCoroutine(FlashRed());
+                StartCoroutine(FlashRedCoroutine());
             }
         }
 
@@ -67,16 +67,8 @@ public class CardOnClick : MonoBehaviour
         }
         return -1;
     }
-
     private IEnumerator FlashRedCoroutine()
     {
-        private SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Color originalColor = spriteRenderer.color;
-
-        spriteRenderer.color = new Color(1f, originalColor.g * 0.5f, originalColor.b * 0.5f, originalColor.a);
-
-        yield return new WaitForSeconds(1);
-
-        spriteRenderer.color = originalColor;
+        yield return null;
     }
 }
