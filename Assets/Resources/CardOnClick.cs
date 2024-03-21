@@ -47,12 +47,15 @@ public class CardOnClick : MonoBehaviour
 
     public bool CanWishlist()
     {
-        string player_ID = PhotonNetwork.LocalPlayer.ToString();
-        if (player_ID == gameManager.Dutch)
-        {
-            int index = FindIndexOfTag(gameManager.tags, this.gameObject.tag);
-            Debug.Log(gameManager.PhilipsesAmounts[index]);
-        }
+        //string player_ID = PhotonNetwork.LocalPlayer.ToString();
+        //if (player_ID == gameManager.Dutch && gameManager.PhilipsesTrading)
+        //{
+        //    int index = FindIndexOfTag(gameManager.tags, this.gameObject.tag);
+        //    if (gameManager.PhilipsesAmounts[index] == 0)
+        //    {
+        //        return false;
+        //    }
+        //}
         return true;
     }
 
