@@ -61,7 +61,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
 
 
-
+        
         gameManager.PhilipsesTrading = true;
         string team = gameManager.findPlayerTeam(userIDOfClicker);
 
