@@ -870,7 +870,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
 
-            // AHHH
+
 
 
             if (playerString == Philipses && PhilipsesTrading == true)
@@ -1155,6 +1155,50 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
 
+            Vector3[] topButtonPos = {new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+            GameObject[] sixNationsButtons = GameObject.FindGameObjectsWithTag("Six Nations Trading");
+            for (int ab = 0; ab < sixNationsButtons.Length; ab++)
+            {
+                if(sixNationsButtons[ab].transform.parent.parent.name == "Dutch")
+                {
+                    topButtonPos[0] = sixNationsButtons[ab].transform.position;
+                }
+                else if (sixNationsButtons[ab].transform.parent.parent.name == "Philipses")
+                {
+                    topButtonPos[1] = sixNationsButtons[ab].transform.position;
+                }
+                else if (sixNationsButtons[ab].transform.parent.parent.name == "Munsee")
+                {
+                    topButtonPos[3] = sixNationsButtons[ab].transform.position;
+                }
+            }
+            GameObject[] dutchButtons = GameObject.FindGameObjectsWithTag("Dutch Trading");
+            for (int ab = 0; ab < dutchButtons.Length; ab++)
+            {
+                if (dutchButtons[ab].transform.parent.parent.name == "Six Nations")
+                {
+                    topButtonPos[2] = dutchButtons[ab].transform.position;
+                }
+
+            }
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             #endregion // This  
 
             //
@@ -1191,15 +1235,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         if (isParentInventory == 1)
                         {
-                            for (int b = 0; b < enemyTeamButtonPos.Length; b++)
+                            for (int b = 0; b < topButtonPos.Length; b++)
                             {
                                 if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
                                 {
-                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3((float)6.7 + (float)0.3 * (InventoryCardsInTrade % 14), (float)0.2 - (InventoryCardsInTrade / 14), 0), Quaternion.identity);
                                 }
                                 else
-                                {
-                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                { // Shouldn't do anything if we get rid of the isparentwishlist side
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3(((float)1.65 + ((float)0.3 * (InventoryCardsInTrade % 14))), (float)0.2 - (InventoryCardsInTrade / 14), 0), Quaternion.identity);
                                 }
 
                             }
@@ -1217,12 +1261,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 {
                                     if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
                                     {
-                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((float)1.65 + ((float)0.3 * (WishlistCardsInTrade % 14)), (float)0.2 - (WishlistCardsInTrade / 14), 0), Quaternion.identity);
                                     }
                                     else
                                     {
-
-                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                        
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(((float)6.7 + ((float)0.3 * (WishlistCardsInTrade % 14))), (float)0.2 - (WishlistCardsInTrade / 14), 0), Quaternion.identity);
                                     }
 
                                 }
@@ -1266,15 +1310,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         if (isParentInventory == 1)
                         {
-                            for (int b = 0; b < enemyTeamButtonPos.Length; b++)
+                            for (int b = 0; b < topButtonPos.Length; b++)
                             {
                                 if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
                                 {
-                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
                                 }
                                 else
                                 {
-                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                                 }
 
                             }
@@ -1292,12 +1336,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 {
                                     if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
                                     {
-                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
                                     }
                                     else
                                     {
 
-                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                                     }
 
                                 }
@@ -1340,15 +1384,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         if (isParentInventory == 1)
                         {
-                            for (int b = 0; b < enemyTeamButtonPos.Length; b++)
+                            for (int b = 0; b < topButtonPos.Length; b++)
                             {
                                 if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
                                 {
-                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
                                 }
                                 else
                                 {
-                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                                 }
 
                             }
@@ -1366,12 +1410,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 {
                                     if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
                                     {
-                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
                                     }
                                     else
                                     {
 
-                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                                     }
 
                                 }
@@ -1414,15 +1458,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         if (isParentInventory == 1)
                         {
-                            for (int b = 0; b < enemyTeamButtonPos.Length; b++)
+                            for (int b = 0; b < topButtonPos.Length; b++)
                             {
                                 if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
                                 {
-                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3((float)3 + (float)2.2 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3((float)7 + (float)0.3 * InventoryCardsInTrade, (float)0.2, 0), Quaternion.identity);
                                 }
                                 else
                                 {
-                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[b] + new Vector3(((float)2.1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3(((float)1 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                                 }
 
                             }
@@ -1440,12 +1484,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 {
                                     if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
                                     {
-                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((float)2.1 + ((float)0.3 * WishlistCardsInTrade), (float)0.2, 0), Quaternion.identity);
                                     }
                                     else
                                     {
 
-                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), enemyTeamButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(((float)3 + ((float)0.3 * InventoryCardsInTrade * isParentInventory)) + (isParentWishlist * ((float)2.2 + (float)0.3 * WishlistCardsInTrade)), (float)0.2, 0), Quaternion.identity);
                                     }
 
                                 }
