@@ -342,7 +342,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-  
+    GameObject[] MunseeCamerasCheckArray = { };
 
     [PunRPC]
     void mainSceneCameraRPC()
@@ -353,7 +353,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         SixNationsCardsCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Card Canvas");
         MunseeCardsCanvasObject = GameObject.FindGameObjectWithTag("Munsee Card Canvas");
 
-        if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false)
+        GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
+        if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false && DutchCamerasCheckArray.Length <= 1)
         {
             DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
             DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
@@ -365,7 +366,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             //DutchCamera.SetActive(true);
         }
-        if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false)
+        GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
+        if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false && SixNationsCamerasCheckArray.Length <= 1)
         {
             SixNationsCameraPrefab = SixNationsCameraGameObject.GetPhotonView();
             SixNationsCamera = PhotonView.Instantiate(SixNationsCameraPrefab);
@@ -377,8 +379,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             SixNationsCardsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
 
         }
-        if (PhotonNetwork.LocalPlayer.ToString() == Munsee && AlreadyLoaded == false)
+        MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
+        if (PhotonNetwork.LocalPlayer.ToString() == Munsee && AlreadyLoaded == false && MunseeCamerasCheckArray.Length <= 1)
         {
+            Debug.Log("Ran1");
             MunseeCameraPrefab = MunseeCameraGameObject.GetPhotonView();
             MunseeCamera = PhotonView.Instantiate(MunseeCameraPrefab);
             MunseeTextCanvasObject = GameObject.FindGameObjectWithTag("Munsee Text Canvas");
@@ -388,7 +392,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
         }
-        if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false)
+        GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
+        if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false && PhilipsesCamerasCheckArray.Length <= 1)
         {
             PhilipsesCameraPrefab = PhilipsesCameraGameObject.GetPhotonView();
             PhilipsesCamera = PhotonView.Instantiate(PhilipsesCameraPrefab);
@@ -412,8 +417,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
         // If there is somehow than one of specified camera
-        GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
-        for(int a = 0; a < DutchCamerasCheckArray.Length; a++)
+        //GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
+/*        for(int a = 0; a < DutchCamerasCheckArray.Length; a++)
         {
             if (DutchTextCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>() || DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>())
             {
@@ -423,7 +428,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 DutchCamerasCheckArray[a].SetActive(true);
             }
-        }
+        }*/
 /*        GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
         for (int a = 0; a < SixNationsCamerasCheckArray.Length; a++)
         {
@@ -436,7 +441,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 SixNationsCamerasCheckArray[a].SetActive(true);
             }
         }*/
-        GameObject[] MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
+/*        
         for (int a = 0; a < MunseeCamerasCheckArray.Length; a++)
         {
             if (MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeCamerasCheckArray[a].GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>())
@@ -447,9 +452,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 MunseeCamerasCheckArray[a].SetActive(true);
             }
-        }
-        GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
-        for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
+        }*/
+        //GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
+/*        for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
         {
             if (PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>())
             {
@@ -459,7 +464,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 PhilipsesCamerasCheckArray[a].SetActive(true);
             }
-        }
+        }*/
 
 
     }
