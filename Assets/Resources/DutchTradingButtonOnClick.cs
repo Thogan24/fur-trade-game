@@ -74,7 +74,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         if (team == "SixNations")
         {
             Debug.LogError("Six Nations is Trading");
-            gameManager.DutchTrading = true;
+            gameManager.SixNationsTrading = true;
         }
         if (team == "Munsee")
         {
