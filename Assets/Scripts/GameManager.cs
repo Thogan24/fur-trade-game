@@ -342,7 +342,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-    GameObject[] MunseeCamerasCheckArray = { };
+    public GameObject[] MunseeCamerasCheckArray = { };
 
     [PunRPC]
     void mainSceneCameraRPC()
@@ -441,7 +441,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 SixNationsCamerasCheckArray[a].SetActive(true);
             }
         }*/
-/*        
+       
         for (int a = 0; a < MunseeCamerasCheckArray.Length; a++)
         {
             if (MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeCamerasCheckArray[a].GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>())
@@ -452,7 +452,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 MunseeCamerasCheckArray[a].SetActive(true);
             }
-        }*/
+        }
         //GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
 /*        for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
         {
