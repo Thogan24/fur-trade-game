@@ -424,7 +424,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 DutchCamerasCheckArray[a].SetActive(true);
             }
         }
-        GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
+/*        GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
         for (int a = 0; a < SixNationsCamerasCheckArray.Length; a++)
         {
             if (SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>())
@@ -435,7 +435,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 SixNationsCamerasCheckArray[a].SetActive(true);
             }
-        }
+        }*/
         GameObject[] MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
         for (int a = 0; a < MunseeCamerasCheckArray.Length; a++)
         {
