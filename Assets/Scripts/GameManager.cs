@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         // Main Scene
         //Debug.Log(DutchJoined);
 
-        if (DutchJoined && !AlreadyLoaded) // && SixNationsJoined && MunseeJoined && PhilipsesJoined
+        if (DutchJoined && !AlreadyLoaded && SixNationsJoined && MunseeJoined && PhilipsesJoined)
         {
             Debug.Log("Teans joined, loading main screen");
             if (PhotonNetwork.IsMasterClient)
