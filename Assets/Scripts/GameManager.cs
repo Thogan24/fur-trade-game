@@ -1889,6 +1889,68 @@ public class GameManager : MonoBehaviourPunCallbacks
                 MunseeTrading = false;
             }
 
+            // Check if anyone has won
+            for (int i = 13; i < DutchAmounts.Length; i++)
+            {
+                if (DutchAmounts[i] != 0)
+                {
+                    break;
+                }
+                else
+                {
+                    if(i == DutchAmounts.Length - 1)
+                    {
+                        this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                    }
+                }
+            }
+
+            for (int i = 13; i < PhilipsesAmounts.Length; i++)
+            {
+                if (PhilipsesAmounts[i] != 0)
+                {
+                    break;
+                }
+                else
+                {
+                    if (i == PhilipsesAmounts.Length - 1)
+                    {
+                        this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                    }
+                }
+            }
+
+            for (int i = 13; i < SixNationsAmounts.Length; i++)
+            {
+                if (SixNationsAmounts[i] != 0)
+                {
+                    break;
+                }
+                else
+                {
+                    if (i == SixNationsAmounts.Length - 1)
+                    {
+                        this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                    }
+                }
+            }
+
+            for (int i = 13; i < MunseeAmounts.Length; i++)
+            {
+                if (MunseeAmounts[i] != 0)
+                {
+                    break;
+                }
+                else
+                {
+                    if (i == MunseeAmounts.Length - 1)
+                    {
+                        this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                    }
+                }
+            }
+
+
             this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
             this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
         }
@@ -1898,6 +1960,25 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
+    void moveToCalculationScene(PhotonMessageInfo info)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(2);
+            SceneManager.LoadScene(2);
+        }
+    }
+
+    [PunRPC]
+    void moveToEndScene(PhotonMessageInfo info)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(3);
+            SceneManager.LoadScene(3);
+        }
+    }
+    
     void clearAllTrades(PhotonMessageInfo info)
     {
         Debug.Log(info.Sender.ToString());

@@ -2885,6 +2885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a41e6e850948f541a611bf7bc10dfe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugStart: 1
   Dutch: 
   SixNations: 
   Munsee: 
@@ -2917,6 +2918,10 @@ MonoBehaviour:
   PhilipsesTextCanvasObject: {fileID: 0}
   PhilipsesBackgroundCanvasObject: {fileID: 0}
   PhilipsesCardsCanvasObject: {fileID: 0}
+  DutchObject: {fileID: 0}
+  PhilipsesObject: {fileID: 0}
+  SixNationsObject: {fileID: 0}
+  MunseeObject: {fileID: 0}
   AlreadyLoaded: 0
   DutchTrading: 0
   SixNationsTrading: 0
@@ -3106,6 +3111,7 @@ MonoBehaviour:
   totalTurnNumber: 0
   TurnTimer: 90
   SeasonalTimers: []
+  MunseeCamerasCheckArray: []
   enemyTeamButtonPos:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
