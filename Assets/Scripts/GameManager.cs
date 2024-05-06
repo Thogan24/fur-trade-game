@@ -8,6 +8,8 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    public bool DebugStart;
+    
     // Instantiating Singleton GameManager
     public static GameManager instance;
 
@@ -218,7 +220,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         // Main Scene
         //Debug.Log(DutchJoined);
 
-        if (DutchJoined && !AlreadyLoaded && SixNationsJoined && MunseeJoined && PhilipsesJoined)
+        if ((DutchJoined && !AlreadyLoaded && SixNationsJoined && MunseeJoined && PhilipsesJoined) || (DebugStart == true && DutchJoined && !AlreadyLoaded))
         {
             Debug.Log("Teans joined, loading main screen");
             if (PhotonNetwork.IsMasterClient)
