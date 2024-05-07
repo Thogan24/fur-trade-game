@@ -59,6 +59,8 @@ MonoBehaviour:
   - ReactivateTeamFlags
   - moveSceneIfReady
   - moveToEndScreen
+  - moveToCalculationScene
+  - moveToEndScene
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
