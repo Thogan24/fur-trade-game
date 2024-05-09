@@ -178,6 +178,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int PhilipsesWampum;
     public int DutchWampum;
 
+    public int[] SixNationsWampumValuesTrades = { };
+
     public GameObject[] SixNationsAmountsGameObjects = { };
     public GameObject[] MunseeAmountsGameObjects = { };
     public GameObject[] PhilipsesAmountsGameObjects = { };
@@ -228,6 +230,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
+        
         // Main Scene
         //Debug.Log(DutchJoined);
 
@@ -2009,19 +2012,19 @@ public class GameManager : MonoBehaviourPunCallbacks
                         if(tradeGivingCardsParent[i].transform.GetChild(b).gameObject.tag == tags[ad])
                         {
                             Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
-                            if(PhotonNetwork.LocalPlayer.ToString() == "Dutch")
+                            if(PhotonNetwork.LocalPlayer.ToString() == Dutch)
                             {
                                 DutchWampum += DutchWampumValues[ad];
                             }
-                            else if (PhotonNetwork.LocalPlayer.ToString() == "Philipses")
+                            else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
                             {
                                 PhilipsesWampum += DutchWampumValues[ad];
                             }
-                            else if (PhotonNetwork.LocalPlayer.ToString() == "Six Nations")
+                            else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
                             {
                                 SixNationsWampum += DutchWampumValues[ad];
                             }
-                            else if (PhotonNetwork.LocalPlayer.ToString() == "Munsee")
+                            else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
                             {
                                 MunseeWampum += DutchWampumValues[ad];
                             }
