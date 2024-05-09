@@ -173,12 +173,15 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int[] DutchWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
 
 
+    List<int> SixNationsWampumValuesTrades = new List<int>();
+    List<int> MunseeWampumValuesTrades = new List<int>();
+    List<int> PhilipsesWampumValuesTrades = new List<int>();
+    List<int> DutchWampumValuesTrades = new List<int>();
+
     public int SixNationsWampum;
     public int MunseeWampum;
     public int PhilipsesWampum;
     public int DutchWampum;
-
-    public int[] SixNationsWampumValuesTrades = { };
 
     public GameObject[] SixNationsAmountsGameObjects = { };
     public GameObject[] MunseeAmountsGameObjects = { };
@@ -1996,41 +1999,49 @@ public class GameManager : MonoBehaviourPunCallbacks
     void clearAllTrades(PhotonMessageInfo info)
     {
         Debug.Log(info.Sender.ToString());
+        if (DutchWampumValuesTrades[totalTurnNumber - 1] == null)
+        {
+            DutchWampumValuesTrades[totalTurnNumber - 1] = 0;
+        }
         if(info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // Bring back / revert theSender == info.Sender.ToString() &&  if neccessary
         {
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
-            for (int i = 0; i < tradeGivingCardsParent.Length; i++) // For every Trade giving card object, set inactive
+            for (int ae = 0; ae < tradeGivingCardsParent.Length; ae++) // For every Trade giving card object, set inactive
             {
                 
                 int b = 0;
-                while (tradeGivingCardsParent[i].transform.childCount != b && b < 1000)
+                while (tradeGivingCardsParent[ae].transform.childCount != b && b < 1000)
                 {
-                    tradeGivingCardsParent[i].transform.GetChild(b).gameObject.SetActive(false);
+                    tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
 
                     for (int ad = 0; ad < tags.Length; ad++)
                     {
-                        if(tradeGivingCardsParent[i].transform.GetChild(b).gameObject.tag == tags[ad])
+                        if(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
                         {
                             Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
                             if(PhotonNetwork.LocalPlayer.ToString() == Dutch)
                             {
                                 DutchWampum += DutchWampumValues[ad];
+                                DutchWampumValuesTrades[(totalTurnNumber - 1) / 4] += DutchWampumValues[ad];
                             }
                             else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
                             {
-                                PhilipsesWampum += DutchWampumValues[ad];
+                                PhilipsesWampum += PhilipsesWampumValues[ad];
+                                PhilipsesWampumValuesTrades[(totalTurnNumber - 1) / 4] += PhilipsesWampumValues[ad];
                             }
                             else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
                             {
-                                SixNationsWampum += DutchWampumValues[ad];
+                                SixNationsWampum += SixNationsWampumValues[ad];
+                                SixNationsWampumValuesTrades[(totalTurnNumber - 1) / 4] += SixNationsWampumValues[ad];
                             }
                             else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
                             {
-                                MunseeWampum += DutchWampumValues[ad];
+                                MunseeWampum += MunseeWampumValues[ad];
+                                MunseeWampumValuesTrades[(totalTurnNumber - 1) / 4] += MunseeWampumValues[ad];
                             }
                         }
-                        Debug.Log(tags[ad] + " " + tradeGivingCardsParent[i].transform.GetChild(b).gameObject.tag);
-                        Debug.Log(tradeGivingCardsParent[i].transform.GetChild(b).gameObject.tag = tags[ad]);
+                        Debug.Log(tags[ad] + " " + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag);
+                        Debug.Log(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag = tags[ad]);
                     }
                     
                     b++;
@@ -2040,9 +2051,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 
                 b = 0;
-                while (tradeReceivingCardsParent[i].transform.childCount != b && b < 1000) // For every Trade receiving card object, set inactive
+                while (tradeReceivingCardsParent[ae].transform.childCount != b && b < 1000) // For every Trade receiving card object, set inactive
                 {
-                    tradeReceivingCardsParent[i].transform.GetChild(b).gameObject.SetActive(false);
+                    tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
                     b++;
                 }
 
@@ -2052,17 +2063,17 @@ public class GameManager : MonoBehaviourPunCallbacks
                 /*
                  * 
                  * int j = 0;
-                 * while(tradeGivingCardsParent[i].transform.childCount > 0 && j < 150)
+                 * while(tradeGivingCardsParent[ae].transform.childCount > 0 && j < 150)
                 {
-                    PhotonView.Destroy(tradeGivingCardsParent[i].transform.GetChild(0).gameObject);
+                    PhotonView.Destroy(tradeGivingCardsParent[ae].transform.GetChild(0).gameObject);
                     j++;
-                    Debug.Log(tradeGivingCardsParent[i].transform.childCount);
-                    Debug.Log(tradeGivingCardsParent[i].transform.GetChild(0).gameObject);
+                    Debug.Log(tradeGivingCardsParent[ae].transform.childCount);
+                    Debug.Log(tradeGivingCardsParent[ae].transform.GetChild(0).gameObject);
                 }
                 j = 0;
-                while (tradeReceivingCardsParent[i].transform.childCount > 0 && j < 150)
+                while (tradeReceivingCardsParent[ae].transform.childCount > 0 && j < 150)
                 {
-                    PhotonView.Destroy(tradeReceivingCardsParent[i].transform.GetChild(0).gameObject);
+                    PhotonView.Destroy(tradeReceivingCardsParent[ae].transform.GetChild(0).gameObject);
                     j++;
                 }*/
             }
