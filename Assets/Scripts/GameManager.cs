@@ -166,6 +166,17 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int[] PhilipsesAmounts =  {0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0};
     public int[] DutchAmounts =      {0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0};
 
+    // NEEDS TO BE CHANGED IN FINAL GAME
+    public int[] SixNationsWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
+    public int[] MunseeWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
+    public int[] PhilipsesWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
+    public int[] DutchWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
+
+
+    public int SixNationsWampum;
+    public int MunseeWampum;
+    public int PhilipsesWampum;
+    public int DutchWampum;
 
     public GameObject[] SixNationsAmountsGameObjects = { };
     public GameObject[] MunseeAmountsGameObjects = { };
@@ -1982,7 +1993,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void clearAllTrades(PhotonMessageInfo info)
     {
         Debug.Log(info.Sender.ToString());
-        if(theSender == info.Sender.ToString() && info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString())
+        if(info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // Bring back / revert theSender == info.Sender.ToString() &&  if neccessary
         {
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
             for (int i = 0; i < tradeGivingCardsParent.Length; i++) // For every Trade giving card object, set inactive
@@ -1992,6 +2003,33 @@ public class GameManager : MonoBehaviourPunCallbacks
                 while (tradeGivingCardsParent[i].transform.childCount != b && b < 1000)
                 {
                     tradeGivingCardsParent[i].transform.GetChild(b).gameObject.SetActive(false);
+
+                    for (int ad = 0; ad < tags.Length; ad++)
+                    {
+                        if(tradeGivingCardsParent[i].transform.GetChild(b).gameObject.tag == tags[ad])
+                        {
+                            Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
+                            if(PhotonNetwork.LocalPlayer.ToString() == "Dutch")
+                            {
+                                DutchWampum += DutchWampumValues[ad];
+                            }
+                            else if (PhotonNetwork.LocalPlayer.ToString() == "Philipses")
+                            {
+                                PhilipsesWampum += DutchWampumValues[ad];
+                            }
+                            else if (PhotonNetwork.LocalPlayer.ToString() == "Six Nations")
+                            {
+                                SixNationsWampum += DutchWampumValues[ad];
+                            }
+                            else if (PhotonNetwork.LocalPlayer.ToString() == "Munsee")
+                            {
+                                MunseeWampum += DutchWampumValues[ad];
+                            }
+                        }
+                        Debug.Log(tags[ad] + " " + tradeGivingCardsParent[i].transform.GetChild(b).gameObject.tag);
+                        Debug.Log(tradeGivingCardsParent[i].transform.GetChild(b).gameObject.tag = tags[ad]);
+                    }
+                    
                     b++;
                 }
 
