@@ -173,10 +173,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int[] DutchWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
 
 
-    List<int> SixNationsWampumValuesTrades = new List<int>();
-    List<int> MunseeWampumValuesTrades = new List<int>();
-    List<int> PhilipsesWampumValuesTrades = new List<int>();
-    List<int> DutchWampumValuesTrades = new List<int>();
+    public List<int> SixNationsWampumValuesTrades = new List<int>();
+    public List<int> MunseeWampumValuesTrades = new List<int>();
+    public List<int> PhilipsesWampumValuesTrades = new List<int>();
+    public List<int> DutchWampumValuesTrades = new List<int>();
 
     public int SixNationsWampum;
     public int MunseeWampum;
@@ -1996,19 +1996,37 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
     
+    [PunRPC]
     void clearAllTrades(PhotonMessageInfo info)
     {
-        Debug.Log(info.Sender.ToString());
-        if (DutchWampumValuesTrades[totalTurnNumber - 1] == null)
+        Debug.Log("HELLO?");
+        Debug.Log(info.Sender.ToString() + " RUN 1 " + PhotonNetwork.LocalPlayer.ToString() + " ");
+        Debug.Log(info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString());
+        Debug.Log(totalTurnNumber);
+        if (DutchWampumValuesTrades.Count <= 0)
         {
-            DutchWampumValuesTrades[totalTurnNumber - 1] = 0;
+            DutchWampumValuesTrades.Add(0);
         }
-        if(info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // Bring back / revert theSender == info.Sender.ToString() &&  if neccessary
+        else if (PhilipsesWampumValuesTrades.Count <= 0)
         {
+            PhilipsesWampumValuesTrades.Add(0);
+        }
+        else if (SixNationsWampumValuesTrades.Count <= 0)
+        {
+            SixNationsWampumValuesTrades.Add(0);
+        }
+        else if (MunseeWampumValuesTrades.Count <= 0)
+        {
+            MunseeWampumValuesTrades.Add(0);
+        }
+
+        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // Bring back / revert theSender == info.Sender.ToString() &&  if neccessary
+        {
+            Debug.Log("RUN 2");
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
             for (int ae = 0; ae < tradeGivingCardsParent.Length; ae++) // For every Trade giving card object, set inactive
             {
-                
+                Debug.Log("RUN 3");
                 int b = 0;
                 while (tradeGivingCardsParent[ae].transform.childCount != b && b < 1000)
                 {
@@ -2022,22 +2040,22 @@ public class GameManager : MonoBehaviourPunCallbacks
                             if(PhotonNetwork.LocalPlayer.ToString() == Dutch)
                             {
                                 DutchWampum += DutchWampumValues[ad];
-                                DutchWampumValuesTrades[(totalTurnNumber - 1) / 4] += DutchWampumValues[ad];
+                                DutchWampumValuesTrades[(totalTurnNumber) / 4] += DutchWampumValues[ad];
                             }
                             else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
                             {
                                 PhilipsesWampum += PhilipsesWampumValues[ad];
-                                PhilipsesWampumValuesTrades[(totalTurnNumber - 1) / 4] += PhilipsesWampumValues[ad];
+                                PhilipsesWampumValuesTrades[(totalTurnNumber) / 4] += PhilipsesWampumValues[ad];
                             }
                             else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
                             {
                                 SixNationsWampum += SixNationsWampumValues[ad];
-                                SixNationsWampumValuesTrades[(totalTurnNumber - 1) / 4] += SixNationsWampumValues[ad];
+                                SixNationsWampumValuesTrades[(totalTurnNumber) / 4] += SixNationsWampumValues[ad];
                             }
                             else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
                             {
                                 MunseeWampum += MunseeWampumValues[ad];
-                                MunseeWampumValuesTrades[(totalTurnNumber - 1) / 4] += MunseeWampumValues[ad];
+                                MunseeWampumValuesTrades[(totalTurnNumber) / 4] += MunseeWampumValues[ad];
                             }
                         }
                         Debug.Log(tags[ad] + " " + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag);
