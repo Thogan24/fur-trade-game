@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main_Scene.unity
     guid: 562995c14cdbcae4cb2ed8892aea9a6f
   - enabled: 1
+    path: Assets/Scenes/Final_Wampum_Value.unity
+    guid: 8c82c025ed7e0694db0a77e70e1142c2
+  - enabled: 1
     path: Assets/Scenes/End_Scene.unity
     guid: 189cc64fa0c5c9740be52888b7ad4956
   m_configObjects: {}
