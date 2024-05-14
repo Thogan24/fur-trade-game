@@ -2025,7 +2025,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("RUN 2");
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
-            for (int ae = 0; ae < tradeGivingCardsParent.Length; ae++) // For every Trade giving card object, set inactive
+            for (int ae = 0; ae < tradeGivingCardsParent.Length; ae++) // For every Trade giving card object, set inactive    AE DESCRIBES THE PARENTS FOR EACH TEAM
             {
                 Debug.Log("RUN 3");
                 int b = 0;
@@ -2043,40 +2043,44 @@ public class GameManager : MonoBehaviourPunCallbacks
                 
                 b = 0;
                 while (tradeReceivingCardsParent[ae].transform.childCount != b && b < 1000) // For every Trade receiving card object, set inactive
-                {
-                    for (int ad = 0; ad < tags.Length; ad++)
+                {   
+                    if (ae == (turn-1))
                     {
-                        if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
+                        for (int ad = 0; ad < tags.Length; ad++)
                         {
-                            Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
-                            if (PhotonNetwork.LocalPlayer.ToString() == Dutch)
-                            {                                
-                                DutchWampum += DutchWampumValues[ad];
-                                DutchWampumValuesTrades[(totalTurnNumber) / 4] += DutchWampumValues[ad];
-                                Debug.Log("Added to Dutch Wampum by: " + DutchWampumValues[ad]);
-                            }
-                            else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
+                            if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
                             {
-                                PhilipsesWampum += PhilipsesWampumValues[ad];
-                                PhilipsesWampumValuesTrades[(totalTurnNumber) / 4] += PhilipsesWampumValues[ad];
-                                Debug.Log("Added to Philipses Wampum by: " + PhilipsesWampumValues[ad]);
+                                Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
+                                if (PhotonNetwork.LocalPlayer.ToString() == Dutch)
+                                {
+                                    DutchWampum += DutchWampumValues[ad];
+                                    DutchWampumValuesTrades[(totalTurnNumber) / 4] += DutchWampumValues[ad];
+                                    Debug.Log("Added to Dutch Wampum by: " + DutchWampumValues[ad] + ", for a total of: " + DutchWampum);
+                                }
+                                else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
+                                {
+                                    PhilipsesWampum += PhilipsesWampumValues[ad];
+                                    PhilipsesWampumValuesTrades[(totalTurnNumber) / 4] += PhilipsesWampumValues[ad];
+                                    Debug.Log("Added to Philipses Wampum by: " + PhilipsesWampumValues[ad] + ", for a total of: " + PhilipsesWampum);
+                                }
+                                else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
+                                {
+                                    SixNationsWampum += SixNationsWampumValues[ad];
+                                    SixNationsWampumValuesTrades[(totalTurnNumber) / 4] += SixNationsWampumValues[ad];
+                                    Debug.Log("Added to SixNations Wampum by: " + SixNationsWampumValues[ad] + ", for a total of: " + SixNationsWampum);
+                                }
+                                else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
+                                {
+                                    MunseeWampum += MunseeWampumValues[ad];
+                                    MunseeWampumValuesTrades[(totalTurnNumber) / 4] += MunseeWampumValues[ad];
+                                    Debug.Log("Added to Munsee Wampum by: " + MunseeWampumValues[ad] + ", for a total of: " + MunseeWampum);
+                                }
                             }
-                            else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
-                            {
-                                SixNationsWampum += SixNationsWampumValues[ad];
-                                SixNationsWampumValuesTrades[(totalTurnNumber) / 4] += SixNationsWampumValues[ad];
-                                Debug.Log("Added to SixNations Wampum by: " + SixNationsWampumValues[ad]);
-                            }
-                            else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
-                            {
-                                MunseeWampum += MunseeWampumValues[ad];
-                                MunseeWampumValuesTrades[(totalTurnNumber) / 4] += MunseeWampumValues[ad];
-                                Debug.Log("Added to Munsee Wampum by: " + MunseeWampumValues[ad]);
-                            }
+                            Debug.Log(tags[ad] + " " + tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag + " ae: " + ae.ToString());
+                            Debug.Log(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
                         }
-                        Debug.Log(tags[ad] + " " + tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag + " ae: " + ae.ToString());
-                        Debug.Log(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
                     }
+                    
 
                     tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
                     b++;
