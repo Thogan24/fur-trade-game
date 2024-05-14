@@ -2116,8 +2116,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         DeactivateTeamFlags();
         Debug.Log(info.Sender.ToString());
-        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // theSender == info.Sender.ToString() && 
-        {
+        //if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // theSender == info.Sender.ToString() && 
+        //{
             
             totalTurnNumber++;
             Debug.Log("Called");
@@ -2173,7 +2173,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     SixNationsTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
                 }
             }
-        }
+        //}
         DutchObject.SetActive(false);
         DutchObject.SetActive(true);
         MunseeObject.SetActive(false);
