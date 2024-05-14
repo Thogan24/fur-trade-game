@@ -2116,7 +2116,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         DeactivateTeamFlags();
         Debug.Log(info.Sender.ToString());
-        if (theSender == info.Sender.ToString() && info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString())
+        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // theSender == info.Sender.ToString() && 
         {
             
             totalTurnNumber++;
