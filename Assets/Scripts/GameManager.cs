@@ -2032,35 +2032,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
 
-                    for (int ad = 0; ad < tags.Length; ad++)
-                    {
-                        if(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
-                        {
-                            Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
-                            if(PhotonNetwork.LocalPlayer.ToString() == Dutch)
-                            {
-                                DutchWampum += DutchWampumValues[ad];
-                                DutchWampumValuesTrades[(totalTurnNumber) / 4] += DutchWampumValues[ad];
-                            }
-                            else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
-                            {
-                                PhilipsesWampum += PhilipsesWampumValues[ad];
-                                PhilipsesWampumValuesTrades[(totalTurnNumber) / 4] += PhilipsesWampumValues[ad];
-                            }
-                            else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
-                            {
-                                SixNationsWampum += SixNationsWampumValues[ad];
-                                SixNationsWampumValuesTrades[(totalTurnNumber) / 4] += SixNationsWampumValues[ad];
-                            }
-                            else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
-                            {
-                                MunseeWampum += MunseeWampumValues[ad];
-                                MunseeWampumValuesTrades[(totalTurnNumber) / 4] += MunseeWampumValues[ad];
-                            }
-                        }
-                        Debug.Log(tags[ad] + " " + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag + " ae: " + ae.ToString());
-                        Debug.Log(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
-                    }
+                    
                     
                     b++;
                 }
@@ -2071,6 +2043,40 @@ public class GameManager : MonoBehaviourPunCallbacks
                 b = 0;
                 while (tradeReceivingCardsParent[ae].transform.childCount != b && b < 1000) // For every Trade receiving card object, set inactive
                 {
+                    for (int ad = 0; ad < tags.Length; ad++)
+                    {
+                        if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
+                        {
+                            Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
+                            if (PhotonNetwork.LocalPlayer.ToString() == Dutch)
+                            {                                
+                                DutchWampum += DutchWampumValues[ad];
+                                DutchWampumValuesTrades[(totalTurnNumber) / 4] += DutchWampumValues[ad];
+                                Debug.Log("Added to Dutch Wampum by: " + DutchWampumValues[ad]);
+                            }
+                            else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
+                            {
+                                PhilipsesWampum += PhilipsesWampumValues[ad];
+                                PhilipsesWampumValuesTrades[(totalTurnNumber) / 4] += PhilipsesWampumValues[ad];
+                                Debug.Log("Added to Philipses Wampum by: " + PhilipsesWampumValues[ad]);
+                            }
+                            else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
+                            {
+                                SixNationsWampum += SixNationsWampumValues[ad];
+                                SixNationsWampumValuesTrades[(totalTurnNumber) / 4] += SixNationsWampumValues[ad];
+                                Debug.Log("Added to SixNations Wampum by: " + SixNationsWampumValues[ad]);
+                            }
+                            else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
+                            {
+                                MunseeWampum += MunseeWampumValues[ad];
+                                MunseeWampumValuesTrades[(totalTurnNumber) / 4] += MunseeWampumValues[ad];
+                                Debug.Log("Added to Munsee Wampum by: " + MunseeWampumValues[ad]);
+                            }
+                        }
+                        Debug.Log(tags[ad] + " " + tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag + " ae: " + ae.ToString());
+                        Debug.Log(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
+                    }
+
                     tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
                     b++;
                 }
