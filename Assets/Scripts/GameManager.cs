@@ -2058,8 +2058,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 MunseeWampumValuesTrades[(totalTurnNumber) / 4] += MunseeWampumValues[ad];
                             }
                         }
-                        Debug.Log(tags[ad] + " " + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag);
-                        Debug.Log(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag = tags[ad]);
+                        Debug.Log(tags[ad] + " " + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag + " ae: " + ae.ToString());
+                        Debug.Log(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
                     }
                     
                     b++;
