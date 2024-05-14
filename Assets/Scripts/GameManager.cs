@@ -1997,7 +1997,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     
     // FIX
-    //[PunRPC]
+   [PunRPC]
     void clearAllTrades(PhotonMessageInfo info)
     {
         Debug.Log("HELLO?");
