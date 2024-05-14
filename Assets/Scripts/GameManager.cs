@@ -2116,8 +2116,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         DeactivateTeamFlags();
         Debug.Log(info.Sender.ToString());
-        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // theSender == info.Sender.ToString() && 
-        {
+        //if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // theSender == info.Sender.ToString() && 
+        //{
 
             totalTurnNumber++;
             Debug.Log("Called");
@@ -2131,7 +2131,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 turn++;
                 Debug.Log("turn++");
             }
-        }
+        //}
             Debug.Log(turn);
             Debug.Log("Total turn number: " + totalTurnNumber);
             for (int k = 0; k < SeasonalTimers.Length; k++)
