@@ -2060,19 +2060,19 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
                                 {
                                     PhilipsesWampum += PhilipsesWampumValues[ad];
-                                    PhilipsesWampumValuesTrades[(totalTurnNumber) / 4] += PhilipsesWampumValues[ad];
+                                    PhilipsesWampumValuesTrades[((totalTurnNumber) / 4) - 1] += PhilipsesWampumValues[ad];
                                     Debug.Log("Added to Philipses Wampum by: " + PhilipsesWampumValues[ad] + ", for a total of: " + PhilipsesWampum);
                                 }
                                 else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
                                 {
                                     SixNationsWampum += SixNationsWampumValues[ad];
-                                    SixNationsWampumValuesTrades[(totalTurnNumber) / 4] += SixNationsWampumValues[ad];
+                                    SixNationsWampumValuesTrades[((totalTurnNumber) / 4) - 2] += SixNationsWampumValues[ad];
                                     Debug.Log("Added to SixNations Wampum by: " + SixNationsWampumValues[ad] + ", for a total of: " + SixNationsWampum);
                                 }
                                 else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
                                 {
                                     MunseeWampum += MunseeWampumValues[ad];
-                                    MunseeWampumValuesTrades[(totalTurnNumber) / 4] += MunseeWampumValues[ad];
+                                    MunseeWampumValuesTrades[((totalTurnNumber) / 4) - 3] += MunseeWampumValues[ad];
                                     Debug.Log("Added to Munsee Wampum by: " + MunseeWampumValues[ad] + ", for a total of: " + MunseeWampum);
                                 }
                             }
