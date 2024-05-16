@@ -1967,8 +1967,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
 
-
+            Debug.Log("Clearing trades on: " + PhotonNetwork.LocalPlayer.ToString());
             this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+            Debug.Log("Moving turns on: " + PhotonNetwork.LocalPlayer.ToString());
             this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
         }
         
@@ -2190,6 +2191,89 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     
         
-    
+   
+
+
+
+    [PunRPC]
+    void MoveTurns1(PhotonMessageInfo info)
+    {
+        DeactivateTeamFlags();
+        Debug.Log("This was sent by: " + info.Sender.ToString() + "; This is running on " + PhotonNetwork.LocalPlayer.ToString() + "; theSender: " + theSender);
+
+        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // theSender == info.Sender.ToString() && 
+        {
+
+            totalTurnNumber++;
+            Debug.Log("It is now moving turns");
+            if (turn == 4)
+            {
+                turn = 1;
+                Debug.Log("Turn is 4, making turn 1");
+            }
+            else
+            {
+                turn++;
+                Debug.Log("turn++");
+            }
+            //}
+            Debug.Log("Turn: " + turn + "Total turn number: " + totalTurnNumber);
+            for (int k = 0; k < SeasonalTimers.Length; k++)
+            {
+                SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " | Turn: " + teamNames[(turn - 1)].ToString();
+            }
+
+            numberOfAcceptedTeams = 0;
+            DutchAccepted = false;
+            SixNationsAccepted = false;
+            MunseeAccepted = false;
+            PhilipsesAccepted = false;
+
+            if (!DutchTrading)
+            {
+                for (int i = 0; i < DutchTradeButton.Length; i++)
+                {
+                    DutchTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+
+            }
+            if (!PhilipsesTrading)
+            {
+                for (int i = 0; i < PhilipsesTradeButton.Length; i++)
+                {
+                    PhilipsesTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+            }
+            if (!MunseeTrading)
+            {
+                for (int i = 0; i < MunseeTradeButton.Length; i++)
+                {
+                    MunseeTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+            }
+            if (!SixNationsTrading)
+            {
+                for (int i = 0; i < SixNationsTradeButton.Length; i++)
+                {
+                    SixNationsTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+                }
+            }
+        }
+        DutchObject.SetActive(false);
+        DutchObject.SetActive(true);
+        MunseeObject.SetActive(false);
+        MunseeObject.SetActive(true);
+        Debug.Log("did");
+
+        InventoryCardsInTrade = 0;
+        WishlistCardsInTrade = 0;
+
+        /*PhilipsesTradingButtonOnClick philipsesTradingButtonOnClick = new PhilipsesTradingButtonOnClick();
+        philipsesTradingButtonOnClick.GetComponent<PhotonView>().RPC("greyOutButtons", RpcTarget.All);*/
+
+    }
+
+
+
 
 }
