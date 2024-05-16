@@ -2115,16 +2115,17 @@ public class GameManager : MonoBehaviourPunCallbacks
     void MoveTurns(PhotonMessageInfo info)
     {
         DeactivateTeamFlags();
-        Debug.Log(info.Sender.ToString());
-        //if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // theSender == info.Sender.ToString() && 
-        //{
+        Debug.Log("This was sent by: " + info.Sender.ToString() + "; This is running on " + PhotonNetwork.LocalPlayer.ToString() + "; theSender: " + theSender);
+        
+        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // theSender == info.Sender.ToString() && 
+        {
 
             totalTurnNumber++;
-            Debug.Log("Called");
+            Debug.Log("It is now moving turns");
             if (turn == 4)
             {
                 turn = 1;
-                Debug.Log("This ran bruh");
+                Debug.Log("Turn is 4, making turn 1");
             }
             else
             {
@@ -2132,8 +2133,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 Debug.Log("turn++");
             }
         //}
-            Debug.Log(turn);
-            Debug.Log("Total turn number: " + totalTurnNumber);
+            Debug.Log("Turn: " + turn + "Total turn number: " + totalTurnNumber);
             for (int k = 0; k < SeasonalTimers.Length; k++)
             {
                 SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " | Turn: " + teamNames[(turn - 1)].ToString();
@@ -2174,7 +2174,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     SixNationsTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
                 }
             }
-        //}
+        }
         DutchObject.SetActive(false);
         DutchObject.SetActive(true);
         MunseeObject.SetActive(false);
