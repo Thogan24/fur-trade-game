@@ -205,6 +205,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public float TurnTimer = 90.0f;
     
     public GameObject[] SeasonalTimers = { };
+
+    public bool doNotDoAnything = false;
     
     /*
      Turn numbers:
@@ -1918,6 +1920,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if(i == DutchAmounts.Length - 1)
                     {
                         this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                        doNotDoAnything = true;
                     }
                 }
             }
@@ -1933,6 +1936,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (i == PhilipsesAmounts.Length - 1)
                     {
                         this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                        doNotDoAnything = true;
                     }
                 }
             }
@@ -1948,6 +1952,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (i == SixNationsAmounts.Length - 1)
                     {
                         this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                        doNotDoAnything = true;
                     }
                 }
             }
@@ -1963,14 +1968,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (i == MunseeAmounts.Length - 1)
                     {
                         this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                        doNotDoAnything = true;
                     }
                 }
             }
-
-            Debug.Log("Clearing trades on: " + PhotonNetwork.LocalPlayer.ToString());
-            this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
-            Debug.Log("Moving turns on: " + PhotonNetwork.LocalPlayer.ToString());
-            this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
+            if(doNotDoAnything == false)
+            {
+                Debug.Log("Clearing trades on: " + PhotonNetwork.LocalPlayer.ToString());
+                this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+                Debug.Log("Moving turns on: " + PhotonNetwork.LocalPlayer.ToString());
+                this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
+            }
+            
         }
         
 
