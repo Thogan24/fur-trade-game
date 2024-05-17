@@ -80,6 +80,10 @@ TagManager:
   - Six Nations
   - Munsee
   - WampumText
+  - PhilipsesWampumText
+  - DutchWampumText
+  - SixNationsWampumText
+  - MunseeWampumText
   layers:
   - Default
   - TransparentFX
