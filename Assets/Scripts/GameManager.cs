@@ -2081,7 +2081,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
                             {
                                 Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
-                                
+                                this.GetComponent<PhotonView>().RPC("addWampumValues", RpcTarget.All);
                             }
                             Debug.Log(tags[ad] + " " + tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag + " ae: " + ae.ToString());
                             Debug.Log(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
