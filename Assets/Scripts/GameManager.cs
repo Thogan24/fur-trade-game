@@ -2025,6 +2025,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
     public int ad = 0;
+    public string trader = "";
     // FIX
     [PunRPC]
     void clearAllTrades(PhotonMessageInfo info)
@@ -2080,6 +2081,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
                             {
+                                trader = PhotonNetwork.LocalPlayer.ToString();
                                 Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
                                 this.GetComponent<PhotonView>().RPC("addWampumValues", RpcTarget.All);
                             }
@@ -2121,27 +2123,27 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void addWampumValues(PhotonMessageInfo info)
     {
-        // MOST LIKELY WRONG AD
+
         Debug.Log("We got here, RPC: " + PhotonNetwork.LocalPlayer.ToString());
-        if (PhotonNetwork.LocalPlayer.ToString() == Dutch)
+        if (trader == Dutch)
         {
             DutchWampum += DutchWampumValues[ad];
             //DutchWampumValuesTrades[(totalTurnNumber) / 4] += DutchWampumValues[ad];
             Debug.Log("Added to Dutch Wampum by: " + DutchWampumValues[ad] + ", for a total of: " + DutchWampum);
         }
-        else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
+        else if (trader == Philipses)
         {
             PhilipsesWampum += PhilipsesWampumValues[ad];
             //PhilipsesWampumValuesTrades[((totalTurnNumber) / 4) - 1] += PhilipsesWampumValues[ad];
             Debug.Log("Added to Philipses Wampum by: " + PhilipsesWampumValues[ad] + ", for a total of: " + PhilipsesWampum);
         }
-        else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
+        else if (trader == SixNations)
         {
             SixNationsWampum += SixNationsWampumValues[ad];
             //SixNationsWampumValuesTrades[((totalTurnNumber) / 4) - 2] += SixNationsWampumValues[ad];
             Debug.Log("Added to SixNations Wampum by: " + SixNationsWampumValues[ad] + ", for a total of: " + SixNationsWampum);
         }
-        else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
+        else if (trader == Munsee)
         {
             MunseeWampum += MunseeWampumValues[ad];
             //MunseeWampumValuesTrades[((totalTurnNumber) / 4) - 3] += MunseeWampumValues[ad];
