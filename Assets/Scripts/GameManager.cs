@@ -2081,6 +2081,22 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
                             {
+                                if(turn == 1)
+                                {
+                                    trader = Dutch;
+                                }
+                                else if (turn == 2)
+                                {
+                                    trader = Philipses;
+                                }
+                                else if (turn == 3)
+                                {
+                                    trader = SixNations;
+                                }
+                                else if (turn == 4)
+                                {
+                                    trader = Munsee;
+                                }
                                 trader = PhotonNetwork.LocalPlayer.ToString();
                                 Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
                                 this.GetComponent<PhotonView>().RPC("addWampumValues", RpcTarget.All);
