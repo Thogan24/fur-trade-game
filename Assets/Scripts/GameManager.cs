@@ -2024,9 +2024,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             SceneManager.LoadScene(3);
         }
     }
-    
+    public int ad = 0;
     // FIX
-   [PunRPC]
+    [PunRPC]
     void clearAllTrades(PhotonMessageInfo info)
     {
         Debug.Log("HELLO?");
@@ -2075,6 +2075,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {   
                     if (ae == (turn-1))
                     {
+                        
                         for (int ad = 0; ad < tags.Length; ad++)
                         {
                             if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
@@ -2120,6 +2121,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void addWampumValues(PhotonMessageInfo info)
     {
+        // MOST LIKELY WRONG AD
         Debug.Log("We got here, RPC: " + PhotonNetwork.LocalPlayer.ToString());
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch)
         {
