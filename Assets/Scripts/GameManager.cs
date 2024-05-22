@@ -2097,7 +2097,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 {
                                     trader = Munsee;
                                 }
-                                trader = PhotonNetwork.LocalPlayer.ToString();
+                                
                                 Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
                                 this.GetComponent<PhotonView>().RPC("addWampumValues", RpcTarget.All);
                             }
@@ -2140,7 +2140,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void addWampumValues(PhotonMessageInfo info)
     {
 
-        Debug.Log("We got here, RPC: " + PhotonNetwork.LocalPlayer.ToString());
+        Debug.Log("We got here, RPC: " + trader);
         if (trader == Dutch)
         {
             DutchWampum += DutchWampumValues[ad];
