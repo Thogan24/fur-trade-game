@@ -2001,9 +2001,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("Inside if");
             GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + DutchWampum.ToString();
-            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + DutchWampum.ToString();
-            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + DutchWampum.ToString();
-            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + DutchWampum.ToString();
+            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + PhilipsesWampum.ToString();
+            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + SixNationsWampum.ToString();
+            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + MunseeWampum.ToString();
         }
     }
 
