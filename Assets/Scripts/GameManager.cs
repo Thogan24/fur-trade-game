@@ -260,10 +260,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (SceneManager.GetActiveScene().name == "Final_Wampum_Value")
         {
             Debug.Log("Inside if");
-            GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + DutchWampum.ToString();
-            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + PhilipsesWampum.ToString();
-            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + SixNationsWampum.ToString();
-            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Wampum: " + MunseeWampum.ToString();
+            GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Dutch Wampum: " + DutchWampum.ToString();
+            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Philipses Wampum: " + PhilipsesWampum.ToString();
+            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Six Nations Wampum: " + SixNationsWampum.ToString();
+            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Munsee Wampum: " + MunseeWampum.ToString();
         }
 
 
@@ -1917,6 +1917,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                 MunseeTrading = false;
             }
 
+            Debug.Log("Clearing trades on: " + PhotonNetwork.LocalPlayer.ToString());
+            this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+
             // Check if anyone has won
             for (int i = 13; i < DutchAmounts.Length; i++)
             {
@@ -1984,8 +1987,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             if(doNotDoAnything == false)
             {
-                Debug.Log("Clearing trades on: " + PhotonNetwork.LocalPlayer.ToString());
-                this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+                
                 Debug.Log("Moving turns on: " + PhotonNetwork.LocalPlayer.ToString());
                 this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
             }
