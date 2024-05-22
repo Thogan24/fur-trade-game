@@ -1924,9 +1924,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
                 }
             }
-
+            Debug.Log("did i even run vro");
             for (int i = 13; i < PhilipsesAmounts.Length; i++)
             {
+                Debug.Log(i + " | Amount:" + PhilipsesAmounts[i]);
                 if (PhilipsesAmounts[i] != 0)
                 {
                     break;
