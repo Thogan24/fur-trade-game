@@ -2947,6 +2947,8 @@ MonoBehaviour:
   DuffelsCard: {fileID: 8467486979893556977, guid: ad5d2e7d00dfaac448869f1c067a8c58, type: 3}
   DeerSkinCard: {fileID: 6075063951732973871, guid: c1a65b9d374ef5c478ed8b0a8eccdc07, type: 3}
   theSender: 
+  distanceFromLineGiving: 6.5
+  distanceFromLineReceiving: 1.5
   SixNationsAmounts: 0c00000005000000060000000400000003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009000000040000000600000003000000030000001400000002000000
   MunseeAmounts: 0a0000000600000002000000050000000d00000006000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000004000000040000000a000000040000000c00000006000000
   PhilipsesAmounts: 00000000000000000000000000000000000000000000000003000000080000000a000000040000000200000003000000050000000a000000070000000400000006000000040000000600000000000000000000000000000000000000000000000000000000000000
@@ -2955,6 +2957,10 @@ MonoBehaviour:
   MunseeWampumValues: 6c000000280000001e0000001000000006000000060000001b000000380000004600000018000000060000000c00000005000000
   PhilipsesWampumValues: 6c000000280000001e0000001000000006000000060000001b000000380000004600000018000000060000000c00000005000000
   DutchWampumValues: 6c000000280000001e0000001000000006000000060000001b000000380000004600000018000000060000000c00000005000000
+  SixNationsWampumValuesTrades: 
+  MunseeWampumValuesTrades: 
+  PhilipsesWampumValuesTrades: 
+  DutchWampumValuesTrades: 
   SixNationsWampum: 0
   MunseeWampum: 0
   PhilipsesWampum: 0
@@ -3119,6 +3125,7 @@ MonoBehaviour:
   totalTurnNumber: 0
   TurnTimer: 90
   SeasonalTimers: []
+  doNotDoAnything: 0
   MunseeCamerasCheckArray: []
   enemyTeamButtonPos:
   - {x: 0, y: 0, z: 0}
@@ -3135,6 +3142,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  ad: 0
+  trader: 
 --- !u!222 &1290858076
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3150,7 +3159,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290858073}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -9.948305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3160,7 +3169,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.0776442, y: 0.5331628}
+  m_AnchoredPosition: {x: -1.0776367, y: 0.5331421}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1342647236
