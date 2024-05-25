@@ -1278,7 +1278,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 else
                                 { // Shouldn't do anything if we get rid of the isparentwishlist side
-                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3(((float)1.65 + ((float)0.3 * (InventoryCardsInTrade % 14))), (float)0.2 - (InventoryCardsInTrade / 14), 0), Quaternion.identity);
+                                    instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3(((float)1.5 + ((float)0.3 * (InventoryCardsInTrade % 14))), (float)0.2 - (InventoryCardsInTrade / 14), 0), Quaternion.identity);
                                 }
 
                             }
