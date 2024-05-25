@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public string theSender = "";
     public float distanceFromLineGiving = 1.5f;
-    public float distanceFromLineReceiving = 6.7f;
+    public float distanceFromLineReceiving = 6.08f;
 
 
 
