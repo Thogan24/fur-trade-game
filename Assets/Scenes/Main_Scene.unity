@@ -30053,7 +30053,7 @@ GameObject:
   - component: {fileID: 2141096464}
   m_Layer: 3
   m_Name: Trade Button (1)
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
