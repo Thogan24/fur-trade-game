@@ -84,6 +84,7 @@ TagManager:
   - DutchWampumText
   - SixNationsWampumText
   - MunseeWampumText
+  - clearButton
   layers:
   - Default
   - TransparentFX
