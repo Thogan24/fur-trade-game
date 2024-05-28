@@ -85,6 +85,11 @@ TagManager:
   - SixNationsWampumText
   - MunseeWampumText
   - clearButton
+  - DutchInfo
+  - PhilipsesInfo
+  - SixNationsInfo
+  - MunseeInfo
+  - DescriptionImage
   layers:
   - Default
   - TransparentFX

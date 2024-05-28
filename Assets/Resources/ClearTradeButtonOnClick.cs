@@ -8,7 +8,7 @@ using Photon.Realtime;
 public class ClearTradeButtonOnClick : MonoBehaviour
 {
     public GameManager gameManager;
-
+    
     void Start()
     {
 
