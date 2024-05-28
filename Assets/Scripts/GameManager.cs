@@ -125,6 +125,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public float YAxisLineDistance = 0.10f;
 
 
+    public bool clearTradeButton = false;
+
 
     /*
     STARTING INVENTORIES
@@ -2068,25 +2070,25 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
 
-                    
-                    
+
+
                     b++;
                 }
 
 
 
-                
+
                 b = 0;
                 while (tradeReceivingCardsParent[ae].transform.childCount != b && b < 1000) // For every Trade receiving card object, set inactive
-                {   
-                    if (ae == (turn-1))
+                {
+                    if (ae == (turn - 1))
                     {
-                        
+
                         for (int ad = 0; ad < tags.Length; ad++)
                         {
                             if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
                             {
-                                if(turn == 1)
+                                if (turn == 1)
                                 {
                                     trader = Dutch;
                                 }
@@ -2102,7 +2104,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 {
                                     trader = Munsee;
                                 }
-                                
+
                                 Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
                                 this.GetComponent<PhotonView>().RPC("addWampumValues", RpcTarget.All);
                             }
@@ -2110,7 +2112,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             Debug.Log(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
                         }
                     }
-                    
+
 
                     tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
                     b++;
@@ -2136,6 +2138,17 @@ public class GameManager : MonoBehaviourPunCallbacks
                     j++;
                 }*/
             }
+        }
+
+        if (clearTradeButton)
+        {
+            Debug.Log("ClearTradeButton Clicked, deactivating team flags & removing all trading");
+            DeactivateTeamFlags();
+            DutchTrading = false;
+            PhilipsesTrading = false;
+            SixNationsTrading = false;
+            MunseeTrading = false;
+            clearTradeButton = false;
         }
         
 

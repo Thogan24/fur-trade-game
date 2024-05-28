@@ -15364,8 +15364,8 @@ GameObject:
   - component: {fileID: 1136286007}
   - component: {fileID: 1136286006}
   - component: {fileID: 1136286005}
+  - component: {fileID: 1136286008}
   - component: {fileID: 1136286004}
-  - component: {fileID: 1136286003}
   m_Layer: 3
   m_Name: Deny Button
   m_TagString: Untagged
@@ -15393,19 +15393,6 @@ RectTransform:
   m_AnchoredPosition: {x: 376, y: 14}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1136286003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136286001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed7ce03affeb93e40910277cf3c81e3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!114 &1136286004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15472,9 +15459,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1136286003}
-        m_TargetAssemblyTypeName: TradeButtonOnClick, Assembly-CSharp
-        m_MethodName: TradeButtonOnClicked
+      - m_Target: {fileID: 1136286008}
+        m_TargetAssemblyTypeName: ClearTradeButtonOnClick, Assembly-CSharp
+        m_MethodName: ClearTradeButtonOnClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15522,6 +15509,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136286001}
   m_CullTransparentMesh: 1
+--- !u!114 &1136286008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136286001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac989ce4883ebb47a226bc7396e9717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1 &1137663078
 GameObject:
   m_ObjectHideFlags: 0
@@ -27578,7 +27578,7 @@ GameObject:
   - component: {fileID: 2024539741}
   - component: {fileID: 2024539740}
   - component: {fileID: 2024539739}
-  - component: {fileID: 2024539738}
+  - component: {fileID: 2024539743}
   m_Layer: 3
   m_Name: Deny Button
   m_TagString: Untagged
@@ -27606,19 +27606,6 @@ RectTransform:
   m_AnchoredPosition: {x: 376, y: 14}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2024539738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2024539736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed7ce03affeb93e40910277cf3c81e3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!114 &2024539739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27685,7 +27672,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2024539738}
+      - m_Target: {fileID: 2024539743}
         m_TargetAssemblyTypeName: TradeButtonOnClick, Assembly-CSharp
         m_MethodName: TradeButtonOnClicked
         m_Mode: 1
@@ -27735,6 +27722,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024539736}
   m_CullTransparentMesh: 1
+--- !u!114 &2024539743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024539736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed7ce03affeb93e40910277cf3c81e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1 &2025835406
 GameObject:
   m_ObjectHideFlags: 0
@@ -28257,7 +28257,7 @@ GameObject:
   - component: {fileID: 2064329947}
   - component: {fileID: 2064329946}
   - component: {fileID: 2064329945}
-  - component: {fileID: 2064329944}
+  - component: {fileID: 2064329949}
   m_Layer: 3
   m_Name: Deny Button
   m_TagString: Untagged
@@ -28285,19 +28285,6 @@ RectTransform:
   m_AnchoredPosition: {x: 376, y: 14}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2064329944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064329942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed7ce03affeb93e40910277cf3c81e3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!114 &2064329945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28364,9 +28351,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2064329944}
-        m_TargetAssemblyTypeName: TradeButtonOnClick, Assembly-CSharp
-        m_MethodName: TradeButtonOnClicked
+      - m_Target: {fileID: 2064329949}
+        m_TargetAssemblyTypeName: ClearTradeButtonOnClick, Assembly-CSharp
+        m_MethodName: ClearTradeButtonOnClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28414,6 +28401,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064329942}
   m_CullTransparentMesh: 1
+--- !u!114 &2064329949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064329942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac989ce4883ebb47a226bc7396e9717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1 &2065448019
 GameObject:
   m_ObjectHideFlags: 0
@@ -29970,7 +29970,7 @@ GameObject:
   - component: {fileID: 2137127797}
   - component: {fileID: 2137127796}
   - component: {fileID: 2137127795}
-  - component: {fileID: 2137127794}
+  - component: {fileID: 2137127799}
   m_Layer: 3
   m_Name: Deny Button
   m_TagString: Untagged
@@ -29998,19 +29998,6 @@ RectTransform:
   m_AnchoredPosition: {x: 376, y: 14}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2137127794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137127792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed7ce03affeb93e40910277cf3c81e3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!114 &2137127795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30077,9 +30064,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2137127794}
-        m_TargetAssemblyTypeName: TradeButtonOnClick, Assembly-CSharp
-        m_MethodName: TradeButtonOnClicked
+      - m_Target: {fileID: 2137127799}
+        m_TargetAssemblyTypeName: ClearTradeButtonOnClick, Assembly-CSharp
+        m_MethodName: ClearTradeButtonOnClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30127,6 +30114,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137127792}
   m_CullTransparentMesh: 1
+--- !u!114 &2137127799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137127792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac989ce4883ebb47a226bc7396e9717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1 &2139825129
 GameObject:
   m_ObjectHideFlags: 0
