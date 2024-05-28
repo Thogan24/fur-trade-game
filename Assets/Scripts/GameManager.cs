@@ -2086,7 +2086,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         for (int ad = 0; ad < tags.Length; ad++)
                         {
-                            if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
+                            if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad] && !clearTradeButton)
                             {
                                 if (turn == 1)
                                 {
@@ -2142,8 +2142,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (clearTradeButton)
         {
-            Debug.Log("ClearTradeButton Clicked, deactivating team flags & removing all trading");
-            DeactivateTeamFlags();
+            Debug.Log("ClearTradeButton Clicked, reactivating team flags & removing all trading");
+            ReactivateTeamFlags();
             DutchTrading = false;
             PhilipsesTrading = false;
             SixNationsTrading = false;
