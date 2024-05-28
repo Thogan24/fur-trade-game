@@ -2225,6 +2225,29 @@ public class GameManager : MonoBehaviourPunCallbacks
             SixNationsTrading = false;
             MunseeTrading = false;
             clearTradeButton = false;
+
+            for (int i = 0; i < DutchTradeButton.Length; i++)
+            {
+                DutchTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+
+            for (int i = 0; i < PhilipsesTradeButton.Length; i++)
+            {
+                PhilipsesTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+
+
+            for (int i = 0; i < MunseeTradeButton.Length; i++)
+            {
+                MunseeTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+            for (int i = 0; i < SixNationsTradeButton.Length; i++)
+            {
+                SixNationsTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+
+
+
         }
         
 
