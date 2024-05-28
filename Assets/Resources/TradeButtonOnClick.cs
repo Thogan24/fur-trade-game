@@ -31,7 +31,7 @@ public class TradeButtonOnClick : MonoBehaviour
     [PunRPC]
     void WhenClicked(string userIDOfClicker, PhotonMessageInfo info) // 
     {
-        Debug.Log(this.gameObject.name + this.gameObject.transform.parent.name);
+        Debug.Log(this.gameObject.name + this.gameObject.transform.parent.name + this.gameObject.transform.parent.parent.name + this.gameObject.transform.parent.parent.parent.name);
         if(this.gameObject.tag == "clearButton")
         {
             Debug.Log("W");
