@@ -19,8 +19,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
 
     public void PhilipsesTradingOnClick()
     {
-        Debug.Log("Hello");
-        Debug.LogError("ItsWhenClickingHere");
+        Debug.LogError("Philipses Trading On Click");
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
 
     }
