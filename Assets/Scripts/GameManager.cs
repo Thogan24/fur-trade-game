@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public float distanceFromLineGiving = 1.5f;
     public float distanceFromLineReceiving = 6.08f;
     public float ZAxisLineDistance = 0;
-    public float YAxisLineDistance = 0.15f;
+    public float YAxisLineDistance = 0.10f;
 
 
 
