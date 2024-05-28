@@ -2159,18 +2159,13 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         DutchAmounts[ad + 13] += 1;
                                         DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "x";
 
-                                        //Bandage fix
-                                        DutchAmounts[ad] -= 1;
-                                        DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
+
                                     }
                                     else if ((turn == 2 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Philipses"))
                                     {
                                         PhilipsesAmounts[ad + 13] += 1;
                                         PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "x";
 
-                                        //Bandage fix
-                                        PhilipsesAmounts[ad] -= 1;
-                                        PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
 
                                     }
                                     else if (turn == 3 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Six Nations")
@@ -2178,9 +2173,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         SixNationsAmounts[ad + 13] += 1;
                                         SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "x";
 
-                                        //Bandage fix
-                                        SixNationsAmounts[ad] -= 1;
-                                        SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
 
                                     }
                                     else if (turn == 4 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Munsee")
@@ -2188,9 +2180,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         MunseeAmounts[ad + 13] += 1;
                                         MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "x";
 
-                                        //Bandage fix
-                                        MunseeAmounts[ad] -= 1;
-                                        MunseeAmountsGameObjects[ad].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "x";
 
                                     }
                                 }
