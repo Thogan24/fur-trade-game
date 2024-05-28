@@ -2068,6 +2068,36 @@ public class GameManager : MonoBehaviourPunCallbacks
                 int b = 0;
                 while (tradeGivingCardsParent[ae].transform.childCount != b && b < 1000)
                 {
+                    for (int ad = 0; ad < tags.Length; ad++)
+                    {
+                        if (clearTradeButton && tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
+                        {
+                            if(turn == 1)
+                            {
+                                DutchAmounts[ad] += 1;
+                                DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
+                            }
+                            else if (turn == 2)
+                            {
+                                PhilipsesAmounts[ad] += 1;
+                                PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
+
+                            }
+                            else if (turn == 3)
+                            {
+                                SixNationsAmounts[ad] += 1;
+                                SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
+
+                            }
+                            else if (turn == 4)
+                            {
+                                MunseeAmounts[ad] += 1;
+                                MunseeAmountsGameObjects[ad].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "x";
+
+                            }
+
+                        }
+                    }
                     tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
 
 
@@ -2108,10 +2138,37 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
                                 this.GetComponent<PhotonView>().RPC("addWampumValues", RpcTarget.All);
                             }
+                            else if(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad] && clearTradeButton) // Add back values to wishlist
+                            {
+                                if (turn == 1)
+                                {
+                                    DutchAmounts[ad+13] += 1;
+                                    DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "x";
+                                }
+                                else if (turn == 2)
+                                {
+                                    PhilipsesAmounts[ad+13] += 1;
+                                    PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "x";
+
+                                }
+                                else if (turn == 3)
+                                {
+                                    SixNationsAmounts[ad+13] += 1;
+                                    SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "x";
+
+                                }
+                                else if (turn == 4)
+                                {
+                                    MunseeAmounts[ad+13] += 1;
+                                    MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "x";
+
+                                }
+                            }
                             Debug.Log(tags[ad] + " " + tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag + " ae: " + ae.ToString());
                             Debug.Log(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
                         }
                     }
+
 
 
                     tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
