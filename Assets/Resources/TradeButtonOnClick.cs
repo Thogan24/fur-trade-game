@@ -31,6 +31,21 @@ public class TradeButtonOnClick : MonoBehaviour
     [PunRPC]
     void WhenClicked(string userIDOfClicker, PhotonMessageInfo info) // 
     {
+        /*if (this.gameObject != null)
+        {
+            Debug.Log(this.gameObject.name + this.gameObject.tag + this.gameObject.transform.parent.name + this.gameObject.transform.parent.parent.name + this.gameObject.transform.parent.parent.parent.name);
+        }*/
+        
+        if(this.gameObject.tag == "clearButton")
+        {
+            Debug.Log("W");
+            gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+            gameManager.clearTradeButton = true;
+            gameManager.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+        }
+
+
+
         Debug.Log(userIDOfClicker);
         Debug.Log(PhotonNetwork.LocalPlayer.ToString());
         Debug.Log(info.Sender.ToString());

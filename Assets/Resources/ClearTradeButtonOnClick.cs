@@ -30,6 +30,7 @@ public class ClearTradeButtonOnClick : MonoBehaviour
     void WhenClicked(string userIDOfClicker) // 
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        gameManager.clearTradeButton = true;
         gameManager.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
     }
 }

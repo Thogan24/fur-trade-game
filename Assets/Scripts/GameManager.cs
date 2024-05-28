@@ -125,6 +125,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public float YAxisLineDistance = 0.10f;
 
 
+    public bool clearTradeButton = false;
+
 
     /*
     STARTING INVENTORIES
@@ -2058,61 +2060,137 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // Bring back / revert theSender == info.Sender.ToString() &&  if neccessary
         {
-            Debug.Log("RUN 2");
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
+
+            Debug.Log("Maybe Giving got called multiple times? The Sender is: " + info.Sender.ToString());
             for (int ae = 0; ae < tradeGivingCardsParent.Length; ae++) // For every Trade giving card object, set inactive    AE DESCRIBES THE PARENTS FOR EACH TEAM
             {
                 Debug.Log("RUN 3");
                 int b = 0;
                 while (tradeGivingCardsParent[ae].transform.childCount != b && b < 1000)
                 {
-                    tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
+                    if (tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.activeSelf == true) // If the card is activated
+                    {
+                        Debug.Log("Details about object: " + tradeGivingCardsParent[ae] + " " + tradeGivingCardsParent[ae].transform.GetChild(b) + " " + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject);
+                        
+                        for (int ad = 0; ad < tags.Length; ad++)
+                        {
+                            if (clearTradeButton && tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
+                            {
+                                Debug.Log("Running Giving Card Parent Adding back. Adding to value: " + (ad).ToString() + "");
+                                if (turn == 1 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Dutch")
+                                {
+                                    DutchAmounts[ad] += 1;
+                                    DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
+                                }
+                                else if (turn == 2 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Philipses")
+                                {
+                                    PhilipsesAmounts[ad] += 1;
+                                    PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
 
-                    
-                    
+                                }
+                                else if (turn == 3 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Six Nations")
+                                {
+                                    SixNationsAmounts[ad] += 1;
+                                    SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
+
+                                }
+                                else if (turn == 4 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Munsee")
+                                {
+                                    MunseeAmounts[ad] += 1;
+                                    MunseeAmountsGameObjects[ad].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "x";
+
+                                }
+
+                            }
+                        }
+                        tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
+
+
+
+                        
+                    }
                     b++;
+
                 }
 
 
 
-                
+
                 b = 0;
+                Debug.Log("Maybe Receiving got called multiple times? The Sender is: " + info.Sender.ToString());
                 while (tradeReceivingCardsParent[ae].transform.childCount != b && b < 1000) // For every Trade receiving card object, set inactive
-                {   
-                    if (ae == (turn-1))
+                {
+                    
+                    if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.activeSelf == true) // If the card is activated
                     {
-                        
-                        for (int ad = 0; ad < tags.Length; ad++)
+                        if (ae == (turn - 1))
                         {
-                            if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
+
+                            for (int ad = 0; ad < tags.Length; ad++)
                             {
-                                if(turn == 1)
+                                if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad] && !clearTradeButton) // FOR WAMPUM CALCULATION CHANGE THIS #WAMPUM
                                 {
-                                    trader = Dutch;
+                                    if (turn == 1)
+                                    {
+                                        trader = Dutch;
+                                    }
+                                    else if (turn == 2)
+                                    {
+                                        trader = Philipses;
+                                    }
+                                    else if (turn == 3)
+                                    {
+                                        trader = SixNations;
+                                    }
+                                    else if (turn == 4)
+                                    {
+                                        trader = Munsee;
+                                    }
+
+                                    Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
+                                    this.GetComponent<PhotonView>().RPC("addWampumValues", RpcTarget.All);
                                 }
-                                else if (turn == 2)
+                                else if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad] && clearTradeButton) // Add back values to wishlist
                                 {
-                                    trader = Philipses;
+                                    Debug.Log("Running Receiving Card Parent Adding back. Adding to value: " + (ad + 13).ToString() + "");
+                                    if (turn == 1 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Dutch")
+                                    {
+                                        DutchAmounts[ad + 13] += 1;
+                                        DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "x";
+
+
+                                    }
+                                    else if ((turn == 2 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Philipses"))
+                                    {
+                                        PhilipsesAmounts[ad + 13] += 1;
+                                        PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "x";
+
+
+                                    }
+                                    else if (turn == 3 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Six Nations")
+                                    {
+                                        SixNationsAmounts[ad + 13] += 1;
+                                        SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "x";
+
+
+                                    }
+                                    else if (turn == 4 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Munsee")
+                                    {
+                                        MunseeAmounts[ad + 13] += 1;
+                                        MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "x";
+
+
+                                    }
                                 }
-                                else if (turn == 3)
-                                {
-                                    trader = SixNations;
-                                }
-                                else if (turn == 4)
-                                {
-                                    trader = Munsee;
-                                }
-                                
-                                Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
-                                this.GetComponent<PhotonView>().RPC("addWampumValues", RpcTarget.All);
+                                Debug.Log(tags[ad] + " " + tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag + " ae: " + ae.ToString());
+                                Debug.Log(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
                             }
-                            Debug.Log(tags[ad] + " " + tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag + " ae: " + ae.ToString());
-                            Debug.Log(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
                         }
+
+                        tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
                     }
                     
-
-                    tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
                     b++;
                 }
 
@@ -2136,6 +2214,42 @@ public class GameManager : MonoBehaviourPunCallbacks
                     j++;
                 }*/
             }
+        }
+
+        if (clearTradeButton)
+        {
+            Debug.Log("ClearTradeButton Clicked, reactivating team flags & removing all trading");
+            ReactivateTeamFlags();
+            DutchTrading = false;
+            PhilipsesTrading = false;
+            SixNationsTrading = false;
+            MunseeTrading = false;
+            clearTradeButton = false;
+
+            for (int i = 0; i < DutchTradeButton.Length; i++)
+            {
+                DutchTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+
+            for (int i = 0; i < PhilipsesTradeButton.Length; i++)
+            {
+                PhilipsesTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+
+
+            for (int i = 0; i < MunseeTradeButton.Length; i++)
+            {
+                MunseeTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+            for (int i = 0; i < SixNationsTradeButton.Length; i++)
+            {
+                SixNationsTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+
+            InventoryCardsInTrade = 0;
+            WishlistCardsInTrade = 0;
+
+
         }
         
 
