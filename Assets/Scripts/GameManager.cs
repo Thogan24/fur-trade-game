@@ -2062,7 +2062,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
 
-            Debug.Log("Maybe Giving got called multiple times?");
+            Debug.Log("Maybe Giving got called multiple times? The Sender is: " + info.Sender.ToString());
             for (int ae = 0; ae < tradeGivingCardsParent.Length; ae++) // For every Trade giving card object, set inactive    AE DESCRIBES THE PARENTS FOR EACH TEAM
             {
                 Debug.Log("RUN 3");
@@ -2072,6 +2072,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.activeSelf == true) // If the card is activated
                     {
                         Debug.Log("Details about object: " + tradeGivingCardsParent[ae] + " " + tradeGivingCardsParent[ae].transform.GetChild(b) + " " + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject);
+                        
                         for (int ad = 0; ad < tags.Length; ad++)
                         {
                             if (clearTradeButton && tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
@@ -2117,7 +2118,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
                 b = 0;
-                Debug.Log("Maybe Receiving got called multiple times?");
+                Debug.Log("Maybe Receiving got called multiple times? The Sender is: " + info.Sender.ToString());
                 while (tradeReceivingCardsParent[ae].transform.childCount != b && b < 1000) // For every Trade receiving card object, set inactive
                 {
                     
