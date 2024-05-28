@@ -2060,8 +2060,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // Bring back / revert theSender == info.Sender.ToString() &&  if neccessary
         {
-            Debug.Log("RUN 2");
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
+
+            Debug.Log("Maybe Giving got called multiple times?");
             for (int ae = 0; ae < tradeGivingCardsParent.Length; ae++) // For every Trade giving card object, set inactive    AE DESCRIBES THE PARENTS FOR EACH TEAM
             {
                 Debug.Log("RUN 3");
@@ -2074,6 +2075,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             if (clearTradeButton && tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
                             {
+                                Debug.Log("Running Receiving Card Parent Adding back. Adding to value: " + (ad).ToString() + "");
                                 if (turn == 1)
                                 {
                                     DutchAmounts[ad] += 1;
@@ -2114,8 +2116,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
                 b = 0;
+                Debug.Log("Maybe Receiving got called multiple times?");
                 while (tradeReceivingCardsParent[ae].transform.childCount != b && b < 1000) // For every Trade receiving card object, set inactive
                 {
+                    
                     if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.activeSelf == true) // If the card is activated
                     {
                         if (ae == (turn - 1))
@@ -2147,6 +2151,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 else if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad] && clearTradeButton) // Add back values to wishlist
                                 {
+                                    Debug.Log("Running Receiving Card Parent Adding back. Adding to value: " + (ad + 13).ToString() + "");
                                     if (turn == 1)
                                     {
                                         DutchAmounts[ad + 13] += 1;
