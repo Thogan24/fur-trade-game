@@ -2075,7 +2075,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             if (clearTradeButton && tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
                             {
-                                Debug.Log("Running Receiving Card Parent Adding back. Adding to value: " + (ad).ToString() + "");
+                                Debug.Log("Running Giving Card Parent Adding back. Adding to value: " + (ad).ToString() + "");
                                 if (turn == 1)
                                 {
                                     DutchAmounts[ad] += 1;
@@ -2156,11 +2156,19 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     {
                                         DutchAmounts[ad + 13] += 1;
                                         DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "x";
+
+                                        //Bandage fix
+                                        DutchAmounts[ad] -= 1;
+                                        DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
                                     }
                                     else if (turn == 2)
                                     {
                                         PhilipsesAmounts[ad + 13] += 1;
                                         PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "x";
+
+                                        //Bandage fix
+                                        PhilipsesAmounts[ad] -= 1;
+                                        PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
 
                                     }
                                     else if (turn == 3)
@@ -2168,11 +2176,19 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         SixNationsAmounts[ad + 13] += 1;
                                         SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "x";
 
+                                        //Bandage fix
+                                        SixNationsAmounts[ad] -= 1;
+                                        SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
+
                                     }
                                     else if (turn == 4)
                                     {
                                         MunseeAmounts[ad + 13] += 1;
                                         MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "x";
+
+                                        //Bandage fix
+                                        MunseeAmounts[ad] -= 1;
+                                        MunseeAmountsGameObjects[ad].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "x";
 
                                     }
                                 }
