@@ -2885,7 +2885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a41e6e850948f541a611bf7bc10dfe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugStart: 1
+  DebugStart: 0
   Dutch: 
   SixNations: 
   Munsee: 
