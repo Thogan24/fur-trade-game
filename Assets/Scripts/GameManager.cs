@@ -2071,6 +2071,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     if (tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.activeSelf == true) // If the card is activated
                     {
+                        Debug.Log("Details about object: " + tradeGivingCardsParent[ae] + " " + tradeGivingCardsParent[ae].transform.GetChild(b) + " " + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject);
                         for (int ad = 0; ad < tags.Length; ad++)
                         {
                             if (clearTradeButton && tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
