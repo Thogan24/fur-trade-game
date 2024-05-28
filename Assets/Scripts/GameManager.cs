@@ -2078,24 +2078,24 @@ public class GameManager : MonoBehaviourPunCallbacks
                             if (clearTradeButton && tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
                             {
                                 Debug.Log("Running Giving Card Parent Adding back. Adding to value: " + (ad).ToString() + "");
-                                if (turn == 1)
+                                if (turn == 1 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Dutch")
                                 {
                                     DutchAmounts[ad] += 1;
                                     DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
                                 }
-                                else if (turn == 2)
+                                else if (turn == 2 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Philipses")
                                 {
                                     PhilipsesAmounts[ad] += 1;
                                     PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
 
                                 }
-                                else if (turn == 3)
+                                else if (turn == 3 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Six Nations")
                                 {
                                     SixNationsAmounts[ad] += 1;
                                     SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
 
                                 }
-                                else if (turn == 4)
+                                else if (turn == 4 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Munsee")
                                 {
                                     MunseeAmounts[ad] += 1;
                                     MunseeAmountsGameObjects[ad].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "x";
@@ -2129,7 +2129,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                             for (int ad = 0; ad < tags.Length; ad++)
                             {
-                                if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad] && !clearTradeButton)
+                                if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad] && !clearTradeButton) // FOR WAMPUM CALCULATION CHANGE THIS #WAMPUM
                                 {
                                     if (turn == 1)
                                     {
@@ -2154,7 +2154,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 else if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad] && clearTradeButton) // Add back values to wishlist
                                 {
                                     Debug.Log("Running Receiving Card Parent Adding back. Adding to value: " + (ad + 13).ToString() + "");
-                                    if (turn == 1)
+                                    if (turn == 1 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Dutch")
                                     {
                                         DutchAmounts[ad + 13] += 1;
                                         DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "x";
@@ -2163,7 +2163,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         DutchAmounts[ad] -= 1;
                                         DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
                                     }
-                                    else if (turn == 2)
+                                    else if ((turn == 2 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Philipses"))
                                     {
                                         PhilipsesAmounts[ad + 13] += 1;
                                         PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "x";
@@ -2173,7 +2173,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
 
                                     }
-                                    else if (turn == 3)
+                                    else if (turn == 3 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Six Nations")
                                     {
                                         SixNationsAmounts[ad + 13] += 1;
                                         SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "x";
@@ -2183,7 +2183,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
 
                                     }
-                                    else if (turn == 4)
+                                    else if (turn == 4 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Munsee")
                                     {
                                         MunseeAmounts[ad + 13] += 1;
                                         MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "x";
