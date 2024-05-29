@@ -99,6 +99,7 @@ TagManager:
   - Six Nations Second Background Canvas
   - Munsee Second Background Canvas
   - BeaverInfo
+  - BeaverDescription
   layers:
   - Default
   - TransparentFX

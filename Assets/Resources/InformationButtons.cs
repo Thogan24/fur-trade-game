@@ -41,6 +41,7 @@ public class InformationButtons : MonoBehaviour
     {
 
         Debug.Log("Clicked");
+        Debug.Log("Running through the array, searching for index with tag: " + this.gameObject.tag);
         var newColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         for (int i = 0; i < tagArray.Length; i++)
         {
