@@ -112,6 +112,18 @@ TagManager:
   - AxesInfo
   - BeadsInfo
   - ScissorsInfo
+  - DeerSkinDescription
+  - BearDescription
+  - FisherDescription
+  - FoxDescription
+  - SchepelsDescription
+  - DuffelsDescription
+  - LinenDescription
+  - StockingsDescription
+  - StroudsDescription
+  - AxesDescription
+  - BeadsDescription
+  - ScissorsDescription
   layers:
   - Default
   - TransparentFX

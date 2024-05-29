@@ -5128,7 +5128,7 @@ GameObject:
   - component: {fileID: 276398970}
   m_Layer: 0
   m_Name: Info (10)
-  m_TagString: Beaver
+  m_TagString: AxesInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6093,7 +6093,7 @@ GameObject:
   - component: {fileID: 317812529}
   m_Layer: 0
   m_Name: Description
-  m_TagString: BeaverDescription
+  m_TagString: BearDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8456,7 +8456,7 @@ GameObject:
   - component: {fileID: 435334379}
   m_Layer: 0
   m_Name: Description
-  m_TagString: BeaverDescription
+  m_TagString: StockingsDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9950,7 +9950,7 @@ GameObject:
   - component: {fileID: 536461469}
   m_Layer: 0
   m_Name: Info (11)
-  m_TagString: Beaver
+  m_TagString: BeadsInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10156,7 +10156,7 @@ GameObject:
   - component: {fileID: 559748050}
   m_Layer: 0
   m_Name: Description
-  m_TagString: BeaverDescription
+  m_TagString: DuffelsDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11489,7 +11489,7 @@ GameObject:
   - component: {fileID: 631948224}
   m_Layer: 0
   m_Name: Description
-  m_TagString: BeaverDescription
+  m_TagString: SchepelsDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12601,7 +12601,7 @@ GameObject:
   - component: {fileID: 691250696}
   m_Layer: 0
   m_Name: Description
-  m_TagString: BeaverDescription
+  m_TagString: FoxDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12896,7 +12896,7 @@ GameObject:
   - component: {fileID: 708560781}
   m_Layer: 0
   m_Name: Info (8)
-  m_TagString: Beaver
+  m_TagString: StockingsInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13442,7 +13442,7 @@ GameObject:
   - component: {fileID: 724162814}
   m_Layer: 0
   m_Name: Description
-  m_TagString: BeaverDescription
+  m_TagString: AxesDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17496,7 +17496,7 @@ GameObject:
   - component: {fileID: 1103669108}
   m_Layer: 0
   m_Name: Description
-  m_TagString: BeaverDescription
+  m_TagString: StroudsDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18481,7 +18481,7 @@ GameObject:
   - component: {fileID: 1154932112}
   m_Layer: 0
   m_Name: Description
-  m_TagString: BeaverDescription
+  m_TagString: LinenDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18580,7 +18580,7 @@ GameObject:
   - component: {fileID: 1159924548}
   m_Layer: 0
   m_Name: Info (24)
-  m_TagString: BeaverDescription
+  m_TagString: BeadsDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24492,7 +24492,7 @@ GameObject:
   - component: {fileID: 1534796805}
   m_Layer: 0
   m_Name: Description
-  m_TagString: BeaverDescription
+  m_TagString: FisherDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25450,7 +25450,7 @@ GameObject:
   - component: {fileID: 1590844504}
   m_Layer: 0
   m_Name: Info (12)
-  m_TagString: Beaver
+  m_TagString: ScissorsInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25917,7 +25917,7 @@ GameObject:
   - component: {fileID: 1639315966}
   m_Layer: 0
   m_Name: Description
-  m_TagString: BeaverDescription
+  m_TagString: DeerSkinDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27251,7 +27251,7 @@ GameObject:
   - component: {fileID: 1724319723}
   m_Layer: 0
   m_Name: Info (9)
-  m_TagString: Beaver
+  m_TagString: StroudsInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29561,7 +29561,7 @@ GameObject:
   - component: {fileID: 1852854246}
   m_Layer: 0
   m_Name: Info (25)
-  m_TagString: BeaverDescription
+  m_TagString: ScissorsDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32654,7 +32654,7 @@ GameObject:
   - component: {fileID: 2065114961}
   m_Layer: 0
   m_Name: Info (7)
-  m_TagString: Beaver
+  m_TagString: LinenInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
