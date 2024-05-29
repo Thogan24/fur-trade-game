@@ -6092,7 +6092,7 @@ GameObject:
   - component: {fileID: 317812530}
   - component: {fileID: 317812529}
   m_Layer: 0
-  m_Name: Info (15)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8455,7 +8455,7 @@ GameObject:
   - component: {fileID: 435334380}
   - component: {fileID: 435334379}
   m_Layer: 0
-  m_Name: Info (21)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10155,7 +10155,7 @@ GameObject:
   - component: {fileID: 559748051}
   - component: {fileID: 559748050}
   m_Layer: 0
-  m_Name: Info (19)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11488,7 +11488,7 @@ GameObject:
   - component: {fileID: 631948225}
   - component: {fileID: 631948224}
   m_Layer: 0
-  m_Name: Info (18)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12600,7 +12600,7 @@ GameObject:
   - component: {fileID: 691250697}
   - component: {fileID: 691250696}
   m_Layer: 0
-  m_Name: Info (17)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13441,7 +13441,7 @@ GameObject:
   - component: {fileID: 724162815}
   - component: {fileID: 724162814}
   m_Layer: 0
-  m_Name: Info (23)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17494,7 +17494,7 @@ GameObject:
   - component: {fileID: 1103669109}
   - component: {fileID: 1103669108}
   m_Layer: 0
-  m_Name: Info (22)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18479,7 +18479,7 @@ GameObject:
   - component: {fileID: 1154932113}
   - component: {fileID: 1154932112}
   m_Layer: 0
-  m_Name: Info (20)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24490,7 +24490,7 @@ GameObject:
   - component: {fileID: 1534796806}
   - component: {fileID: 1534796805}
   m_Layer: 0
-  m_Name: Info (16)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25915,7 +25915,7 @@ GameObject:
   - component: {fileID: 1639315967}
   - component: {fileID: 1639315966}
   m_Layer: 0
-  m_Name: Info (14)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26962,7 +26962,7 @@ GameObject:
   - component: {fileID: 1687104784}
   - component: {fileID: 1687104783}
   m_Layer: 0
-  m_Name: Info (13)
+  m_Name: Description
   m_TagString: BeaverDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
