@@ -94,6 +94,10 @@ TagManager:
   - PhilipsesDescription
   - SixNationsDescription
   - MunseeDescription
+  - Dutch Second Background Canvas
+  - Philipses Second Background Canvas
+  - Six Nations Second Background Canvas
+  - Munsee Second Background Canvas
   layers:
   - Default
   - TransparentFX

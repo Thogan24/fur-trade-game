@@ -68,15 +68,19 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Canvases which attach instantiated camera later on
     public GameObject DutchTextCanvasObject;
     public GameObject DutchBackgroundCanvasObject;
+    public GameObject DutchSecondBackgroundCanvasObject;
     public GameObject DutchCardsCanvasObject;
     public GameObject SixNationsTextCanvasObject;
     public GameObject SixNationsBackgroundCanvasObject;
+    public GameObject SixNationsSecondBackgroundCanvasObject;
     public GameObject SixNationsCardsCanvasObject;
     public GameObject MunseeTextCanvasObject;
     public GameObject MunseeBackgroundCanvasObject;
+    public GameObject MunseeSecondBackgroundCanvasObject;
     public GameObject MunseeCardsCanvasObject;
     public GameObject PhilipsesTextCanvasObject;
     public GameObject PhilipsesBackgroundCanvasObject;
+    public GameObject PhilipsesSecondBackgroundCanvasObject;
     public GameObject PhilipsesCardsCanvasObject;
 
     public GameObject DutchObject;
@@ -395,10 +399,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
             DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
             DutchBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Background Canvas");
+            DutchSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Second Background Canvas");
             DutchCamera.transform.parent = DutchTextCanvasObject.transform.parent;
             DutchTextCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
+            DutchSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             //DutchCamera.SetActive(true);
         }
         GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
@@ -408,10 +414,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             SixNationsCamera = PhotonView.Instantiate(SixNationsCameraPrefab);
             SixNationsTextCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Text Canvas");
             SixNationsBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Background Canvas");
+            SixNationsSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Second Background Canvas");
             SixNationsCamera.transform.parent = SixNationsTextCanvasObject.transform.parent;
             SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsCardsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
+            SixNationsSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
 
         }
         MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
@@ -422,10 +430,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeCamera = PhotonView.Instantiate(MunseeCameraPrefab);
             MunseeTextCanvasObject = GameObject.FindGameObjectWithTag("Munsee Text Canvas");
             MunseeBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Background Canvas");
+            MunseeSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Second Background Canvas");
             MunseeCamera.transform.parent = MunseeTextCanvasObject.transform.parent;
             MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
+            MunseeSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
         }
         GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false && PhilipsesCamerasCheckArray.Length <= 1)
@@ -434,10 +444,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             PhilipsesCamera = PhotonView.Instantiate(PhilipsesCameraPrefab);
             PhilipsesTextCanvasObject = GameObject.FindGameObjectWithTag("Philipses Text Canvas");
             PhilipsesBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Background Canvas");
+            PhilipsesSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Second Background Canvas");
             PhilipsesCamera.transform.parent = PhilipsesTextCanvasObject.transform.parent;
             PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
+            PhilipsesSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
         }
 
         // Arrays of trade buttons
