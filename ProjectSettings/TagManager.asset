@@ -98,6 +98,7 @@ TagManager:
   - Philipses Second Background Canvas
   - Six Nations Second Background Canvas
   - Munsee Second Background Canvas
+  - BeaverInfo
   layers:
   - Default
   - TransparentFX
