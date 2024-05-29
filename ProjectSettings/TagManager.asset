@@ -100,6 +100,18 @@ TagManager:
   - Munsee Second Background Canvas
   - BeaverInfo
   - BeaverDescription
+  - DeerSkinInfo
+  - BearInfo
+  - FisherInfo
+  - FoxInfo
+  - SchepelsInfo
+  - DuffelsInfo
+  - LinenInfo
+  - StockingsInfo
+  - StroudsInfo
+  - AxesInfo
+  - BeadsInfo
+  - ScissorsInfo
   layers:
   - Default
   - TransparentFX

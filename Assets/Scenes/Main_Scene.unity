@@ -4920,7 +4920,7 @@ GameObject:
   - component: {fileID: 260473603}
   m_Layer: 0
   m_Name: Info (4)
-  m_TagString: Beaver
+  m_TagString: FoxInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5887,7 +5887,7 @@ GameObject:
   - component: {fileID: 308059812}
   m_Layer: 0
   m_Name: Info (3)
-  m_TagString: Beaver
+  m_TagString: FisherInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11852,7 +11852,7 @@ GameObject:
   - component: {fileID: 657004824}
   m_Layer: 0
   m_Name: Info (6)
-  m_TagString: Beaver
+  m_TagString: DuffelsInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19157,7 +19157,7 @@ GameObject:
   - component: {fileID: 1173753134}
   m_Layer: 0
   m_Name: Info (2)
-  m_TagString: Beaver
+  m_TagString: BearInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20337,7 +20337,7 @@ GameObject:
   - component: {fileID: 1275733405}
   m_Layer: 0
   m_Name: Info (5)
-  m_TagString: Beaver
+  m_TagString: SchepelsInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23904,7 +23904,7 @@ GameObject:
   - component: {fileID: 1489886966}
   m_Layer: 0
   m_Name: Info (1)
-  m_TagString: Beaver
+  m_TagString: DeerSkinInfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
