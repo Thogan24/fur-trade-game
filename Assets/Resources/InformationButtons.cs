@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InformationButtons : MonoBehaviour
 {
@@ -51,8 +52,22 @@ public class InformationButtons : MonoBehaviour
                 Debug.Log(index);
             }
         }
-
-        GameObject.FindGameObjectWithTag(imageDescriptionTags[index]).gameObject.GetComponent<Image>().color = newColor;
+        if(SceneManager.GetActiveScene().name == "TeamSelect")
+        {
+            GameObject.FindGameObjectWithTag(imageDescriptionTags[index]).gameObject.GetComponent<Image>().color = newColor;
+        }
+        else if (SceneManager.GetActiveScene().name == "Main_Scene")
+        {
+            GameObject[] descriptionArray = GameObject.FindGameObjectsWithTag(imageDescriptionTags[index]);
+            if(descriptionArray != null)
+            {
+                for (int a = 0; a < descriptionArray.Length; a++)
+                {
+                    descriptionArray[a].gameObject.GetComponent<Image>().color = newColor;
+                }
+            }
+        }
+        
 
     }
 
@@ -100,13 +115,28 @@ public class InformationButtons : MonoBehaviour
     public void closeInfo()
     {
         var newColor = new Color(1.0f, 1.0f, 1.0f, 0f);
+
         for(int j = 0; j < imageDescriptionTags.Length; j++)
         {
-            if(GameObject.FindGameObjectWithTag(imageDescriptionTags[j]) != null)
+            if (SceneManager.GetActiveScene().name == "TeamSelect")
             {
-                GameObject.FindGameObjectWithTag(imageDescriptionTags[j]).GetComponent<Image>().color = newColor;
+                if (GameObject.FindGameObjectWithTag(imageDescriptionTags[j]) != null)
+                {
+                    GameObject.FindGameObjectWithTag(imageDescriptionTags[j]).GetComponent<Image>().color = newColor;
+                }
             }
-        }
+            else if (SceneManager.GetActiveScene().name == "Main_Scene")
+            {
+                GameObject[] descriptionArray2 = GameObject.FindGameObjectsWithTag(imageDescriptionTags[j]);
+                for (int b = 0; b < descriptionArray2.Length; b++)
+                {
+                    if(descriptionArray2[b] != null)
+                    {
+                        descriptionArray2[b].gameObject.GetComponent<Image>().color = newColor;
+                    }
+                }
+                
+            }
     }
 
 }
