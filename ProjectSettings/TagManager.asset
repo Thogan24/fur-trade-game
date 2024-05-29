@@ -90,6 +90,10 @@ TagManager:
   - SixNationsInfo
   - MunseeInfo
   - DescriptionImage
+  - DutchDescription
+  - PhilipsesDescription
+  - SixNationsDescription
+  - MunseeDescription
   layers:
   - Default
   - TransparentFX
