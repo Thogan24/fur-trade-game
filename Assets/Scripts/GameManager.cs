@@ -1774,6 +1774,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             Debug.Log(cardAmountObjects[d]);
                             int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                             DutchAmounts[childIndex]++;
+                            DutchAmounts[childIndex + 13]--;
                             cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
                         }
                     }
@@ -1818,6 +1819,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             Debug.Log(cardAmountObjects[d]);
                             int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                             PhilipsesAmounts[childIndex]++;
+                            PhilipsesAmounts[childIndex + 13]--;
                             cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex].ToString() + "x";
                         }
                     }
@@ -1862,6 +1864,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             Debug.Log(cardAmountObjects[d]);
                             int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                             SixNationsAmounts[childIndex]++;
+                            SixNationsAmounts[childIndex + 13]--;
                             cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
                         }
                     }
@@ -1906,6 +1909,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             Debug.Log(cardAmountObjects[d]);
                             int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                             MunseeAmounts[childIndex]++;
+                            MunseeAmounts[childIndex + 13]--;
                             cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
                         }
                     }
@@ -2454,6 +2458,28 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
         }
+
+
+        for (int i = 0; i < DutchAmounts.Length; i++)
+        {
+            if(DutchAmounts[i] <= 0)
+            {
+                DutchAmounts[i] = 0;
+            }
+            else if(PhilipsesAmounts[i] <= 0)
+            {
+                PhilipsesAmounts[i] = 0;
+            }
+            else if (SixNationsAmounts[i] <= 0)
+            {
+                SixNationsAmounts[i] = 0;
+            }
+            else if (MunseeAmounts[i] <= 0)
+            {
+                MunseeAmounts[i] = 0;
+            }
+        }
+
         DutchObject.SetActive(false);
         DutchObject.SetActive(true);
         MunseeObject.SetActive(false);
