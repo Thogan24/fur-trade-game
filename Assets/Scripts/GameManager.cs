@@ -2375,6 +2375,36 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
         }
+
+        for (int i = 0; i < DutchAmounts.Length; i++)
+        {
+
+
+            if (DutchAmounts[i] <= 0)
+            {
+                DutchAmounts[i] = 0;
+            }
+            else if (PhilipsesAmounts[i] <= 0)
+            {
+                PhilipsesAmounts[i] = 0;
+            }
+            else if (SixNationsAmounts[i] <= 0)
+            {
+                SixNationsAmounts[i] = 0;
+            }
+            else if (MunseeAmounts[i] <= 0)
+            {
+                MunseeAmounts[i] = 0;
+            }
+            DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+            PhilipsesAmountsGameObjects[i].GetComponent<Text>().text = PhilipsesAmounts[i].ToString() + "x";
+            SixNationsAmountsGameObjects[i].GetComponent<Text>().text = SixNationsAmounts[i].ToString() + "x";
+            MunseeAmountsGameObjects[i].GetComponent<Text>().text = MunseeAmounts[i].ToString() + "x";
+            Debug.Log(i);
+        }
+
+
+
         DutchObject.SetActive(false);
         DutchObject.SetActive(true);
         MunseeObject.SetActive(false);
@@ -2392,7 +2422,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         
    
 
-
+/*
 
     [PunRPC]
     void MoveTurns1(PhotonMessageInfo info)
@@ -2460,32 +2490,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
 
-        for (int i = 0; i < DutchAmounts.Length; i++)
-        {
-            
-
-            if (DutchAmounts[i] <= 0)
-            {
-                DutchAmounts[i] = 0;
-            }
-            else if(PhilipsesAmounts[i] <= 0)
-            {
-                PhilipsesAmounts[i] = 0;
-            }
-            else if (SixNationsAmounts[i] <= 0)
-            {
-                SixNationsAmounts[i] = 0;
-            }
-            else if (MunseeAmounts[i] <= 0)
-            {
-                MunseeAmounts[i] = 0;
-            }
-            DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
-            PhilipsesAmountsGameObjects[i].GetComponent<Text>().text = PhilipsesAmounts[i].ToString() + "x";
-            SixNationsAmountsGameObjects[i].GetComponent<Text>().text = SixNationsAmounts[i].ToString() + "x";
-            MunseeAmountsGameObjects[i].GetComponent<Text>().text = MunseeAmounts[i].ToString() + "x";
-            Debug.Log(i);
-        }
+        
 
         DutchObject.SetActive(false);
         DutchObject.SetActive(true);
@@ -2496,12 +2501,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         InventoryCardsInTrade = 0;
         WishlistCardsInTrade = 0;
 
-        /*PhilipsesTradingButtonOnClick philipsesTradingButtonOnClick = new PhilipsesTradingButtonOnClick();
-        philipsesTradingButtonOnClick.GetComponent<PhotonView>().RPC("greyOutButtons", RpcTarget.All);*/
+        *//*PhilipsesTradingButtonOnClick philipsesTradingButtonOnClick = new PhilipsesTradingButtonOnClick();
+        philipsesTradingButtonOnClick.GetComponent<PhotonView>().RPC("greyOutButtons", RpcTarget.All);*//*
 
     }
 
-
+*/
 
 
 }
