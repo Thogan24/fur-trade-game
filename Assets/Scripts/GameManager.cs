@@ -2316,7 +2316,16 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         DeactivateTeamFlags();
         Debug.Log("This was sent by: " + info.Sender.ToString() + "; This is running on " + PhotonNetwork.LocalPlayer.ToString() + "; theSender: " + theSender);
-        
+
+        DutchObject.SetActive(false);
+        DutchObject.SetActive(true);
+        MunseeObject.SetActive(false);
+        MunseeObject.SetActive(true);
+        Debug.Log("did");
+
+        InventoryCardsInTrade = 0;
+        WishlistCardsInTrade = 0;
+
         if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // theSender == info.Sender.ToString() && 
         {
 
@@ -2414,14 +2423,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-        DutchObject.SetActive(false);
-        DutchObject.SetActive(true);
-        MunseeObject.SetActive(false);
-        MunseeObject.SetActive(true);
-        Debug.Log("did");
-
-        InventoryCardsInTrade = 0;
-        WishlistCardsInTrade = 0;
+        
         
         /*PhilipsesTradingButtonOnClick philipsesTradingButtonOnClick = new PhilipsesTradingButtonOnClick();
         philipsesTradingButtonOnClick.GetComponent<PhotonView>().RPC("greyOutButtons", RpcTarget.All);*/
