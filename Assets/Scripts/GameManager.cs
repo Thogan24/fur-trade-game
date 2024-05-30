@@ -1776,6 +1776,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                             DutchAmounts[childIndex]++;
                             DutchAmounts[childIndex + 13]--;
                             cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex+13].ToString() + "x";
+
                         }
                     }
                     c++;
@@ -1821,6 +1823,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             PhilipsesAmounts[childIndex]++;
                             PhilipsesAmounts[childIndex + 13]--;
                             cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex].ToString() + "x";
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex+13].ToString() + "x";
                         }
                     }
                     c++;
@@ -1840,6 +1843,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                             PhilipsesAmounts[childIndex]--;
                             cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex].ToString() + "x";
+
                         }
                     }
                     c++;
@@ -1866,6 +1870,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                             SixNationsAmounts[childIndex]++;
                             SixNationsAmounts[childIndex + 13]--;
                             cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex+13].ToString() + "x";
+
                         }
                     }
                     c++;
@@ -1911,6 +1917,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                             MunseeAmounts[childIndex]++;
                             MunseeAmounts[childIndex + 13]--;
                             cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
+                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex+13].ToString() + "x";
+
                         }
                     }
                     c++;
