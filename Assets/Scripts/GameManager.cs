@@ -1952,7 +1952,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             // Check if anyone has won
             for (int i = 13; i < DutchAmounts.Length; i++)
             {
-                if (DutchAmounts[i] != 0)
+                if (DutchAmounts[i] > 0)
                 {
                     break;
                 }
@@ -1969,7 +1969,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             for (int i = 13; i < PhilipsesAmounts.Length; i++)
             {
                 Debug.Log(i + " | Amount:" + PhilipsesAmounts[i]);
-                if (PhilipsesAmounts[i] != 0)
+                if (PhilipsesAmounts[i] > 0)
                 {
                     break;
                 }
@@ -1985,7 +1985,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             for (int i = 13; i < SixNationsAmounts.Length; i++)
             {
-                if (SixNationsAmounts[i] != 0)
+                if (SixNationsAmounts[i] > 0)
                 {
                     break;
                 }
@@ -2001,7 +2001,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             for (int i = 13; i < MunseeAmounts.Length; i++)
             {
-                if (MunseeAmounts[i] != 0)
+                if (MunseeAmounts[i] > 0)
                 {
                     break;
                 }
