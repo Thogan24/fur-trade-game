@@ -2462,10 +2462,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         for (int i = 0; i < DutchAmounts.Length; i++)
         {
-            DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
-            PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
-            SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
-            MunseeAmountsGameObjects[ad].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "x";
+            
 
             if (DutchAmounts[i] <= 0)
             {
@@ -2483,6 +2480,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 MunseeAmounts[i] = 0;
             }
+            DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
+            PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
+            SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
+            MunseeAmountsGameObjects[ad].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "x";
         }
 
         DutchObject.SetActive(false);
