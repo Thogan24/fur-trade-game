@@ -2376,31 +2376,32 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
 
-        for (int i = 0; i < DutchAmounts.Length; i++)
+        Debug.Log(DutchAmounts.Length);
+        for (int ag = 0; ag < DutchAmounts.Length; ag++)
         {
 
 
-            if (DutchAmounts[i] <= 0)
+            if (DutchAmounts[ag] <= 0)
             {
-                DutchAmounts[i] = 0;
+                DutchAmounts[ag] = 0;
             }
-            else if (PhilipsesAmounts[i] <= 0)
+            else if (PhilipsesAmounts[ag] <= 0)
             {
-                PhilipsesAmounts[i] = 0;
+                PhilipsesAmounts[ag] = 0;
             }
-            else if (SixNationsAmounts[i] <= 0)
+            else if (SixNationsAmounts[ag] <= 0)
             {
-                SixNationsAmounts[i] = 0;
+                SixNationsAmounts[ag] = 0;
             }
-            else if (MunseeAmounts[i] <= 0)
+            else if (MunseeAmounts[ag] <= 0)
             {
-                MunseeAmounts[i] = 0;
+                MunseeAmounts[ag] = 0;
             }
-            DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
-            PhilipsesAmountsGameObjects[i].GetComponent<Text>().text = PhilipsesAmounts[i].ToString() + "x";
-            SixNationsAmountsGameObjects[i].GetComponent<Text>().text = SixNationsAmounts[i].ToString() + "x";
-            MunseeAmountsGameObjects[i].GetComponent<Text>().text = MunseeAmounts[i].ToString() + "x";
-            Debug.Log(i);
+            DutchAmountsGameObjects[ag].GetComponent<Text>().text = DutchAmounts[ag].ToString() + "x";
+            PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = PhilipsesAmounts[ag].ToString() + "x";
+            SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = SixNationsAmounts[ag].ToString() + "x";
+            MunseeAmountsGameObjects[ag].GetComponent<Text>().text = MunseeAmounts[ag].ToString() + "x";
+            Debug.Log(ag);
         }
 
 
