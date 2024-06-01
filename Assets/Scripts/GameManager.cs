@@ -2243,7 +2243,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (clearTradeButton)
         {
             Debug.Log("ClearTradeButton Clicked, reactivating team flags & removing all trading");
-            ReactivateTeamFlags();
+            //ReactivateTeamFlags();
             DutchTrading = false;
             PhilipsesTrading = false;
             SixNationsTrading = false;
