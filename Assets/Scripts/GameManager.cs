@@ -1281,7 +1281,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 for (int z = 0; z < tags.Length; z++)
                 {
-                    Debug.Log(tag + " " + tags[z]);
+                    //Debug.Log(tag + " " + tags[z]);
                     if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
                     {
 
@@ -1356,7 +1356,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 for (int z = 0; z < tags.Length; z++)
                 {
-                    Debug.Log(tag + " " + tags[z]);
+                    //Debug.Log(tag + " " + tags[z]);
                     if (tag == tags[z] && ((PhilipsesAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
                     {
 
@@ -1430,7 +1430,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 for (int z = 0; z < tags.Length; z++)
                 {
-                    Debug.Log(tag + " " + tags[z]);
+                    //Debug.Log(tag + " " + tags[z]);
                     if (tag == tags[z] && ((SixNationsAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
                     {
 
@@ -1504,7 +1504,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 for (int z = 0; z < tags.Length; z++)
                 {
-                    Debug.Log(tag + " " + tags[z]);
+                    //Debug.Log(tag + " " + tags[z]);
                     if (tag == tags[z] && ((MunseeAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
                     {
 
