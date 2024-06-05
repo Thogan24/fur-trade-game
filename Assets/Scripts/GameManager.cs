@@ -571,15 +571,15 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
                     if (PhilipsesAmounts[i] == 0)
                     {
-                        DutchAmountsGameObjects[i] = null;
+                        PhilipsesAmountsGameObjects[i] = null;
                     }
                     if (SixNationsAmounts[i] == 0)
                     {
-                        DutchAmountsGameObjects[i] = null;
+                        SixNationsAmountsGameObjects[i] = null;
                     }
                     if (MunseeAmounts[i] == 0)
                     {
-                        DutchAmountsGameObjects[i] = null;
+                        MunseeAmountsGameObjects[i] = null;
                     }
                     
                     
@@ -2505,16 +2505,30 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 MunseeAmounts[ag] = 0;
             }
-            Debug.Log(DutchAmountsGameObjects[ag]);
-            Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
-            DutchAmountsGameObjects[ag].GetComponent<Text>().text = DutchAmounts[ag].ToString() + "x";
-            Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
-            PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = PhilipsesAmounts[ag].ToString() + "x";
-            Debug.Log("sub: " + ag);
-            Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
-            SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = SixNationsAmounts[ag].ToString() + "x";
-            Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
-            MunseeAmountsGameObjects[ag].GetComponent<Text>().text = MunseeAmounts[ag].ToString() + "x";
+            if (DutchAmountsGameObjects != null)
+            {
+                Debug.Log(DutchAmountsGameObjects[ag]);
+                Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
+                DutchAmountsGameObjects[ag].GetComponent<Text>().text = DutchAmounts[ag].ToString() + "x";
+                Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
+            }
+            if (PhilipsesAmountsGameObjects != null)
+            {
+                PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = PhilipsesAmounts[ag].ToString() + "x";
+                Debug.Log("sub: " + ag);
+            }
+            
+            if(SixNationsAmountsGameObjects != null)
+            {
+                Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
+                SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = SixNationsAmounts[ag].ToString() + "x";
+                Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
+            }
+            if(MunseeAmountsGameObjects != null)
+            {
+                MunseeAmountsGameObjects[ag].GetComponent<Text>().text = MunseeAmounts[ag].ToString() + "x";
+            }
+            
             Debug.Log("ag: " + ag);
         }
 
