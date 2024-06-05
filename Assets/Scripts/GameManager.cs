@@ -1641,7 +1641,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void cardSwitchTeams(PhotonMessageInfo info) // TODO
     {
-        // Switching things for every team do ASAP
+        // This part does not have two while loops because it only needs to add the cards it is receiving since it has already 
+
+
+
         theSender = info.Sender.ToString();
         if (theSender == PhotonNetwork.LocalPlayer.ToString())
         {
@@ -1654,18 +1657,27 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 while (tradeReceivingCardsParent[0].transform.childCount != c && c < 500)
                 {
-
-                    Debug.Log(tradeReceivingCardsParent[0].transform.GetChild(c));
-                    string cardTag = tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.tag;
-                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
-                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    Debug.Log("Is the " + c + "iteration in " + tradeReceivingCardsParent[0] + " active: " + tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.active);
+                    Debug.Log("activeSelf: Is the " + c + "iteration in " + tradeReceivingCardsParent[0] + " active: " + tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.activeSelf);
+                    if (tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.active == true)
                     {
-                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Dutch")
+                        Debug.Log(tradeReceivingCardsParent[0].transform.GetChild(c));
+                        string cardTag = tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.tag;
+                        GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                        GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + "Amount Wishlist");
+                        for (int d = 0; d < cardAmountObjects.Length; d++)
                         {
-                            Debug.Log(cardAmountObjects[d]);
-                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
-                            DutchAmounts[childIndex]++;
-                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
+                            if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Dutch")
+                            {
+                                Debug.Log("Changing team Dutch. Wishlist (should be of dutch) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
+                                Debug.Log(cardAmountObjects[d]);
+                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                DutchAmounts[childIndex]++;
+                                DutchAmounts[childIndex + 13]--;
+                                cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
+                                cardAmountObjects2[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex + 13].ToString() + "x";
+
+                            }
                         }
                     }
                     c++;
@@ -1673,6 +1685,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                 DutchAccepted = false;
                 DutchTrading = false;
             }
+
+
+
 
             else if (PhilipsesAccepted && turn == 2)
             {
@@ -1682,18 +1697,25 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 while (tradeReceivingCardsParent[1].transform.childCount != c && c < 500)
                 {
-
-                    Debug.Log(tradeReceivingCardsParent[1].transform.GetChild(c));
-                    string cardTag = tradeReceivingCardsParent[1].transform.GetChild(c).gameObject.tag;
-                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
-                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    if (tradeReceivingCardsParent[1].transform.GetChild(c).gameObject.active == true)
                     {
-                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Philipses")
+                        Debug.Log(tradeReceivingCardsParent[1].transform.GetChild(c));
+
+                        string cardTag = tradeReceivingCardsParent[1].transform.GetChild(c).gameObject.tag;
+                        GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                        GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + "Amount Wishlist");
+                        for (int d = 0; d < cardAmountObjects.Length; d++)
                         {
-                            Debug.Log(cardAmountObjects[d]);
-                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
-                            PhilipsesAmounts[childIndex]++;
-                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex].ToString() + "x";
+                            if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Philipses")
+                            {
+                                Debug.Log(cardAmountObjects[d]);
+                                Debug.Log("Changing team Philipses. Wishlist (should be of philipses) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
+                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                PhilipsesAmounts[childIndex]++;
+                                PhilipsesAmounts[childIndex + 13]--;
+                                cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex].ToString() + "x";
+                                cardAmountObjects2[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex + 13].ToString() + "x";
+                            }
                         }
                     }
                     c++;
@@ -1709,18 +1731,25 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 while (tradeReceivingCardsParent[2].transform.childCount != c && c < 500)
                 {
-
-                    Debug.Log(tradeReceivingCardsParent[2].transform.GetChild(c));
-                    string cardTag = tradeReceivingCardsParent[2].transform.GetChild(c).gameObject.tag;
-                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
-                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    if (tradeReceivingCardsParent[2].transform.GetChild(c).gameObject.active == true)
                     {
-                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Six Nations")
+                        Debug.Log(tradeReceivingCardsParent[2].transform.GetChild(c));
+                        string cardTag = tradeReceivingCardsParent[2].transform.GetChild(c).gameObject.tag;
+                        GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                        GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + "Amount Wishlist");
+                        for (int d = 0; d < cardAmountObjects.Length; d++)
                         {
-                            Debug.Log(cardAmountObjects[d]);
-                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
-                            SixNationsAmounts[childIndex]++;
-                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
+                            if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Six Nations")
+                            {
+                                Debug.Log("Changing team Six Nations. Wishlist (should be of six nations) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
+                                Debug.Log(cardAmountObjects[d]);
+                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                SixNationsAmounts[childIndex]++;
+                                SixNationsAmounts[childIndex + 13]--;
+                                cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
+                                cardAmountObjects2[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex + 13].ToString() + "x";
+
+                            }
                         }
                     }
                     c++;
@@ -1735,18 +1764,25 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 while (tradeReceivingCardsParent[3].transform.childCount != c && c < 500)
                 {
-
-                    Debug.Log(tradeReceivingCardsParent[3].transform.GetChild(c));
-                    string cardTag = tradeReceivingCardsParent[3].transform.GetChild(c).gameObject.tag;
-                    GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
-                    for (int d = 0; d < cardAmountObjects.Length; d++)
+                    if (tradeReceivingCardsParent[3].transform.GetChild(c).gameObject.active == true)
                     {
-                        if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Munsee")
+                        Debug.Log(tradeReceivingCardsParent[3].transform.GetChild(c));
+                        string cardTag = tradeReceivingCardsParent[3].transform.GetChild(c).gameObject.tag;
+                        GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
+                        GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + "Amount Wishlist");
+                        for (int d = 0; d < cardAmountObjects.Length; d++)
                         {
-                            Debug.Log(cardAmountObjects[d]);
-                            int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
-                            MunseeAmounts[childIndex]++;
-                            cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
+                            if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Munsee")
+                            {
+                                Debug.Log("Changing team Munsee. Wishlist (should be of munsee) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
+                                Debug.Log(cardAmountObjects[d]);
+                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                MunseeAmounts[childIndex]++;
+                                MunseeAmounts[childIndex + 13]--;
+                                cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
+                                cardAmountObjects2[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex + 13].ToString() + "x";
+
+                            }
                         }
                     }
                     c++;
