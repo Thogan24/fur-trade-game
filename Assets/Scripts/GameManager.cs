@@ -2505,26 +2505,26 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 MunseeAmounts[ag] = 0;
             }
-            if (DutchAmountsGameObjects != null)
+            if (DutchAmountsGameObjects[ag] != null)
             {
                 Debug.Log(DutchAmountsGameObjects[ag]);
                 Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
                 DutchAmountsGameObjects[ag].GetComponent<Text>().text = DutchAmounts[ag].ToString() + "x";
                 Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
             }
-            if (PhilipsesAmountsGameObjects != null)
+            if (PhilipsesAmountsGameObjects[ag] != null)
             {
                 PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = PhilipsesAmounts[ag].ToString() + "x";
                 Debug.Log("sub: " + ag);
             }
             
-            if(SixNationsAmountsGameObjects != null)
+            if(SixNationsAmountsGameObjects[ag] != null)
             {
                 Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
                 SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = SixNationsAmounts[ag].ToString() + "x";
                 Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
             }
-            if(MunseeAmountsGameObjects != null)
+            if(MunseeAmountsGameObjects[ag] != null)
             {
                 MunseeAmountsGameObjects[ag].GetComponent<Text>().text = MunseeAmounts[ag].ToString() + "x";
             }
