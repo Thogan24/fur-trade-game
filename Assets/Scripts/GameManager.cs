@@ -833,26 +833,49 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public string findTeamBeingTradedWith()
     {
-        if(PhotonNetwork.LocalPlayer.ToString() == Dutch && turn != 1)
+        if(DutchTrading == true && turn != 1)
         {
             return Dutch;
         }
-        else if (PhotonNetwork.LocalPlayer.ToString() == Philipses && turn != 2)
+        else if (PhilipsesTrading == true && turn != 2)
         {
             return Philipses;
         }
-        else if (PhotonNetwork.LocalPlayer.ToString() == SixNations && turn != 3)
+        else if (SixNationsTrading == true && turn != 3)
         {
             return SixNations;
         }
-        else if (PhotonNetwork.LocalPlayer.ToString() == Munsee && turn != 4)
+        else if (MunseeTrading == true && turn != 4)
         {
             return Munsee;
         }
         Debug.LogError("Cannot find team that is being traded with");
         return null;
-        
     }
+
+    [PunRPC]
+    public bool findifTeamBeingTradedWithHasEnoughCards(int index)
+    {
+        if (DutchTrading == true && turn != 1)
+        {
+            return DutchAmounts[index] > 0;
+        }
+        else if (PhilipsesTrading == true && turn != 2)
+        {
+            return PhilipsesAmounts[index] > 0;
+        }
+        else if (SixNationsTrading == true && turn != 3)
+        {
+            return SixNationsAmounts[index] > 0;
+        }
+        else if (MunseeTrading == true && turn != 4)
+        {
+            return MunseeAmounts[index] > 0;
+        }
+        Debug.LogError("Cannot find team that is being traded with");
+        return false;
+    }
+
     [PunRPC]
     void addCardToTrade(string tag, string parentTag, PhotonMessageInfo info)
     {
