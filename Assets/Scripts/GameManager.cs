@@ -1410,7 +1410,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         break;
                     }
-                    else if((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
+                    else if(tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
                     {
                         GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
 
@@ -1500,7 +1500,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         break;
                     }
-                    else if ((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
+                    else if (tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
                     {
                         GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
 
@@ -1589,7 +1589,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         break;
                     }
-                    else if ((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
+                    else if (tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
                     {
                         GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
 
@@ -1678,7 +1678,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         break;
                     }
-                    else if ((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
+                    else if (tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
                     {
                         GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
 
