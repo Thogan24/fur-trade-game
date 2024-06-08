@@ -1647,7 +1647,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
         Debug.Log("cardSwitchTeams was called on THIS device");
+        
         theSender = info.Sender.ToString();
+        Debug.Log(theSender + " | " + PhotonNetwork.LocalPlayer.ToString());
         if (theSender == PhotonNetwork.LocalPlayer.ToString())
         {
             Debug.Log("how many times did this run");
