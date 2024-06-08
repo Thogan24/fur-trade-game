@@ -2596,10 +2596,14 @@ public class GameManager : MonoBehaviourPunCallbacks
             numberOfAcceptedTeams = 0;
             clearTradeButton = false;
 
-            DutchAmountsSubtractedDuringTrade = DutchAmounts;
+            System.Array.Copy(DutchAmounts, DutchAmountsSubtractedDuringTrade, DutchAmounts.Length);
+            System.Array.Copy(PhilipsesAmounts, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmounts.Length);
+            System.Array.Copy(SixNationsAmounts, SixNationsAmountsSubtractedDuringTrade, SixNationsAmounts.Length);
+            System.Array.Copy(MunseeAmounts, MunseeAmountsSubtractedDuringTrade, MunseeAmounts.Length);
+/*            DutchAmountsSubtractedDuringTrade = DutchAmounts;
             PhilipsesAmountsSubtractedDuringTrade = PhilipsesAmounts;
             SixNationsAmountsSubtractedDuringTrade = SixNationsAmounts;
-            MunseeAmountsSubtractedDuringTrade = MunseeAmounts;
+            MunseeAmountsSubtractedDuringTrade = MunseeAmounts;*/
 
             for (int i = 0; i < DutchTradeButton.Length; i++)
             {
