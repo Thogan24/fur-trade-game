@@ -183,6 +183,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int[] PhilipsesAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0 };
     public int[] DutchAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0 };
 
+
     // NEEDS TO BE CHANGED IN FINAL GAME
     public int[] SixNationsWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
     public int[] MunseeWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
@@ -2594,6 +2595,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeAccepted = false;
             numberOfAcceptedTeams = 0;
             clearTradeButton = false;
+
+            DutchAmountsSubtractedDuringTrade = DutchAmounts;
+            PhilipsesAmountsSubtractedDuringTrade = PhilipsesAmounts;
+            SixNationsAmountsSubtractedDuringTrade = SixNationsAmounts;
+            MunseeAmountsSubtractedDuringTrade = MunseeAmounts;
 
             for (int i = 0; i < DutchTradeButton.Length; i++)
             {
