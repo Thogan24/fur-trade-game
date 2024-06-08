@@ -858,18 +858,22 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (DutchTrading == true && turn != 1)
         {
+            Debug.Log("Dutch has: " + DutchAmounts[index] + " of the card at " + index);
             return DutchAmounts[index] > 0;
         }
         else if (PhilipsesTrading == true && turn != 2)
         {
+            Debug.Log("Philipses has: " + PhilipsesAmounts[index] + " of the card at " + index);
             return PhilipsesAmounts[index] > 0;
         }
         else if (SixNationsTrading == true && turn != 3)
         {
+            Debug.Log("Six Nations has: " + SixNationsAmounts[index] + " of the card at " + index);
             return SixNationsAmounts[index] > 0;
         }
         else if (MunseeTrading == true && turn != 4)
         {
+            Debug.Log("Munsee has: " + MunseeAmounts[index] + " of the card at " + index);
             return MunseeAmounts[index] > 0;
         }
         Debug.LogError("Cannot find team that is being traded with");
