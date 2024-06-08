@@ -63,6 +63,8 @@ MonoBehaviour:
   - moveToEndScene
   - MoveTurns1
   - addWampumValues
+  - findTeamBeingTradedWith
+  - findifTeamBeingTradedWithHasEnoughCards
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

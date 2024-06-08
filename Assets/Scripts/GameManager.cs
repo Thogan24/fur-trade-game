@@ -818,7 +818,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-    IEnumerable redCardAnimation(GameObject card)
+    IEnumerator redCardAnimation(GameObject card)
     {
 
 
@@ -877,7 +877,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void addCardToTrade(string tag, string parentTag, PhotonMessageInfo info)
+    void addCardToTrade(string tag, string parentTag, GameObject cardGameObject, PhotonMessageInfo info)
     {
         string playerString = info.Sender.ToString();
         Debug.Log("Player: " + playerString);
@@ -1350,7 +1350,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 for (int z = 0; z < tags.Length; z++)
                 {
                     //Debug.Log(tag + " " + tags[z]);
-                    if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
+                    if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCards(z)))) // If the card amounts are greater than zero or is in their wishlist
                     {
 
                         if (isParentInventory == 1)
@@ -1405,6 +1405,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
                         break;
+                    }
+                    else if((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
+                    {
+                        Debug.Log("Team does not have enough cards, starting animation");
+                        StartCoroutine(redCardAnimation(cardGameObject));
+                        return;
                     }
                     else
                     {

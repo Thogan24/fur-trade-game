@@ -27675,6 +27675,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 6075063951732973857, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075063951732973857, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973870, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
