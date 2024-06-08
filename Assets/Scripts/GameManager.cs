@@ -131,6 +131,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public bool clearTradeButton = false;
 
+    public GameObject[] cardAmountObjects;
+    public GameObject[] cardAmountObjects2;
+
 
     /*
     STARTING INVENTORIES
@@ -216,7 +219,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] SeasonalTimers = { };
 
     public bool doNotDoAnything = false;
-    
+
+
     /*
      Turn numbers:
      Dutch - 1
@@ -1645,6 +1649,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         // This part does not have two while loops because it only needs to add the cards it is receiving since it has already 
 
+        //Explanation: For the team who set up the trade, receive their items by going through all the items in receivingcardparent[team] that are ACTIVE and gets the tag of them. Then find the team by going up by parents.
+        // The cardAmountObjects is all the Amount objects with the tag + amount, or all the teams' amount game object of the card. Then a for loop is used to get the Dutch team's amount game object where it then sets the text of the object.
+        // Then adds that value to the respective team's amount of FindsGameObjectsWithTag of that tag + amount.
+
+        // CHILD INDEX: If a fox is 5th in the hierarchy for the amounts, the childindex is 5 
 
         Debug.Log("cardSwitchTeams was called on THIS device");
         
@@ -1652,6 +1661,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log(theSender + " | " + PhotonNetwork.LocalPlayer.ToString());
         if (theSender == PhotonNetwork.LocalPlayer.ToString())
         {
+            int childIndex = 0;
             Debug.Log("how many times did this run");
             // Team who's turn it is recieves their items
             if (DutchAccepted && turn == 1)
@@ -1671,17 +1681,27 @@ public class GameManager : MonoBehaviourPunCallbacks
                         
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + " Amount Wishlist");
+                        
                         for (int d = 0; d < cardAmountObjects.Length; d++)
                         {
                             Debug.Log("d = " + d + "; cardAmountObjects[d] + " + cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name);
+                            
                             if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Dutch")
                             {
-                                Debug.Log("Changing team Dutch. Wishlist (should be of dutch) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 Debug.Log(cardAmountObjects[d]);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 DutchAmounts[childIndex]++;
                                 DutchAmounts[childIndex + 13]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
+
+                            }
+                        }
+                        for (int d = 0; d < cardAmountObjects2.Length; d++)
+                        {
+                            Debug.Log("d = " + d + "; cardAmountObjects2[d].team = " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
+                            if (cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Dutch")
+                            {
+                                Debug.Log("Changing team Dutch. Wishlist (should be of dutch) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex + 13].ToString() + "x";
 
                             }
@@ -1707,7 +1727,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (tradeReceivingCardsParent[1].transform.GetChild(c).gameObject.active == true)
                     {
                         Debug.Log(tradeReceivingCardsParent[1].transform.GetChild(c));
-
+                        
                         string cardTag = tradeReceivingCardsParent[1].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + " Amount Wishlist");
@@ -1717,7 +1737,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log(cardAmountObjects[d]);
                                 Debug.Log("Changing team Philipses. Wishlist (should be of philipses) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 PhilipsesAmounts[childIndex]++;
                                 PhilipsesAmounts[childIndex + 13]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex].ToString() + "x";
@@ -1741,6 +1761,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (tradeReceivingCardsParent[2].transform.GetChild(c).gameObject.active == true)
                     {
                         Debug.Log(tradeReceivingCardsParent[2].transform.GetChild(c));
+                        
                         string cardTag = tradeReceivingCardsParent[2].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + " Amount Wishlist");
@@ -1750,7 +1771,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Six Nations. Wishlist (should be of six nations) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 Debug.Log(cardAmountObjects[d]);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 SixNationsAmounts[childIndex]++;
                                 SixNationsAmounts[childIndex + 13]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
@@ -1774,6 +1795,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (tradeReceivingCardsParent[3].transform.GetChild(c).gameObject.active == true)
                     {
                         Debug.Log(tradeReceivingCardsParent[3].transform.GetChild(c));
+                        
                         string cardTag = tradeReceivingCardsParent[3].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + " Amount Wishlist");
@@ -1783,7 +1805,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Munsee. Wishlist (should be of munsee) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 Debug.Log(cardAmountObjects[d]);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 MunseeAmounts[childIndex]++;
                                 MunseeAmounts[childIndex + 13]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
@@ -1829,7 +1851,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Dutch. Wishlist (should be of dutch) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 Debug.Log(cardAmountObjects[d]);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 DutchAmounts[childIndex]++;
                                 DutchAmounts[childIndex + 13]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
@@ -1854,7 +1876,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Dutch")
                             {
                                 Debug.Log(cardAmountObjects[d]);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 DutchAmounts[childIndex]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
                             }
@@ -1887,11 +1909,21 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log("iteration: " + d);
                                 Debug.Log("Changing team Philipses. Wishlist (should be of philipses) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
 
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 PhilipsesAmounts[childIndex]++;
                                 PhilipsesAmounts[childIndex + 13]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex].ToString() + "x";
+
+                            }
+                        }
+                        for (int d = 0; d < cardAmountObjects2.Length; d++)
+                        {
+                            Debug.Log("d = " + d + "; cardAmountObjects2[d].team = " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
+                            if (cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Philipses")
+                            {
+                                Debug.Log("Changing team Philipses. Wishlist (should be of philipses) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex + 13].ToString() + "x";
+
                             }
                         }
                     }
@@ -1911,7 +1943,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Philipses")
                             {
                                 Debug.Log(cardAmountObjects[d]);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 PhilipsesAmounts[childIndex]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex].ToString() + "x";
 
@@ -1942,7 +1974,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Six Nations. Wishlist (should be of six nations) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 Debug.Log(cardAmountObjects[d]);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 SixNationsAmounts[childIndex]++;
                                 SixNationsAmounts[childIndex + 13]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
@@ -1967,7 +1999,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Six Nations")
                             {
                                 Debug.Log(cardAmountObjects[d]);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 SixNationsAmounts[childIndex]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
                             }
@@ -1997,7 +2029,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Munsee. Wishlist (should be of munsee) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 Debug.Log(cardAmountObjects[d]);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 MunseeAmounts[childIndex]++;
                                 MunseeAmounts[childIndex + 13]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
@@ -2022,7 +2054,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Munsee")
                             {
                                 Debug.Log(cardAmountObjects[d]);
-                                int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 MunseeAmounts[childIndex]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
                             }
