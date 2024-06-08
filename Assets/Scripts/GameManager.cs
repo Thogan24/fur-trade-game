@@ -1907,7 +1907,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log(cardAmountObjects[d]);
                                 Debug.Log("iteration: " + d);
-                                Debug.Log("Changing team Philipses. Wishlist (should be of philipses) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
+
 
                                 childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 PhilipsesAmounts[childIndex]++;
