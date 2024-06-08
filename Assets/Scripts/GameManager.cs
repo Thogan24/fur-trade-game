@@ -814,6 +814,45 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
     public GameObject[] instantiatedCard = { null, null, null, null };
     public GameObject[] CardsCanvasObjects = { null, null, null, null };
+
+
+
+
+    IEnumerable redCardAnimation(GameObject card)
+    {
+
+
+        card.GetComponent<Image>().color = Color.HSVToRGB(0f, 0.72f, 0.61f);
+        yield return new WaitForSeconds(1);
+        card.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+
+        yield return null;
+
+    }
+
+    [PunRPC]
+    public string findTeamBeingTradedWith()
+    {
+        if(PhotonNetwork.LocalPlayer.ToString() == Dutch && turn != 1)
+        {
+            return Dutch;
+        }
+        else if (PhotonNetwork.LocalPlayer.ToString() == Philipses && turn != 2)
+        {
+            return Philipses;
+        }
+        else if (PhotonNetwork.LocalPlayer.ToString() == SixNations && turn != 3)
+        {
+            return SixNations;
+        }
+        else if (PhotonNetwork.LocalPlayer.ToString() == Munsee && turn != 4)
+        {
+            return Munsee;
+        }
+        Debug.LogError("Cannot find team that is being traded with");
+        return null;
+        
+    }
     [PunRPC]
     void addCardToTrade(string tag, string parentTag, PhotonMessageInfo info)
     {
@@ -2427,7 +2466,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (clearTradeButton)
         {
             Debug.Log("ClearTradeButton Clicked, reactivating team flags & removing all trading");
-            //ReactivateTeamFlags();
             DutchTrading = false;
             PhilipsesTrading = false;
             SixNationsTrading = false;
