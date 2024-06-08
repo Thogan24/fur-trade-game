@@ -877,7 +877,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void addCardToTrade(string tag, string parentTag, GameObject cardGameObject, PhotonMessageInfo info)
+    void addCardToTrade(string tag, string parentTag, PhotonMessageInfo info)
     {
         string playerString = info.Sender.ToString();
         Debug.Log("Player: " + playerString);
@@ -1408,9 +1408,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
                     else if((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
                     {
-                        Debug.Log("Team does not have enough cards, starting animation");
-                        StartCoroutine(redCardAnimation(cardGameObject));
-                        return;
+                        GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                        for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                        {
+                            if(cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch")
+                            {
+                                Debug.Log("Team does not have enough cards, starting animation");
+                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                return;
+                            }
+                        }
+                        
                     }
                     else
                     {

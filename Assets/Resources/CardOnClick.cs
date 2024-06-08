@@ -37,7 +37,7 @@ public class CardOnClick : MonoBehaviour
             Debug.Log(tag);
             if (CanWishlist())
             {
-                gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag, this.gameObject);
+                gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag);
             } else
             {
                 StartCoroutine(FlashRedCoroutine());
