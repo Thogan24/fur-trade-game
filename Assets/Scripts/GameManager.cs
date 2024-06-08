@@ -1412,7 +1412,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         for (int ah = 0; ah < cardsWithTag.Length; ah++)
                         {
-                            if(cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch")
+                            if(cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
                             {
                                 Debug.Log("Team does not have enough cards, starting animation");
                                 StartCoroutine(redCardAnimation(cardsWithTag[ah]));
@@ -1496,6 +1496,21 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         break;
                     }
+                    else if ((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
+                    {
+                        GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                        for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                        {
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name == "Philipses" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                            {
+                                Debug.Log("Team does not have enough cards, starting animation");
+                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                return;
+                            }
+                        }
+
+                    }
                     else
                     {
                         Debug.LogError("None of specified card left");
@@ -1514,7 +1529,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 for (int z = 0; z < tags.Length; z++)
                 {
                     //Debug.Log(tag + " " + tags[z]);
-                    if (tag == tags[z] && ((SixNationsAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
+                    if (tag == tags[z] && ((SixNationsAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCards(z)))) // If the card amounts are greater than zero or is in their wishlist
                     {
 
                         if (isParentInventory == 1)
@@ -1570,6 +1585,21 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         break;
                     }
+                    else if ((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
+                    {
+                        GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                        for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                        {
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name == "Six Nations" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                            {
+                                Debug.Log("Team does not have enough cards, starting animation");
+                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                return;
+                            }
+                        }
+
+                    }
                     else
                     {
                         Debug.LogError("None of specified card left");
@@ -1588,7 +1618,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 for (int z = 0; z < tags.Length; z++)
                 {
                     //Debug.Log(tag + " " + tags[z]);
-                    if (tag == tags[z] && ((MunseeAmounts[z] > 0 && isParentInventory == 1) || isParentWishlist == 1)) // If the card amounts are greater than zero or is in their wishlist
+                    if (tag == tags[z] && ((MunseeAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCards(z)))) // If the card amounts are greater than zero or is in their wishlist
                     {
 
                         if (isParentInventory == 1)
@@ -1643,6 +1673,21 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
                         break;
+                    }
+                    else if ((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
+                    {
+                        GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                        for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                        {
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name == "Munsee" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                            {
+                                Debug.Log("Team does not have enough cards, starting animation");
+                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                return;
+                            }
+                        }
+
                     }
                     else
                     {
