@@ -1646,7 +1646,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         // This part does not have two while loops because it only needs to add the cards it is receiving since it has already 
 
 
-
+        Debug.Log("cardSwitchTeams was called on THIS device");
         theSender = info.Sender.ToString();
         if (theSender == PhotonNetwork.LocalPlayer.ToString())
         {
