@@ -178,6 +178,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int[] PhilipsesAmounts =  {0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0};
     public int[] DutchAmounts =      {0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0};
 
+    public int[] SixNationsAmountsSubtractedDuringTrade = { 12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 9, 4, 6, 3, 3, 20, 2 };
+    public int[] MunseeAmountsSubtractedDuringTrade = { 10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6 };
+    public int[] PhilipsesAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] DutchAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0 };
+
     // NEEDS TO BE CHANGED IN FINAL GAME
     public int[] SixNationsWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
     public int[] MunseeWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
@@ -854,27 +859,49 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
+    public void findTeamBeingTradedWithAndSubtractFromInventory(int index)
+    {
+        if (DutchTrading == true && turn != 1)
+        {
+            DutchAmountsSubtractedDuringTrade[index]--;
+        }
+        else if (PhilipsesTrading == true && turn != 2)
+        {
+            PhilipsesAmountsSubtractedDuringTrade[index]--;
+        }
+        else if (SixNationsTrading == true && turn != 3)
+        {
+            SixNationsAmountsSubtractedDuringTrade[index]--;
+        }
+        else if (MunseeTrading == true && turn != 4)
+        {
+            MunseeAmountsSubtractedDuringTrade[index]--;
+        }
+        Debug.LogError("Cannot find team that is being traded with");
+    }
+
+    [PunRPC]
     public bool findifTeamBeingTradedWithHasEnoughCards(int index)
     {
         if (DutchTrading == true && turn != 1)
         {
-            Debug.Log("Dutch has: " + DutchAmounts[index] + " of the card at " + index);
-            return DutchAmounts[index] > 0;
+            Debug.Log("Dutch has: " + DutchAmountsSubtractedDuringTrade[index] + " of the card at " + index);
+            return DutchAmountsSubtractedDuringTrade[index] > 0;
         }
         else if (PhilipsesTrading == true && turn != 2)
         {
-            Debug.Log("Philipses has: " + PhilipsesAmounts[index] + " of the card at " + index);
-            return PhilipsesAmounts[index] > 0;
+            Debug.Log("Philipses has: " + PhilipsesAmountsSubtractedDuringTrade[index] + " of the card at " + index);
+            return PhilipsesAmountsSubtractedDuringTrade[index] > 0;
         }
         else if (SixNationsTrading == true && turn != 3)
         {
-            Debug.Log("Six Nations has: " + SixNationsAmounts[index] + " of the card at " + index);
-            return SixNationsAmounts[index] > 0;
+            Debug.Log("Six Nations has: " + SixNationsAmountsSubtractedDuringTrade[index] + " of the card at " + index);
+            return SixNationsAmountsSubtractedDuringTrade[index] > 0;
         }
         else if (MunseeTrading == true && turn != 4)
         {
-            Debug.Log("Munsee has: " + MunseeAmounts[index] + " of the card at " + index);
-            return MunseeAmounts[index] > 0;
+            Debug.Log("Munsee has: " + MunseeAmountsSubtractedDuringTrade[index] + " of the card at " + index);
+            return MunseeAmountsSubtractedDuringTrade[index] > 0;
         }
         Debug.LogError("Cannot find team that is being traded with");
         return false;
@@ -1395,6 +1422,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                                 }
                                 DutchAmounts[z + 13]--;
+                                findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "x";
 
                                 break;
@@ -1485,6 +1513,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                                 }
                                 PhilipsesAmounts[z + 13]--;
+                                findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "x";
 
                                 break;
@@ -1574,6 +1603,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                                 }
                                 SixNationsAmounts[z + 13]--;
+                                findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "x";
 
                                 break;
@@ -1663,6 +1693,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                                 }
                                 MunseeAmounts[z + 13]--;
+                                findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "x";
 
                                 break;
