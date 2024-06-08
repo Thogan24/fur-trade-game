@@ -30,7 +30,11 @@ public class ClearTradeButtonOnClick : MonoBehaviour
     void WhenClicked(string userIDOfClicker) // 
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        gameManager.clearTradeButton = true;
-        gameManager.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+        if(gameManager.turn == 0 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Dutch || gameManager.turn == 1 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Philipses || gameManager.turn == 2 && PhotonNetwork.LocalPlayer.ToString() == gameManager.SixNations || gameManager.turn == 3 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Munsee)
+        {
+            gameManager.clearTradeButton = true;
+            gameManager.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+        }
+        
     }
 }
