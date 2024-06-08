@@ -1882,7 +1882,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                             if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Philipses")
                             {
                                 Debug.Log(cardAmountObjects[d]);
+                                Debug.Log("iteration: " + d);
                                 Debug.Log("Changing team Philipses. Wishlist (should be of philipses) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
+
                                 int childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 PhilipsesAmounts[childIndex]++;
                                 PhilipsesAmounts[childIndex + 13]--;
@@ -2102,7 +2104,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
                 }
             }
-            if(doNotDoAnything == false)
+            if(doNotDoAnything == false) // If we shouldn't be ending the game, keep moving turns
             {
                 
                 Debug.Log("Moving turns on: " + PhotonNetwork.LocalPlayer.ToString());
@@ -2336,6 +2338,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             PhilipsesTrading = false;
             SixNationsTrading = false;
             MunseeTrading = false;
+            DutchAccepted = false;
+            PhilipsesAccepted = false;
+            SixNationsAccepted = false;
+            MunseeAccepted = false;
+            numberOfAcceptedTeams = 0;
             clearTradeButton = false;
 
             for (int i = 0; i < DutchTradeButton.Length; i++)
