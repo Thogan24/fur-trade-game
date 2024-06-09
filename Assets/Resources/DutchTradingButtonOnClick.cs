@@ -20,7 +20,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
     public void DutchTradingOnClick()
     {
         Debug.Log("Hello");
-        Debug.LogError("ItsWhenClickingHere");
+        Debug.LogError("Dutch Trading Button Clicked");
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
 
     }

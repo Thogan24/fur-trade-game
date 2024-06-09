@@ -20,7 +20,7 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
     public void MunseeTradingOnClick()
     {
         Debug.Log("Hello");
-        Debug.LogError("ItsWhenClickingHere");
+        Debug.LogError("Munsee trade button clicked");
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
 
     }
