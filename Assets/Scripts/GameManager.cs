@@ -2262,7 +2262,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     if (tradeGivingCardsParent[3].transform.GetChild(c).gameObject.active == true)
                     {
-                        Debug.Log("Card is: " + tradeGivingCardsParent[2].transform.GetChild(c) + " at index " + c);
+                        Debug.Log("Card is: " + tradeGivingCardsParent[3].transform.GetChild(c) + " at index " + c);
                         string cardTag = tradeGivingCardsParent[3].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         for (int d = 0; d < cardAmountObjects.Length; d++)
