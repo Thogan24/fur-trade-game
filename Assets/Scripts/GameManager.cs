@@ -2241,7 +2241,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 MunseeAmounts[childIndex]++;
                                 MunseeAmounts[childIndex + 13]--;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
-                                cardAmountObjects2[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex + 13].ToString() + "x";
 
                             }
                         }
