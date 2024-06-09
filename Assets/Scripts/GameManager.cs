@@ -1830,7 +1830,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 while (tradeReceivingCardsParent[0].transform.childCount != c && c < 500)
                 {
                     Debug.Log("Is the " + c + "iteration in " + tradeReceivingCardsParent[0] + " active: " + tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.active);
-                    Debug.Log("activeSelf: Is the " + c + "iteration in " + tradeReceivingCardsParent[0] + " active: " + tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.activeSelf);
+                    //Debug.Log("activeSelf: Is the " + c + "iteration in " + tradeReceivingCardsParent[0] + " active: " + tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.activeSelf);
                     if (tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.active == true)
                     {
                         Debug.Log(tradeReceivingCardsParent[0].transform.GetChild(c));
@@ -2023,7 +2023,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 // Dutch inventory + Trade Receiving Cards - Trade Giving Cards
                 int c = 0;
 
-                while (tradeReceivingCardsParent[0].transform.childCount != c && c < 500)
+                while (tradeReceivingCardsParent[0].transform.childCount != c && c < 5000)
                 {
                     Debug.Log("Is the " + c + "iteration in " + tradeReceivingCardsParent[0] + " active: " + tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.active);
                     Debug.Log("activeSelf: Is the " + c + "iteration in " + tradeReceivingCardsParent[0] + " active: " + tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.activeSelf);
@@ -2061,7 +2061,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     c++;
                 }
                 c = 0;
-                while (tradeGivingCardsParent[0].transform.childCount != c && tradeGivingCardsParent[0].transform.childCount > c && c < 500)
+                while (tradeGivingCardsParent[0].transform.childCount != c && tradeGivingCardsParent[0].transform.childCount > c && c < 5000)
                 {
                     if (tradeGivingCardsParent[0].transform.GetChild(c).gameObject.active == true)
                     {
@@ -2090,7 +2090,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 // Philipses inventory + Trade Receiving Cards - Trade Giving Cards
                 int c = 0;
 
-                while (tradeReceivingCardsParent[1].transform.childCount != c && c < 500)
+                while (tradeReceivingCardsParent[1].transform.childCount != c && c < 5000)
                 {
                     if (tradeReceivingCardsParent[1].transform.GetChild(c).gameObject.active == true)
                     {
@@ -2128,7 +2128,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     c++;
                 }
                 c = 0;
-                while (tradeGivingCardsParent[1].transform.childCount != c && tradeGivingCardsParent[1].transform.childCount > c && c < 500)
+                while (tradeGivingCardsParent[1].transform.childCount != c && tradeGivingCardsParent[1].transform.childCount > c && c < 5000)
                 {
                     if (tradeGivingCardsParent[1].transform.GetChild(c).gameObject.active == true)
                     {
@@ -2158,7 +2158,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 // Six Nations inventory + Trade Receiving Cards - Trade Giving Cards
                 int c = 0;
 
-                while (tradeReceivingCardsParent[2].transform.childCount != c && c < 500)
+                while (tradeReceivingCardsParent[2].transform.childCount != c && c < 5000)
                 {
                     if (tradeReceivingCardsParent[2].transform.GetChild(c).gameObject.active == true)
                     {
@@ -2193,7 +2193,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     c++;
                 }
                 c = 0;
-                while (tradeGivingCardsParent[2].transform.childCount != c && tradeGivingCardsParent[2].transform.childCount > c && c < 500)
+                while (tradeGivingCardsParent[2].transform.childCount != c && tradeGivingCardsParent[2].transform.childCount > c && c < 5000)
                 {
                     if (tradeGivingCardsParent[2].transform.GetChild(c).gameObject.active == true)
                     {
@@ -2223,7 +2223,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 // Munsee inventory + Trade Receiving Cards - Trade Giving Cards
                 int c = 0;
 
-                while (tradeReceivingCardsParent[3].transform.childCount != c && c < 500)
+                while (tradeReceivingCardsParent[3].transform.childCount != c && c < 5000)
                 {
                     if (tradeReceivingCardsParent[3].transform.GetChild(c).gameObject.active == true)
                     {
@@ -2259,7 +2259,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     c++;
                 }
                 c = 0;
-                while (tradeGivingCardsParent[3].transform.childCount != c && tradeGivingCardsParent[3].transform.childCount > c && c < 500)
+                while (tradeGivingCardsParent[3].transform.childCount != c && tradeGivingCardsParent[3].transform.childCount > c && c < 5000)
                 {
                     if (tradeGivingCardsParent[3].transform.GetChild(c).gameObject.active == true)
                     {
