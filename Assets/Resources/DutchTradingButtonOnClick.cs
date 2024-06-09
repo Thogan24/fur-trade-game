@@ -22,7 +22,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         Debug.Log("Hello");
         Debug.LogError("Dutch Trading Button Clicked");
         Debug.Log(this.gameObject.tag);
-
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         // bandage fix
         if (gameManager.turn == 1 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Dutch)
         {
