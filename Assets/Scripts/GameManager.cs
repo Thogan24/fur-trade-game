@@ -2029,7 +2029,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     Debug.Log("activeSelf: Is the " + c + "iteration in " + tradeReceivingCardsParent[0] + " active: " + tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.activeSelf);
                     if (tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.active == true)
                     {
-                        Debug.Log(tradeReceivingCardsParent[0].transform.GetChild(c));
+                        Debug.Log("Card is: " + tradeReceivingCardsParent[0].transform.GetChild(c) + " at index " + c);
                         string cardTag = tradeReceivingCardsParent[0].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + " Amount Wishlist");
@@ -2066,7 +2066,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (tradeGivingCardsParent[0].transform.GetChild(c).gameObject.active == true)
                     {
                         Debug.Log(c);
-                        Debug.Log(tradeGivingCardsParent[0].transform.GetChild(c));
+                        Debug.Log("Card is: " + tradeGivingCardsParent[0].transform.GetChild(c) + " at index " + c);
                         string cardTag = tradeGivingCardsParent[0].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         for (int d = 0; d < cardAmountObjects.Length; d++)
@@ -2094,7 +2094,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     if (tradeReceivingCardsParent[1].transform.GetChild(c).gameObject.active == true)
                     {
-                        Debug.Log(tradeReceivingCardsParent[1].transform.GetChild(c));
+                        Debug.Log("Card is: " + tradeReceivingCardsParent[1].transform.GetChild(c) + " at index " + c);
 
                         string cardTag = tradeReceivingCardsParent[1].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
@@ -2132,8 +2132,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     if (tradeGivingCardsParent[1].transform.GetChild(c).gameObject.active == true)
                     {
+
                         Debug.Log(c);
-                        Debug.Log(tradeGivingCardsParent[1].transform.GetChild(c));
+                        Debug.Log("Card is: " + tradeGivingCardsParent[1].transform.GetChild(c) + " at index " + c);
                         string cardTag = tradeGivingCardsParent[1].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         for (int d = 0; d < cardAmountObjects.Length; d++)
@@ -2162,7 +2163,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     if (tradeReceivingCardsParent[2].transform.GetChild(c).gameObject.active == true)
                     {
-                        Debug.Log(tradeReceivingCardsParent[2].transform.GetChild(c));
+                        Debug.Log("Card is: " + tradeReceivingCardsParent[2].transform.GetChild(c) + " at index " + c);
                         string cardTag = tradeReceivingCardsParent[2].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + " Amount Wishlist");
@@ -2198,7 +2199,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (tradeGivingCardsParent[2].transform.GetChild(c).gameObject.active == true)
                     {
                         Debug.Log(c);
-                        Debug.Log(tradeGivingCardsParent[2].transform.GetChild(c));
+                        Debug.Log("Card is: " + tradeGivingCardsParent[2].transform.GetChild(c) + " at index " + c);
                         string cardTag = tradeGivingCardsParent[2].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         for (int d = 0; d < cardAmountObjects.Length; d++)
@@ -2227,7 +2228,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     if (tradeReceivingCardsParent[3].transform.GetChild(c).gameObject.active == true)
                     {
-                        Debug.Log(tradeReceivingCardsParent[3].transform.GetChild(c));
+                        Debug.Log("Card is: " + tradeReceivingCardsParent[3].transform.GetChild(c) + " at index " + c);
                         string cardTag = tradeReceivingCardsParent[3].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         GameObject[] cardAmountObjects2 = GameObject.FindGameObjectsWithTag(cardTag + " Amount Wishlist");
@@ -2263,8 +2264,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     if (tradeGivingCardsParent[3].transform.GetChild(c).gameObject.active == true)
                     {
-                        Debug.Log(c);
-                        Debug.Log(tradeGivingCardsParent[3].transform.GetChild(c));
+                        Debug.Log("Card is: " + tradeGivingCardsParent[2].transform.GetChild(c) + " at index " + c);
                         string cardTag = tradeGivingCardsParent[3].transform.GetChild(c).gameObject.tag;
                         GameObject[] cardAmountObjects = GameObject.FindGameObjectsWithTag(cardTag + "Amount");
                         for (int d = 0; d < cardAmountObjects.Length; d++)
