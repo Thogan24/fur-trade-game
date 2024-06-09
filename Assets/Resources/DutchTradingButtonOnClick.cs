@@ -21,6 +21,12 @@ public class DutchTradingButtonOnClick : MonoBehaviour
     {
         Debug.Log("Hello");
         Debug.LogError("Dutch Trading Button Clicked");
+        Debug.Log(this.gameObject.tag);
+        if (this.gameObject.tag == "Six Nations Trading")
+        {
+            SixNationsTradingButtonOnClick sixNationsTradingButtonOnClick = new SixNationsTradingButtonOnClick();
+            sixNationsTradingButtonOnClick.SixNationsTradingOnClick();
+        }
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
 
     }
