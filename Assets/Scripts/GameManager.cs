@@ -248,7 +248,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             tags[i] = Prefabs[i].ToString().Remove(Prefabs[i].ToString().Length - 29);
         }
 
-
+        
 }
 
 
@@ -2236,7 +2236,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Munsee")
                             {
-                                Debug.Log("Changing team Munsee. Wishlist (should be of munsee) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 Debug.Log(cardAmountObjects[d]);
                                 childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 MunseeAmounts[childIndex]++;
