@@ -1445,13 +1445,23 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                                 for (int ah = 0; ah < cardsWithTag.Length; ah++)
                                 {
-                                    Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
-                                    if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                    if (cardsWithTag[ah].transform.parent.parent.parent.name != null)
                                     {
-                                        Debug.Log("Team does not have enough cards, starting animation");
-                                        StartCoroutine(redCardAnimation(cardsWithTag[ah]));
-                                        return;
+                                        Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                                        if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                        {
+                                            Debug.Log("Team does not have enough cards, starting animation");
+                                            StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                            return;
+                                        }
                                     }
+                                    else
+                                    {
+                                        Debug.Log("Card came back with null parents");
+                                        Debug.Log(cardsWithTag[ah].transform.parent.tag);
+                                        cardsWithTag[ah].gameObject.SetActive(false);
+                                    }
+
                                 }
                                 return;
                             }
@@ -1467,15 +1477,25 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         for (int ah = 0; ah < cardsWithTag.Length; ah++)
                         {
-                            Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
-                            if(cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null)
                             {
-                                Debug.Log("Team does not have enough cards, starting animation");
-                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
-                                return;
+                                Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                                if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                {
+                                    Debug.Log("Team does not have enough cards, starting animation");
+                                    StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                    return;
+                                }
                             }
+                            else
+                            {
+                                Debug.Log("Card came back with null parents");
+                                Debug.Log(cardsWithTag[ah].transform.parent.tag);
+                                cardsWithTag[ah].gameObject.SetActive(false);
+                            }
+
                         }
-                        
+
                     }
                     else
                     {
@@ -1484,13 +1504,23 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         for (int ah = 0; ah < cardsWithTag.Length; ah++)
                         {
-                            Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
-                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null)
                             {
-                                Debug.Log("Team does not have enough cards, starting animation");
-                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
-                                return;
+                                Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                                if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                {
+                                    Debug.Log("Team does not have enough cards, starting animation");
+                                    StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                    return;
+                                }
                             }
+                            else
+                            {
+                                Debug.Log("Card came back with null parents");
+                                Debug.Log(cardsWithTag[ah].transform.parent.tag);
+                                cardsWithTag[ah].gameObject.SetActive(false);
+                            }
+
                         }
                         if (z + 1 == tags.Length)
                         {
@@ -1600,6 +1630,30 @@ public class GameManager : MonoBehaviourPunCallbacks
                         if (z + 1 == tags.Length)
                         {
                             return;
+                        }
+                        GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                        for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                        {
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null)
+                            {
+                                Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                                if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Philipses" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                {
+                                    Debug.Log("Team does not have enough cards, starting animation");
+                                    StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                Debug.Log("Card came back with null parents");
+                                Debug.Log(cardsWithTag[ah].transform.parent.tag);
+                                cardsWithTag[ah].gameObject.SetActive(false);
+                            }
+
+
+
                         }
                     }
                 }
