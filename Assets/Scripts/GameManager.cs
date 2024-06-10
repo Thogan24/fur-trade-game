@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int[] DutchAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     // used for debugging
-    public int[] allAmountsSummed = { 22, 11, 8, 9, 16, 6, 12, 3, 8, 19, 9, 7, 23, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] allAmountsSummed = { 22, 11, 8, 9, 16, 6, 15, 8, 10, 13, 7, 23, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     // NEEDS TO BE CHANGED IN FINAL GAME
     public int[] SixNationsWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
