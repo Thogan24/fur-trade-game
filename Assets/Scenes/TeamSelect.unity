@@ -3951,29 +3951,33 @@ MonoBehaviour:
   MunseeJoined: 0
   DutchJoined: 0
   PhilipsesJoined: 0
-  DutchCameraGameObject: {fileID: 72328550235293215, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
-  SixNationsCameraGameObject: {fileID: 8427730852707704412, guid: fefab2609986f8940993c17b4effe988, type: 3}
-  MunseeCameraGameObject: {fileID: 5917895076211833679, guid: 718c1189124fc4943b9191c07cf484dd, type: 3}
-  PhilipsesCameraGameObject: {fileID: 3642095162937260910, guid: d111cbc70dadb5c46b71caa2681ec90b, type: 3}
-  DutchCameraPrefab: {fileID: -1546711611119172669, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
-  SixNationsCameraPrefab: {fileID: 3079714378151539690, guid: fefab2609986f8940993c17b4effe988, type: 3}
+  DutchCameraGameObject: {fileID: 0}
+  SixNationsCameraGameObject: {fileID: 0}
+  MunseeCameraGameObject: {fileID: 0}
+  PhilipsesCameraGameObject: {fileID: 0}
+  DutchCameraPrefab: {fileID: 0}
+  SixNationsCameraPrefab: {fileID: 0}
   MunseeCameraPrefab: {fileID: 0}
   PhilipsesCameraPrefab: {fileID: 0}
-  DutchCamera: {fileID: -1546711611119172669, guid: 8f720850de8205e4eb05b182e59d87e8, type: 3}
-  SixNationsCamera: {fileID: 8427730852707704412, guid: fefab2609986f8940993c17b4effe988, type: 3}
+  DutchCamera: {fileID: 0}
+  SixNationsCamera: {fileID: 0}
   MunseeCamera: {fileID: 0}
   PhilipsesCamera: {fileID: 0}
   DutchTextCanvasObject: {fileID: 0}
   DutchBackgroundCanvasObject: {fileID: 0}
+  DutchSecondBackgroundCanvasObject: {fileID: 0}
   DutchCardsCanvasObject: {fileID: 0}
   SixNationsTextCanvasObject: {fileID: 0}
   SixNationsBackgroundCanvasObject: {fileID: 0}
+  SixNationsSecondBackgroundCanvasObject: {fileID: 0}
   SixNationsCardsCanvasObject: {fileID: 0}
   MunseeTextCanvasObject: {fileID: 0}
   MunseeBackgroundCanvasObject: {fileID: 0}
+  MunseeSecondBackgroundCanvasObject: {fileID: 0}
   MunseeCardsCanvasObject: {fileID: 0}
   PhilipsesTextCanvasObject: {fileID: 0}
   PhilipsesBackgroundCanvasObject: {fileID: 0}
+  PhilipsesSecondBackgroundCanvasObject: {fileID: 0}
   PhilipsesCardsCanvasObject: {fileID: 0}
   DutchObject: {fileID: 0}
   PhilipsesObject: {fileID: 0}
@@ -3989,30 +3993,33 @@ MonoBehaviour:
   MunseeAccepted: 0
   PhilipsesAccepted: 0
   numberOfAcceptedTeams: 0
-  DutchTradeButton:
-  - {fileID: 0}
-  SixNationsTradeButton:
-  - {fileID: 0}
-  MunseeTradeButton:
-  - {fileID: 0}
-  PhilipsesTradeButton:
-  - {fileID: 0}
+  DutchTradeButton: []
+  SixNationsTradeButton: []
+  MunseeTradeButton: []
+  PhilipsesTradeButton: []
   gameManager: {fileID: 0}
   InventoryCardsInTrade: 0
   WishlistCardsInTrade: 0
-  BeaverCard: {fileID: 6075063951732973871, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
-  DuffelsCard: {fileID: 8467486979893556977, guid: ad5d2e7d00dfaac448869f1c067a8c58, type: 3}
-  DeerSkinCard: {fileID: 6075063951732973871, guid: c1a65b9d374ef5c478ed8b0a8eccdc07, type: 3}
+  BeaverCard: {fileID: 0}
+  DuffelsCard: {fileID: 0}
+  DeerSkinCard: {fileID: 0}
   theSender: 
-  distanceFromLineGiving: 6.08
-  distanceFromLineReceiving: 1.5
+  distanceFromLineGiving: 1.5
+  distanceFromLineReceiving: 6.08
   ZAxisLineDistance: 0
   YAxisLineDistance: 0.1
   clearTradeButton: 0
+  cardAmountObjects: []
+  cardAmountObjects2: []
   SixNationsAmounts: 0c00000005000000060000000400000003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009000000040000000600000003000000030000001400000002000000
   MunseeAmounts: 0a0000000600000002000000050000000d00000006000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000004000000040000000a000000040000000c00000006000000
   PhilipsesAmounts: 00000000000000000000000000000000000000000000000003000000080000000a000000040000000200000003000000050000000a000000070000000400000006000000040000000600000000000000000000000000000000000000000000000000000000000000
   DutchAmounts: 0000000000000000000000000000000000000000000000000c0000000000000000000000090000000500000014000000030000000c0000000400000004000000050000000a0000000000000000000000000000000000000000000000000000000000000000000000
+  SixNationsAmountsSubtractedDuringTrade: 0c00000005000000060000000400000003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009000000040000000600000003000000030000001400000002000000
+  MunseeAmountsSubtractedDuringTrade: 0a0000000600000002000000050000000d00000006000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000004000000040000000a000000040000000c00000006000000
+  PhilipsesAmountsSubtractedDuringTrade: 00000000000000000000000000000000000000000000000003000000080000000a000000040000000200000003000000050000000a000000070000000400000006000000040000000600000000000000000000000000000000000000000000000000000000000000
+  DutchAmountsSubtractedDuringTrade: 0000000000000000000000000000000000000000000000000c0000000000000000000000090000000500000014000000030000000c0000000400000004000000050000000a0000000000000000000000000000000000000000000000000000000000000000000000
+  allAmountsSummed: 160000000b000000080000000900000010000000060000000f000000080000000a0000000d00000007000000170000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   SixNationsWampumValues: 6c000000280000001e0000001000000006000000060000001b000000380000004600000018000000060000000c00000005000000
   MunseeWampumValues: 6c000000280000001e0000001000000006000000060000001b000000380000004600000018000000060000000c00000005000000
   PhilipsesWampumValues: 6c000000280000001e0000001000000006000000060000001b000000380000004600000018000000060000000c00000005000000
@@ -4025,142 +4032,12 @@ MonoBehaviour:
   MunseeWampum: 0
   PhilipsesWampum: 0
   DutchWampum: 0
-  SixNationsAmountsGameObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  MunseeAmountsGameObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  PhilipsesAmountsGameObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  DutchAmountsGameObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Prefabs:
-  - {fileID: 6075063951732973871, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
-  - {fileID: 6075063951732973871, guid: c1a65b9d374ef5c478ed8b0a8eccdc07, type: 3}
-  - {fileID: 6075063951732973871, guid: b64e9fb171b799240ab65c4e5ecff491, type: 3}
-  - {fileID: 8467486979893556977, guid: 63258326bae4a144fabc33e3fec1dae6, type: 3}
-  - {fileID: 6075063951732973871, guid: 14a58e973ad55ac42bf2794b47c25c17, type: 3}
-  - {fileID: 6075063951732973871, guid: e2bc0d74607011d4fb9e39ec789c9352, type: 3}
-  - {fileID: 8467486979893556977, guid: ad5d2e7d00dfaac448869f1c067a8c58, type: 3}
-  - {fileID: 6075063951732973871, guid: d4ac5e281eec9ee4c91c74c8c8b79b31, type: 3}
-  - {fileID: 6075063951732973871, guid: f1cc3ef5a6fdf314c8c850f6b27612ce, type: 3}
-  - {fileID: 6075063951732973871, guid: 74eeb69e6bf968e4db219dca361620bc, type: 3}
-  - {fileID: 6075063951732973871, guid: 9cd281a3bce387f4683229ad1bf46f1a, type: 3}
-  - {fileID: 6075063951732973871, guid: 5e2dcaa3c6ef1474b8a4195ff6335e86, type: 3}
-  - {fileID: 6075063951732973871, guid: f2f5cb9a78bfb8e4ba276598f1707fa8, type: 3}
-  tags:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  SixNationsAmountsGameObjects: []
+  MunseeAmountsGameObjects: []
+  PhilipsesAmountsGameObjects: []
+  DutchAmountsGameObjects: []
+  Prefabs: []
+  tags: []
   teamNames:
   - Dutch
   - Philipses
@@ -4182,7 +4059,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   turn: 1
-  totalTurnNumber: 0
+  totalTurnNumber: 1
   TurnTimer: 90
   SeasonalTimers: []
   doNotDoAnything: 0
