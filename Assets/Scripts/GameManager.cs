@@ -1485,7 +1485,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         for (int ah = 0; ah < cardsWithTag.Length; ah++)
                         {
                             Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
-                            if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
                             {
                                 Debug.Log("Team does not have enough cards, starting animation");
                                 StartCoroutine(redCardAnimation(cardsWithTag[ah]));
@@ -1566,13 +1566,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         break;
                     }
-                    else if (tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
+                    else if (tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)) || (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1))))
                     {
                         GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
 
                         for (int ah = 0; ah < cardsWithTag.Length; ah++)
                         {
-                            if (cardsWithTag[ah].transform.parent.parent.parent.name == "Philipses" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                            Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
                             {
                                 Debug.Log("Team does not have enough cards, starting animation");
                                 StartCoroutine(redCardAnimation(cardsWithTag[ah]));
