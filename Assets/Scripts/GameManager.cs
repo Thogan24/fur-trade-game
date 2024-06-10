@@ -889,7 +889,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             MunseeAmountsSubtractedDuringTrade[index]--;
         }
-        Debug.LogError("Cannot find team that is being traded with");
+        else
+        {
+            Debug.LogError("Cannot find team that is being traded with");
+        }
+        
     }
 
     [PunRPC]
@@ -1390,8 +1394,16 @@ public class GameManager : MonoBehaviourPunCallbacks
             #region
             if (playerString == Dutch && DutchTrading == true)
             {
+
+
+
                 for (int z = 0; z < tags.Length; z++)
                 {
+                    if (tag == tags[z])
+                    {
+                        Debug.Log("The Card being traded has a tag of: " + tag + "; It has an amount of " + DutchAmounts[z]);
+                    }
+                        
                     //Debug.Log(tag + " " + tags[z]);
                     if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCards(z)))) // If the card amounts are greater than zero or is in their wishlist
                     {
@@ -1875,7 +1887,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 instantiatedCard[j].GetComponent<Button>().enabled = false;
 
                 instantiatedCard[j].transform.position = new Vector3(instantiatedCard[j].transform.position.x, instantiatedCard[j].transform.position.y, 10);
-                Debug.LogError(instantiatedCard[j].transform.position);
+                Debug.Log("Card Instantiated at: " + instantiatedCard[j].transform.position);
 
                 if (parentTag == "Wishlist")
                 {
