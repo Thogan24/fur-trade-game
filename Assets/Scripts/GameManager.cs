@@ -183,6 +183,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int[] PhilipsesAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0 };
     public int[] DutchAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0 };
 
+    // used for debugging
+    public int[] allAmountsSummed = { 22, 11, 8, 9, 16, 6, 12, 3, 8, 19, 9, 7, 23, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     // NEEDS TO BE CHANGED IN FINAL GAME
     public int[] SixNationsWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
@@ -2684,6 +2686,18 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void MoveTurns(PhotonMessageInfo info)
     {
+        for (int za = 0; za <= 12; za++)
+        {
+            if (allAmountsSummed[za] != (DutchAmounts[za] + PhilipsesAmounts[za] + SixNationsAmounts[za] + MunseeAmounts[za]))
+            {
+                Debug.Log("Something is wrong with the values");
+                Debug.Log("Total: " + allAmountsSummed[za] + "; Amounts: " + DutchAmounts[za] + " " + PhilipsesAmounts[za] + " " + SixNationsAmounts[za] + " " + MunseeAmounts[za]);
+            }
+        }
+        
+        
+        
+        
         DeactivateTeamFlags();
         Debug.Log("This was sent by: " + info.Sender.ToString() + "; This is running on " + PhotonNetwork.LocalPlayer.ToString() + "; theSender: " + theSender);
 
