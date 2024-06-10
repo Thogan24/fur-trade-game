@@ -56,17 +56,7 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
     void teamsThatAreTrading(string userIDOfClicker)
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Dutch && gameManager.turn == 1)
-        {
-            GameObject[] DutchTradingFlags = GameObject.FindGameObjectsWithTag("Dutch Trading");
-            for (int za = 0; za < DutchTradingFlags.Length; za++)
-            {
-                if (DutchTradingFlags[za].transform.parent.parent.tag == "Six Nations")
-                {
-                    DutchTradingFlags[za].gameObject.SetActive(false);
-                }
-            }
-        }
+        
         gameManager.SixNationsTrading = true;
         string team = gameManager.findPlayerTeam(userIDOfClicker);
 
