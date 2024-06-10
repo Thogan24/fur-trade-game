@@ -2693,10 +2693,13 @@ public class GameManager : MonoBehaviourPunCallbacks
                 Debug.Log("Total: " + allAmountsSummed[za] + "; Amounts: " + DutchAmounts[za] + " " + PhilipsesAmounts[za] + " " + SixNationsAmounts[za] + " " + MunseeAmounts[za]);
             }
         }
-        
-        
-        
-        
+
+        System.Array.Copy(DutchAmounts, DutchAmountsSubtractedDuringTrade, DutchAmounts.Length);
+        System.Array.Copy(PhilipsesAmounts, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmounts.Length);
+        System.Array.Copy(SixNationsAmounts, SixNationsAmountsSubtractedDuringTrade, SixNationsAmounts.Length);
+        System.Array.Copy(MunseeAmounts, MunseeAmountsSubtractedDuringTrade, MunseeAmounts.Length);
+
+
         DeactivateTeamFlags();
         Debug.Log("This was sent by: " + info.Sender.ToString() + "; This is running on " + PhotonNetwork.LocalPlayer.ToString() + "; theSender: " + theSender);
 
