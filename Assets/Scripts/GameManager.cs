@@ -8,6 +8,9 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+
+
+    // If the game manager is reset for any reason, set Camera Prefabs, Card Prefabs, 
     public bool DebugStart;
     
     // Instantiating Singleton GameManager
@@ -46,13 +49,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool DutchJoined = false;
     public bool PhilipsesJoined = false;
 
-    // Prefab Gameobject of Camera
+    // Prefab Gameobject of Camera SET IN INSPECTOR
     public GameObject DutchCameraGameObject;
     public GameObject SixNationsCameraGameObject;
     public GameObject MunseeCameraGameObject;
     public GameObject PhilipsesCameraGameObject;
 
-    // Prefab PhotonView of Camera
+    // Prefab PhotonView of Camera SET IN INSPECTOR
     public PhotonView DutchCameraPrefab;
     public PhotonView SixNationsCameraPrefab;
     public PhotonView MunseeCameraPrefab;
@@ -117,10 +120,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int InventoryCardsInTrade = 0;
     public int WishlistCardsInTrade = 0;
     
-
-    public GameObject BeaverCard;
-    public GameObject DuffelsCard;
-    public GameObject DeerSkinCard;
 
     public string theSender = "";
     public float distanceFromLineGiving = 1.5f;
