@@ -471,7 +471,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         for (int aa = 0; aa < DutchTradeButton.Length; aa++)
         {
             Debug.Log("Dutch Trade Button sub " + aa + ": " + DutchTradeButton[aa]);
+
+            if (PhotonNetwork.LocalPlayer.ToString() == Dutch && turn == 1 && DutchTradeButton[aa].transform.parent.parent.tag != "Dutch")
+            {
+                Debug.Log("sending dutch trade buttons off into space");
+                DutchTradeButton[aa].gameObject.transform.position = new Vector3(1000, 1000, 1000);
+
+            }
         }
+
+        
 
         // If there is somehow than one of specified camera
         //GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
