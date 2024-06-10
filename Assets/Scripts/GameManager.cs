@@ -1459,7 +1459,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     catch (NullReferenceException ex)
                                     {
                                         Debug.Log("Card came back with null parents");
-                                        Debug.Log(cardsWithTag[ah].transform.parent.tag);
                                         cardsWithTag[ah].gameObject.SetActive(false);
                                     }
 
@@ -1472,6 +1471,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         break;
                     }
+
+                    // COMBINE
                     else if(tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)) || (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1))))
                     {
                         GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
@@ -1491,7 +1492,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                             catch (NullReferenceException ex)
                             {
                                 Debug.Log("Card came back with null parents");
-                                Debug.Log(cardsWithTag[ah].transform.parent.tag);
                                 cardsWithTag[ah].gameObject.SetActive(false);
                             }
                             
@@ -1536,7 +1536,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                             catch (NullReferenceException ex)
                             {
                                 Debug.Log("Card came back with null parents");
-                                Debug.Log(cardsWithTag[ah].transform.parent.tag);
                                 cardsWithTag[ah].gameObject.SetActive(false);
                             }
 
@@ -1636,7 +1635,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                             catch (NullReferenceException ex)
                             {
                                 Debug.Log("Card came back with null parents");
-                                Debug.Log(cardsWithTag[ah].transform.parent.tag);
                                 cardsWithTag[ah].gameObject.SetActive(false);
                             }
 
@@ -1668,7 +1666,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                             catch(NullReferenceException ex)
                             {
                                 Debug.Log("Card came back with null parents");
-                                Debug.Log(cardsWithTag[ah].transform.parent.tag);
                                 cardsWithTag[ah].gameObject.SetActive(false);
                             }
 
