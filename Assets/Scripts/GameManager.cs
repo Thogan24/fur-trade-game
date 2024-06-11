@@ -1486,7 +1486,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
 
                     // COMBINE
-                    else if(tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)) || (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1))))
+/*                    else if(tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)) || (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1))))
                     {
                         GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
 
@@ -1508,7 +1508,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 cardsWithTag[ah].gameObject.SetActive(false);
                             }
                             
-                            /*                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null)
+                            *//*                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null)
                                                         {
                                                             Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
                                                             if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
@@ -1522,12 +1522,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                                                         {
                                                             Debug.Log("Card came back with null parents");
                                                             Debug.Log(cardsWithTag[ah].transform.parent.tag);
-                                                            cardsWithTag[ah].gameObject.SetActive(false);*/
+                                                            cardsWithTag[ah].gameObject.SetActive(false);*//*
                         }
 
                         
 
-                    }
+                    }*/
 
                     else if(tag == tags[z])
                     {
@@ -1554,10 +1554,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
                         }
-                        if (z + 1 == tags.Length)
+/*                        if (z + 1 == tags.Length && !((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)) || (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1)))))
                         {
                             return;
-                        }
+                        }*/
 
                     }
                     else
@@ -1660,7 +1660,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         }
 
                     }
-                    else
+                    else if (tag == tags[z])
                     {
                         Debug.LogError("None of specified card left");
                         if (z + 1 == tags.Length)
@@ -1689,6 +1689,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
                         }
+                    }
+                    else
+                    {
+                        Debug.Log("Not correct iteration?");
                     }
                 }
             }
