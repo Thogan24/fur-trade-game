@@ -1529,7 +1529,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                     }
 
-                    else
+                    else if(tag == tags[z])
                     {
                         Debug.LogError("None of specified card left");
                         GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
@@ -1559,6 +1559,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                             return;
                         }
 
+                    }
+                    else
+                    {
+                        Debug.Log("Not correct iteration?");
                     }
                 }
             }
