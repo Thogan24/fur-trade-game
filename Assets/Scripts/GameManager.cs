@@ -1395,10 +1395,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (playerString == Dutch && DutchTrading == true)
             {
 
-
+                
 
                 for (int z = 0; z < tags.Length; z++)
                 {
+                    Debug.Log("Checking at iteration" + z + "; Tag:" + tag + "; tags[z]" + tags[z] + "; DutchAmounts[z]" + DutchAmounts[z]);
                     if (tag == tags[z])
                     {
                         Debug.Log("The Card being traded has a tag of: " + tag + "; It has an amount of " + DutchAmounts[z]);
