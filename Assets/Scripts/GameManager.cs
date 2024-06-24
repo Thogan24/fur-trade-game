@@ -173,6 +173,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     // CHECK AMOUNTS IN INSPECTOR THEY MIGHT NOT MATCH
     // Note: First 13 Elements are the inventory amounts, last 13 elements are the wishlisted amounts. A comment indicator has been placed when wishlist starts
+    public int[] SixNationsAmountsStarting = { 12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 9, 4, 6, 3, 3, 20, 2 };
+    public int[] MunseeAmountsStarting = { 10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6 };
+    public int[] PhilipsesAmountsStarting = { 0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] DutchAmountsStarting = { 0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0 };
+
     public int[] SixNationsAmounts = {12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 9, 4, 6, 3, 3, 20, 2};
     public int[] MunseeAmounts =     {10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6};
     public int[] PhilipsesAmounts =  {0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0};
@@ -610,22 +615,22 @@ public class GameManager : MonoBehaviourPunCallbacks
                         if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Dutch")
                         {
                             DutchAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
-                            DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "x";
+                            DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "/" + DutchAmountsStarting[i].ToString() + "x";
                         }
                         else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Philipses")
                         {
                             PhilipsesAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
-                            PhilipsesAmountsGameObjects[i].GetComponent<Text>().text = PhilipsesAmounts[i].ToString() + "x";
+                            PhilipsesAmountsGameObjects[i].GetComponent<Text>().text = PhilipsesAmounts[i].ToString() + "/" + PhilipsesAmountsStarting[i].ToString() + "x";
                         }
                         else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Six Nations")
                         {
                             SixNationsAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
-                            SixNationsAmountsGameObjects[i].GetComponent<Text>().text = SixNationsAmounts[i].ToString() + "x";
+                            SixNationsAmountsGameObjects[i].GetComponent<Text>().text = SixNationsAmounts[i].ToString() + "/" + SixNationsAmountsStarting[i].ToString() + "x";
                         }
                         else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Munsee")
                         {
                             MunseeAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
-                            MunseeAmountsGameObjects[i].GetComponent<Text>().text = MunseeAmounts[i].ToString() + "x";
+                            MunseeAmountsGameObjects[i].GetComponent<Text>().text = MunseeAmounts[i].ToString() + "/" + MunseeAmountsStarting[i].ToString() + "x";
                         }
                     }
                         
@@ -1448,7 +1453,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 DutchAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
-                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "x";
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z+13].ToString() + "x";
 
                                 break;
                             }
@@ -1617,7 +1622,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 PhilipsesAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
-                                PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "x";
+                                PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "/" + PhilipsesAmountsStarting[z+13].ToString() + "x";
 
                                 break;
                             }
@@ -1766,7 +1771,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 SixNationsAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
-                                SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "x";
+                                SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "/" + SixNationsAmountsStarting[z+13].ToString() + "x";
 
                                 break;
                             }
@@ -1889,7 +1894,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 MunseeAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
-                                MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "x";
+                                MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "/" + MunseeAmountsStarting[z+13].ToString() + "x";
 
                                 break;
                             }
@@ -2748,28 +2753,28 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     if (turn == 1 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Dutch")
                                     {
                                         DutchAmounts[ad + 13] += 1;
-                                        DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "x";
+                                        DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "/" + DutchAmountsStarting[ad + 13].ToString() + "x";
 
 
                                     }
                                     else if ((turn == 2 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Philipses"))
                                     {
                                         PhilipsesAmounts[ad + 13] += 1;
-                                        PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "x";
+                                        PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "/" + PhilipsesAmountsStarting[ad + 13].ToString() + "x";
 
 
                                     }
                                     else if (turn == 3 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Six Nations")
                                     {
                                         SixNationsAmounts[ad + 13] += 1;
-                                        SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "x";
+                                        SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "/" + SixNationsAmountsStarting[ad + 13].ToString() + "x";
 
 
                                     }
                                     else if (turn == 4 && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Munsee")
                                     {
                                         MunseeAmounts[ad + 13] += 1;
-                                        MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "x";
+                                        MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "/" + MunseeAmountsStarting[ad + 13].ToString() + "x";
 
 
                                     }
@@ -3012,30 +3017,56 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 MunseeAmounts[ag] = 0;
             }
-            if (DutchAmountsGameObjects[ag] != null)
+
+            if (DutchAmountsGameObjects[ag] != null && ag <= 13)
             {
                 Debug.Log(DutchAmountsGameObjects[ag]);
                 Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
                 DutchAmountsGameObjects[ag].GetComponent<Text>().text = DutchAmounts[ag].ToString() + "x";
                 Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
             }
-            if (PhilipsesAmountsGameObjects[ag] != null)
+            else if (PhilipsesAmountsGameObjects[ag] != null && ag <= 13)
             {
                 PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = PhilipsesAmounts[ag].ToString() + "x";
                 Debug.Log("sub: " + ag);
             }
             
-            if(SixNationsAmountsGameObjects[ag] != null)
+            else if(SixNationsAmountsGameObjects[ag] != null && ag <= 13)
             {
                 Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
                 SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = SixNationsAmounts[ag].ToString() + "x";
                 Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
             }
-            if(MunseeAmountsGameObjects[ag] != null)
+            else if(MunseeAmountsGameObjects[ag] != null && ag <= 13)
             {
                 MunseeAmountsGameObjects[ag].GetComponent<Text>().text = MunseeAmounts[ag].ToString() + "x";
             }
-            
+
+
+            else if (DutchAmountsGameObjects[ag] != null && ag > 13)
+            {
+                Debug.Log(DutchAmountsGameObjects[ag]);
+                Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
+                DutchAmountsGameObjects[ag].GetComponent<Text>().text = DutchAmounts[ag].ToString() + "x";
+                Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
+            }
+            else if (PhilipsesAmountsGameObjects[ag] != null && ag > 13)
+            {
+                PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = PhilipsesAmounts[ag].ToString() + "x";
+                Debug.Log("sub: " + ag);
+            }
+
+            else if (SixNationsAmountsGameObjects[ag] != null && ag > 13)
+            {
+                Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
+                SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = SixNationsAmounts[ag].ToString() + "x";
+                Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
+            }
+            else if (MunseeAmountsGameObjects[ag] != null && ag > 13)
+            {
+                MunseeAmountsGameObjects[ag].GetComponent<Text>().text = MunseeAmounts[ag].ToString() + "x";
+            }
+
             Debug.Log("ag: " + ag);
         }
 
