@@ -41,9 +41,9 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
             else
             {
 
-                string tag = this.gameObject.tag;
-                string parentTag = "Wishlist";
-                gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag);
+                string t = this.gameObject.tag;
+                string pT = "Wishlist";
+                gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, t, pT);
             }
         }
             

@@ -1411,10 +1411,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
                         
                     //Debug.Log(tag + " " + tags[z]);
-
+                    
                     if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCards(z)))) // If the card amounts are greater than zero or is in their wishlist
                     {
-
+                        Debug.Log("Inside first");
                         if (isParentInventory == 1)
                         {
                             for (int b = 0; b < topButtonPos.Length; b++)
@@ -1435,10 +1435,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                             DutchAmounts[z]--;
                             DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
                         }
-                        else
+                        else //isWishlist
                         {
                             Debug.Log(DutchAmounts[z + 13]);
-                            if (DutchAmountsGameObjects[z + 13] != null && DutchAmounts[z + 13] > 0)
+                            if (DutchAmountsGameObjects[z + 13] != null)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1459,6 +1459,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 DutchAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z+13].ToString() + "x";
+
+                                if(DutchAmounts[z+13] < 0)
+                                {
+                                    DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[z + 13]).ToString();
+                                }
 
                                 break;
                             }
