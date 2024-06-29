@@ -2867,10 +2867,31 @@ public class GameManager : MonoBehaviourPunCallbacks
             System.Array.Copy(PhilipsesAmounts, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmounts.Length);
             System.Array.Copy(SixNationsAmounts, SixNationsAmountsSubtractedDuringTrade, SixNationsAmounts.Length);
             System.Array.Copy(MunseeAmounts, MunseeAmountsSubtractedDuringTrade, MunseeAmounts.Length);
-/*            DutchAmountsSubtractedDuringTrade = DutchAmounts;
-            PhilipsesAmountsSubtractedDuringTrade = PhilipsesAmounts;
-            SixNationsAmountsSubtractedDuringTrade = SixNationsAmounts;
-            MunseeAmountsSubtractedDuringTrade = MunseeAmounts;*/
+
+            for(int zb = 0; zb < 13; zb++)
+            {
+                if (DutchAmounts[zb + 13] < 0)
+                {
+                    DutchAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[zb + 13]).ToString();
+                }
+                if (PhilipsesAmounts[zb + 13] < 0)
+                {
+                    PhilipsesAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[zb + 13]).ToString();
+                }
+                if (SixNationsAmounts[zb + 13] < 0)
+                {
+                    SixNationsAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[zb + 13]).ToString();
+                }
+                if (MunseeAmounts[zb + 13] < 0)
+                {
+                    MunseeAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[zb + 13]).ToString();
+                }
+            }
+            
+            /*            DutchAmountsSubtractedDuringTrade = DutchAmounts;
+                        PhilipsesAmountsSubtractedDuringTrade = PhilipsesAmounts;
+                        SixNationsAmountsSubtractedDuringTrade = SixNationsAmounts;
+                        MunseeAmountsSubtractedDuringTrade = MunseeAmounts;*/
 
             for (int i = 0; i < DutchTradeButton.Length; i++)
             {
