@@ -1614,7 +1614,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         else
                         {
                             Debug.Log(PhilipsesAmounts[z + 13]);
-                            if (PhilipsesAmountsGameObjects[z + 13] != null && PhilipsesAmounts[z + 13] > 0)
+                            if (PhilipsesAmountsGameObjects[z + 13] != null)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1633,6 +1633,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 PhilipsesAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "/" + PhilipsesAmountsStarting[z+13].ToString() + "x";
+
+                                if (PhilipsesAmounts[z + 13] < 0)
+                                {
+                                    PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[z + 13]).ToString();
+                                }
 
                                 break;
                             }
@@ -1763,7 +1768,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         else
                         {
                             Debug.Log(SixNationsAmounts[z + 13]);
-                            if (SixNationsAmountsGameObjects[z + 13] != null && SixNationsAmounts[z + 13] > 0)
+                            if (SixNationsAmountsGameObjects[z + 13] != null)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1782,6 +1787,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 SixNationsAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "/" + SixNationsAmountsStarting[z+13].ToString() + "x";
+
+                                if (SixNationsAmounts[z + 13] < 0)
+                                {
+                                    SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[z + 13]).ToString();
+                                }
 
                                 break;
                             }
@@ -1886,7 +1896,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         else
                         {
                             Debug.Log(MunseeAmounts[z + 13]);
-                            if (MunseeAmountsGameObjects[z + 13] != null && MunseeAmounts[z + 13] > 0)
+                            if (MunseeAmountsGameObjects[z + 13] != null)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1905,6 +1915,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 MunseeAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "/" + MunseeAmountsStarting[z+13].ToString() + "x";
+
+                                if (MunseeAmounts[z + 13] < 0)
+                                {
+                                    MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[z + 13]).ToString();
+                                }
 
                                 break;
                             }
