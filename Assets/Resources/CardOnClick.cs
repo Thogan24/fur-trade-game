@@ -5,8 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.EventSystems;
 
-public class CardOnClick : MonoBehaviour
+
+public class CardOnClick : MonoBehaviour, IPointerClickHandler
 {
     public GameManager gameManager;
     // Start is called before the first frame update
@@ -19,6 +21,32 @@ public class CardOnClick : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("Left click");
+        }
+            
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("Right click");
+            gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+            if (!gameManager.DutchTrading && !gameManager.PhilipsesTrading && !gameManager.SixNationsTrading && !gameManager.MunseeTrading)
+            {
+                Debug.LogError("Bruh no ones trading");
+            }
+            else
+            {
+
+                string tag = this.gameObject.tag;
+                string parentTag = "Wishlist";
+                gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag);
+            }
+        }
+            
     }
 
     public void CardOnClicked()

@@ -27751,6 +27751,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 5634160954401938724, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CardOnClicked
+      objectReference: {fileID: 0}
     - target: {fileID: 6075063951732973857, guid: 032be380a45fd35468d8b79445b7ca74, type: 3}
       propertyPath: m_Color.b
       value: 1
