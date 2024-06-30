@@ -1577,7 +1577,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             try
                             {
                                 Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
-                                if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && (cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked))
+                                if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && (cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked))
                                 {
                                     Debug.Log("Team does not have enough cards, starting animation");
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
@@ -1755,7 +1755,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             try {
                                 Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
-                                if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Philipses" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Philipses" && (cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked))
                                 {
                                     Debug.Log("Team does not have enough cards, starting animation");
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
@@ -1902,7 +1902,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             try
                             {
                                 Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
-                                if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Six Nations" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Six Nations" && (cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked))
                                 {
                                     Debug.Log("Team does not have enough cards, starting animation");
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
@@ -2049,7 +2049,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             try
                             {
                                 Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
-                                if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Munsee" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Munsee" && (cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked))
                                 {
                                     Debug.Log("Team does not have enough cards, starting animation");
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
