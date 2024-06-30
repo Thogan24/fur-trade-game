@@ -1434,7 +1434,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                             }
                             Debug.Log(DutchAmounts[z]);
-                            DutchAmounts[z]--;                           
+                            DutchAmounts[z]--;
                             DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
 
                             DutchAmounts[z + 13]++;
@@ -1449,10 +1449,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
                             }
-                            else //isWishlist
+                        }
+                        else //isWishlist
                         {
                             Debug.Log(DutchAmounts[z + 13]);
-                            if(leftClicked)
+                            if (leftClicked)
                             {
                                 Debug.Log("IN LEFT CLICKED");
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1497,7 +1498,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     }
                                     else
                                     {
-                                        
+
                                         instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineReceiving + ((float)0.3 * (WishlistCardsInTrade % 14))), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
                                         Debug.Log("regular card has been instantiated");
                                     }
@@ -1505,9 +1506,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 DutchAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
-                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z+13].ToString() + "x";
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z + 13].ToString() + "x";
 
-                                if(DutchAmounts[z+13] < 0)
+                                if (DutchAmounts[z + 13] < 0)
                                 {
                                     DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[z + 13]).ToString();
                                 }
@@ -1670,7 +1671,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
                             }
-                            }
+                        }
                         else
                         {
                             Debug.Log(PhilipsesAmounts[z + 13]);
@@ -1867,7 +1868,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[z + 13]).ToString();
                                 }
                             }
-                            }
+                        }
                         else
                         {
                             Debug.Log(SixNationsAmounts[z + 13]);
@@ -2033,7 +2034,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[z + 13]).ToString();
                                 }
                             }
-                            }
+                        }
                         else
                         {
                             Debug.Log(MunseeAmounts[z + 13]);
