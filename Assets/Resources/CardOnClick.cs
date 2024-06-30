@@ -43,7 +43,7 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
 
                 string t = this.gameObject.tag;
                 string pT = "Wishlist";
-                gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, t, pT);
+                gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, t, pT, true);
             }
         }
             
@@ -65,7 +65,7 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
             Debug.Log(tag);
             if (CanWishlist())
             {
-                gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag);
+                gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag, false);
             } else
             {
                 StartCoroutine(FlashRedCoroutine());

@@ -929,7 +929,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void addCardToTrade(string tag, string parentTag, PhotonMessageInfo info)
+    void addCardToTrade(string tag, string parentTag, bool leftClicked, PhotonMessageInfo info)
     {
         string playerString = info.Sender.ToString();
         Debug.Log("Player: " + playerString);
@@ -1438,7 +1438,29 @@ public class GameManager : MonoBehaviourPunCallbacks
                         else //isWishlist
                         {
                             Debug.Log(DutchAmounts[z + 13]);
-                            if (DutchAmountsGameObjects[z + 13] != null)
+                            if(leftClicked)
+                            {
+                                for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                                {
+                                    if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                    {
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % 14)), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
+                                        Debug.Log("addToReceiving card has been instantiated");
+                                    }
+                                    else
+                                    {
+
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineReceiving + ((float)0.3 * (WishlistCardsInTrade % 14))), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
+                                        Debug.Log("regular card has been instantiated");
+                                    }
+
+                                }
+                                DutchAmounts[z + 13]--;
+                                findTeamBeingTradedWithAndSubtractFromInventory(z);
+
+                                break;
+                            }
+                            else if (DutchAmountsGameObjects[z + 13] != null)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1614,7 +1636,25 @@ public class GameManager : MonoBehaviourPunCallbacks
                         else
                         {
                             Debug.Log(PhilipsesAmounts[z + 13]);
-                            if (PhilipsesAmountsGameObjects[z + 13] != null)
+                            if (leftClicked)
+                            {
+                                for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                                {
+                                    if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                    {
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % 14))), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
+                                    }
+                                    else
+                                    {
+
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % 14), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
+                                    }
+
+                                }
+                                PhilipsesAmounts[z + 13]--;
+                                findTeamBeingTradedWithAndSubtractFromInventory(z);
+                            }
+                            else if (PhilipsesAmountsGameObjects[z + 13] != null)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1768,7 +1808,26 @@ public class GameManager : MonoBehaviourPunCallbacks
                         else
                         {
                             Debug.Log(SixNationsAmounts[z + 13]);
-                            if (SixNationsAmountsGameObjects[z + 13] != null)
+                            if (leftClicked)
+                            {
+                                for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                                {
+                                    if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                    {
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % 14))), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
+                                    }
+                                    else
+                                    {
+
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % 14), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
+                                    }
+
+                                }
+                                SixNationsAmounts[z + 13]--;
+                                findTeamBeingTradedWithAndSubtractFromInventory(z);
+                                break;
+                            }
+                            else if (SixNationsAmountsGameObjects[z + 13] != null)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1896,7 +1955,26 @@ public class GameManager : MonoBehaviourPunCallbacks
                         else
                         {
                             Debug.Log(MunseeAmounts[z + 13]);
-                            if (MunseeAmountsGameObjects[z + 13] != null)
+                            if (leftClicked)
+                            {
+                                for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                                {
+                                    if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                    {
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % 14))), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
+                                    }
+                                    else
+                                    {
+
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % 14), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
+                                    }
+
+                                }
+                                MunseeAmounts[z + 13]--;
+                                findTeamBeingTradedWithAndSubtractFromInventory(z);
+                                break;
+                            }
+                            else if (MunseeAmountsGameObjects[z + 13] != null)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
