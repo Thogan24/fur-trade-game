@@ -1458,7 +1458,17 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 DutchAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
+                                if (DutchAmountsStarting[z + 13] > 0)
+                                {
+                                    DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z + 13].ToString() + "x";
 
+                                    if (DutchAmounts[z + 13] < 0)
+                                    {
+                                        DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[z + 13]).ToString();
+                                    }
+
+
+                                }
                                 break;
                             }
                             else if (DutchAmountsGameObjects[z + 13] != null)
@@ -1654,7 +1664,20 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 PhilipsesAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
+
+                                if(PhilipsesAmountsStarting[z+13] > 0)
+                                {
+                                    PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "/" + PhilipsesAmountsStarting[z + 13].ToString() + "x";
+
+                                    if (PhilipsesAmounts[z + 13] < 0)
+                                    {
+                                        PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[z + 13]).ToString();
+                                    }
+
+                                    
+                                }
                                 break;
+                                
                             }
                             else if (PhilipsesAmountsGameObjects[z + 13] != null)
                             {
@@ -1827,6 +1850,15 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 SixNationsAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
+
+                                if (SixNationsAmountsStarting[z+13] > 0){
+                                    SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "/" + SixNationsAmountsStarting[z + 13].ToString() + "x";
+                                    if (SixNationsAmounts[z + 13] < 0)
+                                    {
+                                        SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[z + 13]).ToString();
+                                    }
+                                }
+                                
                                 break;
                             }
                             else if (SixNationsAmountsGameObjects[z + 13] != null)
@@ -1974,6 +2006,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 MunseeAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
+                                if (MunseeAmountsStarting[z + 13] > 0)
+                                {
+                                    MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "/" + MunseeAmountsStarting[z + 13].ToString() + "x";
+                                    if (MunseeAmounts[z + 13] < 0)
+                                    {
+                                        MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[z + 13]).ToString();
+                                    }
+                                }
                                 break;
                             }
                             else if (MunseeAmountsGameObjects[z + 13] != null)
