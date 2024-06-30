@@ -1409,9 +1409,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                     {
                         Debug.Log("The Card being traded has a tag of: " + tag + "; It has an amount of " + DutchAmounts[z]);
                     }
-                        
+
                     //Debug.Log(tag + " " + tags[z]);
-                    
+                    Debug.Log("outside first");
                     if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCards(z)))) // If the card amounts are greater than zero or is in their wishlist
                     {
                         Debug.Log("Inside first");
@@ -1440,6 +1440,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                             Debug.Log(DutchAmounts[z + 13]);
                             if(leftClicked)
                             {
+                                Debug.Log("IN LEFT CLICKED");
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
                                 {
                                     if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
