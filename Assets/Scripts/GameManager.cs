@@ -1654,6 +1654,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 PhilipsesAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
+                                break;
                             }
                             else if (PhilipsesAmountsGameObjects[z + 13] != null)
                             {
@@ -3184,24 +3185,24 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 Debug.Log(DutchAmountsGameObjects[ag]);
                 Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
-                DutchAmountsGameObjects[ag].GetComponent<Text>().text = DutchAmounts[ag].ToString() + "x";
+                DutchAmountsGameObjects[ag].GetComponent<Text>().text = DutchAmounts[ag].ToString() + "/" + DutchAmountsStarting[ag].ToString() + "x";
                 Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
             }
             else if (PhilipsesAmountsGameObjects[ag] != null && ag > 13)
             {
-                PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = PhilipsesAmounts[ag].ToString() + "x";
+                PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = PhilipsesAmounts[ag].ToString() + "/" + PhilipsesAmountsStarting[ag].ToString() + "x";
                 Debug.Log("sub: " + ag);
             }
 
             else if (SixNationsAmountsGameObjects[ag] != null && ag > 13)
             {
                 Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
-                SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = SixNationsAmounts[ag].ToString() + "x";
+                SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = SixNationsAmounts[ag].ToString() + "/" + SixNationsAmountsStarting[ag].ToString() + "x";
                 Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
             }
             else if (MunseeAmountsGameObjects[ag] != null && ag > 13)
             {
-                MunseeAmountsGameObjects[ag].GetComponent<Text>().text = MunseeAmounts[ag].ToString() + "x";
+                MunseeAmountsGameObjects[ag].GetComponent<Text>().text = MunseeAmounts[ag].ToString() + "/" + MunseeAmountsStarting[ag].ToString() + "x";
             }
 
             Debug.Log("ag: " + ag);
