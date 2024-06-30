@@ -3143,6 +3143,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
 
+        
         System.Array.Copy(DutchAmounts, DutchAmountsSubtractedDuringTrade, DutchAmounts.Length);
         System.Array.Copy(PhilipsesAmounts, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmounts.Length);
         System.Array.Copy(SixNationsAmounts, SixNationsAmountsSubtractedDuringTrade, SixNationsAmounts.Length);
@@ -3228,7 +3229,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
 
 
-            if (DutchAmounts[ag] <= 0)
+            /*if (DutchAmounts[ag] <= 0)
             {
                 DutchAmounts[ag] = 0;
             }
@@ -3243,7 +3244,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (MunseeAmounts[ag] <= 0)
             {
                 MunseeAmounts[ag] = 0;
-            }
+            }*/
 
             if (DutchAmountsGameObjects[ag] != null && ag <= 13)
             {
