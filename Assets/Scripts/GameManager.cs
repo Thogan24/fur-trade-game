@@ -928,6 +928,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         return false;
     }
 
+
+
+
+
     [PunRPC]
     void addCardToTrade(string tag, string parentTag, bool leftClicked, PhotonMessageInfo info)
     {
@@ -1411,10 +1415,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
 
                     //Debug.Log(tag + " " + tags[z]);
-                    Debug.Log("outside first");
                     if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCards(z)))) // If the card amounts are greater than zero or is in their wishlist
                     {
-                        Debug.Log("Inside first");
                         if (isParentInventory == 1)
                         {
                             for (int b = 0; b < topButtonPos.Length; b++)
@@ -1432,10 +1434,22 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                             }
                             Debug.Log(DutchAmounts[z]);
-                            DutchAmounts[z]--;
+                            DutchAmounts[z]--;                           
                             DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
-                        }
-                        else //isWishlist
+
+                            DutchAmounts[z + 13]++;
+                            if (DutchAmountsStarting[z + 13] > 0)
+                            {
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z + 13].ToString() + "x";
+
+                                if (DutchAmounts[z + 13] < 0)
+                                {
+                                    DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[z + 13]).ToString();
+                                }
+
+
+                            }
+                            else //isWishlist
                         {
                             Debug.Log(DutchAmounts[z + 13]);
                             if(leftClicked)
@@ -1643,7 +1657,20 @@ public class GameManager : MonoBehaviourPunCallbacks
                             Debug.Log(PhilipsesAmounts[z]);
                             PhilipsesAmounts[z]--;
                             PhilipsesAmountsGameObjects[z].GetComponent<Text>().text = PhilipsesAmounts[z].ToString() + "x";
-                        }
+
+                            PhilipsesAmounts[z + 13]++;
+                            if (PhilipsesAmountsStarting[z + 13] > 0)
+                            {
+                                PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "/" + PhilipsesAmountsStarting[z + 13].ToString() + "x";
+
+                                if (PhilipsesAmounts[z + 13] < 0)
+                                {
+                                    PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[z + 13]).ToString();
+                                }
+
+
+                            }
+                            }
                         else
                         {
                             Debug.Log(PhilipsesAmounts[z + 13]);
@@ -1829,7 +1856,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                             Debug.Log(SixNationsAmounts[z]);
                             SixNationsAmounts[z]--;
                             SixNationsAmountsGameObjects[z].GetComponent<Text>().text = SixNationsAmounts[z].ToString() + "x";
-                        }
+
+                            SixNationsAmounts[z+13]++;
+
+                            if (SixNationsAmountsStarting[z + 13] > 0)
+                            {
+                                SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "/" + SixNationsAmountsStarting[z + 13].ToString() + "x";
+                                if (SixNationsAmounts[z + 13] < 0)
+                                {
+                                    SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[z + 13]).ToString();
+                                }
+                            }
+                            }
                         else
                         {
                             Debug.Log(SixNationsAmounts[z + 13]);
@@ -1985,7 +2023,17 @@ public class GameManager : MonoBehaviourPunCallbacks
                             Debug.Log(MunseeAmounts[z]);
                             MunseeAmounts[z]--;
                             MunseeAmountsGameObjects[z].GetComponent<Text>().text = MunseeAmounts[z].ToString() + "x";
-                        }
+
+                            MunseeAmounts[z+13]++;
+                            if (MunseeAmountsStarting[z + 13] > 0)
+                            {
+                                MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "/" + MunseeAmountsStarting[z + 13].ToString() + "x";
+                                if (MunseeAmounts[z + 13] < 0)
+                                {
+                                    MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[z + 13]).ToString();
+                                }
+                            }
+                            }
                         else
                         {
                             Debug.Log(MunseeAmounts[z + 13]);
