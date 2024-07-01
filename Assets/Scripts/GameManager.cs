@@ -2223,6 +2223,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 PhilipsesAccepted = false;
                 MunseeAccepted = false;
                 SixNationsAccepted = false;
+                numberOfAcceptedTeams = 0;
             }
 
         }
