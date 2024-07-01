@@ -2877,12 +2877,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     DutchAmounts[ad] += 1;
                                     DutchAmounts[ad+13] -= 1;
                                     DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
+                                    DutchAmountsGameObjects[ad+13].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "/" + DutchAmountsStarting[ad + 13].ToString() + "x";
                                 }
                                 else if (turn == 2 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Philipses")
                                 {
                                     PhilipsesAmounts[ad] += 1;
                                     PhilipsesAmounts[ad+13] -= 1;
                                     PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
+                                    PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "/" + PhilipsesAmountsStarting[ad + 13].ToString() + "x";
 
                                 }
                                 else if (turn == 3 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Six Nations")
@@ -2890,14 +2892,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     SixNationsAmounts[ad] += 1;
                                     SixNationsAmounts[ad+13] -= 1;
                                     SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
-
+                                    SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "/" + SixNationsAmountsStarting[ad + 13].ToString() + "x";
                                 }
                                 else if (turn == 4 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Munsee")
                                 {
                                     MunseeAmounts[ad] += 1;
                                     MunseeAmounts[ad + 13] -= 1;
                                     MunseeAmountsGameObjects[ad].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "x";
-
+                                    MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "/" + MunseeAmountsStarting[ad + 13].ToString() + "x";
                                 }
 
                             }
