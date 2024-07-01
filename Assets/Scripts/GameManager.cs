@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] PhilipsesAmountsGameObjects = { };
     public GameObject[] DutchAmountsGameObjects = { };
     public GameObject[] Prefabs;
-    public string[] tags = { };
+    public string[] tags = { }; // LENGTH 13
 
 
     public string[] teamNames = { "Dutch", "Philipses", "Six Nations", "Munsee" }; // FOR ENEMY TEAM BUTTONS
@@ -2875,23 +2875,27 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 if (turn == 1 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Dutch")
                                 {
                                     DutchAmounts[ad] += 1;
+                                    DutchAmounts[ad+13] -= 1;
                                     DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
                                 }
                                 else if (turn == 2 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Philipses")
                                 {
                                     PhilipsesAmounts[ad] += 1;
+                                    PhilipsesAmounts[ad+13] -= 1;
                                     PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
 
                                 }
                                 else if (turn == 3 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Six Nations")
                                 {
                                     SixNationsAmounts[ad] += 1;
+                                    SixNationsAmounts[ad+13] -= 1;
                                     SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
 
                                 }
                                 else if (turn == 4 && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Munsee")
                                 {
                                     MunseeAmounts[ad] += 1;
+                                    MunseeAmounts[ad + 13] -= 1;
                                     MunseeAmountsGameObjects[ad].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "x";
 
                                 }
