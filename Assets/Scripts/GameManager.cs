@@ -2276,6 +2276,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 DutchAmounts[childIndex]++;
                                 DutchAmounts[childIndex + 13]--;
+                                Debug.Log("New Dutch Amounts Wishlist: " + DutchAmounts[childIndex + 13]);
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
 
                             }
@@ -3134,6 +3135,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void MoveTurns(PhotonMessageInfo info)
     {
+        // Can't check wishlist because you only lose wishlisted cards
         for (int za = 0; za <= 12; za++)
         {
             if (allAmountsSummed[za] != (DutchAmounts[za] + PhilipsesAmounts[za] + SixNationsAmounts[za] + MunseeAmounts[za]))
