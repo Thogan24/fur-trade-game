@@ -2505,7 +2505,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log(cardAmountObjects[d]);
                                 childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 DutchAmounts[childIndex]--;
+                                DutchAmounts[childIndex+13]++;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex].ToString() + "x";
+
+                                if (DutchAmountsGameObjects[childIndex + 13] != null)
+                                {
+                                    DutchAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = DutchAmounts[childIndex + 13].ToString() + "/" + DutchAmountsStarting[childIndex + 13].ToString() + "x";
+
+                                    if (DutchAmounts[childIndex + 13] < 0)
+                                    {
+                                        DutchAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[childIndex + 13]).ToString();
+                                    }
+                                }
                             }
                         }
                     }
@@ -2574,7 +2585,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log(cardAmountObjects[d]);
                                 childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 PhilipsesAmounts[childIndex]--;
+                                PhilipsesAmounts[childIndex + 13]++;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex].ToString() + "x";
+
+                                if (PhilipsesAmountsGameObjects[childIndex + 13] != null)
+                                {
+                                    PhilipsesAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = PhilipsesAmounts[childIndex + 13].ToString() + "/" + PhilipsesAmountsStarting[childIndex + 13].ToString() + "x";
+
+                                    if (PhilipsesAmounts[childIndex + 13] < 0)
+                                    {
+                                        PhilipsesAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[childIndex + 13]).ToString();
+                                    }
+                                }
 
                             }
                         }
@@ -2639,7 +2661,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log(cardAmountObjects[d]);
                                 childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 SixNationsAmounts[childIndex]--;
+                                SixNationsAmounts[childIndex + 13]++;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex].ToString() + "x";
+
+                                if (SixNationsAmountsGameObjects[childIndex + 13] != null)
+                                {
+                                    SixNationsAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = SixNationsAmounts[childIndex + 13].ToString() + "/" + SixNationsAmountsStarting[childIndex + 13].ToString() + "x";
+
+                                    if (SixNationsAmounts[childIndex + 13] < 0)
+                                    {
+                                        SixNationsAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[childIndex + 13]).ToString();
+                                    }
+                                }
                             }
                         }
 
@@ -2702,7 +2735,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log(cardAmountObjects[d]);
                                 childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
                                 MunseeAmounts[childIndex]--;
+                                MunseeAmounts[childIndex + 13]++;
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
+
+                                if (MunseeAmountsGameObjects[childIndex + 13] != null)
+                                {
+                                    MunseeAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = MunseeAmounts[childIndex + 13].ToString() + "/" + MunseeAmountsStarting[childIndex + 13].ToString() + "x";
+
+                                    if (MunseeAmounts[childIndex + 13] < 0)
+                                    {
+                                        MunseeAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[childIndex + 13]).ToString();
+                                    }
+                                }
                             }
                         }
                     }
