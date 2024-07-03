@@ -1486,7 +1486,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 }
                                 break;
                             }
-                            else if (DutchAmountsGameObjects[z + 13] != null)
+                            else if (DutchAmountsGameObjects[z + 13] != null) // Clicking on wishlist cards (potentially remove)
                             {
 
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
@@ -1527,7 +1527,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
                                         if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
                                         {
-                                            Debug.Log("Team does not have enough cards, starting animation");
+                                            Debug.Log("Team does not have enough cards, starting animation for Dutch");
                                             StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                             return;
                                         }
@@ -1542,55 +1542,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 return;
                             }
                         }
-                        //
 
 
                         break;
                     }
-
-                    // COMBINE
-/*                    else if(tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)) || (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1))))
-                    {
-                        GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
-
-                        for (int ah = 0; ah < cardsWithTag.Length; ah++)
-                        {
-                            try
-                            {
-                                Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
-                                if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
-                                {
-                                    Debug.Log("Team does not have enough cards, starting animation");
-                                    StartCoroutine(redCardAnimation(cardsWithTag[ah]));
-                                    return;
-                                }
-                            }
-                            catch (NullReferenceException ex)
-                            {
-                                Debug.Log("Card came back with null parents");
-                                cardsWithTag[ah].gameObject.SetActive(false);
-                            }
-                            
-                            *//*                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null)
-                                                        {
-                                                            Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
-                                                            if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
-                                                            {
-                                                                Debug.Log("Team does not have enough cards, starting animation");
-                                                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
-                                                                return;
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            Debug.Log("Card came back with null parents");
-                                                            Debug.Log(cardsWithTag[ah].transform.parent.tag);
-                                                            cardsWithTag[ah].gameObject.SetActive(false);*//*
-                        }
-
-                        
-
-                    }*/
 
                     else if(tag == tags[z])
                     {
@@ -1604,7 +1559,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
                                 if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && (((cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked) && isParentWishlist == 1)) || (isParentInventory == 1 && cardsWithTag[ah].transform.parent.tag == "Inventory"))
                                 {
-                                    Debug.Log("Team does not have enough cards, starting animation");
+                                    Debug.Log("Team does not have enough cards, starting animation for Dutch");
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                     return;
                                 }
@@ -1617,10 +1572,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
                         }
-/*                        if (z + 1 == tags.Length && !((isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)) || (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1)))))
-                        {
-                            return;
-                        }*/
 
                     }
                     else
@@ -1746,7 +1697,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
                                         if (cardsWithTag[ah].transform.parent.parent.parent.name == "Philipses" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
                                         {
-                                            Debug.Log("Team does not have enough cards, starting animation");
+                                            Debug.Log("Team does not have enough cards, starting animation for Philipses");
                                             StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                             return;
                                         }
@@ -1808,7 +1759,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
                                 if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Philipses" && (((cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked) && isParentWishlist == 1)) || (isParentInventory == 1 && cardsWithTag[ah].transform.parent.tag == "Inventory"))
                                 {
-                                    Debug.Log("Team does not have enough cards, starting animation");
+                                    Debug.Log("Team does not have enough cards, starting animation for Philipses");
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                     return;
                                 }
@@ -1939,7 +1890,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
                                         if (cardsWithTag[ah].transform.parent.parent.parent.name == "Six Nations" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
                                         {
-                                            Debug.Log("Team does not have enough cards, starting animation");
+                                            Debug.Log("Team does not have enough cards, starting animation for Six Nations");
                                             StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                             return;
                                         }
@@ -1975,7 +1926,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
                                 if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Six Nations" && (((cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked) && isParentWishlist == 1)) || (isParentInventory == 1 && cardsWithTag[ah].transform.parent.tag == "Inventory"))
                                 {
-                                    Debug.Log("Team does not have enough cards, starting animation");
+                                    Debug.Log("Team does not have enough cards, starting animation for Six Nations");
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                     return;
                                 }
@@ -2104,7 +2055,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                         Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
                                         if (cardsWithTag[ah].transform.parent.parent.parent.name == "Munsee" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
                                         {
-                                            Debug.Log("Team does not have enough cards, starting animation");
+                                            Debug.Log("Team does not have enough cards, starting animation for Munsee");
                                             StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                             return;
                                         }
@@ -2140,7 +2091,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
                                 if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Munsee" && (((cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked) && isParentWishlist == 1)) || (isParentInventory == 1 && cardsWithTag[ah].transform.parent.tag == "Inventory"))
                                 {
-                                    Debug.Log("Team does not have enough cards, starting animation");
+                                    Debug.Log("Team does not have enough cards, starting animation for Munsee");
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                     return;
                                 }
