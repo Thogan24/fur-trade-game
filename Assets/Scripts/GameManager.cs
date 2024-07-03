@@ -1564,6 +1564,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                     return;
                                 }
+                                if (ah == cardsWithTag.Length - 1)
+                                {
+                                    Debug.Log("Not correct team");
+                                    return;
+                                }
                             }
                             catch (NullReferenceException ex)
                             {
@@ -1764,6 +1769,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                     return;
                                 }
+                                if(ah == cardsWithTag.Length - 1)
+                                {
+                                    Debug.Log("Not correct team");
+                                    return;
+                                }
                             }
                             catch(NullReferenceException ex)
                             {
@@ -1895,6 +1905,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                             StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                             return;
                                         }
+
                                     }
                                     catch (NullReferenceException ex)
                                     {
@@ -1929,6 +1940,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 {
                                     Debug.Log("Team does not have enough cards, starting animation for Six Nations");
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                    return;
+                                }
+                                if (ah == cardsWithTag.Length - 1)
+                                {
+                                    Debug.Log("Not correct team");
                                     return;
                                 }
                             }
@@ -2094,6 +2110,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 {
                                     Debug.Log("Team does not have enough cards, starting animation for Munsee");
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                    return;
+                                }
+                                if (ah == cardsWithTag.Length - 1)
+                                {
+                                    Debug.Log("Not correct team");
                                     return;
                                 }
                             }
