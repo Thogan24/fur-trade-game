@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         
 }
 
-
+    public PhotonView test;
     void Update()
     {
         
@@ -273,7 +273,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                 Debug.Log("Loading level on the MASTER client...");
                 PhotonNetwork.LoadLevel(1);
                 //SceneManager.LoadScene(1);
-                
+
+                //test = Instantiate(MunseeCameraGameObject, new Vector3(2.0f, 0, 0), Quaternion.identity);
             }
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
             if (!AlreadyLoaded)
@@ -446,7 +447,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 SixNationsSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
 
             }
-            MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
+            GameObject[] MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
             if (PhotonNetwork.LocalPlayer.ToString() == Munsee && AlreadyLoaded == false && MunseeCamerasCheckArray.Length <= 1)
             {
                 Debug.Log("Ran1");
