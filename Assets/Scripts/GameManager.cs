@@ -268,7 +268,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if ((DutchJoined && !AlreadyLoaded && SixNationsJoined && MunseeJoined && PhilipsesJoined) || (DebugStart == true && DutchJoined && !AlreadyLoaded))
         {
             Debug.Log("Teans joined, loading main screen");
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
             {
                 PhotonNetwork.LoadLevel(1);
                 SceneManager.LoadScene(1);
