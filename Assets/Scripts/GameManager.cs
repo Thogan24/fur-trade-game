@@ -268,18 +268,23 @@ public class GameManager : MonoBehaviourPunCallbacks
         if ((DutchJoined && !AlreadyLoaded && SixNationsJoined && MunseeJoined && PhilipsesJoined) || (DebugStart == true && DutchJoined && !AlreadyLoaded))
         {
             Debug.Log("Teans joined, loading main screen");
-            if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
+            if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("Loading level on the MASTER client...");
                 PhotonNetwork.LoadLevel(1);
-                SceneManager.LoadScene(1);
+                //SceneManager.LoadScene(1);
                 
             }
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
-            this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
-            DeactivateAllOtherButtons();
-            DeactivateTeamFlags();
+            if (!AlreadyLoaded)
+            {
+                this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
+                DeactivateAllOtherButtons();
+                DeactivateTeamFlags();
 
-            AlreadyLoaded = true;
+                AlreadyLoaded = true;
+            }
+            
         }
 
         //aggregiously bad code
@@ -403,142 +408,151 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void mainSceneCameraRPC()
     {
-        //Debug.LogError(SceneManager.GetActiveScene().name);
-        DutchCardsCanvasObject = GameObject.FindGameObjectWithTag("Dutch Card Canvas");
-        PhilipsesCardsCanvasObject = GameObject.FindGameObjectWithTag("Philipses Card Canvas");
-        SixNationsCardsCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Card Canvas");
-        MunseeCardsCanvasObject = GameObject.FindGameObjectWithTag("Munsee Card Canvas");
-
-        GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
-        if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false && DutchCamerasCheckArray.Length <= 1)
+        try
         {
-            DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
-            DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
-            DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
-            DutchBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Background Canvas");
-            DutchSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Second Background Canvas");
-            DutchCamera.transform.parent = DutchTextCanvasObject.transform.parent;
-            DutchTextCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
-            DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
-            DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
-            DutchSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
-            //DutchCamera.SetActive(true);
+            //Debug.LogError(SceneManager.GetActiveScene().name);
+            DutchCardsCanvasObject = GameObject.FindGameObjectWithTag("Dutch Card Canvas");
+            PhilipsesCardsCanvasObject = GameObject.FindGameObjectWithTag("Philipses Card Canvas");
+            SixNationsCardsCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Card Canvas");
+            MunseeCardsCanvasObject = GameObject.FindGameObjectWithTag("Munsee Card Canvas");
+
+            GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
+            if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false && DutchCamerasCheckArray.Length <= 1)
+            {
+                DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
+                DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
+                DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
+                DutchBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Background Canvas");
+                DutchSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Second Background Canvas");
+                DutchCamera.transform.parent = DutchTextCanvasObject.transform.parent;
+                DutchTextCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
+                DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
+                DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
+                DutchSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
+                //DutchCamera.SetActive(true);
+            }
+            GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
+            if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false && SixNationsCamerasCheckArray.Length <= 1)
+            {
+                SixNationsCameraPrefab = SixNationsCameraGameObject.GetPhotonView();
+                SixNationsCamera = PhotonView.Instantiate(SixNationsCameraPrefab);
+                SixNationsTextCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Text Canvas");
+                SixNationsBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Background Canvas");
+                SixNationsSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Second Background Canvas");
+                SixNationsCamera.transform.parent = SixNationsTextCanvasObject.transform.parent;
+                SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
+                SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
+                SixNationsCardsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
+                SixNationsSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
+
+            }
+            MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
+            if (PhotonNetwork.LocalPlayer.ToString() == Munsee && AlreadyLoaded == false && MunseeCamerasCheckArray.Length <= 1)
+            {
+                Debug.Log("Ran1");
+                MunseeCameraPrefab = MunseeCameraGameObject.GetPhotonView();
+                MunseeCamera = PhotonView.Instantiate(MunseeCameraPrefab);
+                MunseeTextCanvasObject = GameObject.FindGameObjectWithTag("Munsee Text Canvas");
+                MunseeBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Background Canvas");
+                MunseeSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Second Background Canvas");
+                MunseeCamera.transform.parent = MunseeTextCanvasObject.transform.parent;
+                MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
+                MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
+                MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
+                MunseeSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
+            }
+            GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
+            if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false && PhilipsesCamerasCheckArray.Length <= 1)
+            {
+                PhilipsesCameraPrefab = PhilipsesCameraGameObject.GetPhotonView();
+                PhilipsesCamera = PhotonView.Instantiate(PhilipsesCameraPrefab);
+                PhilipsesTextCanvasObject = GameObject.FindGameObjectWithTag("Philipses Text Canvas");
+                PhilipsesBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Background Canvas");
+                PhilipsesSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Second Background Canvas");
+                PhilipsesCamera.transform.parent = PhilipsesTextCanvasObject.transform.parent;
+                PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
+                PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
+                PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
+                PhilipsesSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
+            }
+
+
+            // Arrays of trade buttons
+            DutchTradeButton = GameObject.FindGameObjectsWithTag("Dutch Trading");
+            SixNationsTradeButton = GameObject.FindGameObjectsWithTag("Six Nations Trading");
+            MunseeTradeButton = GameObject.FindGameObjectsWithTag("Munsee Trading");
+            PhilipsesTradeButton = GameObject.FindGameObjectsWithTag("Philipses Trading");
+
+            for (int aa = 0; aa < DutchTradeButton.Length; aa++)
+            {
+                Debug.Log("Dutch Trade Button sub " + aa + ": " + DutchTradeButton[aa]);
+
+                if (PhotonNetwork.LocalPlayer.ToString() == Dutch && turn == 1 && DutchTradeButton[aa].transform.parent.parent.tag != "Dutch")
+                {
+                    Debug.Log("sending dutch trade buttons off into space");
+                    DutchTradeButton[aa].gameObject.transform.position = new Vector3(1000, 1000, 1000);
+
+                }
+            }
+
+
+
+            // If there is somehow than one of specified camera
+            //GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
+            /*        for(int a = 0; a < DutchCamerasCheckArray.Length; a++)
+                    {
+                        if (DutchTextCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>() || DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>())
+                        {
+                            DutchCamerasCheckArray[a].SetActive(false);
+                        }
+                        else
+                        {
+                            DutchCamerasCheckArray[a].SetActive(true);
+                        }
+                    }*/
+            /*        GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
+                    for (int a = 0; a < SixNationsCamerasCheckArray.Length; a++)
+                    {
+                        if (SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>())
+                        {
+                            SixNationsCamerasCheckArray[a].SetActive(false);
+                        }
+                        else
+                        {
+                            SixNationsCamerasCheckArray[a].SetActive(true);
+                        }
+                    }*/
+
+            for (int a = 0; a < MunseeCamerasCheckArray.Length; a++)
+            {
+                if (MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeCamerasCheckArray[a].GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>())
+                {
+                    MunseeCamerasCheckArray[a].SetActive(false);
+                }
+                else
+                {
+                    MunseeCamerasCheckArray[a].SetActive(true);
+                }
+            }
+            //GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
+            /*        for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
+                    {
+                        if (PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>())
+                        {
+                            PhilipsesCamerasCheckArray[a].SetActive(false);
+                        }
+                        else
+                        {
+                            PhilipsesCamerasCheckArray[a].SetActive(true);
+                        }
+                    }*/
         }
-        GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
-        if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false && SixNationsCamerasCheckArray.Length <= 1)
+        catch (NullReferenceException exception)
         {
-            SixNationsCameraPrefab = SixNationsCameraGameObject.GetPhotonView();
-            SixNationsCamera = PhotonView.Instantiate(SixNationsCameraPrefab);
-            SixNationsTextCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Text Canvas");
-            SixNationsBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Background Canvas");
-            SixNationsSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Second Background Canvas");
-            SixNationsCamera.transform.parent = SixNationsTextCanvasObject.transform.parent;
-            SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
-            SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
-            SixNationsCardsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
-            SixNationsSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
+            Debug.Log("Failed... Exception caught");
+            AlreadyLoaded = true;
 
         }
-        MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
-        if (PhotonNetwork.LocalPlayer.ToString() == Munsee && AlreadyLoaded == false && MunseeCamerasCheckArray.Length <= 1)
-        {
-            Debug.Log("Ran1");
-            MunseeCameraPrefab = MunseeCameraGameObject.GetPhotonView();
-            MunseeCamera = PhotonView.Instantiate(MunseeCameraPrefab);
-            MunseeTextCanvasObject = GameObject.FindGameObjectWithTag("Munsee Text Canvas");
-            MunseeBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Background Canvas");
-            MunseeSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Second Background Canvas");
-            MunseeCamera.transform.parent = MunseeTextCanvasObject.transform.parent;
-            MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
-            MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
-            MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
-            MunseeSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
-        }
-        GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
-        if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false && PhilipsesCamerasCheckArray.Length <= 1)
-        {
-            PhilipsesCameraPrefab = PhilipsesCameraGameObject.GetPhotonView();
-            PhilipsesCamera = PhotonView.Instantiate(PhilipsesCameraPrefab);
-            PhilipsesTextCanvasObject = GameObject.FindGameObjectWithTag("Philipses Text Canvas");
-            PhilipsesBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Background Canvas");
-            PhilipsesSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Second Background Canvas");
-            PhilipsesCamera.transform.parent = PhilipsesTextCanvasObject.transform.parent;
-            PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
-            PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
-            PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
-            PhilipsesSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
-        }
-
-        // Arrays of trade buttons
-        DutchTradeButton = GameObject.FindGameObjectsWithTag("Dutch Trading");
-        SixNationsTradeButton = GameObject.FindGameObjectsWithTag("Six Nations Trading");  
-        MunseeTradeButton = GameObject.FindGameObjectsWithTag("Munsee Trading");
-        PhilipsesTradeButton = GameObject.FindGameObjectsWithTag("Philipses Trading");
-
-        for (int aa = 0; aa < DutchTradeButton.Length; aa++)
-        {
-            Debug.Log("Dutch Trade Button sub " + aa + ": " + DutchTradeButton[aa]);
-
-            if (PhotonNetwork.LocalPlayer.ToString() == Dutch && turn == 1 && DutchTradeButton[aa].transform.parent.parent.tag != "Dutch")
-            {
-                Debug.Log("sending dutch trade buttons off into space");
-                DutchTradeButton[aa].gameObject.transform.position = new Vector3(1000, 1000, 1000);
-
-            }
-        }
-
-        
-
-        // If there is somehow than one of specified camera
-        //GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
-/*        for(int a = 0; a < DutchCamerasCheckArray.Length; a++)
-        {
-            if (DutchTextCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>() || DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != DutchCamerasCheckArray[a].GetComponent<Camera>())
-            {
-                DutchCamerasCheckArray[a].SetActive(false);
-            }
-            else
-            {
-                DutchCamerasCheckArray[a].SetActive(true);
-            }
-        }*/
-/*        GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
-        for (int a = 0; a < SixNationsCamerasCheckArray.Length; a++)
-        {
-            if (SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>() || DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera != SixNationsCamerasCheckArray[a].GetComponent<Camera>())
-            {
-                SixNationsCamerasCheckArray[a].SetActive(false);
-            }
-            else
-            {
-                SixNationsCamerasCheckArray[a].SetActive(true);
-            }
-        }*/
-       
-        for (int a = 0; a < MunseeCamerasCheckArray.Length; a++)
-        {
-            if (MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeCamerasCheckArray[a].GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>())
-            {
-                MunseeCamerasCheckArray[a].SetActive(false);
-            }
-            else
-            {
-                MunseeCamerasCheckArray[a].SetActive(true);
-            }
-        }
-        //GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
-/*        for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
-        {
-            if (PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>())
-            {
-                PhilipsesCamerasCheckArray[a].SetActive(false);
-            }
-            else
-            {
-                PhilipsesCamerasCheckArray[a].SetActive(true);
-            }
-        }*/
-
 
     }
 
