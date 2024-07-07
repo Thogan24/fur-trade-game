@@ -2755,7 +2755,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
 
             // Check if anyone has won
-            for (int i = 13; i < DutchAmounts.Length; i++)
+            for (int i = 13; i < 18; i++)
             {
                 if (DutchAmounts[i] > 0)
                 {
@@ -2771,7 +2771,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
             Debug.Log("did i even run vro");
-            for (int i = 13; i < PhilipsesAmounts.Length; i++)
+            for (int i = 13; i < 19; i++)
             {
                 Debug.Log(i + " | Amount:" + PhilipsesAmounts[i]);
                 if (PhilipsesAmounts[i] > 0)
@@ -2788,7 +2788,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
 
-            for (int i = 13; i < SixNationsAmounts.Length; i++)
+            for (int i = 19; i < SixNationsAmounts.Length; i++)
             {
                 if (SixNationsAmounts[i] > 0)
                 {
@@ -2804,7 +2804,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
 
-            for (int i = 13; i < MunseeAmounts.Length; i++)
+            for (int i = 19; i < MunseeAmounts.Length; i++)
             {
                 if (MunseeAmounts[i] > 0)
                 {
