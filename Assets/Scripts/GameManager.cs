@@ -3223,7 +3223,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
 
         Debug.Log("We got here, RPC: " + trader);
-        if (trader == Dutch)
+        /*if (trader == Dutch)
         {
             DutchWampum += DutchWampumValues[ad];
             //DutchWampumValuesTrades[(totalTurnNumber) / 4] += DutchWampumValues[ad];
@@ -3246,7 +3246,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeWampum += MunseeWampumValues[ad];
             //MunseeWampumValuesTrades[((totalTurnNumber) / 4) - 3] += MunseeWampumValues[ad];
             Debug.Log("Added to Munsee Wampum by: " + MunseeWampumValues[ad] + ", for a total of: " + MunseeWampum);
-        }
+        }*/
     }
 
 
