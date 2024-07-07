@@ -270,7 +270,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 Debug.Log("Loading level on the MASTER client...");
                 PhotonNetwork.LoadLevel(1);
-                //SceneManager.LoadScene(1);
+                SceneManager.LoadScene(1);
 
                 //test = Instantiate(MunseeCameraGameObject, new Vector3(2.0f, 0, 0), Quaternion.identity);
             }
