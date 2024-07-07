@@ -2763,7 +2763,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    if(i == DutchAmounts.Length - 1)
+                    if(i == 17)
                     {
                         this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
                         doNotDoAnything = true;
@@ -2781,7 +2781,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    if (i == PhilipsesAmounts.Length - 1)
+                    if (i == 18)
                     {
                         this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
                         doNotDoAnything = true;
