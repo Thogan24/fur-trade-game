@@ -549,6 +549,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         catch (NullReferenceException exception)
         {
             Debug.Log("Failed... Exception caught");
+            Debug.LogException(exception, this);
             AlreadyLoaded = true;
 
         }
