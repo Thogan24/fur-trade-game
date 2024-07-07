@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] PhilipsesTradeButton = { };
 
     public GameObject gameManager; // This Object
-
+    public bool alreadyRanCalculation = false;
 
 
     // TRADING VARIABLES
@@ -319,6 +319,69 @@ public class GameManager : MonoBehaviourPunCallbacks
             GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Philipses Points: " + PhilipsesPoints.ToString();
             GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Six Nations Points: " + SixNationsPoints.ToString();
             GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Munsee Points: " + MunseePoints.ToString();
+            if(alreadyRanCalculation == false)
+            {
+                Debug.Log("Calculating");
+                if (alreadyRanCalculation == false)
+                {
+                    for (int wa = 0; wa < 13; wa++)
+                    {
+
+                        if (wa < 5 && DutchAmounts[wa] <= DutchAmountsStarting[wa + 13])
+                        {
+                            Debug.Log("Dutch: " + tags[wa] + " adding " + DutchAmounts[wa] * PointMultiplier[wa] + " for a total of " + DutchPoints);
+                            DutchPoints += DutchAmounts[wa] * PointMultiplier[wa];
+
+                        }
+                        else if (wa < 5)
+                        {
+                            Debug.Log("Dutch: " + tags[wa] + "Max adding " + DutchAmounts[wa] * PointMultiplier[wa] + " for a total of " + DutchPoints);
+                            DutchPoints += DutchAmountsStarting[wa + 13] * PointMultiplier[wa];
+                        }
+
+                        if (wa <= 5 && PhilipsesAmounts[wa] <= PhilipsesAmountsStarting[wa + 13])
+                        {
+                            Debug.Log("Philipses: " + tags[wa] + " adding " + PhilipsesAmounts[wa] * PointMultiplier[wa] + " for a total of " + PhilipsesPoints);
+                            PhilipsesPoints += PhilipsesAmounts[wa] * PointMultiplier[wa];
+                        }
+                        else if (wa < 5)
+                        {
+                            PhilipsesPoints += PhilipsesAmountsStarting[wa + 13] * PointMultiplier[wa];
+                            Debug.Log("Philipses: " + tags[wa] + "Max adding " + PhilipsesAmounts[wa] * PointMultiplier[wa] + " for a total of " + PhilipsesPoints);
+                        }
+
+                        if (wa > 5 && SixNationsAmounts[wa] <= SixNationsAmountsStarting[wa + 13])
+                        {
+                            Debug.Log("DutSixNationsch: " + tags[wa] + " adding " + SixNationsAmounts[wa] * PointMultiplier[wa] + " for a total of " + SixNationsPoints);
+                            SixNationsPoints += SixNationsAmounts[wa] * PointMultiplier[wa];
+                        }
+                        else if (wa > 5)
+                        {
+                            SixNationsPoints += SixNationsAmountsStarting[wa + 13] * PointMultiplier[wa];
+                            Debug.Log("SixNations: " + tags[wa] + "Max adding " + SixNationsAmounts[wa] * PointMultiplier[wa] + " for a total of " + SixNationsPoints);
+                        }
+
+                        if (wa > 5 && MunseeAmounts[wa] <= MunseeAmountsStarting[wa + 13])
+                        {
+                            Debug.Log("Munsee: " + tags[wa] + " adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
+                            MunseePoints += MunseeAmounts[wa] * PointMultiplier[wa];
+                        }
+                        else if (wa > 5)
+                        {
+                            MunseePoints += MunseeAmountsStarting[wa + 13] * PointMultiplier[wa];
+                            Debug.Log("Munsee: " + tags[wa] + "Max adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
+
+
+                        }
+
+                    }
+                    alreadyRanCalculation = true;
+
+
+
+
+                }
+            }
         }
     }
 
@@ -2846,7 +2909,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     }
 
-    public bool alreadyRanCalculation = false;
+
     [PunRPC]
     void moveToCalculationScene(PhotonMessageInfo info)
     {
