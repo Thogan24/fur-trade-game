@@ -192,10 +192,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int[] allAmountsSummed = { 22, 11, 8, 9, 16, 6, 15, 8, 10, 13, 7, 23, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     // NEEDS TO BE CHANGED IN FINAL GAME
-    public int[] SixNationsWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
-    public int[] MunseeWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
-    public int[] PhilipsesWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
-    public int[] DutchWampumValues = { 108, 40, 30, 16, 6, 6, 27, 56, 70, 24, 6, 12, 5 };
+    public int[] PointMultiplier = { 9, 8, 5, 4, 2, 1, 9, 7, 7, 6, 3, 1, 1};
+
 
 
     public List<int> SixNationsWampumValuesTrades = new List<int>();
@@ -203,10 +201,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public List<int> PhilipsesWampumValuesTrades = new List<int>();
     public List<int> DutchWampumValuesTrades = new List<int>();
 
-    public int SixNationsWampum;
-    public int MunseeWampum;
-    public int PhilipsesWampum;
-    public int DutchWampum;
+    public int SixNationsPoints;
+    public int MunseePoints;
+    public int PhilipsesPoints;
+    public int DutchPoints;
 
     public GameObject[] SixNationsAmountsGameObjects = { };
     public GameObject[] MunseeAmountsGameObjects = { };
@@ -292,10 +290,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (SceneManager.GetActiveScene().name == "Final_Wampum_Value")
         {
             Debug.Log("Inside if");
-            GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Dutch Wampum: " + DutchWampum.ToString();
-            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Philipses Wampum: " + PhilipsesWampum.ToString();
-            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Six Nations Wampum: " + SixNationsWampum.ToString();
-            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Munsee Wampum: " + MunseeWampum.ToString();
+            GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Dutch Points: " + DutchPoints.ToString();
+            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Philipses Points: " + PhilipsesPoints.ToString();
+            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Six Nations Points: " + SixNationsPoints.ToString();
+            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Munsee Points: " + MunseePoints.ToString();
         }
 
 
@@ -2841,10 +2839,52 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (SceneManager.GetActiveScene().name == "Final_Wampum_Value")
         {
             Debug.Log("Inside if");
-            GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Wampum:<br>" + DutchWampum.ToString();
-            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Wampum:<br>" + PhilipsesWampum.ToString();
-            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Wampum:<br>" + SixNationsWampum.ToString();
-            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Wampum:<br>" + MunseeWampum.ToString();
+            for (int wa = 0; wa < 13; wa++)
+            {
+                if(wa < 5 && DutchAmounts[wa] <= DutchAmountsStarting[wa+13])
+                {
+                    DutchPoints += DutchAmounts[wa] * PointMultiplier[wa];
+                    
+                }
+                else if (wa < 5)
+                {
+                    DutchPoints += DutchAmountsStarting[wa+13] * PointMultiplier[wa];
+                }
+                
+                if(wa <= 5 && PhilipsesAmounts[wa] <= PhilipsesAmountsStarting[wa+13])
+                {
+                    PhilipsesPoints += PhilipsesAmounts[wa] * PointMultiplier[wa];
+                }
+                else if (wa < 5)
+                {
+                    PhilipsesPoints += PhilipsesAmountsStarting[wa + 13] * PointMultiplier[wa];
+                }
+
+                if (wa > 5 && SixNationsAmounts[wa] <= SixNationsAmountsStarting[wa + 13])
+                {
+                    SixNationsPoints += SixNationsAmounts[wa] * PointMultiplier[wa];
+                }
+                else if (wa > 5)
+                {
+                    SixNationsPoints += SixNationsAmountsStarting[wa + 13] * PointMultiplier[wa];
+                }
+
+                if (wa > 5 && MunseeAmounts[wa] <= MunseeAmountsStarting[wa + 13])
+                {
+                    MunseePoints += MunseeAmounts[wa] * PointMultiplier[wa];
+                }
+                else if (wa > 5)
+                {
+                    MunseePoints += MunseeAmountsStarting[wa + 13] * PointMultiplier[wa];
+                }
+
+
+
+            }
+            GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + DutchPoints.ToString();
+            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + PhilipsesPoints.ToString();
+            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + SixNationsPoints.ToString();
+            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + MunseePoints.ToString();
         }
     }
 
