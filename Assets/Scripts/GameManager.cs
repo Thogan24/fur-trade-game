@@ -2918,6 +2918,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
             }
+            else
+            {
+                Debug.Log("Ran twice womp womp");
+            }
             GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + DutchPoints.ToString();
             GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + PhilipsesPoints.ToString();
             GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + SixNationsPoints.ToString();
