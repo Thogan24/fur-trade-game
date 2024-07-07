@@ -2776,6 +2776,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 Debug.Log(i + " | Amount:" + PhilipsesAmounts[i]);
                 if (PhilipsesAmounts[i] > 0)
                 {
+                    Debug.Log("Broke at: " + i + " | Amount:" + PhilipsesAmounts[i] + " | turn: " + turn);
                     break;
                 }
                 else
