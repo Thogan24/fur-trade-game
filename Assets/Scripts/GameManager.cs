@@ -2849,47 +2849,47 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 if(wa < 5 && DutchAmounts[wa] <= DutchAmountsStarting[wa+13])
                 {
-                    Debug.Log(tag[wa] + " adding " + DutchAmounts[wa] * PointMultiplier[wa] + " for a total of " + DutchPoints);
+                    Debug.Log("Dutch: " + tags[wa] + " adding " + DutchAmounts[wa] * PointMultiplier[wa] + " for a total of " + DutchPoints);
                     DutchPoints += DutchAmounts[wa] * PointMultiplier[wa];
                     
                 }
                 else if (wa < 5)
                 {
-                    Debug.Log(tag[wa] + "Max adding " + DutchAmounts[wa] * PointMultiplier[wa] + " for a total of " + DutchPoints);
+                    Debug.Log("Dutch: " + tags[wa] + "Max adding " + DutchAmounts[wa] * PointMultiplier[wa] + " for a total of " + DutchPoints);
                     DutchPoints += DutchAmountsStarting[wa+13] * PointMultiplier[wa];
                 }
                 
                 if(wa <= 5 && PhilipsesAmounts[wa] <= PhilipsesAmountsStarting[wa+13])
                 {
-                    Debug.Log(tag[wa] + " adding " + PhilipsesAmounts[wa] * PointMultiplier[wa] + " for a total of " + PhilipsesPoints);
+                    Debug.Log("Philipses: " + tags[wa] + " adding " + PhilipsesAmounts[wa] * PointMultiplier[wa] + " for a total of " + PhilipsesPoints);
                     PhilipsesPoints += PhilipsesAmounts[wa] * PointMultiplier[wa];
                 }
                 else if (wa < 5)
                 {
                     PhilipsesPoints += PhilipsesAmountsStarting[wa + 13] * PointMultiplier[wa];
-                    Debug.Log(tag[wa] + "Max adding " + PhilipsesAmounts[wa] * PointMultiplier[wa] + " for a total of " + PhilipsesPoints);
+                    Debug.Log("Philipses: " + tags[wa] + "Max adding " + PhilipsesAmounts[wa] * PointMultiplier[wa] + " for a total of " + PhilipsesPoints);
                 }
 
                 if (wa > 5 && SixNationsAmounts[wa] <= SixNationsAmountsStarting[wa + 13])
                 {
-                    Debug.Log(tag[wa] + " adding " + SixNationsAmounts[wa] * PointMultiplier[wa] + " for a total of " + SixNationsPoints);
+                    Debug.Log("DutSixNationsch: " + tags[wa] + " adding " + SixNationsAmounts[wa] * PointMultiplier[wa] + " for a total of " + SixNationsPoints);
                     SixNationsPoints += SixNationsAmounts[wa] * PointMultiplier[wa];
                 }
                 else if (wa > 5)
                 {
                     SixNationsPoints += SixNationsAmountsStarting[wa + 13] * PointMultiplier[wa];
-                    Debug.Log(tag[wa] + "Max adding " + SixNationsAmounts[wa] * PointMultiplier[wa] + " for a total of " + SixNationsPoints);
+                    Debug.Log("SixNations: " + tags[wa] + "Max adding " + SixNationsAmounts[wa] * PointMultiplier[wa] + " for a total of " + SixNationsPoints);
                 }
 
                 if (wa > 5 && MunseeAmounts[wa] <= MunseeAmountsStarting[wa + 13])
                 {
-                    Debug.Log(tag[wa] + " adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
+                    Debug.Log("Munsee: " + tags[wa] + " adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
                     MunseePoints += MunseeAmounts[wa] * PointMultiplier[wa];
                 }
                 else if (wa > 5)
                 {
                     MunseePoints += MunseeAmountsStarting[wa + 13] * PointMultiplier[wa];
-                    Debug.Log(tag[wa] + "Max adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
+                    Debug.Log("Munsee: " + [wa] + "Max adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
                 }
 
 
