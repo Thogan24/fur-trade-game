@@ -2889,7 +2889,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 else if (wa > 5)
                 {
                     MunseePoints += MunseeAmountsStarting[wa + 13] * PointMultiplier[wa];
-                    Debug.Log("Munsee: " + [wa] + "Max adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
+                    Debug.Log("Munsee: " + tags[wa] + "Max adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
                 }
 
 
