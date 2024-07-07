@@ -2771,52 +2771,65 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
             Debug.Log("did i even run vro");
-            for (int i = 13; i < 19; i++)
+            if (doNotDoAnything == false)
             {
-                Debug.Log(i + " | Amount:" + PhilipsesAmounts[i]);
-                if (PhilipsesAmounts[i] > 0)
+
+
+                for (int i = 13; i < 19; i++)
                 {
-                    Debug.Log("Broke at: " + i + " | Amount:" + PhilipsesAmounts[i] + " | turn: " + turn);
-                    break;
-                }
-                else
-                {
-                    if (i == 18)
+                    Debug.Log(i + " | Amount:" + PhilipsesAmounts[i]);
+                    if (PhilipsesAmounts[i] > 0)
                     {
-                        this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
-                        doNotDoAnything = true;
+                        Debug.Log("Broke at: " + i + " | Amount:" + PhilipsesAmounts[i] + " | turn: " + turn);
+                        break;
+                    }
+                    else
+                    {
+                        if (i == 18)
+                        {
+                            this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                            doNotDoAnything = true;
+                        }
                     }
                 }
-            }
+                if (doNotDoAnything == false)
+                {
 
-            for (int i = 19; i < SixNationsAmounts.Length; i++)
-            {
-                if (SixNationsAmounts[i] > 0)
-                {
-                    break;
-                }
-                else
-                {
-                    if (i == SixNationsAmounts.Length - 1)
+
+                    for (int i = 19; i < SixNationsAmounts.Length; i++)
                     {
-                        this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
-                        doNotDoAnything = true;
+                        if (SixNationsAmounts[i] > 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if (i == SixNationsAmounts.Length - 1)
+                            {
+                                this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                                doNotDoAnything = true;
+                            }
+                        }
                     }
-                }
-            }
-
-            for (int i = 19; i < MunseeAmounts.Length; i++)
-            {
-                if (MunseeAmounts[i] > 0)
-                {
-                    break;
-                }
-                else
-                {
-                    if (i == MunseeAmounts.Length - 1)
+                    if (doNotDoAnything == false)
                     {
-                        this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
-                        doNotDoAnything = true;
+
+
+                        for (int i = 19; i < MunseeAmounts.Length; i++)
+                        {
+                            if (MunseeAmounts[i] > 0)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                if (i == MunseeAmounts.Length - 1)
+                                {
+                                    this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+                                    doNotDoAnything = true;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -2833,6 +2846,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     }
 
+    public bool alreadyRanCalculation = false;
     [PunRPC]
     void moveToCalculationScene(PhotonMessageInfo info)
     {
@@ -2845,52 +2859,61 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (SceneManager.GetActiveScene().name == "Final_Wampum_Value")
         {
             Debug.Log("Inside if");
-            for (int wa = 0; wa < 13; wa++)
+            if (alreadyRanCalculation == false)
             {
-                if(wa < 5 && DutchAmounts[wa] <= DutchAmountsStarting[wa+13])
+                for (int wa = 0; wa < 13; wa++)
                 {
-                    Debug.Log("Dutch: " + tags[wa] + " adding " + DutchAmounts[wa] * PointMultiplier[wa] + " for a total of " + DutchPoints);
-                    DutchPoints += DutchAmounts[wa] * PointMultiplier[wa];
+
+                    if (wa < 5 && DutchAmounts[wa] <= DutchAmountsStarting[wa + 13])
+                    {
+                        Debug.Log("Dutch: " + tags[wa] + " adding " + DutchAmounts[wa] * PointMultiplier[wa] + " for a total of " + DutchPoints);
+                        DutchPoints += DutchAmounts[wa] * PointMultiplier[wa];
+
+                    }
+                    else if (wa < 5)
+                    {
+                        Debug.Log("Dutch: " + tags[wa] + "Max adding " + DutchAmounts[wa] * PointMultiplier[wa] + " for a total of " + DutchPoints);
+                        DutchPoints += DutchAmountsStarting[wa + 13] * PointMultiplier[wa];
+                    }
+
+                    if (wa <= 5 && PhilipsesAmounts[wa] <= PhilipsesAmountsStarting[wa + 13])
+                    {
+                        Debug.Log("Philipses: " + tags[wa] + " adding " + PhilipsesAmounts[wa] * PointMultiplier[wa] + " for a total of " + PhilipsesPoints);
+                        PhilipsesPoints += PhilipsesAmounts[wa] * PointMultiplier[wa];
+                    }
+                    else if (wa < 5)
+                    {
+                        PhilipsesPoints += PhilipsesAmountsStarting[wa + 13] * PointMultiplier[wa];
+                        Debug.Log("Philipses: " + tags[wa] + "Max adding " + PhilipsesAmounts[wa] * PointMultiplier[wa] + " for a total of " + PhilipsesPoints);
+                    }
+
+                    if (wa > 5 && SixNationsAmounts[wa] <= SixNationsAmountsStarting[wa + 13])
+                    {
+                        Debug.Log("DutSixNationsch: " + tags[wa] + " adding " + SixNationsAmounts[wa] * PointMultiplier[wa] + " for a total of " + SixNationsPoints);
+                        SixNationsPoints += SixNationsAmounts[wa] * PointMultiplier[wa];
+                    }
+                    else if (wa > 5)
+                    {
+                        SixNationsPoints += SixNationsAmountsStarting[wa + 13] * PointMultiplier[wa];
+                        Debug.Log("SixNations: " + tags[wa] + "Max adding " + SixNationsAmounts[wa] * PointMultiplier[wa] + " for a total of " + SixNationsPoints);
+                    }
+
+                    if (wa > 5 && MunseeAmounts[wa] <= MunseeAmountsStarting[wa + 13])
+                    {
+                        Debug.Log("Munsee: " + tags[wa] + " adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
+                        MunseePoints += MunseeAmounts[wa] * PointMultiplier[wa];
+                    }
+                    else if (wa > 5)
+                    {
+                        MunseePoints += MunseeAmountsStarting[wa + 13] * PointMultiplier[wa];
+                        Debug.Log("Munsee: " + tags[wa] + "Max adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
+
+                        
+                    }
                     
                 }
-                else if (wa < 5)
-                {
-                    Debug.Log("Dutch: " + tags[wa] + "Max adding " + DutchAmounts[wa] * PointMultiplier[wa] + " for a total of " + DutchPoints);
-                    DutchPoints += DutchAmountsStarting[wa+13] * PointMultiplier[wa];
-                }
-                
-                if(wa <= 5 && PhilipsesAmounts[wa] <= PhilipsesAmountsStarting[wa+13])
-                {
-                    Debug.Log("Philipses: " + tags[wa] + " adding " + PhilipsesAmounts[wa] * PointMultiplier[wa] + " for a total of " + PhilipsesPoints);
-                    PhilipsesPoints += PhilipsesAmounts[wa] * PointMultiplier[wa];
-                }
-                else if (wa < 5)
-                {
-                    PhilipsesPoints += PhilipsesAmountsStarting[wa + 13] * PointMultiplier[wa];
-                    Debug.Log("Philipses: " + tags[wa] + "Max adding " + PhilipsesAmounts[wa] * PointMultiplier[wa] + " for a total of " + PhilipsesPoints);
-                }
+                alreadyRanCalculation = true;
 
-                if (wa > 5 && SixNationsAmounts[wa] <= SixNationsAmountsStarting[wa + 13])
-                {
-                    Debug.Log("DutSixNationsch: " + tags[wa] + " adding " + SixNationsAmounts[wa] * PointMultiplier[wa] + " for a total of " + SixNationsPoints);
-                    SixNationsPoints += SixNationsAmounts[wa] * PointMultiplier[wa];
-                }
-                else if (wa > 5)
-                {
-                    SixNationsPoints += SixNationsAmountsStarting[wa + 13] * PointMultiplier[wa];
-                    Debug.Log("SixNations: " + tags[wa] + "Max adding " + SixNationsAmounts[wa] * PointMultiplier[wa] + " for a total of " + SixNationsPoints);
-                }
-
-                if (wa > 5 && MunseeAmounts[wa] <= MunseeAmountsStarting[wa + 13])
-                {
-                    Debug.Log("Munsee: " + tags[wa] + " adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
-                    MunseePoints += MunseeAmounts[wa] * PointMultiplier[wa];
-                }
-                else if (wa > 5)
-                {
-                    MunseePoints += MunseeAmountsStarting[wa + 13] * PointMultiplier[wa];
-                    Debug.Log("Munsee: " + tags[wa] + "Max adding " + MunseeAmounts[wa] * PointMultiplier[wa] + " for a total of " + MunseePoints);
-                }
 
 
 
