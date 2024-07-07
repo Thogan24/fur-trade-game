@@ -275,26 +275,17 @@ public class GameManager : MonoBehaviourPunCallbacks
                 //test = Instantiate(MunseeCameraGameObject, new Vector3(2.0f, 0, 0), Quaternion.identity);
             }
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
-            if (!AlreadyLoaded)
-            {
-                this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
-                DeactivateAllOtherButtons();
-                DeactivateTeamFlags();
+/*            if (!AlreadyLoaded)
+            {*/
+            this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
+            DeactivateAllOtherButtons();
+            DeactivateTeamFlags();
 
-                AlreadyLoaded = true;
-            }
-            
+            AlreadyLoaded = true;
+            /*}*/
+
         }
 
-        //aggregiously bad code
-        if (SceneManager.GetActiveScene().name == "Final_Wampum_Value")
-        {
-            Debug.Log("Inside if");
-            GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Dutch Points: " + DutchPoints.ToString();
-            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Philipses Points: " + PhilipsesPoints.ToString();
-            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Six Nations Points: " + SixNationsPoints.ToString();
-            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Munsee Points: " + MunseePoints.ToString();
-        }
 
 
         // Team Select Scene
@@ -315,6 +306,19 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (Munsee != "" && MunseeJoined == false)
         {
             this.GetComponent<PhotonView>().RPC("munseeJoinedRPC", RpcTarget.All, Munsee);
+        }
+
+
+
+
+        //aggregiously bad code (its in update)
+        if (SceneManager.GetActiveScene().name == "Final_Wampum_Value")
+        {
+            Debug.Log("Inside if");
+            GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Dutch Points: " + DutchPoints.ToString();
+            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Philipses Points: " + PhilipsesPoints.ToString();
+            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Six Nations Points: " + SixNationsPoints.ToString();
+            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Munsee Points: " + MunseePoints.ToString();
         }
     }
 
@@ -407,8 +411,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void mainSceneCameraRPC()
     {
-        try
-        {
+/*        try
+        {*/
             //Debug.LogError(SceneManager.GetActiveScene().name);
             DutchCardsCanvasObject = GameObject.FindGameObjectWithTag("Dutch Card Canvas");
             PhilipsesCardsCanvasObject = GameObject.FindGameObjectWithTag("Philipses Card Canvas");
@@ -545,14 +549,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                             PhilipsesCamerasCheckArray[a].SetActive(true);
                         }
                     }*/
-        }
+/*        }
         catch (NullReferenceException exception)
         {
             Debug.Log("Failed... Exception caught");
             Debug.LogException(exception, this);
-            AlreadyLoaded = true;
+            //AlreadyLoaded = true;
 
-        }
+        }*/
 
     }
 
