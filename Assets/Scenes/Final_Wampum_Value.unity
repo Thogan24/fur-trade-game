@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 616705336}
   m_Layer: 0
   m_Name: crown-removebg-preview (1)
-  m_TagString: Untagged
+  m_TagString: PhilipsesCrown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 705346778}
   m_Layer: 0
   m_Name: crown-removebg-preview (2)
-  m_TagString: Untagged
+  m_TagString: SixNationsCrown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1341,7 +1341,7 @@ GameObject:
   - component: {fileID: 1424426134}
   m_Layer: 0
   m_Name: crown-removebg-preview
-  m_TagString: Untagged
+  m_TagString: DutchCrown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1867,7 +1867,7 @@ GameObject:
   - component: {fileID: 2131686517}
   m_Layer: 0
   m_Name: crown-removebg-preview (3)
-  m_TagString: Untagged
+  m_TagString: MunseeCrown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

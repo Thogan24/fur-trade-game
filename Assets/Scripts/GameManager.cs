@@ -375,6 +375,38 @@ public class GameManager : MonoBehaviourPunCallbacks
                         }
 
                     }
+                    if (DutchPoints >= PhilipsesPoints && DutchPoints >= SixNationsPoints && DutchPoints >= MunseePoints)
+                    {
+                        GameObject.FindGameObjectWithTag("DutchCrown").SetActive(true);
+                    }
+                    else
+                    {
+                        GameObject.FindGameObjectWithTag("DutchCrown").SetActive(false);
+                    }
+                    if (PhilipsesPoints >= DutchPoints && PhilipsesPoints >= SixNationsPoints && PhilipsesPoints >= MunseePoints)
+                    {
+                        GameObject.FindGameObjectWithTag("PhilipsesCrown").SetActive(true);
+                    }
+                    else
+                    {
+                        GameObject.FindGameObjectWithTag("PhilipsesCrown").SetActive(false);
+                    }
+                    if (SixNationsPoints >= PhilipsesPoints && SixNationsPoints >= DutchPoints && SixNationsPoints >= MunseePoints)
+                    {
+                        GameObject.FindGameObjectWithTag("SixNationsCrown").SetActive(true);
+                    }
+                    else
+                    {
+                        GameObject.FindGameObjectWithTag("SixNationsCrown").SetActive(false);
+                    }
+                    if (MunseePoints >= PhilipsesPoints && MunseePoints >= SixNationsPoints && MunseePoints >= DutchPoints)
+                    {
+                        GameObject.FindGameObjectWithTag("MunseeCrown").SetActive(true);
+                    }
+                    else
+                    {
+                        GameObject.FindGameObjectWithTag("MunseeCrown").SetActive(false);
+                    }
                     alreadyRanCalculation = true;
 
 

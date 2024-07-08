@@ -124,6 +124,10 @@ TagManager:
   - AxesDescription
   - BeadsDescription
   - ScissorsDescription
+  - DutchCrown
+  - PhilipsesCrown
+  - SixNationsCrown
+  - MunseeCrown
   layers:
   - Default
   - TransparentFX
