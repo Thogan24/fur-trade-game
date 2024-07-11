@@ -128,6 +128,7 @@ TagManager:
   - PhilipsesCrown
   - SixNationsCrown
   - MunseeCrown
+  - CountdownTimer
   layers:
   - Default
   - TransparentFX

@@ -134,6 +134,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] cardAmountObjects;
     public GameObject[] cardAmountObjects2;
 
+    public int time;
+    public GameObject countdownTextObject;
+    public Text countdownTimerText;
+    [HideInInspector] public bool isTimeFinished = true;
+
 
     /*
     STARTING INVENTORIES
@@ -280,7 +285,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
             DeactivateAllOtherButtons();
             DeactivateTeamFlags();
-
+            StartCountDown();
             AlreadyLoaded = true;
             /*}*/
 
@@ -3388,6 +3393,62 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
+    GameObject[] countdownTimers;
+    public void StartCountDown()
+    {
+        countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
+        if (PhotonNetwork.IsMasterClient)
+        {
+            
+            time = 120;
+            StartCoroutine("LoseTime");
+            
+            countdownTimerText.text = ("Next Turn In: " + time);
+        }
+    }
+
+    IEnumerator LoseTime()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            this.GetComponent<PhotonView>().RPC("ReduceTime", RpcTarget.AllBuffered);
+        }
+    }
+
+    [PunRPC]
+    private void ReduceTime()
+    {
+        time--;
+        for (int al = 0; al < countdownTimers.Length; al++)
+        {
+            countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time;
+        }
+        if (time <= 0)
+        {
+            StopCoroutine("LoseTime");
+            for(int al = 0; al < countdownTimers.Length; al++)
+            {
+                countdownTimers[al].GetComponent<Text>().text = "Next Turn In: 0";
+            }
+            
+            TimesUp();
+        }
+    }
+
+    public void TimesUp()
+    {
+
+        Debug.Log("Move turns");
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -3580,6 +3641,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.Log("ag: " + ag);
         }
 
+        StartCountDown();
 
 
         
@@ -3677,6 +3739,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 */
+
+
+
 
 
 }
