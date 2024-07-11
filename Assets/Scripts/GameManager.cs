@@ -3399,7 +3399,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
         if (PhotonNetwork.IsMasterClient)
         {
-            
+            Debug.Log("Start Count Down");
             time = 120;
             StartCoroutine("LoseTime");
             
@@ -3411,6 +3411,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         while (true)
         {
+            Debug.Log("Losing Time");
             yield return new WaitForSeconds(1);
             this.GetComponent<PhotonView>().RPC("ReduceTime", RpcTarget.AllBuffered);
         }
@@ -3419,6 +3420,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void ReduceTime()
     {
+        Debug.Log("Reduce Time");
         time--;
         for (int al = 0; al < countdownTimers.Length; al++)
         {
