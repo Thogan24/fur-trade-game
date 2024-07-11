@@ -1084,7 +1084,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations") // If the screen is Six Nations
                         {
                             addToReceiving[2] = true;
-                            enemyTeamButtonPos[2] = DutchTradeButton[a].transform.position;
+                            enemyTeamButtonPos[2] = PhilipsesTradeButton[a].transform.position;
                         }
 
                         else if (SixNationsTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
