@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     
 
     public string theSender = "";
-    public float distanceFromLineGiving = 1.5f;
+    public float distanceFromLineGiving = -10f;
     public float distanceFromLineReceiving = 6.08f;
     public float ZAxisLineDistance = 0;
     public float YAxisLineDistance = 0.10f;
