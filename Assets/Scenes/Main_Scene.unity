@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 17266746}
   m_Layer: 0
   m_Name: Canvas (2)
-  m_TagString: Dutch Second Background Canvas
+  m_TagString: Munsee Second Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4983,7 +4983,7 @@ GameObject:
   - component: {fileID: 143322082}
   m_Layer: 0
   m_Name: Cards + Trading Buttons (1)
-  m_TagString: Dutch Card Canvas
+  m_TagString: Munsee Card Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11159,7 +11159,7 @@ GameObject:
   - component: {fileID: 302807121}
   m_Layer: 0
   m_Name: Text/UI (1)
-  m_TagString: Dutch Text Canvas
+  m_TagString: Munsee Text Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12102,7 +12102,7 @@ GameObject:
   - component: {fileID: 335824582}
   m_Layer: 0
   m_Name: Canvas (1)
-  m_TagString: Dutch Second Background Canvas
+  m_TagString: Philipses Second Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29751,7 +29751,7 @@ GameObject:
   - component: {fileID: 805769705}
   m_Layer: 0
   m_Name: Cards + Trading Buttons (1)
-  m_TagString: Dutch Card Canvas
+  m_TagString: Philipses Card Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39362,7 +39362,7 @@ GameObject:
   - component: {fileID: 1102615406}
   m_Layer: 0
   m_Name: Text/UI (2)
-  m_TagString: Dutch Text Canvas
+  m_TagString: Six Nations Text Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55616,7 +55616,7 @@ GameObject:
   - component: {fileID: 1536628087}
   m_Layer: 0
   m_Name: Text/UI (1)
-  m_TagString: Dutch Text Canvas
+  m_TagString: Philipses Text Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60014,7 +60014,7 @@ GameObject:
   - component: {fileID: 1627203759}
   m_Layer: 0
   m_Name: Background (1)
-  m_TagString: Dutch Background Canvas
+  m_TagString: Philipses Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61442,7 +61442,7 @@ GameObject:
   - component: {fileID: 1675423883}
   m_Layer: 0
   m_Name: Background (1)
-  m_TagString: Dutch Background Canvas
+  m_TagString: Munsee Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63140,7 +63140,7 @@ GameObject:
   - component: {fileID: 1725200222}
   m_Layer: 0
   m_Name: Background (2)
-  m_TagString: Dutch Background Canvas
+  m_TagString: Six Nations Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72496,7 +72496,7 @@ GameObject:
   - component: {fileID: 2008987342}
   m_Layer: 0
   m_Name: Canvas (2)
-  m_TagString: Dutch Second Background Canvas
+  m_TagString: Six Nations Second Background Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75061,7 +75061,7 @@ GameObject:
   - component: {fileID: 2069593055}
   m_Layer: 0
   m_Name: Cards + Trading Buttons (2)
-  m_TagString: Dutch Card Canvas
+  m_TagString: Six Nations Card Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
