@@ -3420,7 +3420,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         while (true)
         {
-            Debug.Log("Losing Time");
+            Debug.Log("Losing Time, Wait");
             yield return new WaitForSeconds(15);
             Debug.Log("Wait done, reducing time on all players");
             this.GetComponent<PhotonView>().RPC("ReduceTime", RpcTarget.All);
@@ -3430,8 +3430,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void ReduceTime()
     {
-        Debug.Log("Reduce Time");
+        
         time--;
+        Debug.Log("Reduce Time: " + time);
         for (int al = 0; al < countdownTimers.Length; al++)
         {
             countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time + "s";
@@ -3443,8 +3444,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 countdownTimers[al].GetComponent<Text>().text = "Next Turn In: 0s";
             }
+            if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
+            {
+                TimesUp();
+            }
             
-            TimesUp();
         }
     }
 
@@ -3472,6 +3476,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void MoveTurns(PhotonMessageInfo info)
     {
+        Debug.Log("Moving turns");
         // Can't check wishlist because you only lose wishlisted cards
         for (int za = 0; za <= 12; za++)
         {
