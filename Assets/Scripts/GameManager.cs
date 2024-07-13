@@ -3400,10 +3400,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(countDownFinished == false)
         {
             countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
+            time = 120;
             if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
             {
                 Debug.Log("Start Count Down");
-                time = 120;
+                
                 StartCoroutine("LoseTime");
 
                 for (int aj = 0; aj < countdownTimers.Length; aj++)
@@ -3421,7 +3422,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         while (true)
         {
             Debug.Log("Losing Time, Wait");
-            yield return new WaitForSeconds(15);
+            yield return new WaitForSeconds(1);
             Debug.Log("Wait done, reducing time on all players");
             this.GetComponent<PhotonView>().RPC("ReduceTime", RpcTarget.All);
         }
