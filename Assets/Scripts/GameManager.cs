@@ -3422,7 +3422,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("Losing Time");
             yield return new WaitForSeconds(15);
-            Debug.Log("Wait done, reducing time on all players")
+            Debug.Log("Wait done, reducing time on all players");
             this.GetComponent<PhotonView>().RPC("ReduceTime", RpcTarget.All);
         }
     }
