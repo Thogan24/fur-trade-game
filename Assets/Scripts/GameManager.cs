@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] cardAmountObjects2;
 
     public int time;
-    public int turnTimeLength = 120;
+    public int turnTimeLength = 10;
     public GameObject countdownTextObject;
     public Text countdownTimerText;
     [HideInInspector] public bool isTimeFinished = true;
@@ -3067,7 +3067,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeWampumValuesTrades.Add(0);
         }
 
-        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // Bring back / revert theSender == info.Sender.ToString() &&  if neccessary
+        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString() || TurnTimerRanOut) // Bring back / revert theSender == info.Sender.ToString() &&  if neccessary
         {
             // Note; int b is utilized in case of crashing aswell. It will not run over 1000 iterations
 
