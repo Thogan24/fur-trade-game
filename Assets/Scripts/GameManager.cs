@@ -135,9 +135,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] cardAmountObjects2;
 
     public int time;
+    public int turnTimeLength = 120;
     public GameObject countdownTextObject;
     public Text countdownTimerText;
     [HideInInspector] public bool isTimeFinished = true;
+    public bool TurnTimerRanOut = false;
 
 
     /*
@@ -3400,7 +3402,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(countDownFinished == false)
         {
             countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
-            time = 120;
+            time = turnTimeLength;
             if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
             {
                 Debug.Log("Start Count Down");
@@ -3457,8 +3459,16 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         
         Debug.Log("Move turns");
+        this.GetComponent<PhotonView>().RPC("TurnTimerRPC", RpcTarget.All);
         this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
         this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
+    }
+
+
+    [PunRPC]
+    void TurnTimerRPC(PhotonMessageInfo info)
+    {
+        TurnTimerRanOut = true;
     }
 
 
@@ -3471,10 +3481,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-
-
-
-    [PunRPC]
+        [PunRPC]
     void MoveTurns(PhotonMessageInfo info)
     {
         Debug.Log("Moving turns");
@@ -3507,7 +3514,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         InventoryCardsInTrade = 0;
         WishlistCardsInTrade = 0;
 
-        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString()) // theSender == info.Sender.ToString() && 
+        if (info.Sender.ToString() == PhotonNetwork.LocalPlayer.ToString() || TurnTimerRanOut) // theSender == info.Sender.ToString() && 
         {
 
             totalTurnNumber++;
@@ -3522,6 +3529,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 turn++;
                 Debug.Log("turn++");
             }
+            TurnTimerRanOut = false;
         //}
             Debug.Log("Turn: " + turn + "Total turn number: " + totalTurnNumber);
 
