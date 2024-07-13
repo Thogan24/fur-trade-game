@@ -3459,6 +3459,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         
         Debug.Log("Move turns");
+        clearTradeButton = true;
         this.GetComponent<PhotonView>().RPC("TurnTimerRPC", RpcTarget.All);
         this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
         this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
