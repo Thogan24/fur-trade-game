@@ -235,7 +235,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] SeasonalTimers = { };
 
     public bool doNotDoAnything = false;
-
+    public bool countDownFinished = false;
 
     /*
      Turn numbers:
@@ -3396,15 +3396,24 @@ public class GameManager : MonoBehaviourPunCallbacks
     GameObject[] countdownTimers;
     public void StartCountDown()
     {
-        countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
-        if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
+        
+        if(countDownFinished == false)
         {
-            Debug.Log("Start Count Down");
-            time = 120;
-            StartCoroutine("LoseTime");
-            
-            countdownTimerText.text = ("Next Turn In: " + time);
+            countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
+            if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
+            {
+                Debug.Log("Start Count Down");
+                time = 120;
+                StartCoroutine("LoseTime");
+
+                for (int aj = 0; aj < countdownTimers.Length; aj++)
+                {
+                    countdownTimers[aj].GetComponent<Text>().text = "Next Turn In: " + time;
+                }
+            }
+            countDownFinished = true;
         }
+        
     }
 
     IEnumerator LoseTime()
@@ -3642,7 +3651,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             Debug.Log("ag: " + ag);
         }
-
+        countDownFinished = false;
         StartCountDown();
 
 
