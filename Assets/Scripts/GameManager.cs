@@ -3408,7 +3408,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 for (int aj = 0; aj < countdownTimers.Length; aj++)
                 {
-                    countdownTimers[aj].GetComponent<Text>().text = "Next Turn In: " + time;
+                    countdownTimers[aj].GetComponent<Text>().text = "Next Turn In: " + time + "s";
                 }
             }
             countDownFinished = true;
@@ -3433,14 +3433,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         time--;
         for (int al = 0; al < countdownTimers.Length; al++)
         {
-            countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time;
+            countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time + "s";
         }
         if (time <= 0)
         {
             StopCoroutine("LoseTime");
             for(int al = 0; al < countdownTimers.Length; al++)
             {
-                countdownTimers[al].GetComponent<Text>().text = "Next Turn In: 0";
+                countdownTimers[al].GetComponent<Text>().text = "Next Turn In: 0s";
             }
             
             TimesUp();
@@ -3449,8 +3449,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void TimesUp()
     {
-
+        
         Debug.Log("Move turns");
+        this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+        this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
     }
 
 
