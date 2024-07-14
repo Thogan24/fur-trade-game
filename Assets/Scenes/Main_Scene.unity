@@ -16379,8 +16379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.037, y: 4.1}
-  m_SizeDelta: {x: 103.5878, y: 41.4768}
+  m_AnchoredPosition: {x: -7.5102, y: 4.1}
+  m_SizeDelta: {x: 143.3222, y: 41.4768}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &529038870
 MonoBehaviour:
@@ -16415,7 +16415,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Year: 1601 Turn: Dutch'
+  m_Text: "Year: 1601 \nTurn: Dutch"
 --- !u!222 &529038871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31896,8 +31896,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.037, y: 4.1}
-  m_SizeDelta: {x: 103.5878, y: 41.4768}
+  m_AnchoredPosition: {x: -7.5102, y: 4.1}
+  m_SizeDelta: {x: 143.3223, y: 41.4768}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080632841
 MonoBehaviour:
@@ -31932,7 +31932,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Year: 1601 Turn: Dutch'
+  m_Text: "Year: 1601 \nTurn: Dutch"
 --- !u!222 &1080632842
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34724,8 +34724,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.037, y: 4.113502}
-  m_SizeDelta: {x: 103.5878, y: 40.4612}
+  m_AnchoredPosition: {x: -7.5089, y: 4.113502}
+  m_SizeDelta: {x: 143.4132, y: 40.4612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1173649384
 MonoBehaviour:
@@ -34760,7 +34760,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Year: 1601 Turn: Dutch'
+  m_Text: "Year: 1601 \nTurn: Dutch"
 --- !u!222 &1173649385
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -52882,8 +52882,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.037, y: 4.1}
-  m_SizeDelta: {x: 103.5878, y: 41.4768}
+  m_AnchoredPosition: {x: -7.503, y: 4.1}
+  m_SizeDelta: {x: 143.8665, y: 41.4768}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1733217661
 MonoBehaviour:
@@ -52918,7 +52918,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Year: 1601 Turn: Dutch'
+  m_Text: "Year: 1601 \nTurn: Dutch"
 --- !u!222 &1733217662
 CanvasRenderer:
   m_ObjectHideFlags: 0
