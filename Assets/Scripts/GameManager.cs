@@ -640,18 +640,17 @@ public class GameManager : MonoBehaviourPunCallbacks
                     MunseeCamerasCheckArray[a].SetActive(true);
                 }
             }
-            //GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
-            /*        for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
-                    {
-                        if (PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>())
-                        {
-                            PhilipsesCamerasCheckArray[a].SetActive(false);
-                        }
-                        else
-                        {
-                            PhilipsesCamerasCheckArray[a].SetActive(true);
-                        }
-                    }*/
+            for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
+            {
+                if (PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>())
+                {
+                    PhilipsesCamerasCheckArray[a].SetActive(false);
+                }
+                else
+                {
+                    PhilipsesCamerasCheckArray[a].SetActive(true);
+                }
+            }
 /*        }
         catch (NullReferenceException exception)
         {
