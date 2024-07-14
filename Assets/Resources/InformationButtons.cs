@@ -96,12 +96,13 @@ public class InformationButtons : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == "Main_Scene" && gameManager.opened == true)
             {
                 Debug.Log("I'm still running");
-                gameManager.opened = false;
+                
                 GameObject[] descriptionArray2 = GameObject.FindGameObjectsWithTag(imageDescriptionTags[j]);
                 for (int b = 0; b < descriptionArray2.Length; b++)
                 {
-                    if (descriptionArray2[b] != null)
+                    if (descriptionArray2[b] != null && descriptionArray2[b].gameObject.GetComponent<Image>().color != newColor)
                     {
+                        Debug.Log("Got here");
                         descriptionArray2[b].gameObject.GetComponent<Image>().color = newColor;
                         descriptionArray2[b].gameObject.transform.position = descriptionArray2[b].gameObject.transform.position - new Vector3(100, 0, 0);
                     }
@@ -109,6 +110,7 @@ public class InformationButtons : MonoBehaviour
 
             }
         }
+        gameManager.opened = false;
 
     }
 }
