@@ -1468,12 +1468,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                     topButtonPos[3] = sixNationsButtons[ab].transform.position;
                 }
             }
-            GameObject[] dutchButtons = GameObject.FindGameObjectsWithTag("Dutch Trading");
-            for (int ab = 0; ab < dutchButtons.Length; ab++)
+            GameObject[] philipsesButtons = GameObject.FindGameObjectsWithTag("Philipses Trading");
+            for (int ab = 0; ab < philipsesButtons.Length; ab++)
             {
-                if (dutchButtons[ab].transform.parent.parent.name == "Six Nations")
+                if (philipsesButtons[ab].transform.parent.parent.name == "Six Nations")
                 {
-                    topButtonPos[2] = dutchButtons[ab].transform.position;
+                    topButtonPos[2] = philipsesButtons[ab].transform.position;
                 }
 
             }
