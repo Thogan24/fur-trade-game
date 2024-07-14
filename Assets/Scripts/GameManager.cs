@@ -3407,7 +3407,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 time = turnTimeLengthFirstIteration;
             }
-            time = turnTimeLength;
+            else
+            {
+                time = turnTimeLength;
+
+            }
             if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
             {
                 Debug.Log("Start Count Down");

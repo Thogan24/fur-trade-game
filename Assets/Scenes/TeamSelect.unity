@@ -4010,7 +4010,8 @@ MonoBehaviour:
   cardAmountObjects: []
   cardAmountObjects2: []
   time: 0
-  turnTimeLength: 10
+  turnTimeLength: 120
+  turnTimeLengthFirstIteration: 10
   countdownTextObject: {fileID: 0}
   countdownTimerText: {fileID: 0}
   isTimeFinished: 1
