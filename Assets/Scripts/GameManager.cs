@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public int time;
     public int turnTimeLength = 10;
+    public int turnTimeLengthFirstIteration = 10;
     public GameObject countdownTextObject;
     public Text countdownTimerText;
     [HideInInspector] public bool isTimeFinished = true;
@@ -3402,6 +3403,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(countDownFinished == false)
         {
             countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
+            if(turn < 4)
+            {
+                time = turnTimeLengthFirstIteration;
+            }
             time = turnTimeLength;
             if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
             {
