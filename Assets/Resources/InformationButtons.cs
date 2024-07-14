@@ -8,6 +8,8 @@ public class InformationButtons : MonoBehaviour
 {
     public GameObject imageObject;
     public Sprite image;
+    public bool opened = false;
+    public bool sceneChange = false;
     public void Start()
     {
         /*imageObject = GameObject.FindGameObjectWithTag("DescriptionImage");
@@ -23,6 +25,15 @@ public class InformationButtons : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             closeInfo();
+        }
+        if (SceneManager.GetActiveScene().name == "Main_Scene" && sceneChange == false)
+        {
+            sceneChange = true;
+            for (int j = 4; j < imageDescriptionTags.Length; j++)
+            {
+                GameObject[] startArray = GameObject.FindGameObjectsWithTag(imageDescriptionTags[j]);
+                startArray[j].gameObject.transform.position = startArray[j].gameObject.transform.position - new Vector3(100, 0, 0);
+            }
         }
     }
     public void SceneChange()
@@ -65,53 +76,14 @@ public class InformationButtons : MonoBehaviour
                 for (int a = 0; a < descriptionArray.Length; a++)
                 {
                     descriptionArray[a].gameObject.GetComponent<Image>().color = newColor;
+                    descriptionArray[a].gameObject.transform.position = descriptionArray[a].gameObject.transform.position + new Vector3(100, 0, 0);
+                    opened = true;
                 }
             }
         }
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*    public void infoOnClicked()
-        {
-
-            Debug.Log("Clicked");
-            Debug.Log("tag is: " + gameObject.tag);
-
-            var newColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            imageObject.GetComponent<Image>().color = newColor;
-            //imageObject.gameObject.SetActive(true);
-            Debug.Log(gameObject.tag);
-            for (int i = 0; i < tagArray.Length; i++)
-            {
-
-                if(tagArray[i] == this.gameObject.tag)
-                {
-
-                    index = i;
-                    Debug.Log(index);
-                }
-            }
-            Debug.Log(Resources.Load<Sprite>("SixNationsDescription"));
-            image = Resources.Load<Sprite>(imageDescriptionPathArray[index]);
-            imageObject.GetComponent<Image>().sprite = image;
-
-        }*/
 
     public void closeInfo()
     {
@@ -126,14 +98,16 @@ public class InformationButtons : MonoBehaviour
                     GameObject.FindGameObjectWithTag(imageDescriptionTags[j]).GetComponent<Image>().color = newColor;
                 }
             }
-            else if (SceneManager.GetActiveScene().name == "Main_Scene")
+            else if (SceneManager.GetActiveScene().name == "Main_Scene" && opened == true)
             {
+                opened = false;
                 GameObject[] descriptionArray2 = GameObject.FindGameObjectsWithTag(imageDescriptionTags[j]);
                 for (int b = 0; b < descriptionArray2.Length; b++)
                 {
                     if (descriptionArray2[b] != null)
                     {
                         descriptionArray2[b].gameObject.GetComponent<Image>().color = newColor;
+                        descriptionArray2[b].gameObject.transform.position = descriptionArray2[b].gameObject.transform.position - new Vector3(100, 0, 0);
                     }
                 }
 
