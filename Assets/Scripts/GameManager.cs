@@ -3403,7 +3403,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(countDownFinished == false)
         {
             countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
-            if(turn < 4)
+            if(totalTurnNumber < 5)
             {
                 time = turnTimeLengthFirstIteration;
             }
