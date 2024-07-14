@@ -60,7 +60,7 @@ public class InformationButtons : MonoBehaviour
         {
             GameObject.FindGameObjectWithTag(imageDescriptionTags[index]).gameObject.GetComponent<Image>().color = newColor;
         }
-        else if (SceneManager.GetActiveScene().name == "Main_Scene")
+        else if (SceneManager.GetActiveScene().name == "Main_Scene" && gameManager.opened == false)
         {
             GameObject[] descriptionArray = GameObject.FindGameObjectsWithTag(imageDescriptionTags[index]);
             if (descriptionArray != null)
