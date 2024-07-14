@@ -248,6 +248,9 @@ public class GameManager : MonoBehaviourPunCallbacks
      Munsee - 4
      */
 
+    public string[] imageDescriptionTags = { "DutchDescription", "PhilipsesDescription", "SixNationsDescription", "MunseeDescription", "BeaverDescription", "DeerSkinDescription", "BearDescription", "FisherDescription", "FoxDescription", "SchepelsDescription", "DuffelsDescription", "LinenDescription", "StockingsDescription", "StroudsDescription", "AxesDescription", "BeadsDescription", "ScissorsDescription" };
+    public bool sceneChange = false;
+    public bool opened = false;
 
 
     void Start()
@@ -294,6 +297,22 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         }
 
+
+        if (SceneManager.GetActiveScene().name == "Main_Scene" && sceneChange == false)
+        {
+            Debug.Log("Ran the thing");
+            sceneChange = true;
+            for (int j = 4; j < imageDescriptionTags.Length; j++)
+            {
+                GameObject[] startArray = GameObject.FindGameObjectsWithTag(imageDescriptionTags[j]);
+                for (int b = 0; b < startArray.Length; b++)
+                {
+                    startArray[b].gameObject.transform.position = startArray[b].gameObject.transform.position - new Vector3(100, 0, 0);
+                }
+
+            }
+        }
+    
 
 
         // Team Select Scene

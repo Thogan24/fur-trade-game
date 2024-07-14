@@ -8,8 +8,8 @@ public class InformationButtons : MonoBehaviour
 {
     public GameObject imageObject;
     public Sprite image;
-    public bool opened = false;
     public bool sceneChange = false;
+    public GameManager gameManager;
     public void Start()
     {
         /*imageObject = GameObject.FindGameObjectWithTag("DescriptionImage");
@@ -26,19 +26,7 @@ public class InformationButtons : MonoBehaviour
         {
             closeInfo();
         }
-        if (SceneManager.GetActiveScene().name == "Main_Scene" && sceneChange == false)
-        {
-            sceneChange = true;
-            for (int j = 4; j < imageDescriptionTags.Length; j++)
-            {
-                GameObject[] startArray = GameObject.FindGameObjectsWithTag(imageDescriptionTags[j]);
-                for (int b = 0; b < startArray.Length; b++)
-                {
-                    startArray[b].gameObject.transform.position = startArray[b].gameObject.transform.position - new Vector3(100, 0, 0);
-                }
-                
-            }
-        }
+
     }
     public void SceneChange()
     {
@@ -54,7 +42,7 @@ public class InformationButtons : MonoBehaviour
 
     public void infoOnClicked()
     {
-
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         Debug.Log("Clicked");
         Debug.Log("Running through the array, searching for index with tag: " + this.gameObject.tag);
         var newColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -79,8 +67,8 @@ public class InformationButtons : MonoBehaviour
             {
                 for (int a = 0; a < descriptionArray.Length; a++)
                 {
-                    opened = true;
-                    Debug.Log(opened);
+                    gameManager.opened = true;
+                    Debug.Log(gameManager.opened);
                     descriptionArray[a].gameObject.GetComponent<Image>().color = newColor;
                     descriptionArray[a].gameObject.transform.position = descriptionArray[a].gameObject.transform.position + new Vector3(100, 0, 0);
                     
@@ -93,6 +81,7 @@ public class InformationButtons : MonoBehaviour
 
     public void closeInfo()
     {
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         var newColor = new Color(1.0f, 1.0f, 1.0f, 0f);
 
         for (int j = 0; j < imageDescriptionTags.Length; j++)
@@ -104,9 +93,10 @@ public class InformationButtons : MonoBehaviour
                     GameObject.FindGameObjectWithTag(imageDescriptionTags[j]).GetComponent<Image>().color = newColor;
                 }
             }
-            else if (SceneManager.GetActiveScene().name == "Main_Scene" && opened == true)
+            else if (SceneManager.GetActiveScene().name == "Main_Scene" && gameManager.opened == true)
             {
-                opened = false;
+                Debug.Log("I'm still running");
+                gameManager.opened = false;
                 GameObject[] descriptionArray2 = GameObject.FindGameObjectsWithTag(imageDescriptionTags[j]);
                 for (int b = 0; b < descriptionArray2.Length; b++)
                 {
