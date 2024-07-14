@@ -32,7 +32,11 @@ public class InformationButtons : MonoBehaviour
             for (int j = 4; j < imageDescriptionTags.Length; j++)
             {
                 GameObject[] startArray = GameObject.FindGameObjectsWithTag(imageDescriptionTags[j]);
-                startArray[j].gameObject.transform.position = startArray[j].gameObject.transform.position - new Vector3(100, 0, 0);
+                for (int b = 0; b < startArray.Length; b++)
+                {
+                    startArray[b].gameObject.transform.position = startArray[b].gameObject.transform.position - new Vector3(100, 0, 0);
+                }
+                
             }
         }
     }
@@ -75,9 +79,11 @@ public class InformationButtons : MonoBehaviour
             {
                 for (int a = 0; a < descriptionArray.Length; a++)
                 {
+                    opened = true;
+                    Debug.Log(opened);
                     descriptionArray[a].gameObject.GetComponent<Image>().color = newColor;
                     descriptionArray[a].gameObject.transform.position = descriptionArray[a].gameObject.transform.position + new Vector3(100, 0, 0);
-                    opened = true;
+                    
                 }
             }
         }
