@@ -3170,7 +3170,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                             }
                         }
-                        tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
+                        if (tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.GetComponent<PhotonView>().IsMine)
+                        {
+                            Debug.Log("Destroyed");
+                            PhotonNetwork.Destroy(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject);
+                        }
+                        if(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject != null){
+                            tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
+                        }
+                        
 
 
 
