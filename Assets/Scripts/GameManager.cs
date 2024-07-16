@@ -3291,7 +3291,19 @@ public class GameManager : MonoBehaviourPunCallbacks
                             }
                         }
 
-                        tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
+                        if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.GetComponent<PhotonView>().IsMine)
+                        {
+                            Debug.Log("Destroyed");
+                            PhotonNetwork.Destroy(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject);
+                        }
+                        else
+                        {
+                            Debug.Log("Find player which this object is his");
+                        }
+                        if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject != null)
+                        {
+                            tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
+                        }
                     }
                     
                     b++;
