@@ -3175,6 +3175,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                             Debug.Log("Destroyed");
                             PhotonNetwork.Destroy(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject);
                         }
+                        else
+                        {
+                            Debug.Log("Find player which this object is his");
+                        }
                         if(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject != null){
                             tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
                         }
