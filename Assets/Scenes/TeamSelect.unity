@@ -2253,6 +2253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageObject: {fileID: 0}
   image: {fileID: 0}
+  sceneChange: 0
+  gameManager: {fileID: 0}
   tagArray:
   - DutchInfo
   - PhilipsesInfo
@@ -3147,6 +3149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageObject: {fileID: 0}
   image: {fileID: 0}
+  sceneChange: 0
+  gameManager: {fileID: 0}
   tagArray:
   - DutchInfo
   - PhilipsesInfo
@@ -4011,7 +4015,7 @@ MonoBehaviour:
   cardAmountObjects2: []
   time: 0
   turnTimeLength: 120
-  turnTimeLengthFirstIteration: 10
+  turnTimeLengthFirstIteration: 240
   countdownTextObject: {fileID: 0}
   countdownTimerText: {fileID: 0}
   isTimeFinished: 1
@@ -4200,6 +4204,30 @@ MonoBehaviour:
   SeasonalTimers: []
   doNotDoAnything: 0
   countDownFinished: 0
+  dutchMovedTurns: 0
+  philipsesMovedTurns: 0
+  sixNationsMovedTurns: 0
+  munseeMovedTurns: 0
+  imageDescriptionTags:
+  - DutchDescription
+  - PhilipsesDescription
+  - SixNationsDescription
+  - MunseeDescription
+  - BeaverDescription
+  - DeerSkinDescription
+  - BearDescription
+  - FisherDescription
+  - FoxDescription
+  - SchepelsDescription
+  - DuffelsDescription
+  - LinenDescription
+  - StockingsDescription
+  - StroudsDescription
+  - AxesDescription
+  - BeadsDescription
+  - ScissorsDescription
+  sceneChange: 0
+  opened: 0
   test: {fileID: 0}
   MunseeCamerasCheckArray: []
   enemyTeamButtonPos:
@@ -4759,6 +4787,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageObject: {fileID: 0}
   image: {fileID: 0}
+  sceneChange: 0
+  gameManager: {fileID: 0}
   tagArray:
   - DutchInfo
   - PhilipsesInfo
@@ -5053,6 +5083,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageObject: {fileID: 0}
   image: {fileID: 0}
+  sceneChange: 0
+  gameManager: {fileID: 0}
   tagArray:
   - DutchInfo
   - PhilipsesInfo
