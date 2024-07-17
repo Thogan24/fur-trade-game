@@ -1597,6 +1597,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log("IN LEFT CLICKED");
                                 for (int j = 0; j < enemyTeamButtonPos.Length; j++)
                                 {
+                                    Debug.Log("Adding the card to each players screen");
                                     if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
                                     {
                                         instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % 14)), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
@@ -2118,6 +2119,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             for (int b = 0; b < topButtonPos.Length; b++)
                             {
+                                
                                 if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
                                 {
                                     instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3(distanceFromLineReceiving + (float)0.3 * (InventoryCardsInTrade % 14), YAxisLineDistance - (InventoryCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
@@ -3723,6 +3725,20 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         countDownFinished = false;
         StartCountDown();
+
+        for (int ak = 0; ak < tags.Length; ak++)
+        {
+            GameObject[] extraCards = GameObject.FindGameObjectsWithTag(tags[ak]);
+            if (extraCards[ak].gameObject.transform.parent == null)
+            {
+                if (extraCards[ak].GetComponent<PhotonView>().IsMine)
+                {
+                    PhotonNetwork.Destroy(extraCards[ak].gameObject);
+                }
+                
+            }
+        }
+        
 
 
         
