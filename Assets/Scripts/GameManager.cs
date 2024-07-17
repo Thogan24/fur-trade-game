@@ -3750,6 +3750,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.Log("ag: " + ag);
         }
         countDownFinished = false;
+        StopCoroutine("LoseTime");
         StartCountDown();
 
         for (int ak = 0; ak < tags.Length; ak++)
