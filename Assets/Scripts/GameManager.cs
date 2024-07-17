@@ -3729,14 +3729,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         for (int ak = 0; ak < tags.Length; ak++)
         {
             GameObject[] extraCards = GameObject.FindGameObjectsWithTag(tags[ak]);
-            if (extraCards[ak].gameObject.transform.parent == null)
-            {
-                if (extraCards[ak].GetComponent<PhotonView>().IsMine)
+            for (int am = 0; am < extraCards.Length; am++)
+                if (extraCards[am].gameObject.transform.parent == null && extraCards[am].GetComponent<PhotonView>().IsMine)
                 {
-                    PhotonNetwork.Destroy(extraCards[ak].gameObject);
+                    PhotonNetwork.Destroy(extraCards[am].gameObject);                               
                 }
-                
-            }
         }
         
 
