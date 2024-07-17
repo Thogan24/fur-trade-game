@@ -3556,10 +3556,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
 
         yield return new WaitForSeconds(2);
-        dutchMovedTurns = true;
-        philipsesMovedTurns = true;
-        sixNationsMovedTurns = true;
-        munseeMovedTurns = true;
+        dutchMovedTurns = false;
+        philipsesMovedTurns = false;
+        sixNationsMovedTurns = false;
+        munseeMovedTurns = false;
 
     }
 
