@@ -240,6 +240,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool doNotDoAnything = false;
     public bool countDownFinished = false;
 
+
+    public bool dutchMovedTurns = false;
+    public bool philipsesMovedTurns = false;
+    public bool sixNationsMovedTurns = false;
+    public bool munseeMovedTurns = false;
+
     /*
      Turn numbers:
      Dutch - 1
@@ -2960,7 +2966,16 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 
                 Debug.Log("Moving turns on: " + PhotonNetwork.LocalPlayer.ToString());
-                this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
+
+                if(dutchMovedTurns == false && PhotonNetwork.LocalPlayer.ToString() == Dutch || philipsesMovedTurns == false && PhotonNetwork.LocalPlayer.ToString() == Philipses || sixNationsMovedTurns == false && PhotonNetwork.LocalPlayer.ToString() == SixNations || munseeMovedTurns == false && PhotonNetwork.LocalPlayer.ToString() == Munsee)
+                {
+                    this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
+                }
+                else
+                {
+                    Debug.Log(dutchMovedTurns + " " + philipsesMovedTurns + " " + sixNationsMovedTurns + " " + munseeMovedTurns + " " + PhotonNetwork.LocalPlayer.ToString());
+                }
+                
             }
             
         }
@@ -3536,7 +3551,18 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-        [PunRPC]
+    IEnumerator waitForASecondThenResetMoveTurns()
+    {
+
+        yield return new WaitForSeconds(2);
+        dutchMovedTurns = true;
+        philipsesMovedTurns = true;
+        sixNationsMovedTurns = true;
+        munseeMovedTurns = true;
+
+    }
+
+    [PunRPC]
     void MoveTurns(PhotonMessageInfo info)
     {
         Debug.Log("Moving turns");
@@ -3735,7 +3761,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     PhotonNetwork.Destroy(extraCards[am].gameObject);                               
                 }
         }
-        
+        StartCoroutine(waitForASecondThenResetMoveTurns());
 
 
         
