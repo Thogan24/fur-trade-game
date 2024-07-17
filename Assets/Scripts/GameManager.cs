@@ -2964,11 +2964,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             if(doNotDoAnything == false) // If we shouldn't be ending the game, keep moving turns
             {
-                
-                Debug.Log("Moving turns on: " + PhotonNetwork.LocalPlayer.ToString());
+
+                Debug.Log("time to move turns");
 
                 if(dutchMovedTurns == false && PhotonNetwork.LocalPlayer.ToString() == Dutch || philipsesMovedTurns == false && PhotonNetwork.LocalPlayer.ToString() == Philipses || sixNationsMovedTurns == false && PhotonNetwork.LocalPlayer.ToString() == SixNations || munseeMovedTurns == false && PhotonNetwork.LocalPlayer.ToString() == Munsee)
                 {
+                    Debug.Log("Moving turns on: " + PhotonNetwork.LocalPlayer.ToString());
                     this.GetComponent<PhotonView>().RPC("MoveTurns", RpcTarget.All);
                 }
                 else
@@ -3590,7 +3591,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         DutchObject.SetActive(true);
         MunseeObject.SetActive(false);
         MunseeObject.SetActive(true);
-        Debug.Log("did");
 
         InventoryCardsInTrade = 0;
         WishlistCardsInTrade = 0;
