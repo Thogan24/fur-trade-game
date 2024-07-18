@@ -1216,7 +1216,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-            if (playerString == Philipses && PhilipsesTrading == true)
+            else if (playerString == Philipses && PhilipsesTrading == true)
             {
 
 
@@ -1312,7 +1312,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             // A
 
-            if (playerString == SixNations && SixNationsTrading == true)
+            else if (playerString == SixNations && SixNationsTrading == true)
             {
 
 
@@ -1404,7 +1404,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             // A
 
-            if (playerString == Munsee && MunseeTrading == true)
+            else if (playerString == Munsee && MunseeTrading == true)
             {
 
 
