@@ -118,8 +118,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     // TRADING VARIABLES
 
-    public int InventoryCardsInTrade = 0;
-    public int WishlistCardsInTrade = 0;
+
     
 
     public string theSender = "";
@@ -185,6 +184,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int[] MunseeAmountsStarting = { 10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6 };
     public int[] PhilipsesAmountsStarting = { 0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0 };
     public int[] DutchAmountsStarting = { 0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+    public int InventoryCardsInTrade = 0;
+    public int WishlistCardsInTrade = 0;
 
     public int[] SixNationsAmounts = {12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 9, 4, 6, 3, 3, 20, 2};
     public int[] MunseeAmounts =     {10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6};
