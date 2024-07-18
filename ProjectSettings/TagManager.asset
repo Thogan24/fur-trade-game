@@ -129,6 +129,7 @@ TagManager:
   - SixNationsCrown
   - MunseeCrown
   - CountdownTimer
+  - Scroll View
   layers:
   - Default
   - TransparentFX
