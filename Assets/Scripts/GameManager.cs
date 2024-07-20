@@ -1732,18 +1732,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                     return;
                                 }
-                                if (ah == cardsWithTag.Length - 1)
-                                {
-                                    Debug.Log("Not correct team");
-                                    return;
-                                }
+
                             }
                             catch (NullReferenceException ex)
                             {
                                 Debug.Log("Card came back with null parents");
                                 cardsWithTag[ah].gameObject.SetActive(false);
                             }
-
+                            if (ah == cardsWithTag.Length - 1)
+                            {
+                                Debug.Log("Not correct team");
+                                return;
+                            }
 
                         }
 
@@ -1937,16 +1937,17 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                     return;
                                 }
-                                if(ah == cardsWithTag.Length - 1)
-                                {
-                                    Debug.Log("Not correct team");
-                                    return;
-                                }
+
                             }
                             catch(NullReferenceException ex)
                             {
                                 Debug.Log("Card came back with null parents");
                                 cardsWithTag[ah].gameObject.SetActive(false);
+                            }
+                            if (ah == cardsWithTag.Length - 1)
+                            {
+                                Debug.Log("Not correct team");
+                                return;
                             }
 
 
@@ -2110,16 +2111,16 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                     return;
                                 }
-                                if (ah == cardsWithTag.Length - 1)
-                                {
-                                    Debug.Log("Not correct team");
-                                    return;
-                                }
                             }
                             catch (NullReferenceException ex)
                             {
                                 Debug.Log("Card came back with null parents");
                                 cardsWithTag[ah].gameObject.SetActive(false);
+                            }
+                            if (ah == cardsWithTag.Length - 1)
+                            {
+                                Debug.Log("Not correct team");
+                                return;
                             }
 
 
@@ -2281,16 +2282,18 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     StartCoroutine(redCardAnimation(cardsWithTag[ah]));
                                     return;
                                 }
-                                if (ah == cardsWithTag.Length - 1)
-                                {
-                                    Debug.Log("Not correct team");
-                                    return;
-                                }
+
                             }
                             catch (NullReferenceException ex)
                             {
                                 Debug.Log("Card came back with null parents");
                                 cardsWithTag[ah].gameObject.SetActive(false);
+                            }
+
+                            if (ah == cardsWithTag.Length - 1)
+                            {
+                                Debug.Log("Not correct team");
+                                return;
                             }
 
 
