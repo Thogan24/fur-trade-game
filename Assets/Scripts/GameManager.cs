@@ -134,8 +134,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] cardAmountObjects2;
 
     public int time;
-    public int turnTimeLength = 120;
-    public int turnTimeLengthFirstIteration = 240;
+    public int turnTimeLength = 5000;
+    public int turnTimeLengthFirstIteration = 5000;
     public GameObject countdownTextObject;
     public Text countdownTimerText;
     [HideInInspector] public bool isTimeFinished = true;
