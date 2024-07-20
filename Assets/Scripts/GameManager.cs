@@ -3524,7 +3524,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("Losing Time, Wait");
             yield return new WaitForSeconds(1);
-            Debug.Log("Wait done, reducing time on all players");
+            //Debug.Log("Wait done, reducing time on all players");
             this.GetComponent<PhotonView>().RPC("ReduceTime", RpcTarget.All);
         }
     }
@@ -3534,7 +3534,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         
         time--;
-        Debug.Log("Reduce Time: " + time);
+        //Debug.Log("Reduce Time: " + time);
         for (int al = 0; al < countdownTimers.Length; al++)
         {
             countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time + "s";
