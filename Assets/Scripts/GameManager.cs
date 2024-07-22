@@ -1141,13 +1141,13 @@ public class GameManager : MonoBehaviourPunCallbacks
                         }
                         if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations") // If the screen is Six Nations
                         {
-                            //addToReceiving[2] = true;
+                            addToReceiving[2] = true;
                             enemyTeamButtonPos[2] = PhilipsesTradeButton[a].transform.position;
                         }
 
                         else if (SixNationsTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
                         {
-                            addToReceiving[3] = true;
+                            //addToReceiving[3] = true;
                             enemyTeamButtonPos[3] = SixNationsTradeButton[a].transform.position;
 
                         }
@@ -1523,7 +1523,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     topButtonPos[3] = sixNationsButtons[ab].transform.position;
                 }
             }
-            GameObject[] philipsesButtons = GameObject.FindGameObjectsWithTag("Philipses Trading");
+            GameObject[] philipsesButtons = GameObject.FindGameObjectsWithTag("InstantiatePos"); // Philipses Trading
             for (int ab = 0; ab < philipsesButtons.Length; ab++)
             {
                 if (philipsesButtons[ab].transform.parent.parent.name == "Six Nations")
@@ -1532,7 +1532,33 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
 
             }
-            
+
+            /*Vector3[] topButtonPosWishlist = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+            GameObject[] InstantiatePosWishlist = GameObject.FindGameObjectsWithTag("InstantiatePosWishlist"); //Six Nations Trading
+            for (int ab = 0; ab < sixNationsButtons.Length; ab++)
+            {
+                if (InstantiatePosWishlist[ab].transform.parent.parent.name == "Dutch")
+                {
+                    topButtonPosWishlist[0] = InstantiatePosWishlist[ab].transform.position;
+                }
+                else if (InstantiatePosWishlist[ab].transform.parent.parent.name == "Philipses")
+                {
+                    topButtonPosWishlist[1] = InstantiatePosWishlist[ab].transform.position;
+                }
+                else if (InstantiatePosWishlist[ab].transform.parent.parent.name == "Munsee")
+                {
+                    topButtonPosWishlist[3] = InstantiatePosWishlist[ab].transform.position;
+                }
+            }
+            for (int ab = 0; ab < philipsesButtons.Length; ab++)
+            {
+                if (InstantiatePosWishlist[ab].transform.parent.parent.name == "Six Nations")
+                {
+                    topButtonPosWishlist[2] = philipsesButtons[ab].transform.position;
+                }
+
+            }*/
+
 
 
 
