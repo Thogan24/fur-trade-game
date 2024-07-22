@@ -1842,7 +1842,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                                     else
                                     {
 
-                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtopButtonPosWishlisttonPos[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % 12), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
+                                        instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % 12), YAxisLineDistance - (WishlistCardsInTrade / 14), ZAxisLineDistance), Quaternion.identity);
                                     }
 
                                 }
