@@ -1106,6 +1106,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("Player: " + playerString);
         Debug.Log("Sender: " + info.Sender.ToString());
         Debug.Log((turn == 1 && playerString == Dutch));
+
+        GameObject[] instantiatedPos = GameObject.FindGameObjectsWithTag("InstantiatedPos");
+        for (int l = 0; l < instantiatedPos.Length; l++)
+        {
+            PhotonNetwork.Instantiate("AxesCard", instantiatedPos[l].transform.position, Quaternion.identity);
+        }
         if ((turn == 1 && playerString == Dutch) || (turn == 2 && playerString == Philipses) || (turn == 3 && playerString == SixNations) || (turn == 4 && playerString == Munsee))
         {
             //Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
@@ -1137,7 +1143,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         }
                         if (SixNationsTradeButton[a].transform.parent.parent.name == "Six Nations") // If the screen is Six Nations
                         {
-                            addToReceiving[2] = true;
+                            //addToReceiving[2] = true;
                             enemyTeamButtonPos[2] = PhilipsesTradeButton[a].transform.position;
                         }
 

@@ -130,6 +130,7 @@ TagManager:
   - MunseeCrown
   - CountdownTimer
   - Scroll View
+  - InstantiatePos
   layers:
   - Default
   - TransparentFX
