@@ -1107,10 +1107,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("Sender: " + info.Sender.ToString());
         Debug.Log((turn == 1 && playerString == Dutch));
 
-        GameObject[] instantiatedPos = GameObject.FindGameObjectsWithTag("InstantiatedPos");
-        for (int l = 0; l < instantiatedPos.Length; l++)
+        GameObject[] instantiatePos = GameObject.FindGameObjectsWithTag("InstantiatePos");
+        for (int l = 0; l < instantiatePos.Length; l++)
         {
-            PhotonNetwork.Instantiate("AxesCard", instantiatedPos[l].transform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate("AxesCard", instantiatePos[l].transform.position, Quaternion.identity);
         }
         if ((turn == 1 && playerString == Dutch) || (turn == 2 && playerString == Philipses) || (turn == 3 && playerString == SixNations) || (turn == 4 && playerString == Munsee))
         {
