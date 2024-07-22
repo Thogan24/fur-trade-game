@@ -4004,8 +4004,8 @@ MonoBehaviour:
   gameManager: {fileID: 1290858073}
   alreadyRanCalculation: 0
   theSender: 
-  distanceFromLineGiving: -10
-  distanceFromLineReceiving: -5
+  distanceFromLineGiving: 0
+  distanceFromLineReceiving: 0
   ZAxisLineDistance: 0
   YAxisLineDistance: 0.1
   clearTradeButton: 0
