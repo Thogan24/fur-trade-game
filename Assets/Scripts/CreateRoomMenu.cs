@@ -28,7 +28,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
 
         }
     }
-
+    
     public override void OnCreatedRoom()
     {
         Debug.Log("Created new room, " + this + ", " + roomName.text);

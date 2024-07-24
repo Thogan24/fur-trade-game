@@ -11,17 +11,34 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
     [SerializeField]
     private RoomListing roomListing;
 
+    private List<RoomListing> roomListingList = new List<RoomListing>();
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         Debug.Log("Room listings updated");
         foreach (RoomInfo info in roomList)
         {
-            Debug.Log("Instantiating...");
-            RoomListing listing = Instantiate(roomListing, content);
-            if (listing != null)
+            if (info.RemovedFromList)
             {
-                listing.SetRoomInfo(info);
+                int index = roomListingList.FindIndex(x => x.RoomInfo.Name == info.Name);
+                if(index != -1)
+                {
+                    Destroy(roomListingList[index].gameObject);
+                    roomListingList.RemoveAt(index);
+                }
             }
+            else
+            {
+                Debug.Log("Instantiating...");
+                RoomListing listing = Instantiate(roomListing, content);
+                if (listing != null)
+                {
+                    listing.SetRoomInfo(info);
+                    roomListingList.Add(listing);
+                }
+            }
+                
+            
+            
         }
     }
 }
