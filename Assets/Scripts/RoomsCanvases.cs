@@ -21,7 +21,8 @@ public class RoomsCanvases : MonoBehaviour
 
     private void FirstInitilize()
     {
-
+        createOrJoinRoomCanvas.FirstInitilize(this);
+        CurrentRoomCanvas.FirstInitilize(this);
     }
 
 }

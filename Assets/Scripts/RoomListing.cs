@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Photon.Realtime;
+using Photon.Pun;
 
 public class RoomListing : MonoBehaviour
 {
@@ -19,4 +20,8 @@ public class RoomListing : MonoBehaviour
         text.text = roomInfo.MaxPlayers + ", " + roomInfo.Name;
     }
 
+    public void OnClick_Button()
+    {
+        PhotonNetwork.JoinRoom(RoomInfo.Name);
+    }
 }

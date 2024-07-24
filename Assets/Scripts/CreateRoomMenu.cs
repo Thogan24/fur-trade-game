@@ -11,6 +11,11 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     {
     }
 
+    private RoomsCanvases roomsCanvases;
+    public void FirstInitilize(RoomsCanvases canvases)
+    {
+        roomsCanvases = canvases;
+    }
 
 
     public TextMeshProUGUI roomName;
@@ -33,6 +38,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     {
         Debug.Log("Created new room, " + this + ", " + roomName.text);
         Debug.Log(PhotonNetwork.CountOfRooms);
+        roomsCanvases.CurrentRoomCanvas.Show();
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

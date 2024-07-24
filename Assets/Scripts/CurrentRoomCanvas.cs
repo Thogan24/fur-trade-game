@@ -9,4 +9,14 @@ public class CurrentRoomCanvas : MonoBehaviour
     {
         roomCanvases = canvases;
     }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    private void Hide()
+    {
+        gameObject.SetActive(false);
+    }
 }

@@ -7,8 +7,35 @@ using UnityEngine;
 public class ConnectToPhoton : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
+
+    string playerName;
     void Start()
     {
+        playerName = "meeber " + Random.Range(0, 10000).ToString();
+
+        foreach (Player p in PhotonNetwork.PlayerList)
+        {
+            
+            while (!testIfNickNameTaken(p))
+            {
+                Debug.Log("Ran this?");
+                playerName = "meeber " + Random.Range(0, 10000).ToString();
+                if (testIfNickNameTaken(p))
+                {
+                    PhotonNetwork.NickName = playerName;
+                }
+            }
+            if (testIfNickNameTaken(p))
+            {
+                Debug.Log("Ran this");
+                PhotonNetwork.NickName = playerName;
+            }
+        }
+        if(PhotonNetwork.NickName == null || (PhotonNetwork.NickName == ""))
+        {
+            PhotonNetwork.NickName = playerName;
+        }
+        Debug.Log(PhotonNetwork.NickName);
         PhotonNetwork.ConnectUsingSettings();
 
     }
@@ -22,4 +49,15 @@ public class ConnectToPhoton : MonoBehaviourPunCallbacks
     {
         print("Disconnected from server: " + Cause.ToString());
     }
+
+    public bool testIfNickNameTaken(Player player)
+    {
+        if (player.NickName == playerName)
+        {
+            return false;
+        }
+        return true;
+    }
 }
+
+
