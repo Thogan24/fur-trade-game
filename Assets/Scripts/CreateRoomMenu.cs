@@ -9,8 +9,10 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
 {
     public void Start()
     {
-        PhotonNetwork.ConnectUsingSettings();
     }
+
+
+
     public TextMeshProUGUI roomName;
     public void OnClick_CreateRoom()
     {
@@ -20,12 +22,17 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
         }
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 4;
-        PhotonNetwork.JoinOrCreateRoom(roomName.text, options, TypedLobby.Default);
+        if (roomName != null)
+        {
+            PhotonNetwork.JoinOrCreateRoom(roomName.text, options, TypedLobby.Default);
+
+        }
     }
 
     public override void OnCreatedRoom()
     {
-        Debug.Log("Created new room, " + this);
+        Debug.Log("Created new room, " + this + ", " + roomName.text);
+        Debug.Log(PhotonNetwork.CountOfRooms);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

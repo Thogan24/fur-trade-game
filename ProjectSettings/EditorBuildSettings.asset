@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/RoomSelect.unity
+    guid: dc2a7319d05822d4cade1af866575bd5
+  - enabled: 1
     path: Assets/Scenes/TeamSelect.unity
     guid: 53316ac2c1a607747a5485e95300a7ed
   - enabled: 1
