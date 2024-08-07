@@ -13,6 +13,7 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
 
     private List<RoomListing> roomListingList = new List<RoomListing>();
     private RoomsCanvases roomsCanvases;
+    public int changeInYFromListings = 10;
 
     public void FirstInitilize(RoomsCanvases canvases)
     {
@@ -40,7 +41,7 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
             else
             {
                 Debug.Log("Instantiating...");
-                RoomListing listing = Instantiate(roomListing, content);
+                RoomListing listing = Instantiate(roomListing, new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0), Quaternion.identity, content);
                 if (listing != null)
                 {
                     listing.SetRoomInfo(info);

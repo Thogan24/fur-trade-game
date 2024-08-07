@@ -19,7 +19,7 @@ public class ConnectToPhoton : MonoBehaviourPunCallbacks
             while (!testIfNickNameTaken(p))
             {
                 Debug.Log("Ran this?");
-                playerName = "meeber " + Random.Range(0, 10000).ToString();
+                playerName = "Player " + Random.Range(0, 10000).ToString();
                 if (testIfNickNameTaken(p))
                 {
                     PhotonNetwork.NickName = playerName;
