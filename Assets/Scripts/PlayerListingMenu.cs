@@ -13,6 +13,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     private List<PlayerListing> playerList = new List<PlayerListing>();
     int changeInYFromListings = 55;
+    public int playerCount = 0;
 
     private void Awake()
     {
@@ -34,12 +35,14 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         Debug.Log("Adding player listing");
         PlayerListing listing = Instantiate(playerListing, content); //new Vector3((float)727.2, 367 - PhotonNetwork.CountOfPlayers * 2, 0), Quaternion.identity
-        listing.transform.position = listing.transform.position + new Vector3(0, 0 - (changeInYFromListings * PhotonNetwork.CurrentRoom.Players.Count), 0);
+        listing.transform.position = listing.transform.position + new Vector3(0, 0 - (changeInYFromListings * (playerCount)), 0);
+        playerCount++;
         if (listing != null)
         {
             listing.SetPlayerInfo(player);
             playerList.Add(listing);
         }
+        
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
