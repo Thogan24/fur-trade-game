@@ -1089,6 +1089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 88599056}
   roomListing: {fileID: 7155152396734951914, guid: e4280607ecc706648a82fed81ffa9329, type: 3}
+  changeInYFromListings: 52
 --- !u!1 &772151346
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
 
     private List<RoomListing> roomListingList = new List<RoomListing>();
     private RoomsCanvases roomsCanvases;
-    public int changeInYFromListings = 60;
+    public int changeInYFromListings = 52;
 
     public void FirstInitilize(RoomsCanvases canvases)
     {
@@ -42,7 +42,7 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
             {
                 Debug.Log("Instantiating...");
                 RoomListing listing = Instantiate(roomListing, content); // new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0), Quaternion.identity,
-                listing.transform.position = listing.transform.position - new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0);
+                listing.transform.position = listing.transform.position + new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0);
                 if (listing != null)
                 {
                     listing.SetRoomInfo(info);

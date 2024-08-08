@@ -11,7 +11,7 @@ public class PlayerListing : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI text;
 
-    public  Player Player { get; private set; }
+    public Player Player { get; private set; }
 
     public void SetPlayerInfo(Player player1)
     {
