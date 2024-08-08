@@ -12,7 +12,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private PlayerListing playerListing;
 
     private List<PlayerListing> playerList = new List<PlayerListing>();
-    int changeInYFromListings = 55;
+    public int changeInYFromListings = 57;
     public int playerCount = 0;
 
     private void Awake()

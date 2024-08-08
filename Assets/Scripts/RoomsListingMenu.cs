@@ -14,6 +14,9 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
     private List<RoomListing> roomListingList = new List<RoomListing>();
     private RoomsCanvases roomsCanvases;
     public int changeInYFromListings = 52;
+    public bool sameNameOnce = false;
+    public bool sameNameTwice = false;
+
 
     public void FirstInitilize(RoomsCanvases canvases)
     {
@@ -40,14 +43,46 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
             }
             else
             {
-                Debug.Log("Instantiating...");
-                RoomListing listing = Instantiate(roomListing, content); // new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0), Quaternion.identity,
-                listing.transform.position = listing.transform.position + new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0);
-                if (listing != null)
+                /*foreach (RoomInfo info2 in roomList)
                 {
-                    listing.SetRoomInfo(info);
-                    roomListingList.Add(listing);
+                    Debug.Log(roomList.Count);
+                    Debug.Log(roomListingList.Count);
+                    Debug.Log(info2.Name + " " + info.Name);
+                    if(info2.Name == info.Name)
+                    {
+                        if(sameNameOnce == true)
+                        {
+                            Debug.Log("same name twice");
+                            sameNameTwice = true;
+                        }
+                        sameNameOnce = true;
+                        
+                    }
+                } */
+                foreach(RoomListing roomListing in roomListingList)
+                {
+                    if (roomListing.RoomInfo.Name == info.Name)
+                    {
+                        sameNameOnce = true;
+                    }
                 }
+                Debug.Log(info.Name);
+                Debug.Log(roomList.Count);
+                Debug.Log(roomListingList.Count);
+                if (!sameNameOnce)
+                {
+                    Debug.Log("Instantiating...");
+                    RoomListing listing = Instantiate(roomListing, content); // new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0), Quaternion.identity,
+                    listing.transform.position = listing.transform.position + new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0);
+                    if (listing != null)
+                    {
+                        listing.SetRoomInfo(info);
+                        roomListingList.Add(listing);
+                    }
+                }
+                sameNameOnce = false;
+
+                
             }
                 
             
