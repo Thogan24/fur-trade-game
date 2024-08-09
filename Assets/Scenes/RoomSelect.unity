@@ -969,8 +969,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1516332555}
   m_HandleRect: {fileID: 1516332554}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.6666667
+  m_Value: 0.9999997
+  m_Size: 0.6666666
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3533,5 +3533,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 1414061578}
   playerListing: {fileID: 7733311039567621936, guid: c80346accdb6ba448adf48410d60e727, type: 3}
-  changeInYFromListings: 57
+  changeInYFromListings: 67
   playerCount: 0

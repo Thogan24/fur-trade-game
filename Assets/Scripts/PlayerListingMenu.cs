@@ -30,12 +30,13 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
 
     }
-
+    
     private void AddPlayerListing(Player player, bool notInRoomYet)
     {
         Debug.Log("Adding player listing");
         PlayerListing listing = Instantiate(playerListing, content); //new Vector3((float)727.2, 367 - PhotonNetwork.CountOfPlayers * 2, 0), Quaternion.identity
         Debug.Log(listing.transform.position.y);
+        Debug.Log(Screen.height);
         if(notInRoomYet == true)
         {
             listing.transform.position = listing.transform.position + new Vector3(0.948288f + 1.525879e-05f, -2 - (38.6f * (playerCount)), 0);
@@ -43,7 +44,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
         else
         {
-            listing.transform.position = listing.transform.position + new Vector3(0.948288f + 1.525879e-05f, -2 - (changeInYFromListings * (playerCount)), 0);
+            listing.transform.position = listing.transform.position + new Vector3(0.948288f + 1.525879e-05f, -2 - ((0.08177905308f * Screen.height) * (playerCount)), 0);
 
         }
         Debug.Log(playerCount);
