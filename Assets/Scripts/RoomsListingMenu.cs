@@ -13,7 +13,7 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
 
     private List<RoomListing> roomListingList = new List<RoomListing>();
     private RoomsCanvases roomsCanvases;
-    public int changeInYFromListings = 52;
+    public float changeInYFromListings = 57.5f;
     public bool sameNameOnce = false;
     public bool sameNameTwice = false;
 

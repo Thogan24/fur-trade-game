@@ -7,11 +7,11 @@ using UnityEngine;
 public class ConnectToPhoton : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
-
+    int PlayerNumber = 1;
     string playerName;
     void Start()
     {
-        playerName = "meeber " + Random.Range(0, 10000).ToString();
+        playerName = "Player " + Random.Range(0, 10000).ToString(); // Random.Range(0, 10000).ToString
 
         foreach (Player p in PhotonNetwork.PlayerList)
         {

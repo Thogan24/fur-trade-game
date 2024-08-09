@@ -880,8 +880,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1516332555}
   m_HandleRect: {fileID: 1516332554}
   m_Direction: 2
-  m_Value: 0.9999997
-  m_Size: 0.6666666
+  m_Value: 1
+  m_Size: 0.6666667
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1090,6 +1090,8 @@ MonoBehaviour:
   content: {fileID: 88599056}
   roomListing: {fileID: 7155152396734951914, guid: e4280607ecc706648a82fed81ffa9329, type: 3}
   changeInYFromListings: 52
+  sameNameOnce: 0
+  sameNameTwice: 0
 --- !u!1 &772151346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,3 +2953,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 1414061578}
   playerListing: {fileID: 7733311039567621936, guid: c80346accdb6ba448adf48410d60e727, type: 3}
+  changeInYFromListings: 57
+  playerCount: 0
