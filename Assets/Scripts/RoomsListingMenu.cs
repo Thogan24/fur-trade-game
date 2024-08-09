@@ -27,6 +27,7 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
     {
         roomsCanvases.CurrentRoomCanvas.Show();
         content.DestroyChildren();
+        roomListingList.Clear();
     }
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
@@ -70,7 +71,9 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
                 Debug.Log(info.Name);
                 Debug.Log(roomList.Count);
                 Debug.Log(roomListingList.Count);
-                if (!sameNameOnce)
+                // if(!sameNameOnce)
+                int index = roomListingList.FindIndex(x => x.RoomInfo.Name == info.Name);
+                if(index == -1)
                 {
                     Debug.Log("Instantiating...");
                     RoomListing listing = Instantiate(roomListing, content); // new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0), Quaternion.identity,
@@ -81,6 +84,7 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
                         roomListingList.Add(listing);
                     }
                 }
+                
                 sameNameOnce = false;
 
                 

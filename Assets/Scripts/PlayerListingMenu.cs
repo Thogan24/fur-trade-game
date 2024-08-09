@@ -17,20 +17,55 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
 
     private RoomsCanvases roomsCanvases;
-    private void Awake()
+    private bool _ready = false;
+
+
+    /*[SerializeField] private Text _readyUpText;
+    private void SetReadyUp(bool state)
     {
-        Debug.Log("Have awaken.");
+        _ready = state;
+        if (state)
+        {
+            if (_ready)
+            {
+                _readyUpText.text = "R";
+            }
+            else
+            {
+                _readyUpText.text = "N";
+            }
+        }
+
+    }*/
+
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        //SetReadyUp(false)
         GetCurrentRoomPlayers();
+
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            Destroy(playerList[i].gameObject);
+        }
+
+        playerList.Clear();
     }
 
     public void FirstInitialize(RoomsCanvases canvases)
     {
         roomsCanvases = canvases;
     }
-    public override void OnLeftRoom()
+/*    public override void OnLeftRoom()
     {
         content.DestroyChildren();
-    }
+    }*/
     private void GetCurrentRoomPlayers()
     {
         foreach(KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
