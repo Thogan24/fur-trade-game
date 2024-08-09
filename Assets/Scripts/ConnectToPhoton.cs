@@ -43,7 +43,10 @@ public class ConnectToPhoton : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         print("connected");
-        PhotonNetwork.JoinLobby();
+        if (!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
     }
     public override void OnDisconnected(DisconnectCause Cause)
     {

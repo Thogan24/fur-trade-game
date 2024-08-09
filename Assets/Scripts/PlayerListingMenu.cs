@@ -15,12 +15,22 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     public float changeInYFromListings = 57f;
     public int playerCount = 0;
 
+
+    private RoomsCanvases roomsCanvases;
     private void Awake()
     {
         Debug.Log("Have awaken.");
         GetCurrentRoomPlayers();
     }
 
+    public void FirstInitialize(RoomsCanvases canvases)
+    {
+        roomsCanvases = canvases;
+    }
+    public override void OnLeftRoom()
+    {
+        content.DestroyChildren();
+    }
     private void GetCurrentRoomPlayers()
     {
         foreach(KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
