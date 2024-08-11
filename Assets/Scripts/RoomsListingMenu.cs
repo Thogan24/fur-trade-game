@@ -77,7 +77,8 @@ public class RoomsListingMenu : MonoBehaviourPunCallbacks
                 {
                     Debug.Log("Instantiating...");
                     RoomListing listing = Instantiate(roomListing, content); // new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0), Quaternion.identity,
-                    listing.transform.position = listing.transform.position + new Vector3(0, 0 - (changeInYFromListings * roomListingList.Count), 0);
+
+                    listing.transform.position = listing.transform.position + new Vector3(0, 0 - ((0.08177905308f * Screen.height) * roomListingList.Count), 0);
                     if (listing != null)
                     {
                         listing.SetRoomInfo(info);

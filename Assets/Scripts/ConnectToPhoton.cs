@@ -11,6 +11,7 @@ public class ConnectToPhoton : MonoBehaviourPunCallbacks
     string playerName;
     void Start()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
         playerName = "Player " + Random.Range(0, 10000).ToString(); // Random.Range(0, 10000).ToString
 
         foreach (Player p in PhotonNetwork.PlayerList)

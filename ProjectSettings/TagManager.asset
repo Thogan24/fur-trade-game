@@ -132,6 +132,7 @@ TagManager:
   - Scroll View
   - InstantiatePos
   - InstantiatePosReceiving
+  - PlayerListings
   layers:
   - Default
   - TransparentFX

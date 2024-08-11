@@ -68,6 +68,14 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }*/
     private void GetCurrentRoomPlayers()
     {
+        if (!PhotonNetwork.IsConnected)
+        {
+            return;
+        }
+        if(PhotonNetwork.CurrentRoom == null || PhotonNetwork.CurrentRoom.Players == null)
+        {
+            return;
+        }
         foreach(KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             Debug.Log("This many players (count me)");
@@ -111,7 +119,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-
+        playerCount--;
         int index = playerList.FindIndex(x => x.Player == otherPlayer);
         if (index != -1)
         {
@@ -121,4 +129,14 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     }
     
+    public void OnClick_StartGame()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+            PhotonNetwork.LoadLevel(1);
+        }
+        
+    }
 }
