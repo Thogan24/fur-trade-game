@@ -2894,10 +2894,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             if (cardAmountObjects[d].gameObject.transform.parent.transform.parent.transform.parent.name == "Munsee")
                             {
+
                                 Debug.Log(cardAmountObjects[d]);
                                 childIndex = cardAmountObjects[d].transform.GetSiblingIndex();
+                                Debug.Log(MunseeAmounts[childIndex] + ", index of child: " + childIndex);
                                 MunseeAmounts[childIndex]++;
                                 MunseeAmounts[childIndex + 13]--;
+                                Debug.Log(MunseeAmounts[childIndex] + ",after , index of child: " + childIndex);
+
                                 cardAmountObjects[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex].ToString() + "x";
 
                             }
@@ -3555,7 +3559,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 time = turnTimeLength;
 
             }
-            if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
             {
                 Debug.Log("Start Count Down");
                 
@@ -3597,7 +3601,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 countdownTimers[al].GetComponent<Text>().text = "Moving turns...";
             }
-            if (PhotonNetwork.LocalPlayer.ToString() == "#02 ''")
+            if (PhotonNetwork.LocalPlayer.IsMasterClient) // .ToString() == "#02 ''"
             {
                 TimesUp();
             }
