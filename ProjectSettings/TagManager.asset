@@ -170,3 +170,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Capsule layer
+    uniqueID: 2701284081
+    locked: 0
