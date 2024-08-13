@@ -133,6 +133,9 @@ TagManager:
   - InstantiatePos
   - InstantiatePosReceiving
   - PlayerListings
+  - black
+  - CreateOrJoinRoomCanvas
+  - Instructions
   layers:
   - Default
   - TransparentFX

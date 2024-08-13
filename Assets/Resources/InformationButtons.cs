@@ -59,6 +59,7 @@ public class InformationButtons : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "TeamSelect")
         {
             GameObject.FindGameObjectWithTag(imageDescriptionTags[index]).gameObject.GetComponent<Image>().color = newColor;
+            GameObject.FindGameObjectWithTag("black").gameObject.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         }
         else if (SceneManager.GetActiveScene().name == "Main_Scene" && gameManager.opened == false)
         {
@@ -91,6 +92,7 @@ public class InformationButtons : MonoBehaviour
                 if (GameObject.FindGameObjectWithTag(imageDescriptionTags[j]) != null)
                 {
                     GameObject.FindGameObjectWithTag(imageDescriptionTags[j]).GetComponent<Image>().color = newColor;
+                    GameObject.FindGameObjectWithTag("black").gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0f);
                 }
             }
             else if (SceneManager.GetActiveScene().name == "Main_Scene" && gameManager.opened == true)

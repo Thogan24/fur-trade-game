@@ -289,8 +289,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.Log("Loading level on the MASTER client...");
-                PhotonNetwork.LoadLevel(2);
-                SceneManager.LoadScene(2);
+                PhotonNetwork.LoadLevel("Main_Scene");
+                SceneManager.LoadScene("Main_Scene");
 
                 //test = Instantiate(MunseeCameraGameObject, new Vector3(2.0f, 0, 0), Quaternion.identity);
             }
@@ -3070,8 +3070,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel(3);
-            SceneManager.LoadScene(3);
+            PhotonNetwork.LoadLevel("Final_Wampum_Value");
+            SceneManager.LoadScene("Final_Wampum_Value");
         }
         Debug.Log("Moved Scenes");
         if (SceneManager.GetActiveScene().name == "Final_Wampum_Value")
