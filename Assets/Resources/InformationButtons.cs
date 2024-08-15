@@ -86,8 +86,8 @@ public class InformationButtons : MonoBehaviour
                     GameObject[] closeButtons = GameObject.FindGameObjectsWithTag("CloseButton");
                     foreach (GameObject closeButton in closeButtons)
                     {
-                        closeButton.GetComponent<Image>().color = newColor;
-                        closeButton.transform.position = closeButton.transform.position + new Vector3(100, 0, 0);
+                        //closeButton.GetComponent<Image>().color = newColor;
+                        //closeButton.transform.position = closeButton.transform.position + new Vector3(100, 0, 0);
                     }
 
                 }
@@ -125,8 +125,8 @@ public class InformationButtons : MonoBehaviour
                         GameObject[] closeButtons = GameObject.FindGameObjectsWithTag("CloseButton");
                         foreach(GameObject closeButton in closeButtons)
                         {
-                            closeButton.GetComponent<Image>().color = newColor;
-                            closeButton.transform.position = closeButton.transform.position - new Vector3(100, 0, 0);
+                            //closeButton.GetComponent<Image>().color = newColor;
+                            //closeButton.transform.position = closeButton.transform.position - new Vector3(100, 0, 0);
                         }
                         descriptionArray2[b].gameObject.GetComponent<Image>().color = newColor;
                         descriptionArray2[b].gameObject.transform.position = descriptionArray2[b].gameObject.transform.position - new Vector3(100, 0, 0);

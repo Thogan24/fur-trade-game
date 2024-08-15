@@ -294,13 +294,39 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 //test = Instantiate(MunseeCameraGameObject, new Vector3(2.0f, 0, 0), Quaternion.identity);
             }
+
+            //Check any cameras that are activated
+            #region
+            GameObject dutchinitialchild = GameObject.FindGameObjectWithTag("Dutch").transform.GetChild(0).gameObject;
+            if (dutchinitialchild.tag == "DWIC Camera" && dutchinitialchild != null)
+            {
+                dutchinitialchild.SetActive(false);
+            }
+            GameObject philipseshinitialchild = GameObject.FindGameObjectWithTag("Philipses").transform.GetChild(0).gameObject;
+            if (philipseshinitialchild.tag == "Philipse Camera" && philipseshinitialchild != null)
+            {
+                philipseshinitialchild.SetActive(false);
+            }
+            GameObject sixNationsinitialchild = GameObject.FindGameObjectWithTag("Six Nations").transform.GetChild(0).gameObject;
+            if (sixNationsinitialchild.tag == "Six Nations Camera" && sixNationsinitialchild != null)
+            {
+                sixNationsinitialchild.SetActive(false);
+            }
+            GameObject munseeinitialchild = GameObject.FindGameObjectWithTag("Munsee").transform.GetChild(0).gameObject;
+            if (munseeinitialchild.tag == "Munsee Camera" && munseeinitialchild != null)
+            {
+                munseeinitialchild.SetActive(false);
+            }
+            #endregion
+
+            StartCountDown();
+
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
 /*            if (!AlreadyLoaded)
             {*/
             this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
             DeactivateAllOtherButtons();
             DeactivateTeamFlags();
-            StartCountDown();
             AlreadyLoaded = true;
             /*}*/
 
@@ -3543,10 +3569,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-    GameObject[] countdownTimers;
+    public GameObject[] countdownTimers;
     public void StartCountDown()
     {
-        
+        Debug.Log("Starting countdown!!!!");
         if(countDownFinished == false)
         {
             countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
