@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] cardAmountObjects;
     public GameObject[] cardAmountObjects2;
 
-    public int time;
+    public int time = 5000;
     public int turnTimeLength = 5000;
     public int turnTimeLengthFirstIteration = 5000;
     public GameObject countdownTextObject;
@@ -297,7 +297,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             //Check any cameras that are activated
             #region
-            GameObject dutchinitialchild = GameObject.FindGameObjectWithTag("Dutch").transform.GetChild(0).gameObject;
+            /*GameObject dutchinitialchild = GameObject.FindGameObjectWithTag("Dutch").transform.GetChild(0).gameObject;
             if (dutchinitialchild.tag == "DWIC Camera" && dutchinitialchild != null)
             {
                 dutchinitialchild.SetActive(false);
@@ -316,9 +316,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (munseeinitialchild.tag == "Munsee Camera" && munseeinitialchild != null)
             {
                 munseeinitialchild.SetActive(false);
-            }
+            }*/
             #endregion
-
+            //countDownFinished = false; NOO!!!
             StartCountDown();
 
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
@@ -3622,6 +3622,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         if (time <= 0)
         {
+            Debug.Log("I'm stopping it");
             StopCoroutine("LoseTime");
             for(int al = 0; al < countdownTimers.Length; al++)
             {
@@ -3861,6 +3862,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.Log("ag: " + ag);
         }
         countDownFinished = false;
+        Debug.Log("I'm stopping it");
+
         StopCoroutine("LoseTime");
         StartCountDown();
 
