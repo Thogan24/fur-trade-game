@@ -10,6 +10,9 @@ public class InformationButtons : MonoBehaviour
     public Sprite image;
     public bool sceneChange = false;
     public GameManager gameManager;
+    public GameObject DutchInfo;
+    public GameObject Black;
+    public Transform CanvasTransform;
     public void Start()
     {
         /*imageObject = GameObject.FindGameObjectWithTag("DescriptionImage");
@@ -24,6 +27,8 @@ public class InformationButtons : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            MainMenuButtons main = new MainMenuButtons();
+            main.CloseOutInstructionsOnClick();
             closeInfo();
         }
 
@@ -38,7 +43,9 @@ public class InformationButtons : MonoBehaviour
 
     public string[] tagArray = { "DutchInfo", "PhilipsesInfo", "SixNationsInfo", "MunseeInfo", "BeaverInfo", "DeerSkinInfo", "BearInfo", "FisherInfo", "FoxInfo", "SchepelsInfo", "DuffelsInfo", "LinenInfo", "StockingsInfo", "StroudsInfo", "AxesInfo", "BeadsInfo", "ScissorsInfo" };
     public string[] imageDescriptionTags = { "DutchDescription", "PhilipsesDescription", "SixNationsDescription", "MunseeDescription", "BeaverDescription", "DeerSkinDescription", "BearDescription", "FisherDescription", "FoxDescription", "SchepelsDescription", "DuffelsDescription", "LinenDescription", "StockingsDescription", "StroudsDescription", "AxesDescription", "BeadsDescription", "ScissorsDescription" };
-    public int index;
+    public GameObject[] images = new GameObject[4];
+
+    public int index; 
 
     public void infoOnClicked()
     {
@@ -58,8 +65,12 @@ public class InformationButtons : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "TeamSelect")
         {
-            GameObject.FindGameObjectWithTag(imageDescriptionTags[index]).gameObject.GetComponent<Image>().color = newColor;
-            GameObject.FindGameObjectWithTag("black").gameObject.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+
+            //GameObject.FindGameObjectWithTag(imageDescriptionTags[index]).gameObject.GetComponent<Image>().color = newColor;
+            Instantiate(Black, CanvasTransform);
+            Instantiate(images[index], CanvasTransform);
+
+            //GameObject.FindGameObjectWithTag("black").gameObject.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         }
         else if (SceneManager.GetActiveScene().name == "Main_Scene" && gameManager.opened == false)
         {
@@ -91,8 +102,8 @@ public class InformationButtons : MonoBehaviour
             {
                 if (GameObject.FindGameObjectWithTag(imageDescriptionTags[j]) != null)
                 {
-                    GameObject.FindGameObjectWithTag(imageDescriptionTags[j]).GetComponent<Image>().color = newColor;
                     GameObject.FindGameObjectWithTag("black").gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0f);
+                    GameObject.FindGameObjectWithTag(imageDescriptionTags[j]).GetComponent<Image>().color = newColor;
                 }
             }
             else if (SceneManager.GetActiveScene().name == "Main_Scene" && gameManager.opened == true)

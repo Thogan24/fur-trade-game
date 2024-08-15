@@ -30,6 +30,45 @@ public class MainMenuButtons : MonoBehaviour
     }
     public void CloseOutInstructionsOnClick()
     {
-        Destroy(GameObject.FindGameObjectWithTag("Instructions")); //GameObject.FindGameObjectWithTag("Instructions")
+        if(GameObject.FindGameObjectWithTag("Instructions") != null)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Instructions")); //GameObject.FindGameObjectWithTag("Instructions")
+        }
+        GameObject[] descriptionArray = GameObject.FindGameObjectsWithTag("DutchDescription");
+        if (descriptionArray != null)
+        {
+            foreach (GameObject description1 in descriptionArray)
+            {
+                Destroy(description1);
+            }
+        }
+        GameObject description = GameObject.FindGameObjectWithTag("PhilipsesDescription");
+        if (description != null)
+        {
+            Destroy(description);
+        }
+        descriptionArray = GameObject.FindGameObjectsWithTag("SixNationsDescription");
+        if (descriptionArray != null)
+        {
+            foreach (GameObject description1 in descriptionArray)
+            {
+                Destroy(description1);
+            }
+        }
+        description = GameObject.FindGameObjectWithTag("MunseeDescription");
+        if (description != null)
+        {
+            Destroy(description);
+        }
+        descriptionArray = GameObject.FindGameObjectsWithTag("black");
+        if (descriptionArray != null)
+        {
+            foreach(GameObject description1 in descriptionArray)
+            {
+                Destroy(description1);
+            }
+        }
+
+
     }
 }
