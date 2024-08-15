@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main_Menu.unity
-    guid: 6a9c0dc8ed91d6e4bb6c9f0042017987
-  - enabled: 1
     path: Assets/Scenes/RoomSelect.unity
     guid: dc2a7319d05822d4cade1af866575bd5
   - enabled: 1
@@ -20,7 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final_Wampum_Value.unity
     guid: 8c82c025ed7e0694db0a77e70e1142c2
-  - enabled: 0
-    path: Assets/Scenes/End_Scene.unity
-    guid: 189cc64fa0c5c9740be52888b7ad4956
   m_configObjects: {}

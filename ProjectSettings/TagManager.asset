@@ -137,6 +137,7 @@ TagManager:
   - CreateOrJoinRoomCanvas
   - Instructions
   - CloseButton
+  - MainMenu
   layers:
   - Default
   - TransparentFX

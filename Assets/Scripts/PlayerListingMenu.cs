@@ -39,8 +39,10 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }*/
 
 
+    
     public override void OnEnable()
     {
+        Debug.Log("Enabled!");
         base.OnEnable();
         //SetReadyUp(false)
         GetCurrentRoomPlayers();
@@ -68,6 +70,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }*/
     private void GetCurrentRoomPlayers()
     {
+        Debug.Log("Did");
         if (!PhotonNetwork.IsConnected)
         {
             return;

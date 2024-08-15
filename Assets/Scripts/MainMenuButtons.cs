@@ -21,12 +21,14 @@ public class MainMenuButtons : MonoBehaviour
 
     public void StartGameOnClick()
     {
-        SceneManager.LoadScene("RoomSelect");
+        GameObject.FindGameObjectWithTag("MainMenu").GetComponent<Canvas>().sortingOrder = -10;
+        GameObject.FindGameObjectWithTag("MainMenu").SetActive(false);
+        //SceneManager.LoadScene("RoomSelect");
     }
 
     public void InstructionsOnClick()
     {
-        InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("CreateOrJoinRoomCanvas").transform);
+        InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("MainMenu").transform);
     }
     public void CloseOutInstructionsOnClick()
     {
