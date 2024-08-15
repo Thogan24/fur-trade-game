@@ -30,6 +30,10 @@ public class MainMenuButtons : MonoBehaviour
     {
         InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("MainMenu").transform);
     }
+    public void QuitOnClick()
+    {
+        Application.Quit();
+    }
     public void CloseOutInstructionsOnClick()
     {
         if (GameObject.FindGameObjectWithTag("Instructions") != null)
