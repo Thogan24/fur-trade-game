@@ -136,6 +136,7 @@ TagManager:
   - black
   - CreateOrJoinRoomCanvas
   - Instructions
+  - CloseButton
   layers:
   - Default
   - TransparentFX

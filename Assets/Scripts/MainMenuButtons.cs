@@ -30,44 +30,58 @@ public class MainMenuButtons : MonoBehaviour
     }
     public void CloseOutInstructionsOnClick()
     {
-        if(GameObject.FindGameObjectWithTag("Instructions") != null)
+        if (GameObject.FindGameObjectWithTag("Instructions") != null)
         {
             Destroy(GameObject.FindGameObjectWithTag("Instructions")); //GameObject.FindGameObjectWithTag("Instructions")
         }
-        GameObject[] descriptionArray = GameObject.FindGameObjectsWithTag("DutchDescription");
-        if (descriptionArray != null)
+        if (SceneManager.GetActiveScene().name != "Main_Scene")
         {
-            foreach (GameObject description1 in descriptionArray)
+            GameObject[] descriptionArray = GameObject.FindGameObjectsWithTag("DutchDescription");
+            if (descriptionArray != null)
             {
-                Destroy(description1);
+                foreach (GameObject description1 in descriptionArray)
+                {
+                    Destroy(description1);
+                }
+            }
+            GameObject description = GameObject.FindGameObjectWithTag("PhilipsesDescription");
+            if (description != null)
+            {
+                Destroy(description);
+            }
+            descriptionArray = GameObject.FindGameObjectsWithTag("SixNationsDescription");
+            if (descriptionArray != null)
+            {
+                foreach (GameObject description1 in descriptionArray)
+                {
+                    Destroy(description1);
+                }
+            }
+            description = GameObject.FindGameObjectWithTag("MunseeDescription");
+            if (description != null)
+            {
+                Destroy(description);
+            }
+            descriptionArray = GameObject.FindGameObjectsWithTag("black");
+            if (descriptionArray != null)
+            {
+                foreach (GameObject description1 in descriptionArray)
+                {
+                    Destroy(description1);
+                }
             }
         }
-        GameObject description = GameObject.FindGameObjectWithTag("PhilipsesDescription");
-        if (description != null)
+
+        else
         {
-            Destroy(description);
+            //string[] tagArray = { "BeaverInfo", "DeerSkinInfo", "BearInfo", "FisherInfo", "FoxInfo", "SchepelsInfo", "DuffelsInfo", "LinenInfo", "StockingsInfo", "StroudsInfo", "AxesInfo", "BeadsInfo", "ScissorsInfo" };
+            //string[] imageDescriptionTags = { "BeaverDescription", "DeerSkinDescription", "BearDescription", "FisherDescription", "FoxDescription", "SchepelsDescription", "DuffelsDescription", "LinenDescription", "StockingsDescription", "StroudsDescription", "AxesDescription", "BeadsDescription", "ScissorsDescription" };
+            InformationButtons informationButtons = new InformationButtons();
+            informationButtons.closeInfo();
+
         }
-        descriptionArray = GameObject.FindGameObjectsWithTag("SixNationsDescription");
-        if (descriptionArray != null)
-        {
-            foreach (GameObject description1 in descriptionArray)
-            {
-                Destroy(description1);
-            }
-        }
-        description = GameObject.FindGameObjectWithTag("MunseeDescription");
-        if (description != null)
-        {
-            Destroy(description);
-        }
-        descriptionArray = GameObject.FindGameObjectsWithTag("black");
-        if (descriptionArray != null)
-        {
-            foreach(GameObject description1 in descriptionArray)
-            {
-                Destroy(description1);
-            }
-        }
+        
+        
 
 
     }
