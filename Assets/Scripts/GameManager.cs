@@ -3603,6 +3603,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     IEnumerator LoseTime()
     {
+        Debug.Log("Master client, Losing time was called");
         while (true)
         {
             yield return new WaitForSeconds(1);
@@ -3616,6 +3617,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         
         time--;
         //Debug.Log("Reduce Time: " + time);
+        if(countdownTimers.Length < 4)
+        {
+            countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
+        }
         for (int al = 0; al < countdownTimers.Length; al++)
         {
             countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time + "s";
