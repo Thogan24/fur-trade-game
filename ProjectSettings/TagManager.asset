@@ -138,6 +138,7 @@ TagManager:
   - Instructions
   - CloseButton
   - MainMenu
+  - CurrentRoomCanvas
   layers:
   - Default
   - TransparentFX

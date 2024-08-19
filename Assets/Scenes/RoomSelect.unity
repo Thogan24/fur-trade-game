@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 89271229}
   m_Layer: 5
   m_Name: CreateOrJoinRoomCanvas
-  m_TagString: Untagged
+  m_TagString: CreateOrJoinRoomCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2465,7 +2465,7 @@ GameObject:
   - component: {fileID: 772151351}
   m_Layer: 5
   m_Name: CurrentRoomCanvas
-  m_TagString: Untagged
+  m_TagString: CurrentRoomCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2925,7 +2925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &876431406
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,7 +28,18 @@ public class MainMenuButtons : MonoBehaviour
 
     public void InstructionsOnClick()
     {
-        InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("MainMenu").transform);
+        if(SceneManager.GetActiveScene().name != "Main_Scene")
+        {
+            Debug.Log(this.transform.parent.name);
+            Debug.Log(GameObject.FindGameObjectWithTag(this.transform.parent.name));
+            InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag(this.transform.parent.name).transform);
+        }
+        else
+        {
+            // CHANGE!!!
+            InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag(this.transform.parent.parent.parent.name).transform);
+        }
+        
     }
     public void QuitOnClick()
     {
