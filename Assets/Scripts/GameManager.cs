@@ -323,13 +323,17 @@ public class GameManager : MonoBehaviourPunCallbacks
             #endregion
             //countDownFinished = false; NOO!!!
             StartCountDown();
-
+            Debug.Log("StartCountDown");
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
+            Debug.Log("mainSceneCameraRPC");
 /*            if (!AlreadyLoaded)
             {*/
             this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
+            Debug.Log("mainSceneSetInventoryAmountsRPC");
             DeactivateAllOtherButtons();
+            Debug.Log("DeactivateAllOtherButtons");
             DeactivateTeamFlags();
+            Debug.Log("DeactivateTeamFlags");
             AlreadyLoaded = true;
             /*}*/
 
@@ -569,11 +573,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] MunseeCamerasCheckArray = { };
 
     [PunRPC]
-    void mainSceneCameraRPC()
+    void mainSceneCameraRPC(PhotonMessageInfo info)
     {
-/*        try
-        {*/
-            //Debug.LogError(SceneManager.GetActiveScene().name);
+        Debug.Log("Main scene camera rpc ran");
+        Debug.Log(info.Sender.ToString() + " Dutch: " + Dutch + " Philipses: " + Philipses + " Six Nations: " + SixNations + " Munsee: " + Munsee);
+        /*        try
+                {*/
+        //Debug.LogError(SceneManager.GetActiveScene().name);
         DutchCardsCanvasObject = GameObject.FindGameObjectWithTag("Dutch Card Canvas");
         PhilipsesCardsCanvasObject = GameObject.FindGameObjectWithTag("Philipses Card Canvas");
         SixNationsCardsCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Card Canvas");
@@ -704,6 +710,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 }
         }
+        Debug.Log("Completed sending trade buttons away");
 
 
 
@@ -735,7 +742,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             for (int a = 0; a < MunseeCamerasCheckArray.Length; a++)
             {
-                if (MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeCamerasCheckArray[a].GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>())
+                if (MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>())
                 {
                     MunseeCamerasCheckArray[a].SetActive(false);
                 }
