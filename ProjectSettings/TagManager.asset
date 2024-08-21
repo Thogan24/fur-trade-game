@@ -139,6 +139,10 @@ TagManager:
   - CloseButton
   - MainMenu
   - CurrentRoomCanvas
+  - DutchInstructionsCanvas
+  - PhilipsesInstructionsCanvas
+  - SixNationsInstructionsCanvas
+  - MunseeInstructionsCanvas
   layers:
   - Default
   - TransparentFX

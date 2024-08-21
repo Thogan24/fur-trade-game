@@ -37,7 +37,7 @@ public class MainMenuButtons : MonoBehaviour
         else
         {
             // CHANGE!!!
-            InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag(this.transform.parent.parent.parent.name).transform);
+            InstructionsGameObject = Instantiate(Instructions, this.transform.parent.transform);
         }
         
     }

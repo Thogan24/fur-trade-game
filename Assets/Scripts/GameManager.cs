@@ -74,19 +74,22 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject DutchBackgroundCanvasObject;
     public GameObject DutchSecondBackgroundCanvasObject;
     public GameObject DutchCardsCanvasObject;
+    public GameObject DutchInstructionsCanvasObject;
     public GameObject SixNationsTextCanvasObject;
     public GameObject SixNationsBackgroundCanvasObject;
     public GameObject SixNationsSecondBackgroundCanvasObject;
     public GameObject SixNationsCardsCanvasObject;
+    public GameObject SixNationsInstructionsCanvasObject;
     public GameObject MunseeTextCanvasObject;
     public GameObject MunseeBackgroundCanvasObject;
     public GameObject MunseeSecondBackgroundCanvasObject;
     public GameObject MunseeCardsCanvasObject;
+    public GameObject MunseeInstructionsCanvasObject;
     public GameObject PhilipsesTextCanvasObject;
     public GameObject PhilipsesBackgroundCanvasObject;
     public GameObject PhilipsesSecondBackgroundCanvasObject;
     public GameObject PhilipsesCardsCanvasObject;
-
+    public GameObject PhilipsesInstructionsCanvasObject;
     public GameObject DutchObject;
     public GameObject PhilipsesObject;
     public GameObject SixNationsObject;
@@ -584,6 +587,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
             DutchBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Background Canvas");
             DutchSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Second Background Canvas");
+            DutchInstructionsCanvasObject = GameObject.FindGameObjectWithTag("DutchInstructionsCanvas");
             DutchCamera.transform.parent = DutchTextCanvasObject.transform.parent;
             DutchTextCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
@@ -599,6 +603,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             SixNationsTextCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Text Canvas");
             SixNationsBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Background Canvas");
             SixNationsSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Second Background Canvas");
+            SixNationsInstructionsCanvasObject = GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas");
             SixNationsCamera.transform.parent = SixNationsTextCanvasObject.transform.parent;
             SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
@@ -615,6 +620,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeTextCanvasObject = GameObject.FindGameObjectWithTag("Munsee Text Canvas");
             MunseeBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Background Canvas");
             MunseeSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Second Background Canvas");
+            MunseeInstructionsCanvasObject = GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas");
             MunseeCamera.transform.parent = MunseeTextCanvasObject.transform.parent;
             MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
@@ -629,6 +635,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             PhilipsesTextCanvasObject = GameObject.FindGameObjectWithTag("Philipses Text Canvas");
             PhilipsesBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Background Canvas");
             PhilipsesSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Second Background Canvas");
+            PhilipsesInstructionsCanvasObject = GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas");
             PhilipsesCamera.transform.parent = PhilipsesTextCanvasObject.transform.parent;
             PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
