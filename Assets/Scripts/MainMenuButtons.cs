@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -37,7 +39,24 @@ public class MainMenuButtons : MonoBehaviour
         else
         {
             // CHANGE!!!
-            InstructionsGameObject = Instantiate(Instructions, this.transform.parent.transform);
+            GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
+            if (gameManager.Dutch == PhotonNetwork.LocalPlayer.ToString())
+            {
+                InstructionsGameObject = Instantiate(Instructions, this.transform.parent.transform);
+            }
+            else if (gameManager.Philipses == PhotonNetwork.LocalPlayer.ToString())
+            {
+                InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").transform);
+            }
+            else if (gameManager.SixNations == PhotonNetwork.LocalPlayer.ToString())
+            {
+                InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").transform);
+            }
+            else if (gameManager.Munsee == PhotonNetwork.LocalPlayer.ToString())
+            {
+                InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").transform);
+            }
         }
         
     }
