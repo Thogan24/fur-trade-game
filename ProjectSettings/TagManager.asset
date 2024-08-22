@@ -143,6 +143,7 @@ TagManager:
   - PhilipsesInstructionsCanvas
   - SixNationsInstructionsCanvas
   - MunseeInstructionsCanvas
+  - Thedebugbug
   layers:
   - Default
   - TransparentFX

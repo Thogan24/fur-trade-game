@@ -1170,6 +1170,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
     public GameObject debugger;
+    public GameObject[] debuggers;
 
     [PunRPC]
     void addCardToTrade(string tag, string parentTag, bool leftClicked, PhotonMessageInfo info)
@@ -1187,8 +1188,47 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
             // Sets up enemy team button positions & addToReceiving
-            debugger = GameObject.FindGameObjectWithTag("Respawn");
-            debugger.GetComponent<Text>().text = MunseeTrading.ToString() + " " + Application.isEditor.ToString() + " " + (PhotonNetwork.LocalPlayer.ToString() == Munsee).ToString() + " " + turn.ToString();
+            GameObject[] debuggers = GameObject.FindGameObjectsWithTag("Thedebugbug");
+            for (int pear = 0; pear < debuggers.Length; pear++)
+            {
+                if(debuggers[pear].transform.parent.parent.name == "Dutch" && PhotonNetwork.LocalPlayer.ToString() == Dutch)
+                {
+                    debugger = debuggers[pear];
+                }
+                else if (debuggers[pear].transform.parent.parent.name == "Philipses" && PhotonNetwork.LocalPlayer.ToString() == Philipses)
+                {
+                    debugger = debuggers[pear];
+                }
+                else if (debuggers[pear].transform.parent.parent.name == "Six Nations" && PhotonNetwork.LocalPlayer.ToString() == SixNations)
+                {
+                    debugger = debuggers[pear];
+                }
+                else if (debuggers[pear].transform.parent.parent.name == "Munsee" && PhotonNetwork.LocalPlayer.ToString() == Munsee)
+                {
+                    debugger = debuggers[pear];
+                }
+            }
+            debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "Dutch";
+            for (int apple = 0; apple < DutchAmounts.Length; apple++)
+            {
+                debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + DutchAmounts[apple].ToString();
+            }
+            debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nPhilpses";
+            for (int apple = 0; apple < DutchAmounts.Length; apple++)
+            {
+                debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + PhilipsesAmounts[apple].ToString();
+            }
+            debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nSix Nations";
+            for (int apple = 0; apple < DutchAmounts.Length; apple++)
+            {
+                debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + SixNationsAmounts[apple].ToString();
+            }
+            debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nMunsee";
+            for (int apple = 0; apple < DutchAmounts.Length; apple++)
+            {
+                debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + MunseeAmounts[apple].ToString();
+            }
+
             #region
             if (MunseeTrading == true && Application.isEditor == false && PhotonNetwork.LocalPlayer.ToString() == Munsee && turn != 4)
             {
