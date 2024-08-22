@@ -3320,7 +3320,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         }
                         if (tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.GetComponent<PhotonView>().IsMine)
                         {
-                            Debug.Log("Destroyed");
+                            //Debug.Log("Destroyed:" + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject);
                             PhotonNetwork.Destroy(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject);
                         }
                         else
@@ -3441,7 +3441,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.GetComponent<PhotonView>().IsMine)
                         {
-                            Debug.Log("Destroyed");
+                            //Debug.Log("Destroyed: " + tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject);
                             PhotonNetwork.Destroy(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject);
                         }
                         else
@@ -3552,6 +3552,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 for (int am = 0; am < extraCards.Length; am++)
                     if (extraCards[am].gameObject.transform.parent == null && extraCards[am].GetComponent<PhotonView>().IsMine)
                     {
+                        //Debug.Log("Destroyed: " + extraCards[am].gameObject);
                         PhotonNetwork.Destroy(extraCards[am].gameObject);
                     }
             }
@@ -3903,6 +3904,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             for (int am = 0; am < extraCards.Length; am++)
                 if (extraCards[am].gameObject.transform.parent == null && extraCards[am].GetComponent<PhotonView>().IsMine)
                 {
+                    //Debug.Log("Destroyed: " + extraCards[am].gameObject);
                     PhotonNetwork.Destroy(extraCards[am].gameObject);                               
                 }
         }
