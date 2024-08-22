@@ -265,6 +265,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool opened = false;
 
 
+    public bool[] addToReceiving = { false, false, false, false };
+
     void Start()
     {
         Debug.Log(Prefabs.Length);
@@ -1167,7 +1169,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-
+    public GameObject debugger;
 
     [PunRPC]
     void addCardToTrade(string tag, string parentTag, bool leftClicked, PhotonMessageInfo info)
@@ -1185,9 +1187,13 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
             // Sets up enemy team button positions & addToReceiving
-
+            debugger = GameObject.FindGameObjectWithTag("Respawn");
+            debugger.GetComponent<Text>().text = MunseeTrading.ToString() + " " + Application.isEditor.ToString() + " " + (PhotonNetwork.LocalPlayer.ToString() == Munsee).ToString() + " " + turn.ToString();
             #region
-
+            if (MunseeTrading == true && Application.isEditor == false && PhotonNetwork.LocalPlayer.ToString() == Munsee && turn != 4)
+            {
+                addToReceiving[3] = true;
+            }
 
             if (playerString == Dutch && DutchTrading == true)
             {
@@ -1247,6 +1253,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         
                         else if (MunseeTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
                         {
+                            Debug.Log("ADDING MUNSEE TO ADD CARD TO RECEIVING!!!");
                             addToReceiving[3] = true;
                             enemyTeamButtonPos[3] = MunseeTradeButton[a].transform.position;
 
@@ -1373,6 +1380,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                         }
                         else if (DutchTradeButton[a].transform.parent.transform.parent.name == "Munsee")
                         {
+                            Debug.Log("ADDING MUNSEE TO RECEIVING!!");
                             enemyTeamButtonPos[3] = DutchTradeButton[a].transform.position;
                         }
                     }
@@ -1383,8 +1391,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                     Debug.LogError("No Enemy Team Selected");
                     return;
                 }
+                
             }
             // A
+
 
             else if (playerString == SixNations && SixNationsTrading == true)
             {
@@ -1436,6 +1446,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                         else if (MunseeTradeButton[a].transform.parent.parent.name == "Munsee") // If the screen is Munsee
                         {
+                            Debug.Log("ADDING MUNSEE TO RECEIVING!!");
                             addToReceiving[3] = true;
                             enemyTeamButtonPos[3] = SixNationsTradeButton[a].transform.position;
 
