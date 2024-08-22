@@ -739,7 +739,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                             SixNationsCamerasCheckArray[a].SetActive(true);
                         }
                     }*/
-
+        if(PhotonNetwork.LocalPlayer.ToString() == Munsee)
+        {
             for (int a = 0; a < MunseeCamerasCheckArray.Length; a++)
             {
                 if (MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>() || MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera != MunseeCamerasCheckArray[a].GetComponent<Camera>())
@@ -751,6 +752,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                     MunseeCamerasCheckArray[a].SetActive(true);
                 }
             }
+        }
+        if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
+        {
             for (int a = 0; a < PhilipsesCamerasCheckArray.Length; a++)
             {
                 if (PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>() || PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera != PhilipsesCamerasCheckArray[a].GetComponent<Camera>())
@@ -762,6 +766,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                     PhilipsesCamerasCheckArray[a].SetActive(true);
                 }
             }
+        }
+            
 /*        }
         catch (NullReferenceException exception)
         {
