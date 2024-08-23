@@ -1189,6 +1189,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             // Sets up enemy team button positions & addToReceiving
             GameObject[] debuggers = GameObject.FindGameObjectsWithTag("Thedebugbug");
+            Debug.Log("Debuggers: " + debuggers.Length);
             for (int pear = 0; pear < debuggers.Length; pear++)
             {
                 if(debuggers[pear].transform.parent.parent.name == "Dutch" && PhotonNetwork.LocalPlayer.ToString() == Dutch)
@@ -1208,7 +1209,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                     debugger = debuggers[pear];
                 }
             }
-            debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "Dutch";
+            
+            debugger.GetComponent<Text>().text = "Dutch";
             for (int apple = 0; apple < DutchAmounts.Length; apple++)
             {
                 debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + DutchAmounts[apple].ToString();
@@ -1230,7 +1232,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
 
             #region
-            if (MunseeTrading == true && Application.isEditor == false && PhotonNetwork.LocalPlayer.ToString() == Munsee && turn != 4)
+            if (MunseeTrading == true && Application.isEditor == false && turn != 4)
             {
                 addToReceiving[3] = true;
             }
