@@ -590,9 +590,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false && DutchCamerasCheckArray.Length <= 1)
         {
-            GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
-            GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
-            GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
+            if(GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("DutchInstructionsCanvas") != null)
+            {
+                GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
+                GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
+                GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
+            }
+            
             DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
             DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
             DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
@@ -612,9 +616,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false && SixNationsCamerasCheckArray.Length <= 1)
         {
-            GameObject.FindGameObjectWithTag("DutchInstructionsCanvas").SetActive(false);
-            GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
-            GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
+            if (GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("DutchInstructionsCanvas") != null)
+            {
+                GameObject.FindGameObjectWithTag("DutchInstructionsCanvas").SetActive(false);
+                GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
+                GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
+            }
             SixNationsCameraPrefab = SixNationsCameraGameObject.GetPhotonView();
             SixNationsCamera = PhotonView.Instantiate(SixNationsCameraPrefab);
             SixNationsTextCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Text Canvas");
@@ -633,9 +640,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameObject[] MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == Munsee && AlreadyLoaded == false && MunseeCamerasCheckArray.Length <= 1)
         {
-            GameObject.FindGameObjectWithTag("DutchInstructionsCanvas").SetActive(false);
-            GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
-            GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
+            if (GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("DutchInstructionsCanvas") != null)
+            {
+                GameObject.FindGameObjectWithTag("DutchInstructionsCanvas").SetActive(false);
+                GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
+                GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
+            }
             Debug.Log("Ran1");
             MunseeCameraPrefab = MunseeCameraGameObject.GetPhotonView();
             MunseeCamera = PhotonView.Instantiate(MunseeCameraPrefab);
@@ -654,10 +664,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false && PhilipsesCamerasCheckArray.Length <= 1)
         {
-            GameObject.FindGameObjectWithTag("DutchInstructionsCanvas").SetActive(false);
-            GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
-            GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
-            PhilipsesCameraPrefab = PhilipsesCameraGameObject.GetPhotonView();
+            if (GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas") != null && GameObject.FindGameObjectWithTag("DutchInstructionsCanvas") != null)
+            {
+                GameObject.FindGameObjectWithTag("DutchInstructionsCanvas").SetActive(false);
+                GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
+                GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
+                PhilipsesCameraPrefab = PhilipsesCameraGameObject.GetPhotonView();
+            }
             PhilipsesCamera = PhotonView.Instantiate(PhilipsesCameraPrefab);
             PhilipsesTextCanvasObject = GameObject.FindGameObjectWithTag("Philipses Text Canvas");
             PhilipsesBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Background Canvas");
