@@ -60,14 +60,19 @@ public class TradeButtonOnClick : MonoBehaviour
             {
                 if (gameManager.DutchAccepted == false)
                 {
+                    if (gameManager.numberOfAcceptedTeams < 1)
+                        gameManager.gameObject.GetComponent<PhotonView>().RPC("AcceptButtonBackgroundFadeInFadeOut", RpcTarget.All);
                     gameManager.numberOfAcceptedTeams++;
+                    
                 }
                 gameManager.DutchAccepted = true;
                 
                 if(gameManager.numberOfAcceptedTeams == 2)
                 {
+                    if (gameManager.numberOfAcceptedTeams < 1)
+                        gameManager.gameObject.GetComponent<PhotonView>().RPC("AcceptButtonBackgroundFadeInFadeOut", RpcTarget.All);
                     Debug.LogError("Cards being switched, calling RPC");
-                    gameManager.gameObject.GetComponent<PhotonView>().RPC("cardSwitchTeams", RpcTarget.All);
+                    
                 }
                 else if(gameManager.numberOfAcceptedTeams > 2)
                 {
@@ -84,7 +89,11 @@ public class TradeButtonOnClick : MonoBehaviour
             {
                 if (gameManager.PhilipsesAccepted == false)
                 {
+                    if (gameManager.numberOfAcceptedTeams < 1)
+                        gameManager.gameObject.GetComponent<PhotonView>().RPC("AcceptButtonBackgroundFadeInFadeOut", RpcTarget.All);
                     gameManager.numberOfAcceptedTeams++;
+                    
+
                 }
                 gameManager.PhilipsesAccepted = true;
 
@@ -102,7 +111,11 @@ public class TradeButtonOnClick : MonoBehaviour
             {
                 if (gameManager.SixNationsAccepted == false)
                 {
+                    if (gameManager.numberOfAcceptedTeams < 1)
+                        gameManager.gameObject.GetComponent<PhotonView>().RPC("AcceptButtonBackgroundFadeInFadeOut", RpcTarget.All);
                     gameManager.numberOfAcceptedTeams++;
+                    
+
                 }
                 gameManager.SixNationsAccepted = true;
 
@@ -120,7 +133,11 @@ public class TradeButtonOnClick : MonoBehaviour
             {
                 if (gameManager.MunseeAccepted == false)
                 {
+                    if (gameManager.numberOfAcceptedTeams < 1)
+                        gameManager.gameObject.GetComponent<PhotonView>().RPC("AcceptButtonBackgroundFadeInFadeOut", RpcTarget.All);
                     gameManager.numberOfAcceptedTeams++;
+
+
                 }
                 gameManager.MunseeAccepted = true;
 

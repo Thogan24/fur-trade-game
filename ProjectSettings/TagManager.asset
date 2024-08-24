@@ -144,6 +144,7 @@ TagManager:
   - SixNationsInstructionsCanvas
   - MunseeInstructionsCanvas
   - Thedebugbug
+  - AcceptButtonBackground
   layers:
   - Default
   - TransparentFX

@@ -600,7 +600,16 @@ public class GameManager : MonoBehaviourPunCallbacks
                 GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
                 GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
             }
-            
+
+            GameObject[] AcceptButtonBackgroundArray = GameObject.FindGameObjectsWithTag("AcceptButtonBackground");
+            foreach (GameObject AcceptButtonBackground in AcceptButtonBackgroundArray)
+            {
+                if(AcceptButtonBackground.transform.parent.parent.parent.tag != "Dutch")
+                {
+                    AcceptButtonBackground.gameObject.SetActive(false);
+                }
+            }
+
             DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
             DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
             DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
@@ -626,6 +635,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                 GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
                 GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
             }
+            GameObject[] AcceptButtonBackgroundArray = GameObject.FindGameObjectsWithTag("AcceptButtonBackground");
+            foreach (GameObject AcceptButtonBackground in AcceptButtonBackgroundArray)
+            {
+                if (AcceptButtonBackground.transform.parent.parent.parent.tag != "Six Nations")
+                {
+                    AcceptButtonBackground.gameObject.SetActive(false);
+                }
+            }
             SixNationsCameraPrefab = SixNationsCameraGameObject.GetPhotonView();
             SixNationsCamera = PhotonView.Instantiate(SixNationsCameraPrefab);
             SixNationsTextCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Text Canvas");
@@ -649,6 +666,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                 GameObject.FindGameObjectWithTag("DutchInstructionsCanvas").SetActive(false);
                 GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
                 GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
+            }
+            GameObject[] AcceptButtonBackgroundArray = GameObject.FindGameObjectsWithTag("AcceptButtonBackground");
+            foreach (GameObject AcceptButtonBackground in AcceptButtonBackgroundArray)
+            {
+                if (AcceptButtonBackground.transform.parent.parent.parent.tag != "Munsee")
+                {
+                    AcceptButtonBackground.gameObject.SetActive(false);
+                }
             }
             Debug.Log("Ran1");
             MunseeCameraPrefab = MunseeCameraGameObject.GetPhotonView();
@@ -674,6 +699,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                 GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
                 GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
                 PhilipsesCameraPrefab = PhilipsesCameraGameObject.GetPhotonView();
+            }
+            GameObject[] AcceptButtonBackgroundArray = GameObject.FindGameObjectsWithTag("AcceptButtonBackground");
+            foreach (GameObject AcceptButtonBackground in AcceptButtonBackgroundArray)
+            {
+                if (AcceptButtonBackground.transform.parent.parent.parent.tag != "Philipses")
+                {
+                    AcceptButtonBackground.gameObject.SetActive(false);
+                }
             }
             PhilipsesCamera = PhotonView.Instantiate(PhilipsesCameraPrefab);
             PhilipsesTextCanvasObject = GameObject.FindGameObjectWithTag("Philipses Text Canvas");
@@ -3830,15 +3863,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 
-
-
-
-
-
-
-
-
-
     IEnumerator waitForASecondThenResetMoveTurns()
     {
 
@@ -3849,6 +3873,53 @@ public class GameManager : MonoBehaviourPunCallbacks
         munseeMovedTurns = false;
 
     }
+
+
+    [PunRPC]
+    void AcceptButtonBackgroundFadeInFadeOut(PhotonMessageInfo info)
+    {
+
+        StartCoroutine(FadeInFadeOut(1f, GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>()));
+        
+        
+    }
+
+    public IEnumerator FadeInFadeOut(float t, Image i)
+    {
+        while (true)
+        {
+            Debug.Log("Still running this!");
+            StartCoroutine(FadeBackgroundToFullAlpha(t, i));
+            yield return new WaitForSeconds(t);
+            StartCoroutine(FadeBackgroundToZeroAlpha(t, i));
+            yield return new WaitForSeconds(t);
+
+        }
+
+        yield return null;
+    }
+
+
+    public IEnumerator FadeBackgroundToFullAlpha(float t, Image i)
+    {
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
+        while (i.color.a < 1.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+            yield return null;
+        }
+    }
+
+    public IEnumerator FadeBackgroundToZeroAlpha(float t, Image i)
+    {
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        while (i.color.a > 0.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+            yield return null;
+        }
+    }
+
 
     [PunRPC]
     void MoveTurns(PhotonMessageInfo info)
@@ -4040,6 +4111,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("I'm stopping it");
 
         StopCoroutine("LoseTime");
+        StopCoroutine(FadeInFadeOut(1f, GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>()));        
+        
         StartCountDown();
 
         for (int ak = 0; ak < tags.Length; ak++)
