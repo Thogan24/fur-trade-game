@@ -590,6 +590,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false && DutchCamerasCheckArray.Length <= 1)
         {
+            GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
+            GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
+            GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
             DutchCameraPrefab = DutchCameraGameObject.GetPhotonView();
             DutchCamera = PhotonView.Instantiate(DutchCameraPrefab);
             DutchTextCanvasObject = GameObject.FindGameObjectWithTag("Dutch Text Canvas");
@@ -602,12 +605,16 @@ public class GameManager : MonoBehaviourPunCallbacks
             DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchInstructionsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
+            
 
             //DutchCamera.SetActive(true);
         }
         GameObject[] SixNationsCamerasCheckArray = GameObject.FindGameObjectsWithTag("Six Nations Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == SixNations && AlreadyLoaded == false && SixNationsCamerasCheckArray.Length <= 1)
         {
+            GameObject.FindGameObjectWithTag("DutchInstructionsCanvas").SetActive(false);
+            GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
+            GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
             SixNationsCameraPrefab = SixNationsCameraGameObject.GetPhotonView();
             SixNationsCamera = PhotonView.Instantiate(SixNationsCameraPrefab);
             SixNationsTextCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Text Canvas");
@@ -620,11 +627,15 @@ public class GameManager : MonoBehaviourPunCallbacks
             SixNationsCardsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsInstructionsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
+            
 
         }
         GameObject[] MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == Munsee && AlreadyLoaded == false && MunseeCamerasCheckArray.Length <= 1)
         {
+            GameObject.FindGameObjectWithTag("DutchInstructionsCanvas").SetActive(false);
+            GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
+            GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").SetActive(false);
             Debug.Log("Ran1");
             MunseeCameraPrefab = MunseeCameraGameObject.GetPhotonView();
             MunseeCamera = PhotonView.Instantiate(MunseeCameraPrefab);
@@ -638,10 +649,14 @@ public class GameManager : MonoBehaviourPunCallbacks
             MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeInstructionsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
+            
         }
         GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false && PhilipsesCamerasCheckArray.Length <= 1)
         {
+            GameObject.FindGameObjectWithTag("DutchInstructionsCanvas").SetActive(false);
+            GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").SetActive(false);
+            GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").SetActive(false);
             PhilipsesCameraPrefab = PhilipsesCameraGameObject.GetPhotonView();
             PhilipsesCamera = PhotonView.Instantiate(PhilipsesCameraPrefab);
             PhilipsesTextCanvasObject = GameObject.FindGameObjectWithTag("Philipses Text Canvas");
@@ -654,6 +669,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesInstructionsCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
+            
         }
 
 
@@ -1210,7 +1226,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
             
-            debugger.GetComponent<Text>().text = "Dutch";
+            /*debugger.GetComponent<Text>().text = "Dutch";
             for (int apple = 0; apple < DutchAmounts.Length; apple++)
             {
                 debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + DutchAmounts[apple].ToString();
@@ -1229,7 +1245,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             for (int apple = 0; apple < DutchAmounts.Length; apple++)
             {
                 debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + MunseeAmounts[apple].ToString();
-            }
+            }*/
 
             #region
             if (MunseeTrading == true && Application.isEditor == false && turn != 4)
@@ -2526,6 +2542,27 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
 
         }
+
+        debugger.GetComponent<Text>().text = "Dutch";
+        for (int apple = 0; apple < DutchAmounts.Length; apple++)
+        {
+            debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + DutchAmounts[apple].ToString();
+        }
+        debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nPhilpses";
+        for (int apple = 0; apple < DutchAmounts.Length; apple++)
+        {
+            debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + PhilipsesAmounts[apple].ToString();
+        }
+        debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nSix Nations";
+        for (int apple = 0; apple < DutchAmounts.Length; apple++)
+        {
+            debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + SixNationsAmounts[apple].ToString();
+        }
+        debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nMunsee";
+        for (int apple = 0; apple < DutchAmounts.Length; apple++)
+        {
+            debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + MunseeAmounts[apple].ToString();
+        }
     }
 
     [PunRPC]
@@ -2589,6 +2626,16 @@ public class GameManager : MonoBehaviourPunCallbacks
                                 Debug.Log("Changing team Dutch. Wishlist (should be of dutch) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex + 13].ToString() + "/" + DutchAmountsStarting[childIndex + 13].ToString() + "x";
 
+                                // DutchAmounts[childIndex + 13].ToString()
+
+                                    if (DutchAmounts[childIndex + 13] < 0)
+                                    {
+                                        cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[childIndex + 13]).ToString();
+                                    }
+
+
+                                
+
                             }
                         }
                     }
@@ -2636,8 +2683,14 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Philipses. Wishlist (should be of philipses) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex + 13].ToString() + "/" + PhilipsesAmountsStarting[childIndex + 13].ToString() + "x";
+                                if (PhilipsesAmounts[childIndex + 13] < 0)
+                                {
+                                    cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[childIndex + 13]).ToString();
+                                }
 
                             }
+
+
                         }
                     }
                     c++;
@@ -2681,6 +2734,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Six Nations. Wishlist (should be of Six Nations) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex + 13].ToString() + "/" + SixNationsAmountsStarting[childIndex + 13].ToString() + "x";
+                                if (SixNationsAmounts[childIndex + 13] < 0)
+                                {
+                                    cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[childIndex + 13]).ToString();
+                                }
 
                             }
                         }
@@ -2725,6 +2782,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Munsee. Wishlist (should be of munsee) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex + 13].ToString() + "/" + MunseeAmountsStarting[childIndex + 13].ToString() + "x";
+                                if (MunseeAmounts[childIndex + 13] < 0)
+                                {
+                                    cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[childIndex + 13]).ToString();
+                                }
 
                             }
                         }
@@ -2782,7 +2843,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Dutch. Wishlist (should be of dutch) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex + 13].ToString() + "/" + DutchAmountsStarting[childIndex + 13].ToString() + "x";
-
+                                if (DutchAmounts[childIndex + 13] < 0)
+                                {
+                                    cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[childIndex + 13]).ToString();
+                                }
                             }
                         }
                     }
@@ -2861,7 +2925,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Philipses. Wishlist (should be of philipses) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex + 13].ToString() + "/" + PhilipsesAmountsStarting[childIndex + 13].ToString() + "x";
-
+                                if (PhilipsesAmounts[childIndex + 13] < 0)
+                                {
+                                    cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[childIndex + 13]).ToString();
+                                }
                             }
                         }
                     }
@@ -2938,7 +3005,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Six Nations. Wishlist (should be of Six Nations) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex + 13].ToString() +"/" + SixNationsAmountsStarting[childIndex + 13].ToString() + "x";
-
+                                if (SixNationsAmounts[childIndex + 13] < 0)
+                                {
+                                    cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[childIndex + 13]).ToString();
+                                }
                             }
                         }
                     }
@@ -3017,6 +3087,10 @@ public class GameManager : MonoBehaviourPunCallbacks
                             {
                                 Debug.Log("Changing team Munsee. Wishlist (should be of munsee) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex + 13].ToString() + "/" + MunseeAmountsStarting[childIndex + 13].ToString() + "x";
+                                if (MunseeAmounts[childIndex + 13] < 0)
+                                {
+                                    cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[childIndex + 13]).ToString();
+                                }
 
                             }
                         }
@@ -3244,10 +3318,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 Debug.Log("Ran twice womp womp");
             }
-            GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + DutchPoints.ToString();
-            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + PhilipsesPoints.ToString();
-            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + SixNationsPoints.ToString();
-            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Points:<br>" + MunseePoints.ToString();
+            GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Points:\n" + DutchPoints.ToString();
+            GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Points:\n" + PhilipsesPoints.ToString();
+            GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Points:\n" + SixNationsPoints.ToString();
+            GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Points:\n" + MunseePoints.ToString();
         }
     }
 
