@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     }
 
+
+    public bool loadedGameOnMasterClient = false;
     // Stores individual userID
     public string Dutch;
     public string SixNations;
@@ -291,11 +293,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         if ((DutchJoined && !AlreadyLoaded && SixNationsJoined && MunseeJoined && PhilipsesJoined) || (DebugStart == true && DutchJoined && !AlreadyLoaded))
         {
             Debug.Log("Teans joined, loading main screen");
-            if (PhotonNetwork.IsMasterClient)
+            
+            if (PhotonNetwork.IsMasterClient && loadedGameOnMasterClient == false)
             {
                 Debug.Log("Loading level on the MASTER client...");
                 PhotonNetwork.LoadLevel("Main_Scene");
-                SceneManager.LoadScene("Main_Scene");
+                loadedGameOnMasterClient = true;
+                //SceneManager.LoadScene("Main_Scene");
 
                 //test = Instantiate(MunseeCameraGameObject, new Vector3(2.0f, 0, 0), Quaternion.identity);
             }
