@@ -68,7 +68,15 @@ public class MainMenuButtons : MonoBehaviour
     {
         if (GameObject.FindGameObjectWithTag("Instructions") != null)
         {
-            Destroy(GameObject.FindGameObjectWithTag("Instructions")); //GameObject.FindGameObjectWithTag("Instructions")
+            //Destroy(GameObject.FindGameObjectWithTag("Instructions")); //GameObject.FindGameObjectWithTag("Instructions")
+            GameObject[] instructionArray = GameObject.FindGameObjectsWithTag("Instructions");
+            if (instructionArray != null)
+            {
+                foreach (GameObject instruction in instructionArray)
+                {
+                    Destroy(instruction);
+                }
+            }
         }
         if (SceneManager.GetActiveScene().name != "Main_Scene")
         {
