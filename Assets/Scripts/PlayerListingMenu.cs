@@ -19,6 +19,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private RoomsCanvases roomsCanvases;
     private bool _ready = false;
 
+    public GameObject HostText;
+
 
     /*[SerializeField] private Text _readyUpText;
     private void SetReadyUp(bool state)
@@ -140,6 +142,25 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel("TeamSelect");
         }
+        else
+        {
+            Debug.Log("Else");
+            TMPro.TextMeshProUGUI TheHostText = HostText.GetComponent<TMPro.TextMeshProUGUI>();
+            StartCoroutine(FadeTextToZeroAlpha(1f, TheHostText));
+        }
         
+    }
+
+    public IEnumerator FadeTextToZeroAlpha(float t, TMPro.TextMeshProUGUI i)
+    {
+        Debug.Log("Setting alpha to 1");
+
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        yield return new WaitForSeconds(1);
+        while (i.color.a > 0.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+            yield return null;
+        }
     }
 }
