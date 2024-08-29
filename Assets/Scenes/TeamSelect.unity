@@ -3853,6 +3853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugStart: 0
+  loadedGameOnMasterClient: 0
   Dutch: 
   SixNations: 
   Munsee: 
@@ -3877,18 +3878,22 @@ MonoBehaviour:
   DutchBackgroundCanvasObject: {fileID: 0}
   DutchSecondBackgroundCanvasObject: {fileID: 0}
   DutchCardsCanvasObject: {fileID: 0}
+  DutchInstructionsCanvasObject: {fileID: 0}
   SixNationsTextCanvasObject: {fileID: 0}
   SixNationsBackgroundCanvasObject: {fileID: 0}
   SixNationsSecondBackgroundCanvasObject: {fileID: 0}
   SixNationsCardsCanvasObject: {fileID: 0}
+  SixNationsInstructionsCanvasObject: {fileID: 0}
   MunseeTextCanvasObject: {fileID: 0}
   MunseeBackgroundCanvasObject: {fileID: 0}
   MunseeSecondBackgroundCanvasObject: {fileID: 0}
   MunseeCardsCanvasObject: {fileID: 0}
+  MunseeInstructionsCanvasObject: {fileID: 0}
   PhilipsesTextCanvasObject: {fileID: 0}
   PhilipsesBackgroundCanvasObject: {fileID: 0}
   PhilipsesSecondBackgroundCanvasObject: {fileID: 0}
   PhilipsesCardsCanvasObject: {fileID: 0}
+  PhilipsesInstructionsCanvasObject: {fileID: 0}
   DutchObject: {fileID: 0}
   PhilipsesObject: {fileID: 0}
   SixNationsObject: {fileID: 0}
@@ -3918,8 +3923,8 @@ MonoBehaviour:
   cardAmountObjects: []
   cardAmountObjects2: []
   time: 0
-  turnTimeLength: 5000
-  turnTimeLengthFirstIteration: 5000
+  turnTimeLength: 120
+  turnTimeLengthFirstIteration: 120
   countdownTextObject: {fileID: 0}
   countdownTimerText: {fileID: 0}
   isTimeFinished: 1
@@ -3944,6 +3949,7 @@ MonoBehaviour:
   MunseeWampumValuesTrades: 
   PhilipsesWampumValuesTrades: 
   DutchWampumValuesTrades: 
+  nextTurnChangeColorToNothing: 0
   SixNationsPoints: 0
   MunseePoints: 0
   PhilipsesPoints: 0
@@ -4135,6 +4141,7 @@ MonoBehaviour:
   - ScissorsDescription
   sceneChange: 0
   opened: 0
+  addToReceiving: 00000000
   test: {fileID: 0}
   MunseeCamerasCheckArray: []
   enemyTeamButtonPos:
@@ -4152,8 +4159,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  debugger: {fileID: 0}
+  debuggers: []
   ad: 0
   trader: 
+  countdownTimers: []
 --- !u!222 &1290858076
 CanvasRenderer:
   m_ObjectHideFlags: 0

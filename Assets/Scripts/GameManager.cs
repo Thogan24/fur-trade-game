@@ -139,9 +139,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] cardAmountObjects;
     public GameObject[] cardAmountObjects2;
 
-    public int time = 5000;
-    public int turnTimeLength = 5000;
-    public int turnTimeLengthFirstIteration = 5000;
+    public int time = 120;
+    public int turnTimeLength = 120;
+    public int turnTimeLengthFirstIteration = 120;
     public GameObject countdownTextObject;
     public Text countdownTimerText;
     [HideInInspector] public bool isTimeFinished = true;
@@ -3663,9 +3663,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("ClearTradeButton Clicked, reactivating team flags & removing all trading");
             StopCoroutine(inst);
-            Image imagery = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
-            imagery.color = new Color(imagery.color.r, imagery.color.g, imagery.color.b, 0);
             nextTurnChangeColorToNothing = true;
+            Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
+            imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
             DutchTrading = false;
             PhilipsesTrading = false;
             SixNationsTrading = false;
@@ -3909,6 +3909,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public IEnumerator FadeBackgroundToFullAlpha(float t, Image i)
     {
+        Debug.Log("This ran again");
         i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
         while (i.color.a < 1.0f)
         {
@@ -3917,6 +3918,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 nextTurnChangeColorToNothing = false;
                 i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
+                Debug.Log("nextTurnChangeColorToNothing is running");
+                Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
+                imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
                 yield return null;
             }
             yield return null;
@@ -4125,10 +4129,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         StopCoroutine("LoseTime");
         StopCoroutine(inst);
-        Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
-        imaginary.color =  new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
         nextTurnChangeColorToNothing = true;
-
+        Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
+        imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
         StartCountDown();
 
         for (int ak = 0; ak < tags.Length; ak++)
