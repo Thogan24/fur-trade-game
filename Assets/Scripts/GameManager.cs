@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     // If the game manager is reset for any reason, set Camera Prefabs, Card Prefabs, 
     public bool DebugStart;
-    
+    Coroutine inst = null;
+
     // Instantiating Singleton GameManager
     public static GameManager instance;
 
@@ -215,6 +216,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public List<int> MunseeWampumValuesTrades = new List<int>();
     public List<int> PhilipsesWampumValuesTrades = new List<int>();
     public List<int> DutchWampumValuesTrades = new List<int>();
+
+    public bool nextTurnChangeColorToNothing = false;
 
     public int SixNationsPoints;
     public int MunseePoints;
@@ -3659,6 +3662,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (clearTradeButton)
         {
             Debug.Log("ClearTradeButton Clicked, reactivating team flags & removing all trading");
+            StopCoroutine(inst);
+            Image imagery = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
+            imagery.color = new Color(imagery.color.r, imagery.color.g, imagery.color.b, 0);
+            nextTurnChangeColorToNothing = true;
             DutchTrading = false;
             PhilipsesTrading = false;
             SixNationsTrading = false;
@@ -3878,14 +3885,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void AcceptButtonBackgroundFadeInFadeOut(PhotonMessageInfo info)
     {
-
-        StartCoroutine(FadeInFadeOut(1f, GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>()));
+        inst = StartCoroutine(FadeInFadeOut(1f, GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>()));
         
         
     }
 
     public IEnumerator FadeInFadeOut(float t, Image i)
     {
+        nextTurnChangeColorToNothing = false;
         while (true)
         {
             Debug.Log("Still running this!");
@@ -3906,6 +3913,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         while (i.color.a < 1.0f)
         {
             i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+            if(nextTurnChangeColorToNothing == true)
+            {
+                nextTurnChangeColorToNothing = false;
+                i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
+                yield return null;
+            }
             yield return null;
         }
     }
@@ -4111,8 +4124,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("I'm stopping it");
 
         StopCoroutine("LoseTime");
-        StopCoroutine(FadeInFadeOut(1f, GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>()));        
-        
+        StopCoroutine(inst);
+        Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
+        imaginary.color =  new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
+        nextTurnChangeColorToNothing = true;
+
         StartCountDown();
 
         for (int ak = 0; ak < tags.Length; ak++)
