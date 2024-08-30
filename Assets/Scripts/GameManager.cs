@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // If the game manager is reset for any reason, set Camera Prefabs, Card Prefabs, 
     public bool DebugStart;
     Coroutine inst = null;
-
+    Coroutine inst2 = null;
     // Instantiating Singleton GameManager
     public static GameManager instance;
 
@@ -3662,7 +3662,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (clearTradeButton)
         {
             Debug.Log("ClearTradeButton Clicked, reactivating team flags & removing all trading");
-            StopCoroutine(inst);
+            if(inst != null)
+            {
+                StopCoroutine(inst);
+            }
             nextTurnChangeColorToNothing = true;
             Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
             imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
@@ -3896,7 +3899,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         while (true)
         {
             Debug.Log("Still running this!");
-            StartCoroutine(FadeBackgroundToFullAlpha(t, i));
+            inst2 = StartCoroutine(FadeBackgroundToFullAlpha(t, i));
             yield return new WaitForSeconds(t);
             StartCoroutine(FadeBackgroundToZeroAlpha(t, i));
             yield return new WaitForSeconds(t);
@@ -3921,6 +3924,11 @@ public class GameManager : MonoBehaviourPunCallbacks
                 Debug.Log("nextTurnChangeColorToNothing is running");
                 Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
                 imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
+                if(inst2 != null)
+                {
+                    Debug.Log("NexTurn, stopping inst2");
+                    StopCoroutine(inst2);
+                }
                 yield return null;
             }
             yield return null;
@@ -4128,7 +4136,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("I'm stopping it");
 
         StopCoroutine("LoseTime");
-        StopCoroutine(inst);
+        if(inst != null)
+        {
+            StopCoroutine(inst);
+        }
         nextTurnChangeColorToNothing = true;
         Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
         imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);

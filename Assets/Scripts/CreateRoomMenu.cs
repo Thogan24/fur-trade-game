@@ -26,7 +26,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
             return;
         }
         RoomOptions options = new RoomOptions();
-        options.MaxPlayers = 5;
+        options.MaxPlayers = 4;
         if (roomName != null)
         {
             PhotonNetwork.JoinOrCreateRoom(roomName.text, options, TypedLobby.Default);
