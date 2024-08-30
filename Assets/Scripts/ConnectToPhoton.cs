@@ -38,7 +38,12 @@ public class ConnectToPhoton : MonoBehaviourPunCallbacks
         }
         Debug.Log(PhotonNetwork.NickName);
         PhotonNetwork.ConnectUsingSettings();
-
+        if (PhotonNetwork.OfflineMode)
+        {
+            PhotonNetwork.Disconnect();
+        }
+        PhotonNetwork.OfflineMode = false;
+        PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()

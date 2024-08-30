@@ -34,42 +34,35 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - AcceptButtonBackgroundFadeInFadeOut
+  - addCardToTrade
+  - addWampumValues
+  - cardSwitchTeams
+  - clearAllTrades
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
-  - changeUserID
-  - whenClicked
-  - WhenClicked
-  - philipsesJoinedRPC
   - dutchJoinedRPC
-  - munseeJoinedRPC
-  - sixNationsJoinedRPC
-  - mainSceneCameraRPC
-  - mainSceneInventorySetupRPC
-  - cardSwitchTeams
-  - clearAllTradesAndMoveTurns
-  - addCardToTrade
-  - mainSceneSetInventoryAmountsRPC
+  - findifTeamBeingTradedWithHasEnoughCards
+  - findTeamBeingTradedWith
+  - findTeamBeingTradedWithAndSubtractFromInventory
+  - Fire
   - greyOutButtons
-  - clearAllTrades
-  - MoveTurns
-  - teamsThatAreTrading
-  - ReactivateTeamFlags
+  - mainSceneCameraRPC
+  - mainSceneSetInventoryAmountsRPC
   - moveSceneIfReady
-  - moveToEndScreen
   - moveToCalculationScene
   - moveToEndScene
-  - MoveTurns1
-  - addWampumValues
-  - findTeamBeingTradedWith
-  - findifTeamBeingTradedWithHasEnoughCards
-  - findTeamBeingTradedWithAndSubtractFromInventory
+  - MoveTurns
+  - munseeJoinedRPC
+  - philipsesJoinedRPC
+  - ReactivateTeamFlags
   - ReduceTime
+  - RespawnSpaceship
+  - sixNationsJoinedRPC
+  - teamsThatAreTrading
   - TurnTimerRPC
-  - AcceptTradeBackgroundFadeInFadeOut
-  - AcceptButtonBackgroundFadeInFadeOut
+  - WhenClicked
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1
