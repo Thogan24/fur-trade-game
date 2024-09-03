@@ -3854,6 +3854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugStart: 0
   loadedGameOnMasterClient: 0
+  loadedCalculationOnMasterClient: 0
   Dutch: 
   SixNations: 
   Munsee: 
@@ -3923,8 +3924,8 @@ MonoBehaviour:
   cardAmountObjects: []
   cardAmountObjects2: []
   time: 0
-  turnTimeLength: 120
-  turnTimeLengthFirstIteration: 120
+  turnTimeLength: 180
+  turnTimeLengthFirstIteration: 180
   countdownTextObject: {fileID: 0}
   countdownTimerText: {fileID: 0}
   isTimeFinished: 1

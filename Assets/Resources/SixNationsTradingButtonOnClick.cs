@@ -82,13 +82,18 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
             Debug.LogError("Munsee is Trading");
             gameManager.MunseeTrading = true;
         }
+        if (PhotonNetwork.IsMasterClient)
+        {
+            gameManager.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOutEnd", RpcTarget.All);
 
+        }
         greyOutButtons();
         gameManager.CallReactivateTeamFlagsRPC();
         return;
     
     }
-[PunRPC]
+    
+    [PunRPC]
     void greyOutButtons()
     {
         if (!gameManager.DutchTrading)

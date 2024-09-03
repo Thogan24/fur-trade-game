@@ -145,6 +145,8 @@ TagManager:
   - MunseeInstructionsCanvas
   - Thedebugbug
   - AcceptButtonBackground
+  - WampumValue
+  - TeamFlagsButtonBackground
   layers:
   - Default
   - TransparentFX
