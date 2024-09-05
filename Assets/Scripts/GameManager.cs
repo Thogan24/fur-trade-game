@@ -282,6 +282,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public bool[] addToReceiving = { false, false, false, false };
 
+
+    public Image publicImage;
+
+
+
     void Start()
     {
         Debug.Log(Prefabs.Length);
@@ -342,9 +347,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             #endregion
             //countDownFinished = false; NOO!!!
             StartCountDown();
-            Debug.Log("Calling flag button in out");
-            Debug.Log(SceneManager.GetActiveScene().name);
-            this.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOut", RpcTarget.All);
+            
             Debug.Log("StartCountDown");
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
             Debug.Log("mainSceneCameraRPC");
@@ -352,6 +355,13 @@ public class GameManager : MonoBehaviourPunCallbacks
             {*/
             this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
             Debug.Log("mainSceneSetInventoryAmountsRPC");
+            Debug.Log("Calling flag button in out");
+            if (PhotonNetwork.IsMasterClient)
+            {
+                this.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOut", RpcTarget.All);
+            }
+            
+
             DeactivateAllOtherButtons();
             Debug.Log("DeactivateAllOtherButtons");
             DeactivateTeamFlags();
@@ -4049,10 +4059,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
 
-
     public IEnumerator FadeInFadeOutFlags(float t, Image i)
     {
         nextTurnChangeColorToNothingFlag = false;
+        publicImage = i;
         while (true)
         {
             Debug.Log("Still running this!");
