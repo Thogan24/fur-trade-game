@@ -3967,10 +3967,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void FlagButtonBackgroundFadeInFadeOut(PhotonMessageInfo info)
     {
-        Debug.Log("Starting white background fade in and out");
+        Debug.Log("Starting white background fade in and out; turn: " + turn);
         if(inst4 == null)
         {
-            inst4 = StartCoroutine(FadeInFadeOut(0.5f, GameObject.FindGameObjectWithTag("TeamFlagsButtonBackground").GetComponent<Image>()));
+            inst4 = StartCoroutine(FadeInFadeOutFlags(0.5f, GameObject.FindGameObjectWithTag("TeamFlagsButtonBackground").GetComponent<Image>()));
         }
 
 
@@ -4006,6 +4006,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         yield return null;
     }
+
 
 
     public IEnumerator FadeBackgroundToFullAlpha(float t, Image i)
@@ -4055,7 +4056,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         while (true)
         {
             Debug.Log("Still running this!");
-            inst2 = StartCoroutine(FadeBackgroundToFullAlphaFlags(t, i));
+            inst3 = StartCoroutine(FadeBackgroundToFullAlphaFlags(t, i));
             yield return new WaitForSeconds(t);
             StartCoroutine(FadeBackgroundToZeroAlphaFlags(t, i));
             yield return new WaitForSeconds(t);
