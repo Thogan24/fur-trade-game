@@ -227,6 +227,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public List<int> DutchWampumValuesTrades = new List<int>();
 
     public bool nextTurnChangeColorToNothing = false;
+    public bool nextTurnChangeColorToNothingFlag = false;
 
     public int SixNationsPoints;
     public int MunseePoints;
@@ -341,7 +342,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             #endregion
             //countDownFinished = false; NOO!!!
             StartCountDown();
-            this.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOutEnd", RpcTarget.All);
+            Debug.Log("Calling flag button in out");
+            Debug.Log(SceneManager.GetActiveScene().name);
+            this.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOut", RpcTarget.All);
             Debug.Log("StartCountDown");
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
             Debug.Log("mainSceneCameraRPC");
@@ -3727,7 +3730,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 StopCoroutine(inst);
             }
             
-            if(DutchTrading || PhilipsesTrading || SixNationsTrading || MunseeTrading)
+            if((DutchTrading || PhilipsesTrading || SixNationsTrading || MunseeTrading) && PhotonNetwork.LocalPlayer.IsMasterClient)
             {
                 Debug.Log("Clear button, white background coming back");
                 this.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOut", RpcTarget.All);
@@ -3981,6 +3984,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("It really stopped.");
             StopCoroutine(inst4);
+            inst4 = null;
         }
         
 
@@ -4047,7 +4051,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public IEnumerator FadeInFadeOutFlags(float t, Image i)
     {
-        nextTurnChangeColorToNothing = false;
+        nextTurnChangeColorToNothingFlag = false;
         while (true)
         {
             Debug.Log("Still running this!");
@@ -4069,9 +4073,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         while (i.color.a < 1.0f)
         {
             i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
-            if (nextTurnChangeColorToNothing == true)
+            if (nextTurnChangeColorToNothingFlag == true)
             {
-                nextTurnChangeColorToNothing = false;
+                nextTurnChangeColorToNothingFlag = false;
                 i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
                 Debug.Log("nextTurnChangeColorToNothing is running");
                 Image imaginary3 = GameObject.FindGameObjectWithTag("TeamFlagsButtonBackground").GetComponent<Image>();
@@ -4137,21 +4141,25 @@ public class GameManager : MonoBehaviourPunCallbacks
         WishlistCardsInTrade = 0;
 
 
-        if (!TurnTimerRanOut)
+        if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("Turn moving, white background coming back");
-            this.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOut", RpcTarget.All);
-
-        }
-        else
-        {
-            if((DutchWasTrading || PhilipsesWasTrading || SixNationsWasTrading || MunseeWasTrading))
+            if (!TurnTimerRanOut)
             {
                 Debug.Log("Turn moving, white background coming back");
                 this.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOut", RpcTarget.All);
 
             }
+            else
+            {
+                if ((DutchWasTrading || PhilipsesWasTrading || SixNationsWasTrading || MunseeWasTrading))
+                {
+                    Debug.Log("Turn moving, white background coming back");
+                    this.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOut", RpcTarget.All);
+
+                }
+            }
         }
+            
         DutchWasTrading = false;
         PhilipsesWasTrading = false;
         SixNationsWasTrading = false;
@@ -4320,10 +4328,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             StopCoroutine(inst);
         }
-
-
-
         nextTurnChangeColorToNothing = true;
+        
         Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
         imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
         StartCountDown();
