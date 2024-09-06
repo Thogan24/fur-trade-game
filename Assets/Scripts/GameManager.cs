@@ -154,8 +154,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Text countdownTimerText;
     [HideInInspector] public bool isTimeFinished = true;
     public bool TurnTimerRanOut = false;
-    
 
+    GameObject[] debuggers;
 
     /*
     STARTING INVENTORIES
@@ -1294,8 +1294,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
     public GameObject debugger;
-    public GameObject[] debuggers;
-
     [PunRPC]
     void addCardToTrade(string tag, string parentTag, bool leftClicked, PhotonMessageInfo info)
     {
@@ -1312,7 +1310,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
             // Sets up enemy team button positions & addToReceiving
-            GameObject[] debuggers = GameObject.FindGameObjectsWithTag("Thedebugbug");
+            debuggers = GameObject.FindGameObjectsWithTag("Thedebugbug");
             Debug.Log("Debuggers: " + debuggers.Length);
             for (int pear = 0; pear < debuggers.Length; pear++)
             {
@@ -2651,7 +2649,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         }
 
-        debugger.GetComponent<Text>().text = "Dutch";
+        /*debugger.GetComponent<Text>().text = "Dutch";
         for (int apple = 0; apple < DutchAmounts.Length; apple++)
         {
             debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + DutchAmounts[apple].ToString();
@@ -2670,7 +2668,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         for (int apple = 0; apple < DutchAmounts.Length; apple++)
         {
             debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + ", " + MunseeAmounts[apple].ToString();
-        }
+        }*/
     }
 
     [PunRPC]
@@ -4080,23 +4078,32 @@ public class GameManager : MonoBehaviourPunCallbacks
     public IEnumerator FadeBackgroundToFullAlphaFlags(float t, Image i)
     {
         Debug.Log("This ran again");
-        i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
-        while (i.color.a < 1.0f)
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 0.0001f);
+        while (i.color.a < 1.0f && i.color.a != 0)
         {
-            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+            if(nextTurnChangeColorToNothingFlag == false)
+            {
+                debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nRunning";
+                if(debugger.GetComponent<Text>().text.Length > 80)
+                {
+                    debugger.GetComponent<Text>().text = "Running";
+                }
+                i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+            }
             if (nextTurnChangeColorToNothingFlag == true)
             {
+                debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nnext";
                 nextTurnChangeColorToNothingFlag = false;
                 i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
-                Debug.Log("nextTurnChangeColorToNothing is running");
+                Debug.Log("nextTurnChangeColorToNothingFlag is running");
                 Image imaginary3 = GameObject.FindGameObjectWithTag("TeamFlagsButtonBackground").GetComponent<Image>();
                 imaginary3.color = new Color(imaginary3.color.r, imaginary3.color.g, imaginary3.color.b, 0);
-                if (inst3 != null)
+                /*if (inst3 != null)
                 {
                     Debug.Log("NexTurn, stopping inst2");
                     StopCoroutine(inst3);
                 }
-                yield return null;
+                yield return null;*/
             }
             yield return null;
         }
