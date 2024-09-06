@@ -86,7 +86,6 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
             Debug.Log("Munsee is calling the flag");
 
             gameManager.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOutEnd", RpcTarget.All);
-            gameManager.nextTurnChangeColorToNothingFlag = true;
         }
         greyOutButtons();
         gameManager.CallReactivateTeamFlagsRPC();

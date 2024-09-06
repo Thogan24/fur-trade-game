@@ -98,7 +98,6 @@ public class DutchTradingButtonOnClick : MonoBehaviour
             Debug.Log("Dutch is calling the flag");
 
             gameManager.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOutEnd", RpcTarget.All);
-            gameManager.nextTurnChangeColorToNothingFlag = true;
         }
         greyOutButtons();
         gameManager.CallReactivateTeamFlagsRPC();

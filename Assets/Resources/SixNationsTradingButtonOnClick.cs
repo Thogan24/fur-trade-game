@@ -87,7 +87,6 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
             Debug.Log("Six Nations is calling the flag");
 
             gameManager.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOutEnd", RpcTarget.All);
-            gameManager.nextTurnChangeColorToNothingFlag = true;
 
         }
         greyOutButtons();

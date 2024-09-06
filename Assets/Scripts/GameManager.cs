@@ -3915,7 +3915,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         for (int al = 0; al < countdownTimers.Length; al++)
         {
-            countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time + "s";
+            if(SceneManager.GetActiveScene().name == "Main_Scene") // Inefficient
+            {
+                countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time + "s";
+            }
+            
         }
         if (time <= 0)
         {
@@ -3988,6 +3992,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void FlagButtonBackgroundFadeInFadeOutEnd(PhotonMessageInfo info)
     {
         Debug.Log("Stopping white background fade in and out");
+        nextTurnChangeColorToNothingFlag = true;
         if (inst4 != null)
         {
             Debug.Log("It really stopped.");
@@ -4002,7 +4007,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public IEnumerator FadeInFadeOut(float t, Image i)
     {
         nextTurnChangeColorToNothing = false;
-        while (true)
+        while (SceneManager.GetActiveScene().name == "Main_Scene")
         {
             Debug.Log("Still running this!");
             inst2 = StartCoroutine(FadeBackgroundToFullAlpha(t, i));
@@ -4084,8 +4089,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             if(nextTurnChangeColorToNothingFlag == false)
             {
                 debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nRunning";
-                if(debugger.GetComponent<Text>().text.Length > 80)
+                if(debugger.GetComponent<Text>().cachedTextGenerator.lines.Count > 8)
                 {
+                    
                     debugger.GetComponent<Text>().text = "Running";
                 }
                 i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));

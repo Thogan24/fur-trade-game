@@ -90,7 +90,7 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
         {
             Debug.Log("Philipses is calling the flag");
             gameManager.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOutEnd", RpcTarget.All);
-            gameManager.nextTurnChangeColorToNothingFlag = true;
+            
         }
         greyOutButtons();
         gameManager.CallReactivateTeamFlagsRPC();
