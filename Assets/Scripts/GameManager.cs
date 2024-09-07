@@ -216,7 +216,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // used for debugging
     public int[] allAmountsSummed = { 22, 11, 8, 9, 16, 6, 15, 8, 10, 13, 7, 23, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-    // NEEDS TO BE CHANGED IN FINAL GAME
+    // NEEDS TO BE CHANGED IN FINAL GAME (It does not its good I believe)
     public int[] PointMultiplier = { 9, 8, 5, 4, 2, 1, 9, 7, 7, 6, 3, 1, 1};
 
 
