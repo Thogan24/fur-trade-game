@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.Events;
 using Photon.Realtime;
+using TMPro;
+
 
 public class MunseeOnClickedScript : MonoBehaviour
 {
@@ -20,12 +22,12 @@ public class MunseeOnClickedScript : MonoBehaviour
         GameManager gameManager1 = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         if (gameManager1.Dutch != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Munsee != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Philipses != PhotonNetwork.LocalPlayer.ToString() && gameManager1.SixNations != PhotonNetwork.LocalPlayer.ToString() && teamJoined == false)
         {
-            this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, this.transform.position, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
+            this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, this.transform.position, PhotonNetwork.LocalPlayer.ToString(), PhotonNetwork.LocalPlayer.NickName); //  After being mapped
         }
     }
 
     [PunRPC]
-    void WhenClicked(Vector3 transform, string userIDOfClicker) // 
+    void WhenClicked(Vector3 transform, string userIDOfClicker, string Nickname, PhotonMessageInfo info) // 
     {
 
         Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine + " viewid: " + this.GetComponent<PhotonView>().ViewID);
@@ -35,9 +37,10 @@ public class MunseeOnClickedScript : MonoBehaviour
 
         MunseeButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.3f);
         gameManager.Munsee = userIDOfClicker;
-
+        gameManager.MunseeNickname = Nickname;
 
         teamJoined = true;
+        GameObject.FindGameObjectWithTag("MunseePlayerName").GetComponent<TextMeshProUGUI>().text = info.Sender.NickName;
 
         gameManager.moveSceneIfReadyCaller();
     }

@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public class MainMenuButtons : MonoBehaviour
 {
     public GameObject Instructions;
     public GameObject InstructionsGameObject;
+    public GameObject WampumValueList;
+    public GameObject WampumValueListGameObject;
+    public GameObject InputFieldText;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +32,25 @@ public class MainMenuButtons : MonoBehaviour
         //SceneManager.LoadScene("RoomSelect");
     }
 
+    public void NameCreatedOnClick()
+    {
+        GameObject.FindGameObjectWithTag("NameCanvas").GetComponent<Canvas>().sortingOrder = -10;
+        PhotonNetwork.NickName = InputFieldText.GetComponent<TextMeshProUGUI>().text;
+    }
+
+
+    public void WampumValueListOnClick()
+    {
+        if(WampumValueListGameObject == null)
+        {
+            WampumValueListGameObject = Instantiate(WampumValueList, GameObject.FindGameObjectWithTag("TheWampumCanvas").transform);
+        }
+        
+    }
+    public void CloseWampumValueList()
+    {
+        Destroy(GameObject.FindGameObjectWithTag("WampumValueList"));
+    }
     public void InstructionsOnClick()
     {
         if(SceneManager.GetActiveScene().name != "Main_Scene")

@@ -23,18 +23,18 @@ public class ConnectToPhoton : MonoBehaviourPunCallbacks
                 playerName = "Player " + Random.Range(0, 10000).ToString();
                 if (testIfNickNameTaken(p))
                 {
-                    PhotonNetwork.NickName = playerName;
+                    //PhotonNetwork.NickName = playerName;
                 }
             }
             if (testIfNickNameTaken(p))
             {
                 Debug.Log("Ran this");
-                PhotonNetwork.NickName = playerName;
+                //PhotonNetwork.NickName = playerName;
             }
         }
         if(PhotonNetwork.NickName == null || (PhotonNetwork.NickName == ""))
         {
-            PhotonNetwork.NickName = playerName;
+            //PhotonNetwork.NickName = playerName;
         }
         Debug.Log(PhotonNetwork.NickName);
         PhotonNetwork.ConnectUsingSettings();

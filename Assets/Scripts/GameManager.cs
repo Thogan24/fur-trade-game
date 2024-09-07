@@ -50,6 +50,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public string Munsee;
     public string Philipses;
 
+    public string DutchNickname;
+    public string SixNationsNickname;
+    public string MunseeNickname;
+    public string PhilipsesNickname;
+
     // Whether or not a team is joined
     public bool SixNationsJoined = false;
     public bool MunseeJoined = false;
@@ -476,12 +481,16 @@ public class GameManager : MonoBehaviourPunCallbacks
                         }
 
                     }
+                    Debug.Log("Got here");
+                    Debug.Log((DutchPoints >= PhilipsesPoints).ToString() + " " + (DutchPoints >= SixNationsPoints).ToString() + " " + (DutchPoints >= MunseePoints).ToString());
                     if (DutchPoints >= PhilipsesPoints && DutchPoints >= SixNationsPoints && DutchPoints >= MunseePoints)
                     {
+                        Debug.Log("Dutch Won");
                         GameObject.FindGameObjectWithTag("DutchCrown").SetActive(true);
                     }
                     else
                     {
+                        Debug.Log("DutchLost");
                         GameObject.FindGameObjectWithTag("DutchCrown").SetActive(false);
                     }
                     if (PhilipsesPoints >= DutchPoints && PhilipsesPoints >= SixNationsPoints && PhilipsesPoints >= MunseePoints)
@@ -3382,6 +3391,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 for (int wa = 0; wa < 13; wa++)
                 {
+                    GameObject.FindGameObjectWithTag("DutchPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = DutchNickname;
+                    GameObject.FindGameObjectWithTag("PhilipsesPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = PhilipsesNickname;
+                    GameObject.FindGameObjectWithTag("SixNationsPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = SixNationsNickname;
+                    GameObject.FindGameObjectWithTag("MunseePlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = MunseeNickname;
 
                     if (wa < 5 && DutchAmounts[wa] <= DutchAmountsStarting[wa + 13])
                     {
@@ -3906,7 +3919,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void ReduceTime()
     {
-        
+        if (SceneManager.GetActiveScene().name == "Main_Scene") // Inefficient
+        {
         time--;
         //Debug.Log("Reduce Time: " + time);
         if(countdownTimers.Length < 4)
@@ -3915,10 +3929,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         for (int al = 0; al < countdownTimers.Length; al++)
         {
-            if(SceneManager.GetActiveScene().name == "Main_Scene") // Inefficient
-            {
-                countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time + "s";
-            }
+            
+            countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time + "s";
+            
             
         }
         if (time <= 0)
@@ -3934,6 +3947,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 TimesUp();
             }
             
+        }
         }
     }
 
@@ -4049,12 +4063,16 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public IEnumerator FadeBackgroundToZeroAlpha(float t, Image i)
     {
-        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
-        while (i.color.a > 0.0f)
+        if(SceneManager.GetActiveScene().name == "Main_Scene")
         {
-            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
-            yield return null;
+            i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+            while (i.color.a > 0.0f)
+            {
+                i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+                yield return null;
+            }
         }
+        
     }
 
 
@@ -4082,37 +4100,41 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public IEnumerator FadeBackgroundToFullAlphaFlags(float t, Image i)
     {
-        Debug.Log("This ran again");
-        i.color = new Color(i.color.r, i.color.g, i.color.b, 0.0001f);
-        while (i.color.a < 1.0f && i.color.a != 0)
+        if(SceneManager.GetActiveScene().name == "Main_Scene")
         {
-            if(nextTurnChangeColorToNothingFlag == false)
+            Debug.Log("This ran again");
+            i.color = new Color(i.color.r, i.color.g, i.color.b, 0.0001f);
+            while (i.color.a < 1.0f && i.color.a != 0)
             {
-                debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nRunning";
-                if(debugger.GetComponent<Text>().cachedTextGenerator.lines.Count > 8)
+                if (nextTurnChangeColorToNothingFlag == false)
                 {
-                    
-                    debugger.GetComponent<Text>().text = "Running";
+                    debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nRunning";
+                    if (debugger.GetComponent<Text>().cachedTextGenerator.lines.Count > 8)
+                    {
+
+                        debugger.GetComponent<Text>().text = "Running";
+                    }
+                    i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
                 }
-                i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
-            }
-            if (nextTurnChangeColorToNothingFlag == true)
-            {
-                debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nnext";
-                nextTurnChangeColorToNothingFlag = false;
-                i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
-                Debug.Log("nextTurnChangeColorToNothingFlag is running");
-                Image imaginary3 = GameObject.FindGameObjectWithTag("TeamFlagsButtonBackground").GetComponent<Image>();
-                imaginary3.color = new Color(imaginary3.color.r, imaginary3.color.g, imaginary3.color.b, 0);
-                /*if (inst3 != null)
+                if (nextTurnChangeColorToNothingFlag == true)
                 {
-                    Debug.Log("NexTurn, stopping inst2");
-                    StopCoroutine(inst3);
+                    debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nnext";
+                    nextTurnChangeColorToNothingFlag = false;
+                    i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
+                    Debug.Log("nextTurnChangeColorToNothingFlag is running");
+                    Image imaginary3 = GameObject.FindGameObjectWithTag("TeamFlagsButtonBackground").GetComponent<Image>();
+                    imaginary3.color = new Color(imaginary3.color.r, imaginary3.color.g, imaginary3.color.b, 0);
+                    /*if (inst3 != null)
+                    {
+                        Debug.Log("NexTurn, stopping inst2");
+                        StopCoroutine(inst3);
+                    }
+                    yield return null;*/
                 }
-                yield return null;*/
+                yield return null;
             }
-            yield return null;
         }
+        
     }
 
     public IEnumerator FadeBackgroundToZeroAlphaFlags(float t, Image i)

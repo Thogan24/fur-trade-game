@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.Events;
 using Photon.Realtime;
+using TMPro;
+
 
 public class SixNationsOnClickedScript : MonoBehaviour
 {
@@ -21,7 +23,7 @@ public class SixNationsOnClickedScript : MonoBehaviour
         GameManager gameManager1 = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         if(gameManager1.Dutch != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Munsee != PhotonNetwork.LocalPlayer.ToString() && gameManager1.Philipses != PhotonNetwork.LocalPlayer.ToString() && gameManager1.SixNations != PhotonNetwork.LocalPlayer.ToString() && teamJoined == false)
         {
-            this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, this.transform.position, PhotonNetwork.LocalPlayer.ToString());
+            this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, this.transform.position, PhotonNetwork.LocalPlayer.ToString(), PhotonNetwork.LocalPlayer.NickName);
         }
 
         else if (teamJoined)
@@ -33,7 +35,7 @@ public class SixNationsOnClickedScript : MonoBehaviour
     }
 
     [PunRPC]
-    void WhenClicked(Vector3 transform, string userIDOfClicker) // 
+    void WhenClicked(Vector3 transform, string userIDOfClicker, string Nickname, PhotonMessageInfo info) // 
     {
         
         Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine + " viewid: " + this.GetComponent<PhotonView>().ViewID);
@@ -43,14 +45,14 @@ public class SixNationsOnClickedScript : MonoBehaviour
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
 
         gameManager.SixNations = userIDOfClicker;
-
+        gameManager.SixNationsNickname = Nickname;
         SixNationsButton.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.3f);
         teamJoined = true;
         //PhotonNetwork.Destroy(SixNationsButton);
 
         // If it didn't get destroyed yet for any reason
         //PhotonNetwork.Destroy(mySixNationsButton);
-
+        GameObject.FindGameObjectWithTag("SixNationsPlayerName").GetComponent<TextMeshProUGUI>().text = info.Sender.NickName;
         gameManager.moveSceneIfReadyCaller();
     }
 }

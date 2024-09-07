@@ -147,6 +147,13 @@ TagManager:
   - AcceptButtonBackground
   - WampumValue
   - TeamFlagsButtonBackground
+  - WampumValueList
+  - TheWampumCanvas
+  - NameCanvas
+  - DutchPlayerName
+  - PhilipsesPlayerName
+  - SixNationsPlayerName
+  - MunseePlayerName
   layers:
   - Default
   - TransparentFX
