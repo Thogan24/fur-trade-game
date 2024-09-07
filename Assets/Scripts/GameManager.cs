@@ -3391,10 +3391,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 for (int wa = 0; wa < 13; wa++)
                 {
-                    GameObject.FindGameObjectWithTag("DutchPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = DutchNickname;
-                    GameObject.FindGameObjectWithTag("PhilipsesPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = PhilipsesNickname;
-                    GameObject.FindGameObjectWithTag("SixNationsPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = SixNationsNickname;
-                    GameObject.FindGameObjectWithTag("MunseePlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = MunseeNickname;
+                    
 
                     if (wa < 5 && DutchAmounts[wa] <= DutchAmountsStarting[wa + 13])
                     {
@@ -3444,6 +3441,41 @@ public class GameManager : MonoBehaviourPunCallbacks
                     }
                     
                 }
+                if (DutchPoints >= PhilipsesPoints && DutchPoints >= SixNationsPoints && DutchPoints >= MunseePoints)
+                {
+                    Debug.Log("Dutch Won");
+                    GameObject.FindGameObjectWithTag("DutchCrown").SetActive(true);
+                }
+                else
+                {
+                    Debug.Log("DutchLost");
+                    GameObject.FindGameObjectWithTag("DutchCrown").SetActive(false);
+                }
+                if (PhilipsesPoints >= DutchPoints && PhilipsesPoints >= SixNationsPoints && PhilipsesPoints >= MunseePoints)
+                {
+                    GameObject.FindGameObjectWithTag("PhilipsesCrown").SetActive(true);
+                }
+                else
+                {
+                    GameObject.FindGameObjectWithTag("PhilipsesCrown").SetActive(false);
+                }
+                if (SixNationsPoints >= PhilipsesPoints && SixNationsPoints >= DutchPoints && SixNationsPoints >= MunseePoints)
+                {
+                    GameObject.FindGameObjectWithTag("SixNationsCrown").SetActive(true);
+                }
+                else
+                {
+                    GameObject.FindGameObjectWithTag("SixNationsCrown").SetActive(false);
+                }
+                if (MunseePoints >= PhilipsesPoints && MunseePoints >= SixNationsPoints && MunseePoints >= DutchPoints)
+                {
+                    GameObject.FindGameObjectWithTag("MunseeCrown").SetActive(true);
+                }
+                else
+                {
+                    GameObject.FindGameObjectWithTag("MunseeCrown").SetActive(false);
+                }
+
                 alreadyRanCalculation = true;
 
 
@@ -3458,6 +3490,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Points:\n" + PhilipsesPoints.ToString();
             GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Points:\n" + SixNationsPoints.ToString();
             GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Points:\n" + MunseePoints.ToString();
+            Debug.Log("It did get here");
+            Debug.Log(DutchNickname);
+            GameObject.FindGameObjectWithTag("DutchPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = DutchNickname;
+            GameObject.FindGameObjectWithTag("PhilipsesPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = PhilipsesNickname;
+            GameObject.FindGameObjectWithTag("SixNationsPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = SixNationsNickname;
+            GameObject.FindGameObjectWithTag("MunseePlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = MunseeNickname;
         }
     }
 
