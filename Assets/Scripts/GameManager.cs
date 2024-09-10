@@ -320,6 +320,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsMasterClient && loadedGameOnMasterClient == false)
             {
                 Debug.Log("Loading level on the MASTER client...");
+
                 PhotonNetwork.LoadLevel("Main_Scene");
                 loadedGameOnMasterClient = true;
                 //SceneManager.LoadScene("Main_Scene");
@@ -3377,15 +3378,26 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void moveToCalculationScene(PhotonMessageInfo info)
     {
-        //if (PhotonNetwork.IsMasterClient && loadedCalculationOnMasterClient)
-        //{
+        PhotonNetwork.AutomaticallySyncScene = true;
+        debugger.GetComponent<Text>().text = "Moved Scenes!";
+        if (PhotonNetwork.IsMasterClient && !loadedCalculationOnMasterClient)
+        {
+            
+            Debug.Log("LOADING CALCULATION SCENE ON MASTER CLIENT");
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel("Final_Wampum_Value");
-            SceneManager.LoadScene("Final_Wampum_Value");
-            //loadedCalculationOnMasterClient = true;
-        //}
+            //SceneManager.LoadScene("Final_Wampum_Value");
+            loadedCalculationOnMasterClient = true;
+        }
         Debug.Log("Moved Scenes");
         if (SceneManager.GetActiveScene().name == "Final_Wampum_Value")
         {
+            Debug.Log(DutchNickname);
+            GameObject.FindGameObjectWithTag("DutchPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = DutchNickname.ToString();
+            GameObject.FindGameObjectWithTag("PhilipsesPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = PhilipsesNickname.ToString();
+            GameObject.FindGameObjectWithTag("SixNationsPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = SixNationsNickname.ToString();
+            GameObject.FindGameObjectWithTag("MunseePlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = MunseeNickname.ToString();
             Debug.Log("Inside if");
             if (alreadyRanCalculation == false)
             {
@@ -3491,11 +3503,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Points:\n" + SixNationsPoints.ToString();
             GameObject.FindGameObjectWithTag("MunseeWampumText").gameObject.GetComponent<Text>().text = "Points:\n" + MunseePoints.ToString();
             Debug.Log("It did get here");
-            Debug.Log(DutchNickname);
-            GameObject.FindGameObjectWithTag("DutchPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = DutchNickname;
-            GameObject.FindGameObjectWithTag("PhilipsesPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = PhilipsesNickname;
-            GameObject.FindGameObjectWithTag("SixNationsPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = SixNationsNickname;
-            GameObject.FindGameObjectWithTag("MunseePlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = MunseeNickname;
+            
         }
     }
 

@@ -39,7 +39,7 @@ public class SixNationsOnClickedScript : MonoBehaviour
     {
         
         Debug.LogError("ismine: " + this.GetComponent<PhotonView>().IsMine + " viewid: " + this.GetComponent<PhotonView>().ViewID);
-        Debug.LogError("User ID: " + userIDOfClicker);
+        Debug.LogError("User ID: " + userIDOfClicker + "Nickname: " + Nickname);
 
         GameObject SixNationsButton = GameObject.FindGameObjectWithTag("Six Nations Button");
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
