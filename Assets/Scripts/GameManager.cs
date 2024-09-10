@@ -422,6 +422,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (SceneManager.GetActiveScene().name == "Final_Wampum_Value")
         {
             Debug.Log("Inside if");
+            Debug.Log(DutchNickname);
+            GameObject.FindGameObjectWithTag("DutchPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = DutchNickname.ToString();
+            GameObject.FindGameObjectWithTag("PhilipsesPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = PhilipsesNickname.ToString();
+            GameObject.FindGameObjectWithTag("SixNationsPlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = SixNationsNickname.ToString();
+            GameObject.FindGameObjectWithTag("MunseePlayerName").GetComponent<TMPro.TextMeshProUGUI>().text = MunseeNickname.ToString();
             GameObject.FindGameObjectWithTag("DutchWampumText").gameObject.GetComponent<Text>().text = "Dutch Wampum: " + DutchPoints.ToString();
             GameObject.FindGameObjectWithTag("PhilipsesWampumText").gameObject.GetComponent<Text>().text = "Philipses Wampum: " + PhilipsesPoints.ToString();
             GameObject.FindGameObjectWithTag("SixNationsWampumText").gameObject.GetComponent<Text>().text = "Six Nations Wampum: " + SixNationsPoints.ToString();
