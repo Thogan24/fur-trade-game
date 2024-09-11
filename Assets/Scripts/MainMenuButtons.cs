@@ -25,6 +25,23 @@ public class MainMenuButtons : MonoBehaviour
         
     }
 
+
+    public void PauseGame()
+    {
+        GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            gameManager.GetComponent<PhotonView>().RPC("PauseGameRPC", RpcTarget.All);
+        }
+    }
+    public void ExitPauseGame()
+    {
+        GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            gameManager.GetComponent<PhotonView>().RPC("ExitPauseGameRPC", RpcTarget.All);
+        }
+    }
     public void StartGameOnClick()
     {
         GameObject.FindGameObjectWithTag("MainMenu").GetComponent<Canvas>().sortingOrder = -10;

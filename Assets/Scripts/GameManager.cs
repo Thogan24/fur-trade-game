@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public bool loadedGameOnMasterClient = false;
     public bool loadedCalculationOnMasterClient = false;
+    public bool GamePaused = false;
+
+
     // Stores individual userID
     public string Dutch;
     public string SixNations;
@@ -105,6 +108,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject PhilipsesObject;
     public GameObject SixNationsObject;
     public GameObject MunseeObject;
+
+    public GameObject PauseScreen;
 
     public bool AlreadyLoaded = false;
 
@@ -4031,6 +4036,44 @@ public class GameManager : MonoBehaviourPunCallbacks
         munseeMovedTurns = false;
 
     }
+    GameObject PauseGameObject = null;
+    [PunRPC]
+    public void PauseGameRPC()
+    {
+        Debug.Log("Pausing game");
+        if(PauseGameObject == null)
+        {
+            GamePaused = true;
+            if (PhotonNetwork.LocalPlayer.ToString() == Dutch)
+            {
+                PauseGameObject = Instantiate(PauseScreen, DutchInstructionsCanvasObject.transform);
+            }
+            else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
+            {
+                PauseGameObject = Instantiate(PauseScreen, PhilipsesInstructionsCanvasObject.transform);
+            }
+            else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
+            {
+                PauseGameObject = Instantiate(PauseScreen, SixNationsInstructionsCanvasObject.transform);
+            }
+            else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
+            {
+                PauseGameObject = Instantiate(PauseScreen, MunseeInstructionsCanvasObject.transform);
+            }
+        }
+        
+    }
+    
+    [PunRPC]
+    public void ExitPauseGameRPC()
+    {
+        Debug.Log("Unpausing game");
+        Destroy(PauseGameObject);
+        PauseGameObject = null;
+    }
+
+
+
 
 
     [PunRPC]
@@ -4197,6 +4240,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             yield return null;
         }
     }
+
 
 
 

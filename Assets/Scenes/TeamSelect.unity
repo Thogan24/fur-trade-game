@@ -4129,10 +4129,15 @@ MonoBehaviour:
   DebugStart: 0
   loadedGameOnMasterClient: 0
   loadedCalculationOnMasterClient: 0
+  GamePaused: 0
   Dutch: 
   SixNations: 
   Munsee: 
   Philipses: 
+  DutchNickname: 
+  SixNationsNickname: 
+  MunseeNickname: 
+  PhilipsesNickname: 
   SixNationsJoined: 0
   MunseeJoined: 0
   DutchJoined: 0
@@ -4173,6 +4178,7 @@ MonoBehaviour:
   PhilipsesObject: {fileID: 0}
   SixNationsObject: {fileID: 0}
   MunseeObject: {fileID: 0}
+  PauseScreen: {fileID: 1070444788886548666, guid: 56ad1f3699111bf4f815e94947be9ffe, type: 3}
   AlreadyLoaded: 0
   DutchTrading: 0
   SixNationsTrading: 0
