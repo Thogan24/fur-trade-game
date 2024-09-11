@@ -3975,35 +3975,35 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void ReduceTime()
     {
-        if (SceneManager.GetActiveScene().name == "Main_Scene") // Inefficient
+        if (SceneManager.GetActiveScene().name == "Main_Scene" && !GamePaused) // Inefficient
         {
-        time--;
-        //Debug.Log("Reduce Time: " + time);
-        if(countdownTimers.Length < 4)
-        {
-            countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
-        }
-        for (int al = 0; al < countdownTimers.Length; al++)
-        {
-            
-            countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time + "s";
-            
-            
-        }
-        if (time <= 0)
-        {
-            Debug.Log("I'm stopping it");
-            StopCoroutine("LoseTime");
-            for(int al = 0; al < countdownTimers.Length; al++)
+            time--;
+            //Debug.Log("Reduce Time: " + time);
+            if(countdownTimers.Length < 4)
             {
-                countdownTimers[al].GetComponent<Text>().text = "Moving turns...";
+                countdownTimers = GameObject.FindGameObjectsWithTag("CountdownTimer");
             }
-            if (PhotonNetwork.LocalPlayer.IsMasterClient) // .ToString() == "#02 ''"
+            for (int al = 0; al < countdownTimers.Length; al++)
             {
-                TimesUp();
-            }
             
-        }
+                countdownTimers[al].GetComponent<Text>().text = "Next Turn In: " + time + "s";
+            
+            
+            }
+            if (time <= 0)
+            {
+                Debug.Log("I'm stopping it");
+                StopCoroutine("LoseTime");
+                for(int al = 0; al < countdownTimers.Length; al++)
+                {
+                    countdownTimers[al].GetComponent<Text>().text = "Moving turns...";
+                }
+                if (PhotonNetwork.LocalPlayer.IsMasterClient) // .ToString() == "#02 ''"
+                {
+                    TimesUp();
+                }
+            
+            }
         }
     }
 
@@ -4060,6 +4060,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 PauseGameObject = Instantiate(PauseScreen, MunseeInstructionsCanvasObject.transform);
             }
+
+
         }
         
     }
@@ -4067,6 +4069,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void ExitPauseGameRPC()
     {
+        GamePaused = false;
         Debug.Log("Unpausing game");
         Destroy(PauseGameObject);
         PauseGameObject = null;
