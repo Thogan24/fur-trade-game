@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
 
 
-    // If the game manager is reset for any reason, set Camera Prefabs, Card Prefabs, 
+    // If the game manager is reset for any reason, set Camera Prefabs, Card Prefabs,
+    public Dictionary<int,Player> playerList = PhotonNetwork.CurrentRoom.Players;
     public bool DebugStart;
     Coroutine inst = null;
     public Coroutine inst2 = null;
@@ -385,6 +386,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (SceneManager.GetActiveScene().name == "Main_Scene" && sceneChange == false)
         {
+            playerList = PhotonNetwork.CurrentRoom.Players;
+
             Debug.Log("Ran the thing");
             sceneChange = true;
             for (int j = 4; j < imageDescriptionTags.Length; j++)
@@ -397,8 +400,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             }
         }
-    
-
+        if (SceneManager.GetActiveScene().name == "Main_Scene" && PhotonNetwork.CurrentRoom.Players != playerList)
+        {
+            Debug.Log("SOMEONE LEFT!!!");
+        }
+        /*if(Dutch == PhotonNetwork.LocalPlayer.ToString()) 
+        {
+            OnPlayerLeftRoom();
+        }*/
+        
 
         // Team Select Scene
 
@@ -4243,6 +4253,66 @@ public class GameManager : MonoBehaviourPunCallbacks
             yield return null;
         }
     }
+
+
+
+
+    // Detect disconnect
+    void OnPhotonPlayerDisconnected(Player otherPlayer)
+    {
+        Debug.Log("SOMEONE LEFT!");
+        if (otherPlayer.IsInactive)
+        {
+            Debug.Log("SOMEONE LEFT: " + otherPlayer.ToString());
+        }
+        else
+        {
+            
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -22,6 +22,7 @@ public class ClearTradeButtonOnClick : MonoBehaviour
     public void ClearTradeButtonOnClicked()
     {
         Debug.Log("Clear Trade Button Clicked");
+        PhotonNetwork.LeaveRoom();
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         if (gameManager.turn == 1 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Dutch || gameManager.turn == 2 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Philipses || gameManager.turn == 3 && PhotonNetwork.LocalPlayer.ToString() == gameManager.SixNations || gameManager.turn == 4 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Munsee)
         {
