@@ -7,12 +7,13 @@ using Photon.Pun;
 using Photon.Realtime;
 using System;
 
-public class GameManager : MonoBehaviourPunCallbacks
+public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMatchmakingCallbacks, IInRoomCallbacks, ILobbyCallbacks, IErrorInfoCallback
 {
 
 
     // If the game manager is reset for any reason, set Camera Prefabs, Card Prefabs,
-    public Dictionary<int,Player> playerList = PhotonNetwork.CurrentRoom.Players;
+    public bool playerMissing = false;
+    public Player[] playerList = PhotonNetwork.PlayerList;
     public bool DebugStart;
     Coroutine inst = null;
     public Coroutine inst2 = null;
@@ -386,8 +387,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (SceneManager.GetActiveScene().name == "Main_Scene" && sceneChange == false)
         {
-            playerList = PhotonNetwork.CurrentRoom.Players;
-
+            playerList = PhotonNetwork.PlayerList;
+            for (int i = 0; i < playerList.Length; i++)
+            {
+                Debug.Log(playerList[i].ToString());
+            }
             Debug.Log("Ran the thing");
             sceneChange = true;
             for (int j = 4; j < imageDescriptionTags.Length; j++)
@@ -400,9 +404,27 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             }
         }
-        if (SceneManager.GetActiveScene().name == "Main_Scene" && PhotonNetwork.CurrentRoom.Players != playerList)
+/*        if (playerList.Length != PhotonNetwork.PlayerList.Length)
         {
-            Debug.Log("SOMEONE LEFT!!!");
+            Debug.Log("SOMETHINGS WRONG!");
+        }*/
+        /*for (int i = 0; i < playerList.Length; i++)
+        {
+            
+            Debug.Log(playerList[i].ToString());
+        }
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            Debug.Log(playerList[i].ToString());
+        }*/
+        //Debug.Log("");
+        if (SceneManager.GetActiveScene().name == "Main_Scene" && PhotonNetwork.PlayerList != playerList)
+        {
+/*            for(int i = 0; i < playerList.Length; i++)
+            {
+                Debug.Log(playerList[i].ToString());
+            }*/
+            //Debug.Log("SOMEONE LEFT!!!");
         }
         /*if(Dutch == PhotonNetwork.LocalPlayer.ToString()) 
         {
@@ -4079,10 +4101,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void ExitPauseGameRPC()
     {
-        GamePaused = false;
-        Debug.Log("Unpausing game");
-        Destroy(PauseGameObject);
-        PauseGameObject = null;
+        if(playerMissing == false)
+        {
+            GamePaused = false;
+            Debug.Log("Unpausing game");
+            Destroy(PauseGameObject);
+            PauseGameObject = null;
+        }
+        
     }
 
 
@@ -4258,19 +4284,16 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
     // Detect disconnect
-    void OnPhotonPlayerDisconnected(Player otherPlayer)
+    public void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Debug.Log("SOMEONE LEFT!");
-        if (otherPlayer.IsInactive)
+        playerMissing = true;
+        Debug.Log("AHHHH OnPlayerLeftRoom(" + otherPlayer + ").");
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            Debug.Log("SOMEONE LEFT: " + otherPlayer.ToString());
-        }
-        else
-        {
-            
+            this.GetComponent<PhotonView>().RPC("PauseGameRPC", RpcTarget.All);
         }
     }
-
+    
 
 
 
