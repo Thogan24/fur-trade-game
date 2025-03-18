@@ -4342,7 +4342,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         playerMissing = false;
     }
 
-    public void OnJoinedRoom(Player otherPlayer)
+    public void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom Running");
         //If ran after the clear
