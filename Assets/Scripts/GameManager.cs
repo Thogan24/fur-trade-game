@@ -4286,11 +4286,23 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     // Detect disconnect
     public void OnPlayerLeftRoom(Player otherPlayer)
     {
-        playerMissing = true;
+        playerMissing = true; //expand to more than one
         Debug.Log("AHHHH OnPlayerLeftRoom(" + otherPlayer + ").");
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             this.GetComponent<PhotonView>().RPC("PauseGameRPC", RpcTarget.All);
+        }
+    }
+
+    public void OnPlayerJoinRoom(Player otherPlayer)
+    {
+        if(playerMissing == true)
+        {
+            Debug.Log("HE HAS RETURNED!");
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
+            {
+                this.GetComponent<PhotonView>().RPC("ExitPauseGameRPC", RpcTarget.All);
+            }
         }
     }
     
