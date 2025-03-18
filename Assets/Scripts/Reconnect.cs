@@ -12,9 +12,9 @@ public class Reconnect : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
     void Start()
     {
-        this.loadBalancingClient = loadBalancingClient;
-        this.appSettings = appSettings;
-        this.loadBalancingClient.AddCallbackTarget(this);
+        loadBalancingClient = PhotonNetwork.NetworkingClient;
+        appSettings = PhotonNetwork.PhotonServerSettings.AppSettings;
+        loadBalancingClient.AddCallbackTarget(this);
     }
 /*    public Reconnect(LoadBalancingClient loadBalancingClient, AppSettings appSettings)
     {
