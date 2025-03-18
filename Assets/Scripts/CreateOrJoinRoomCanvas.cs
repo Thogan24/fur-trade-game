@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class CreateOrJoinRoomCanvas : MonoBehaviour
 {
@@ -11,8 +13,17 @@ public class CreateOrJoinRoomCanvas : MonoBehaviour
     private RoomsCanvases roomCanvases;
     public void FirstInitilize(RoomsCanvases canvases)
     {
-        roomCanvases = canvases;
-        createRoomMenu.FirstInitilize(canvases);
-        roomsListingMenu.FirstInitilize(canvases);
+        Debug.Log("Running firstinitialize thing");
+        Debug.Log(SceneManager.GetActiveScene().name);
+        if (SceneManager.GetActiveScene().name != "Main_Scene")
+        {
+            roomCanvases = canvases;
+            createRoomMenu.FirstInitilize(canvases);
+            roomsListingMenu.FirstInitilize(canvases);
+        }
+        else
+        {
+            Debug.Log("Rejoining, first initialize");
+        }
     }
 }

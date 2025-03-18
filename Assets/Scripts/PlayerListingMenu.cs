@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerListingMenu : MonoBehaviourPunCallbacks
 {
@@ -120,7 +121,17 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("PLAYER ENTERED!!!");
-        AddPlayerListing(newPlayer, false);
+
+        //Don't do if rejoining
+        if (SceneManager.GetActiveScene().name != "Main_Scene")
+        {
+            AddPlayerListing(newPlayer, false);
+        }
+        else
+        {
+            Debug.Log("Rejoinning player");
+        }
+            
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
@@ -138,8 +149,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.CurrentRoom.IsOpen = false;
-            PhotonNetwork.CurrentRoom.IsVisible = false;
+            //PhotonNetwork.CurrentRoom.IsOpen = false;
+            //PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel("TeamSelect");
         }
         else

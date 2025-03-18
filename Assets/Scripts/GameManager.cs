@@ -4219,7 +4219,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         publicImage = i;
         while (true)
         {
-            Debug.Log("Still running this!");
+            //Debug.Log("Still running this!");
             inst3 = StartCoroutine(FadeBackgroundToFullAlphaFlags(t, i));
             yield return new WaitForSeconds(t);
             StartCoroutine(FadeBackgroundToZeroAlphaFlags(t, i));
@@ -4235,23 +4235,23 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     {
         if(SceneManager.GetActiveScene().name == "Main_Scene")
         {
-            Debug.Log("This ran again");
+            //Debug.Log("This ran again");
             i.color = new Color(i.color.r, i.color.g, i.color.b, 0.0001f);
             while (i.color.a < 1.0f && i.color.a != 0)
             {
                 if (nextTurnChangeColorToNothingFlag == false)
                 {
-                    debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nRunning";
+                    /*debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nRunning";
                     if (debugger.GetComponent<Text>().cachedTextGenerator.lines.Count > 8)
                     {
 
                         debugger.GetComponent<Text>().text = "Running";
-                    }
+                    }*/
                     i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
                 }
                 if (nextTurnChangeColorToNothingFlag == true)
                 {
-                    debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nnext";
+                    //debugger.GetComponent<Text>().text = debugger.GetComponent<Text>().text + "\nnext";
                     nextTurnChangeColorToNothingFlag = false;
                     i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
                     Debug.Log("nextTurnChangeColorToNothingFlag is running");

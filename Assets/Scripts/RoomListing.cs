@@ -22,6 +22,7 @@ public class RoomListing : MonoBehaviour
 
     public void OnClick_Button()
     {
+        Debug.Log("Trying to join the room");
         PhotonNetwork.JoinRoom(RoomInfo.Name);
     }
 }
