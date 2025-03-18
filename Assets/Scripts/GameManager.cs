@@ -4355,10 +4355,33 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         System.Array.Copy(CPhilipsesAmountsSubtractedDuringTrade, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmountsSubtractedDuringTrade.Length);
         System.Array.Copy(CSixNationsAmountsSubtractedDuringTrade, SixNationsAmountsSubtractedDuringTrade, SixNationsAmountsSubtractedDuringTrade.Length);
         System.Array.Copy(CMunseeAmountsSubtractedDuringTrade, MunseeAmountsSubtractedDuringTrade, MunseeAmountsSubtractedDuringTrade.Length);
+        clearTradeButton = true;
+        this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+
+
+        /*for (int zb = 0; zb < 13; zb++)
+        {
+            if (DutchAmounts[zb + 13] < 0 && DutchAmountsGameObjects[zb + 13] != null)
+            {
+                DutchAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[zb + 13]).ToString();
+            }
+            if (PhilipsesAmounts[zb + 13] < 0 && PhilipsesAmountsGameObjects[zb + 13] != null)
+            {
+                PhilipsesAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[zb + 13]).ToString();
+            }
+            if (SixNationsAmounts[zb + 13] < 0 && SixNationsAmountsGameObjects[zb + 13] != null)
+            {
+                SixNationsAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[zb + 13]).ToString();
+            }
+            if (MunseeAmounts[zb + 13] < 0 && MunseeAmountsGameObjects[zb + 13] != null)
+            {
+                MunseeAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[zb + 13]).ToString();
+            }
+        }*/
 
 
 
-        if (playerMissing || OnPlayerEnteredRoomRan)
+        /*if (playerMissing || OnPlayerEnteredRoomRan)
         {
             IAmTheCrasher = true;
             if (!playerMissing) // If this ran before OnJoinRoom
@@ -4370,7 +4393,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 //clear and copy the stuff
             }
             
-        }
+        }*/
     }
 
 
