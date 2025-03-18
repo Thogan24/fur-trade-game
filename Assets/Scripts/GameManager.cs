@@ -4294,7 +4294,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         }
     }
 
-    public void OnPlayerJoinRoom(Player otherPlayer)
+    public void OnPlayerEnteredRoom(Player otherPlayer)
     {
         if(playerMissing == true)
         {
