@@ -10,17 +10,31 @@ public class Reconnect : MonoBehaviourPunCallbacks, IConnectionCallbacks
     public LoadBalancingClient loadBalancingClient;
     public AppSettings appSettings;
 
-    public Reconnect(LoadBalancingClient loadBalancingClient, AppSettings appSettings)
+    void Start()
     {
         this.loadBalancingClient = loadBalancingClient;
         this.appSettings = appSettings;
         this.loadBalancingClient.AddCallbackTarget(this);
     }
-
-    ~Reconnect()
+/*    public Reconnect(LoadBalancingClient loadBalancingClient, AppSettings appSettings)
     {
+        this.loadBalancingClient = loadBalancingClient;
+        this.appSettings = appSettings;
+        this.loadBalancingClient.AddCallbackTarget(this);
+    }*/
+
+    void onDestroy()
+    {
+        
+        if (this.loadBalancingClient == null)
+            return;
+        
         this.loadBalancingClient.RemoveCallbackTarget(this);
     }
+/*    ~Reconnect()
+    {
+        this.loadBalancingClient.RemoveCallbackTarget(this);
+    }*/
 
     void IConnectionCallbacks.OnDisconnected(DisconnectCause cause)
     {
