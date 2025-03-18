@@ -291,6 +291,9 @@ namespace Photon.Pun
             //    Debug.LogWarning("It seems some instantiation is not completed, as instantiation data is used. You should make sure instantiations are paused when calling this method. Cleaning now, despite ");
             //}
 
+            // I ADDED THIS!!!
+            destroyInstantiatedGameObjects = false;
+
             // Destroy GO's (if we should)
             if (destroyInstantiatedGameObjects)
             {

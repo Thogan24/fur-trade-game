@@ -7,8 +7,8 @@ using Photon.Pun;
 
 public class Reconnect : MonoBehaviourPunCallbacks, IConnectionCallbacks
 {
-    private LoadBalancingClient loadBalancingClient;
-    private AppSettings appSettings;
+    public LoadBalancingClient loadBalancingClient;
+    public AppSettings appSettings;
 
     public Reconnect(LoadBalancingClient loadBalancingClient, AppSettings appSettings)
     {
