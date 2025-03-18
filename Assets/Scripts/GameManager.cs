@@ -4331,7 +4331,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             Debug.Log("Lose the time!");
             StartCoroutine("LoseTime");
         }
-        
+        clearTradeButton = true;
+        this.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+
+
     }
 
 
