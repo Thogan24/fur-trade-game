@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
     // If the game manager is reset for any reason, set Camera Prefabs, Card Prefabs,
+    public bool IAmTheCrasher = false;
+    public bool OnPlayerEnteredRoomRan = false;
     public bool playerMissing = false;
     public Player[] playerList = PhotonNetwork.PlayerList;
     public bool DebugStart;
@@ -224,6 +226,19 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public int[] MunseeAmountsSubtractedDuringTrade = { 10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6 };
     public int[] PhilipsesAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0 };
     public int[] DutchAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+    //Values before game crashed
+    public int[] CSixNationsAmounts = { 12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 9, 4, 6, 3, 3, 20, 2 };
+    public int[] CMunseeAmounts = { 10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6 };
+    public int[] CPhilipsesAmounts = { 0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] CDutchAmounts = { 0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] CSixNationsAmountsSubtractedDuringTrade = { 12, 5, 6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 9, 4, 6, 3, 3, 20, 2 };
+    public int[] CMunseeAmountsSubtractedDuringTrade = { 10, 6, 2, 5, 13, 6, 0, 0, 0, 0, 0, 0, 0,/**/ 0, 0, 0, 0, 0, 0, 6, 4, 4, 10, 4, 12, 6 };
+    public int[] CPhilipsesAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 3, 8, 10, 4, 2, 3, 5,/**/ 10, 7, 4, 6, 4, 6, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] CDutchAmountsSubtractedDuringTrade = { 0, 0, 0, 0, 0, 0, 12, 0, 0, 9, 5, 20, 3,/**/ 12, 4, 4, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+
+
 
     // used for debugging
     public int[] allAmountsSummed = { 22, 11, 8, 9, 16, 6, 15, 8, 10, 13, 7, 23, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -3860,6 +3875,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             numberOfAcceptedTeams = 0;
             clearTradeButton = false;
 
+            // Dutch Amounts subtracted during trade become dutch amounts and the amount subtracted is now no longer subtracted
             System.Array.Copy(DutchAmounts, DutchAmountsSubtractedDuringTrade, DutchAmounts.Length);
             System.Array.Copy(PhilipsesAmounts, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmounts.Length);
             System.Array.Copy(SixNationsAmounts, SixNationsAmountsSubtractedDuringTrade, SixNationsAmounts.Length);
@@ -4296,26 +4312,52 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
     public void OnPlayerEnteredRoom(Player otherPlayer)
     {
+        Debug.Log("Did onplayereneteredroom run from the crasher?");
         if(playerMissing == true)
         {
-            Debug.Log("HE HAS RETURNED!");
-            if (PhotonNetwork.LocalPlayer.IsMasterClient)
+            OnPlayerEnteredRoomRan = true;
+            if (!IAmTheCrasher) // If this ran after OnJoinRoom
             {
-                Debug.Log("I am the (new) master client");
-                this.GetComponent<PhotonView>().RPC("ExitPauseGameRPC", RpcTarget.All);
-                if(GamePaused == true)
+                Debug.Log("HE HAS RETURNED!");
+                if (PhotonNetwork.LocalPlayer.IsMasterClient)
                 {
-                    GamePaused = false;
-                    Debug.Log("Unpausing game, had to go in here bruh");
-                    Destroy(PauseGameObject);
-                    PauseGameObject = null;
+                    Debug.Log("I am the (new) master client");
+                    this.GetComponent<PhotonView>().RPC("ExitPauseGameRPC", RpcTarget.All);
+                    if(GamePaused == true)
+                    {
+                        GamePaused = false;
+                        Debug.Log("Unpausing game, had to go in here bruh");
+                        Destroy(PauseGameObject);
+                        PauseGameObject = null;
+                    }
+                    this.GetComponent<PhotonView>().RPC("ResetTime", RpcTarget.All);
+                    Debug.Log("Reset time was called");
+
                 }
-                this.GetComponent<PhotonView>().RPC("ResetTime", RpcTarget.All);
-                Debug.Log("Reset time was called");
+
+            
 
             }
         }
         playerMissing = false;
+    }
+
+    public void OnJoinRoom(Player otherPlayer)
+    {
+        
+        if(playerMissing || OnPlayerEnteredRoomRan)
+        {
+            IAmTheCrasher = true;
+            if (!playerMissing) // If this ran before OnJoinRoom
+            {
+                //copy the stuff
+            }
+            else
+            {
+                //clear and copy the stuff
+            }
+            
+        }
     }
 
 
@@ -4623,8 +4665,21 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                     PhotonNetwork.Destroy(extraCards[am].gameObject);                               
                 }
         }
+
+
+        System.Array.Copy(DutchAmounts, CDutchAmounts, DutchAmounts.Length);
+        System.Array.Copy(PhilipsesAmounts, CPhilipsesAmounts, PhilipsesAmounts.Length);
+        System.Array.Copy(SixNationsAmounts, CSixNationsAmounts, SixNationsAmounts.Length);
+        System.Array.Copy(MunseeAmounts, CMunseeAmounts, MunseeAmounts.Length);
+
+        System.Array.Copy(DutchAmountsSubtractedDuringTrade, CDutchAmountsSubtractedDuringTrade, DutchAmounts.Length);
+        System.Array.Copy(PhilipsesAmountsSubtractedDuringTrade, CPhilipsesAmountsSubtractedDuringTrade, PhilipsesAmountsSubtractedDuringTrade.Length);
+        System.Array.Copy(SixNationsAmountsSubtractedDuringTrade, CSixNationsAmountsSubtractedDuringTrade, SixNationsAmountsSubtractedDuringTrade.Length);
+        System.Array.Copy(MunseeAmountsSubtractedDuringTrade, CMunseeAmountsSubtractedDuringTrade, MunseeAmountsSubtractedDuringTrade.Length);
+
         StartCoroutine(waitForASecondThenResetMoveTurns());
 
+        
 
         
         

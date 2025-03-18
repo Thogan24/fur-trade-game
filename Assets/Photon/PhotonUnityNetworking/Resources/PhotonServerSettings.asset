@@ -69,6 +69,7 @@ MonoBehaviour:
   - ExitPauseGameRPC
   - detectDisconnect
   - OnPlayerLeftRoom
+  - ResetTime
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
