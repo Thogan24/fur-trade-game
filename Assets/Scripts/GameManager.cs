@@ -4342,9 +4342,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         playerMissing = false;
     }
 
-    public void OnJoinRoom(Player otherPlayer)
+    public void OnJoinedRoom(Player otherPlayer)
     {
-
+        Debug.Log("OnJoinedRoom Running");
         //If ran after the clear
         System.Array.Copy(CDutchAmounts, DutchAmounts, DutchAmounts.Length);
         System.Array.Copy(CPhilipsesAmounts, PhilipsesAmounts, PhilipsesAmounts.Length);
