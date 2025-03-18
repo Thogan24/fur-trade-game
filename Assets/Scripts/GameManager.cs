@@ -4303,11 +4303,36 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             {
                 Debug.Log("I am the (new) master client");
                 this.GetComponent<PhotonView>().RPC("ExitPauseGameRPC", RpcTarget.All);
+                if(GamePaused == true)
+                {
+                    GamePaused = false;
+                    Debug.Log("Unpausing game, had to go in here bruh");
+                    Destroy(PauseGameObject);
+                    PauseGameObject = null;
+                }
+                this.GetComponent<PhotonView>().RPC("ResetTime", RpcTarget.All);
+                Debug.Log("Reset time was called");
+
             }
         }
         playerMissing = false;
     }
-    
+
+
+    [PunRPC]
+    private void ResetTime()
+    {
+
+        Debug.Log("I'm reseting it");
+        StopCoroutine("LoseTime");
+        time = 180;
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            Debug.Log("Lose the time!");
+            StartCoroutine("LoseTime");
+        }
+        
+    }
 
 
 
