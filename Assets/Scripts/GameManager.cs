@@ -4315,9 +4315,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         Debug.Log("Did onplayereneteredroom run from the crasher?");
         if(playerMissing == true)
         {
-            OnPlayerEnteredRoomRan = true;
+           /* OnPlayerEnteredRoomRan = true;
             if (!IAmTheCrasher) // If this ran after OnJoinRoom
-            {
+            {*/
                 Debug.Log("HE HAS RETURNED!");
                 if (PhotonNetwork.LocalPlayer.IsMasterClient)
                 {
@@ -4337,15 +4337,28 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
             
 
-            }
+//            }
         }
         playerMissing = false;
     }
 
     public void OnJoinRoom(Player otherPlayer)
     {
-        
-        if(playerMissing || OnPlayerEnteredRoomRan)
+
+        //If ran after the clear
+        System.Array.Copy(CDutchAmounts, DutchAmounts, DutchAmounts.Length);
+        System.Array.Copy(CPhilipsesAmounts, PhilipsesAmounts, PhilipsesAmounts.Length);
+        System.Array.Copy(CSixNationsAmounts, SixNationsAmounts, SixNationsAmounts.Length);
+        System.Array.Copy(CMunseeAmounts, MunseeAmounts, MunseeAmounts.Length);
+
+        System.Array.Copy(CDutchAmountsSubtractedDuringTrade, DutchAmountsSubtractedDuringTrade, DutchAmounts.Length);
+        System.Array.Copy(CPhilipsesAmountsSubtractedDuringTrade, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmountsSubtractedDuringTrade.Length);
+        System.Array.Copy(CSixNationsAmountsSubtractedDuringTrade, SixNationsAmountsSubtractedDuringTrade, SixNationsAmountsSubtractedDuringTrade.Length);
+        System.Array.Copy(CMunseeAmountsSubtractedDuringTrade, MunseeAmountsSubtractedDuringTrade, MunseeAmountsSubtractedDuringTrade.Length);
+
+
+
+        if (playerMissing || OnPlayerEnteredRoomRan)
         {
             IAmTheCrasher = true;
             if (!playerMissing) // If this ran before OnJoinRoom
