@@ -4301,9 +4301,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             Debug.Log("HE HAS RETURNED!");
             if (PhotonNetwork.LocalPlayer.IsMasterClient)
             {
+                Debug.Log("I am the (new) master client");
                 this.GetComponent<PhotonView>().RPC("ExitPauseGameRPC", RpcTarget.All);
             }
         }
+        playerMissing = false;
     }
     
 
