@@ -70,6 +70,7 @@ MonoBehaviour:
   - detectDisconnect
   - OnPlayerLeftRoom
   - ResetTime
+  - SkipTurnBecauseCrashedWhenTimerLow
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
