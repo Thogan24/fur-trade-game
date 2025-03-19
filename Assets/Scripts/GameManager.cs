@@ -4479,6 +4479,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
         Debug.Log("I'm reseting it");
         StopCoroutine("LoseTime");
+        if(time < 10)
+        {
+            Debug.Log("Very close to moving turns, I'm going to set all the teams to a uniform turn");
+            this.GetComponent<PhotonView>().RPC("SkipTurnBecauseCrashedWhenTimerLow", RpcTarget.All);
+        }
         time = 180;
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
@@ -4491,7 +4496,31 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
     }
 
-
+    [PunRPC]
+    private void SkipTurnBecauseCrashedWhenTimerLow()
+    {
+        if (time < 10)
+        {
+            Debug.Log("Very close to moving turns, I'm going to set all the teams to a uniform turn");
+            if (turn == 1)
+            {
+                turn = 2;
+            }
+            if (turn == 2)
+            {
+                turn = 3;
+            }
+            if (turn == 3)
+            {
+                turn = 4;
+            }
+            if (turn == 4)
+            {
+                turn = 1;
+            }
+        }
+        time = 180;
+    }
 
 
 
