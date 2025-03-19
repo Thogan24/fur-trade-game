@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public bool IAmTheCrasher = false;
     public bool OnPlayerEnteredRoomRan = false;
     public bool playerMissing = false;
+    public String playerMissingName = "";
     public Player[] playerList = PhotonNetwork.PlayerList;
     public bool DebugStart;
     Coroutine inst = null;
@@ -4145,6 +4146,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         {
             PauseGameObject.transform.GetChild(1).gameObject.SetActive(false);
             PauseGameObject.transform.GetChild(2).gameObject.SetActive(true);
+            Debug.Log(PauseGameObject.transform.GetChild(2).gameObject.GetComponent<TMPro.TMP_Text>().text);
+            PauseGameObject.transform.GetChild(2).gameObject.GetComponent<TMPro.TMP_Text>().text = "The player \"" + playerMissingName + "\" has lost connection or left the game. Please wait for them to rejoin";
+
+
         }
 
     }
@@ -4339,6 +4344,22 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public void OnPlayerLeftRoom(Player otherPlayer)
     {
         playerMissing = true; //expand to more than one
+        if(otherPlayer.ToString() == Dutch)
+        {
+            playerMissingName = DutchNickname;
+        }
+        else if (otherPlayer.ToString() == Philipses)
+        {
+            playerMissingName = PhilipsesNickname;
+        }
+        else if (otherPlayer.ToString() == SixNations)
+        {
+            playerMissingName = SixNationsNickname;
+        }
+        else if (otherPlayer.ToString() == Munsee)
+        {
+            playerMissingName = MunseeNickname;
+        }
         Debug.Log("AHHHH OnPlayerLeftRoom(" + otherPlayer + ").");
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
