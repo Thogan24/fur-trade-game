@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
     // If the game manager is reset for any reason, set Camera Prefabs, Card Prefabs,
+    public GameObject[] Alert;
     public bool IAmTheCrasher = false;
     public bool OnPlayerEnteredRoomRan = false;
     public bool playerMissing = false;
@@ -419,6 +420,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 }
 
             }
+            Alert = GameObject.FindGameObjectsWithTag("Alert");
         }
 /*        if (playerList.Length != PhotonNetwork.PlayerList.Length)
         {
@@ -2716,6 +2718,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             }
 
         }
+        else
+        {
+            for(int harold = 0; harold < Alert.Length; harold++)
+            {
+                Alert[harold].GetComponent<TMPro.TMP_Text>().text = "It is not your turn!";
+                StartCoroutine(FadeTextToZeroAlpha(1f, Alert[harold].GetComponent<TMPro.TMP_Text>()));
+            }
+            
+        }
 
         /*debugger.GetComponent<Text>().text = "Dutch";
         for (int apple = 0; apple < DutchAmounts.Length; apple++)
@@ -4407,7 +4418,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                     Debug.Log("Reset time was called");
 
                 }
-            GameObject[] Alert = GameObject.FindGameObjectsWithTag("Alert");
+            
             for (int i = 0; i < Alert.Length; i++)
             {
                 Debug.Log("Alert: " + Alert[i].GetComponent<TMPro.TMP_Text>().text);
@@ -4433,7 +4444,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         System.Array.Copy(CPhilipsesAmountsSubtractedDuringTrade, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmountsSubtractedDuringTrade.Length);
         System.Array.Copy(CSixNationsAmountsSubtractedDuringTrade, SixNationsAmountsSubtractedDuringTrade, SixNationsAmountsSubtractedDuringTrade.Length);
         System.Array.Copy(CMunseeAmountsSubtractedDuringTrade, MunseeAmountsSubtractedDuringTrade, MunseeAmountsSubtractedDuringTrade.Length);
-        GameObject[] Alert = GameObject.FindGameObjectsWithTag("Alert");
+        
         for (int i = 0; i < Alert.Length; i++)
         {
             Debug.Log("Alert: " + Alert[i].GetComponent<TMPro.TMP_Text>().text);
