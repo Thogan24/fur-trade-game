@@ -4342,6 +4342,23 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
 
+
+    // For Player rejoined text
+    public IEnumerator FadeTextToZeroAlpha(float t, TMPro.TextMeshProUGUI i)
+    {
+        Debug.Log("Setting alpha to 1");
+
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        yield return new WaitForSeconds(1);
+        while (i.color.a > 0.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+            yield return null;
+        }
+    }
+
+
+
     // Detect disconnect
     public void OnPlayerLeftRoom(Player otherPlayer)
     {
@@ -4374,9 +4391,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         Debug.Log("Did onplayereneteredroom run from the crasher?");
         if(playerMissing == true)
         {
-           /* OnPlayerEnteredRoomRan = true;
-            if (!IAmTheCrasher) // If this ran after OnJoinRoom
-            {*/
                 Debug.Log("HE HAS RETURNED!");
                 if (PhotonNetwork.LocalPlayer.IsMasterClient)
                 {
@@ -4393,10 +4407,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                     Debug.Log("Reset time was called");
 
                 }
-
-            
-
-//            }
+            GameObject[] Alert = GameObject.FindGameObjectsWithTag("Alert");
+            for (int i = 0; i < Alert.Length; i++)
+            {
+                Debug.Log("Alert: " + Alert[i].GetComponent<TMPro.TextMeshProUGUI>());
+                Alert[i].GetComponent<TMPro.TextMeshProUGUI>().text = playerMissingName + " rejoined the game";
+                StartCoroutine(FadeTextToZeroAlpha(1f, Alert[i].GetComponent<TMPro.TextMeshProUGUI>()));
+            }
+            // ALERT
         }
         playerMissing = false;
     }

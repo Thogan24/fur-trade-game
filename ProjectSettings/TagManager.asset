@@ -154,6 +154,7 @@ TagManager:
   - PhilipsesPlayerName
   - SixNationsPlayerName
   - MunseePlayerName
+  - Alert
   layers:
   - Default
   - TransparentFX
