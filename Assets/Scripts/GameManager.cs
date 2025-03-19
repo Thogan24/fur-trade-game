@@ -4108,12 +4108,48 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             {
                 PauseGameObject = Instantiate(PauseScreen, MunseeInstructionsCanvasObject.transform);
             }
-
+            PauseGameObject.transform.GetChild(1).gameObject.SetActive(true);
+            PauseGameObject.transform.GetChild(2).gameObject.SetActive(false);
 
         }
         
     }
-    
+
+    [PunRPC]
+    public void PauseGameCrashRPC()
+    {
+        Debug.Log("Pausing game because of crash");
+        if (PauseGameObject == null)
+        {
+            GamePaused = true;
+            if (PhotonNetwork.LocalPlayer.ToString() == Dutch)
+            {
+                PauseGameObject = Instantiate(PauseScreen, DutchInstructionsCanvasObject.transform);
+            }
+            else if (PhotonNetwork.LocalPlayer.ToString() == Philipses)
+            {
+                PauseGameObject = Instantiate(PauseScreen, PhilipsesInstructionsCanvasObject.transform);
+            }
+            else if (PhotonNetwork.LocalPlayer.ToString() == SixNations)
+            {
+                PauseGameObject = Instantiate(PauseScreen, SixNationsInstructionsCanvasObject.transform);
+            }
+            else if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
+            {
+                PauseGameObject = Instantiate(PauseScreen, MunseeInstructionsCanvasObject.transform);
+            }
+            PauseGameObject.transform.GetChild(1).gameObject.SetActive(false);
+            PauseGameObject.transform.GetChild(2).gameObject.SetActive(true);
+        }
+        else
+        {
+            PauseGameObject.transform.GetChild(1).gameObject.SetActive(false);
+            PauseGameObject.transform.GetChild(2).gameObject.SetActive(true);
+        }
+
+    }
+
+
     [PunRPC]
     public void ExitPauseGameRPC()
     {
@@ -4306,7 +4342,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         Debug.Log("AHHHH OnPlayerLeftRoom(" + otherPlayer + ").");
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            this.GetComponent<PhotonView>().RPC("PauseGameRPC", RpcTarget.All);
+            this.GetComponent<PhotonView>().RPC("PauseGameCrashRPC", RpcTarget.All);
         }
     }
 

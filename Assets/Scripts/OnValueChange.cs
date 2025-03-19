@@ -35,6 +35,8 @@ public class OnValueChange : MonoBehaviour
             
         }*/
         TMP_Text text1 = this.gameObject.GetComponent<TMP_InputField>().textComponent;
+
+        //Potential fix, check the characters without a space or enter between them, if more than 20 then don't allow them to type anything but a return.
         
         if (text1.GetTextInfo(text1.text).lineCount >= 3 && Input.GetKeyDown(KeyCode.Return))
         {
