@@ -4412,7 +4412,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             {
                 Debug.Log("Alert: " + Alert[i].GetComponent<TMPro.TMP_Text>().text);
                 Debug.Log(Alert[i].transform.parent.parent.parent);
-                Alert[i].GetComponent<TMPro.TMP_Text>().text = playerMissingName + " rejoined the game";
+                Alert[i].GetComponent<TMPro.TMP_Text>().text = playerMissingName + " rejoined the game!";
                 StartCoroutine(FadeTextToZeroAlpha(1f, Alert[i].GetComponent<TMPro.TMP_Text>()));
             }
             // ALERT
@@ -4433,7 +4433,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         System.Array.Copy(CPhilipsesAmountsSubtractedDuringTrade, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmountsSubtractedDuringTrade.Length);
         System.Array.Copy(CSixNationsAmountsSubtractedDuringTrade, SixNationsAmountsSubtractedDuringTrade, SixNationsAmountsSubtractedDuringTrade.Length);
         System.Array.Copy(CMunseeAmountsSubtractedDuringTrade, MunseeAmountsSubtractedDuringTrade, MunseeAmountsSubtractedDuringTrade.Length);
-
+        GameObject[] Alert = GameObject.FindGameObjectsWithTag("Alert");
+        for (int i = 0; i < Alert.Length; i++)
+        {
+            Debug.Log("Alert: " + Alert[i].GetComponent<TMPro.TMP_Text>().text);
+            Debug.Log(Alert[i].transform.parent.parent.parent);
+            Alert[i].GetComponent<TMPro.TMP_Text>().text = "You rejoined the game!";
+            StartCoroutine(FadeTextToZeroAlpha(1f, Alert[i].GetComponent<TMPro.TMP_Text>()));
+        }
 
         for (int ag = 0; ag < 26; ag++)
         {
