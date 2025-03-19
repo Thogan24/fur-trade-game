@@ -4344,7 +4344,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
     // For Player rejoined text
-    public IEnumerator FadeTextToZeroAlpha(float t, TMPro.TextMeshProUGUI i)
+    public IEnumerator FadeTextToZeroAlpha(float t, TMPro.TMP_Text i)
     {
         Debug.Log("Setting alpha to 1");
 
@@ -4410,9 +4410,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             GameObject[] Alert = GameObject.FindGameObjectsWithTag("Alert");
             for (int i = 0; i < Alert.Length; i++)
             {
-                Debug.Log("Alert: " + Alert[i].GetComponent<TMPro.TextMeshProUGUI>());
-                Alert[i].GetComponent<TMPro.TextMeshProUGUI>().text = playerMissingName + " rejoined the game";
-                StartCoroutine(FadeTextToZeroAlpha(1f, Alert[i].GetComponent<TMPro.TextMeshProUGUI>()));
+                Debug.Log("Alert: " + Alert[i].GetComponent<TMPro.TMP_Text>().text);
+                Debug.Log(Alert[i].transform.parent.parent.parent);
+                Alert[i].GetComponent<TMPro.TMP_Text>().text = playerMissingName + " rejoined the game";
+                StartCoroutine(FadeTextToZeroAlpha(1f, Alert[i].GetComponent<TMPro.TMP_Text>()));
             }
             // ALERT
         }
