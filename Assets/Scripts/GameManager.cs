@@ -4479,11 +4479,19 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
         Debug.Log("I'm reseting it");
         StopCoroutine("LoseTime");
-        Debug.Log("The time is: " + time);
+        Debug.Log("The time is: " + time + "; turn is: " + turn);
         if(time < 10)
         {
             Debug.Log("uniform turn");
             totalTurnNumber++;
+            if (turn <= 3)
+            {
+                turn++;
+            }
+            if (turn == 4)
+            {
+                turn = 1;
+            }
             this.GetComponent<PhotonView>().RPC("SkipTurnBecauseCrashedWhenTimerLow", RpcTarget.All);
         }
         time = 180;
@@ -4504,22 +4512,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         if (time < 10)
         {
             Debug.Log("Very close to moving turns, I'm going to set all the teams to a uniform turn");
-            if (turn == 1)
-            {
-                turn = 2;
-            }
-            if (turn == 2)
-            {
-                turn = 3;
-            }
-            if (turn == 3)
-            {
-                turn = 4;
-            }
-            if (turn == 4)
-            {
-                turn = 1;
-            }
+            Debug.Log("New turn is: " + turn);
 
             for (int k = 0; k < SeasonalTimers.Length; k++)
             {
