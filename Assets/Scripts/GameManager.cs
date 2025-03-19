@@ -161,9 +161,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public GameObject[] cardAmountObjects;
     public GameObject[] cardAmountObjects2;
 
-    public int time = 180;
-    public int turnTimeLength = 180;
-    public int turnTimeLengthFirstIteration = 180;
+    public int time = 25;
+    public int turnTimeLength = 25;
+    public int turnTimeLengthFirstIteration = 30;
     public GameObject countdownTextObject;
     public Text countdownTimerText;
     [HideInInspector] public bool isTimeFinished = true;
@@ -4494,7 +4494,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             }
             this.GetComponent<PhotonView>().RPC("SkipTurnBecauseCrashedWhenTimerLow", RpcTarget.All);
         }
-        time = 180;
+        time = turnTimeLength;
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             Debug.Log("Lose the time!");
@@ -4519,7 +4519,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " \nTurn: " + teamNames[(turn - 1)].ToString();
             }
         }
-        time = 180;
+        time = turnTimeLength;
     }
 
 

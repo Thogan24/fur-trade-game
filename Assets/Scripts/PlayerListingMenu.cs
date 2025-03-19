@@ -149,8 +149,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            //PhotonNetwork.CurrentRoom.IsOpen = false;
-            //PhotonNetwork.CurrentRoom.IsVisible = false;
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel("TeamSelect");
         }
         else

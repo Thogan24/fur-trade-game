@@ -34,7 +34,6 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
         options.EmptyRoomTtl = 300000;
 
         PhotonNetwork.KeepAliveInBackground = 60.0f * 1000.0f;
-        // keepaliveinbackground thing
 
 
         if (roomName != null)
