@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public bool IAmTheCrasher = false;
     public bool OnPlayerEnteredRoomRan = false;
     public bool playerMissing = false;
+    public Color WishlistColor = Color.green;
+    public Color WishlistColorRegular = Color.grey; //323232
     public String playerMissingName = "";
     public Player[] playerList = PhotonNetwork.PlayerList;
     public bool DebugStart;
@@ -1049,21 +1051,31 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                         {
                             DutchAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
                             DutchAmountsGameObjects[i].GetComponent<Text>().text = DutchAmounts[i].ToString() + "/" + DutchAmountsStarting[i].ToString() + "x";
+                            changeColorOfObjectWithText(DutchAmountsGameObjects[i], WishlistColorRegular);
                         }
                         else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Philipses")
                         {
                             PhilipsesAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
                             PhilipsesAmountsGameObjects[i].GetComponent<Text>().text = PhilipsesAmounts[i].ToString() + "/" + PhilipsesAmountsStarting[i].ToString() + "x";
+                            changeColorOfObjectWithText(PhilipsesAmountsGameObjects[i], WishlistColorRegular);
+
+
                         }
                         else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Six Nations")
                         {
                             SixNationsAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
                             SixNationsAmountsGameObjects[i].GetComponent<Text>().text = SixNationsAmounts[i].ToString() + "/" + SixNationsAmountsStarting[i].ToString() + "x";
+                            changeColorOfObjectWithText(SixNationsAmountsGameObjects[i], WishlistColorRegular);
+
+
                         }
                         else if (AmountsGameObjectsWithTag[j].transform.parent.transform.parent.transform.parent.name == "Munsee")
                         {
                             MunseeAmountsGameObjects[i] = AmountsGameObjectsWithTag[j];
                             MunseeAmountsGameObjects[i].GetComponent<Text>().text = MunseeAmounts[i].ToString() + "/" + MunseeAmountsStarting[i].ToString() + "x";
+                            changeColorOfObjectWithText(MunseeAmountsGameObjects[i], WishlistColorRegular);
+
+
                         }
                     }
                         
@@ -1954,10 +1966,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             if (DutchAmountsStarting[z + 13] > 0)
                             {
                                 DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z + 13].ToString() + "x";
+                                changeColorOfObjectWithText(DutchAmountsGameObjects[z+13], WishlistColorRegular);
+
 
                                 if (DutchAmounts[z + 13] < 0)
                                 {
                                     DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[z + 13]).ToString();
+                                    DutchAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
                                 }
 
 
@@ -1990,10 +2005,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 if (DutchAmountsStarting[z + 13] > 0)
                                 {
                                     DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z + 13].ToString() + "x";
+                                    changeColorOfObjectWithText(DutchAmountsGameObjects[z + 13], WishlistColorRegular);
+
 
                                     if (DutchAmounts[z + 13] < 0)
                                     {
                                         DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[z + 13]).ToString();
+                                        DutchAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
                                     }
 
 
@@ -2021,10 +2039,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 DutchAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z + 13].ToString() + "x";
+                                changeColorOfObjectWithText(DutchAmountsGameObjects[z + 13], WishlistColorRegular);
+
 
                                 if (DutchAmounts[z + 13] < 0)
                                 {
                                     DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[z + 13]).ToString();
+                                    DutchAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
                                 }
 
                                 break;
@@ -2134,10 +2155,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             if (PhilipsesAmountsStarting[z + 13] > 0)
                             {
                                 PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "/" + PhilipsesAmountsStarting[z + 13].ToString() + "x";
+                                changeColorOfObjectWithText(PhilipsesAmountsGameObjects[z + 13], WishlistColorRegular);
+
 
                                 if (PhilipsesAmounts[z + 13] < 0)
                                 {
                                     PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[z + 13]).ToString();
+                                    PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+
                                 }
 
 
@@ -2167,13 +2192,16 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 if(PhilipsesAmountsStarting[z+13] > 0)
                                 {
                                     PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "/" + PhilipsesAmountsStarting[z + 13].ToString() + "x";
+                                    changeColorOfObjectWithText(PhilipsesAmountsGameObjects[z + 13], WishlistColorRegular);
 
                                     if (PhilipsesAmounts[z + 13] < 0)
                                     {
                                         PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[z + 13]).ToString();
+                                        PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+
                                     }
 
-                                    
+
                                 }
                                 break;
                                 
@@ -2197,10 +2225,12 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 PhilipsesAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "/" + PhilipsesAmountsStarting[z+13].ToString() + "x";
+                                changeColorOfObjectWithText(PhilipsesAmountsGameObjects[z + 13], WishlistColorRegular);
 
                                 if (PhilipsesAmounts[z + 13] < 0)
                                 {
                                     PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[z + 13]).ToString();
+                                    PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
                                 }
 
                                 break;
@@ -2340,9 +2370,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             if (SixNationsAmountsStarting[z + 13] > 0)
                             {
                                 SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "/" + SixNationsAmountsStarting[z + 13].ToString() + "x";
+                                changeColorOfObjectWithText(SixNationsAmountsGameObjects[z + 13], WishlistColorRegular);
+
                                 if (SixNationsAmounts[z + 13] < 0)
                                 {
                                     SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[z + 13]).ToString();
+                                    SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+
                                 }
                             }
                         }
@@ -2369,9 +2403,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
                                 if (SixNationsAmountsStarting[z+13] > 0){
                                     SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "/" + SixNationsAmountsStarting[z + 13].ToString() + "x";
+                                    changeColorOfObjectWithText(SixNationsAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
                                     if (SixNationsAmounts[z + 13] < 0)
                                     {
                                         SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[z + 13]).ToString();
+                                        SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+
                                     }
                                 }
                                 
@@ -2396,10 +2435,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 SixNationsAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "/" + SixNationsAmountsStarting[z+13].ToString() + "x";
+                                changeColorOfObjectWithText(SixNationsAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
 
                                 if (SixNationsAmounts[z + 13] < 0)
                                 {
                                     SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[z + 13]).ToString();
+                                    SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+
                                 }
 
                                 break;
@@ -2513,9 +2557,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             if (MunseeAmountsStarting[z + 13] > 0)
                             {
                                 MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "/" + MunseeAmountsStarting[z + 13].ToString() + "x";
+                                changeColorOfObjectWithText(MunseeAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
                                 if (MunseeAmounts[z + 13] < 0)
                                 {
                                     MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[z + 13]).ToString();
+                                    MunseeAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
                                 }
                             }
                         }
@@ -2542,9 +2590,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 if (MunseeAmountsStarting[z + 13] > 0)
                                 {
                                     MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "/" + MunseeAmountsStarting[z + 13].ToString() + "x";
+                                    changeColorOfObjectWithText(MunseeAmountsGameObjects[z + 13], WishlistColorRegular);
+
                                     if (MunseeAmounts[z + 13] < 0)
                                     {
                                         MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[z + 13]).ToString();
+                                        MunseeAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+
                                     }
                                 }
                                 break;
@@ -2568,10 +2620,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 MunseeAmounts[z + 13]--;
                                 findTeamBeingTradedWithAndSubtractFromInventory(z);
                                 MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "/" + MunseeAmountsStarting[z+13].ToString() + "x";
+                                changeColorOfObjectWithText(MunseeAmountsGameObjects[z + 13], WishlistColorRegular);
+
 
                                 if (MunseeAmounts[z + 13] < 0)
                                 {
                                     MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[z + 13]).ToString();
+                                    MunseeAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+
                                 }
 
                                 break;
@@ -2810,16 +2866,20 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             {
                                 Debug.Log("Changing team Dutch. Wishlist (should be of dutch) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex + 13].ToString() + "/" + DutchAmountsStarting[childIndex + 13].ToString() + "x";
+                                changeColorOfObjectWithText(cardAmountObjects2[d].gameObject, WishlistColorRegular);
+
 
                                 // DutchAmounts[childIndex + 13].ToString()
 
-                                    if (DutchAmounts[childIndex + 13] < 0)
+                                if (DutchAmounts[childIndex + 13] < 0)
                                     {
                                         cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[childIndex + 13]).ToString();
+                                        cardAmountObjects2[d].GetComponent<Text>().color = WishlistColor;
+
                                     }
 
 
-                                
+
 
                             }
                         }
@@ -2872,9 +2932,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             {
                                 Debug.Log("Changing team Philipses. Wishlist (should be of philipses) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex + 13].ToString() + "/" + PhilipsesAmountsStarting[childIndex + 13].ToString() + "x";
+                                changeColorOfObjectWithText(cardAmountObjects2[d].gameObject, WishlistColorRegular);
+
                                 if (PhilipsesAmounts[childIndex + 13] < 0)
                                 {
                                     cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[childIndex + 13]).ToString();
+                                    cardAmountObjects2[d].GetComponent<Text>().color = WishlistColor;
+
                                 }
 
                             }
@@ -2927,9 +2991,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             {
                                 Debug.Log("Changing team Six Nations. Wishlist (should be of Six Nations) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = SixNationsAmounts[childIndex + 13].ToString() + "/" + SixNationsAmountsStarting[childIndex + 13].ToString() + "x";
+                                changeColorOfObjectWithText(cardAmountObjects2[d].gameObject, WishlistColorRegular);
+
                                 if (SixNationsAmounts[childIndex + 13] < 0)
                                 {
                                     cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[childIndex + 13]).ToString();
+                                    cardAmountObjects2[d].GetComponent<Text>().color = WishlistColor;
+
                                 }
 
                             }
@@ -2979,9 +3047,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             {
                                 Debug.Log("Changing team Munsee. Wishlist (should be of munsee) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex + 13].ToString() + "/" + MunseeAmountsStarting[childIndex + 13].ToString() + "x";
+                                changeColorOfObjectWithText(cardAmountObjects2[d].gameObject, WishlistColorRegular);
+
                                 if (MunseeAmounts[childIndex + 13] < 0)
                                 {
                                     cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[childIndex + 13]).ToString();
+                                    cardAmountObjects2[d].GetComponent<Text>().color = WishlistColor;
+
                                 }
 
                             }
@@ -3044,9 +3116,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             {
                                 Debug.Log("Changing team Dutch. Wishlist (should be of dutch) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = DutchAmounts[childIndex + 13].ToString() + "/" + DutchAmountsStarting[childIndex + 13].ToString() + "x";
+                                changeColorOfObjectWithText(cardAmountObjects2[d].gameObject, WishlistColorRegular);
+
                                 if (DutchAmounts[childIndex + 13] < 0)
                                 {
                                     cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[childIndex + 13]).ToString();
+                                    cardAmountObjects2[d].GetComponent<Text>().color = WishlistColor;
+
                                 }
                             }
                         }
@@ -3075,10 +3151,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 if (DutchAmountsGameObjects[childIndex + 13] != null)
                                 {
                                     DutchAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = DutchAmounts[childIndex + 13].ToString() + "/" + DutchAmountsStarting[childIndex + 13].ToString() + "x";
+                                    changeColorOfObjectWithText(DutchAmountsGameObjects[childIndex + 13].gameObject, WishlistColorRegular);
+
 
                                     if (DutchAmounts[childIndex + 13] < 0)
                                     {
                                         DutchAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[childIndex + 13]).ToString();
+                                        DutchAmountsGameObjects[childIndex + 13].GetComponent<Text>().color = WishlistColor;
                                     }
                                 }
                             }
@@ -3126,9 +3205,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             {
                                 Debug.Log("Changing team Philipses. Wishlist (should be of philipses) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = PhilipsesAmounts[childIndex + 13].ToString() + "/" + PhilipsesAmountsStarting[childIndex + 13].ToString() + "x";
+                                changeColorOfObjectWithText(cardAmountObjects2[d].gameObject, WishlistColorRegular);
+
                                 if (PhilipsesAmounts[childIndex + 13] < 0)
                                 {
                                     cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[childIndex + 13]).ToString();
+                                    cardAmountObjects2[d].GetComponent<Text>().color = WishlistColor;
+
                                 }
                             }
                         }
@@ -3158,10 +3241,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 if (PhilipsesAmountsGameObjects[childIndex + 13] != null)
                                 {
                                     PhilipsesAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = PhilipsesAmounts[childIndex + 13].ToString() + "/" + PhilipsesAmountsStarting[childIndex + 13].ToString() + "x";
+                                    changeColorOfObjectWithText(PhilipsesAmountsGameObjects[childIndex + 13].gameObject, WishlistColorRegular);
+
+
 
                                     if (PhilipsesAmounts[childIndex + 13] < 0)
                                     {
                                         PhilipsesAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[childIndex + 13]).ToString();
+                                        PhilipsesAmountsGameObjects[childIndex + 13].GetComponent<Text>().color = WishlistColor;
+
                                     }
                                 }
 
@@ -3209,6 +3297,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 if (SixNationsAmounts[childIndex + 13] < 0)
                                 {
                                     cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[childIndex + 13]).ToString();
+                                    cardAmountObjects2[d].GetComponent<Text>().color = WishlistColor;
+
                                 }
                             }
                         }
@@ -3237,10 +3327,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 if (SixNationsAmountsGameObjects[childIndex + 13] != null)
                                 {
                                     SixNationsAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = SixNationsAmounts[childIndex + 13].ToString() + "/" + SixNationsAmountsStarting[childIndex + 13].ToString() + "x";
+                                    changeColorOfObjectWithText(SixNationsAmountsGameObjects[childIndex + 13], WishlistColorRegular);
 
                                     if (SixNationsAmounts[childIndex + 13] < 0)
                                     {
                                         SixNationsAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[childIndex + 13]).ToString();
+                                        SixNationsAmountsGameObjects[childIndex + 13].GetComponent<Text>().color = WishlistColor;
+
                                     }
                                 }
                             }
@@ -3288,9 +3381,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                             {
                                 Debug.Log("Changing team Munsee. Wishlist (should be of munsee) is of team: " + cardAmountObjects2[d].gameObject.transform.parent.transform.parent.transform.parent.name);
                                 cardAmountObjects2[d].gameObject.GetComponent<Text>().text = MunseeAmounts[childIndex + 13].ToString() + "/" + MunseeAmountsStarting[childIndex + 13].ToString() + "x";
+                                changeColorOfObjectWithText(cardAmountObjects2[d].gameObject, WishlistColorRegular);
+
                                 if (MunseeAmounts[childIndex + 13] < 0)
                                 {
                                     cardAmountObjects2[d].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[childIndex + 13]).ToString();
+                                    cardAmountObjects2[d].GetComponent<Text>().color = WishlistColor;
+
                                 }
 
                             }
@@ -3319,10 +3416,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                 if (MunseeAmountsGameObjects[childIndex + 13] != null)
                                 {
                                     MunseeAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = MunseeAmounts[childIndex + 13].ToString() + "/" + MunseeAmountsStarting[childIndex + 13].ToString() + "x";
+                                    changeColorOfObjectWithText(MunseeAmountsGameObjects[childIndex + 13], WishlistColorRegular);
+
 
                                     if (MunseeAmounts[childIndex + 13] < 0)
                                     {
                                         MunseeAmountsGameObjects[childIndex + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[childIndex + 13]).ToString();
+                                        MunseeAmountsGameObjects[childIndex + 13].GetComponent<Text>().color = WishlistColor;
+
                                     }
                                 }
                             }
@@ -3640,10 +3741,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                     if (DutchAmountsGameObjects[ad + 13] != null)
                                     {
                                         DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "/" + DutchAmountsStarting[ad + 13].ToString() + "x";
+                                        changeColorOfObjectWithText(DutchAmountsGameObjects[ad + 13], WishlistColorRegular);
+
 
                                         if (DutchAmounts[ad + 13] < 0)
                                         {
                                             DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[ad + 13]).ToString();
+                                            DutchAmountsGameObjects[ad+13].GetComponent<Text>().color = WishlistColor;
+
                                         }
                                     }
                                 }
@@ -3655,10 +3760,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                     if (PhilipsesAmountsGameObjects[ad + 13] != null)
                                     {
                                         PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "/" + PhilipsesAmountsStarting[ad + 13].ToString() + "x";
+                                        changeColorOfObjectWithText(PhilipsesAmountsGameObjects[ad + 13], WishlistColorRegular);
+
 
                                         if (PhilipsesAmounts[ad + 13] < 0)
                                         {
                                             PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[ad + 13]).ToString();
+                                            PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+
                                         }
                                     }
 
@@ -3671,10 +3780,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                     if (SixNationsAmountsGameObjects[ad + 13] != null)
                                     {
                                         SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "/" + SixNationsAmountsStarting[ad + 13].ToString() + "x";
+                                        changeColorOfObjectWithText(SixNationsAmountsGameObjects[ad + 13], WishlistColorRegular);
 
                                         if (SixNationsAmounts[ad + 13] < 0)
                                         {
                                             SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[ad + 13]).ToString();
+                                            SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+
                                         }
                                     }
                                 }
@@ -3686,10 +3798,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                     if (MunseeAmountsGameObjects[ad + 13] != null)
                                     {
                                         MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "/" + MunseeAmountsStarting[ad + 13].ToString() + "x";
+                                        changeColorOfObjectWithText(MunseeAmountsGameObjects[ad + 13], WishlistColorRegular);
 
                                         if (MunseeAmounts[ad + 13] < 0)
                                         {
                                             MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[ad + 13]).ToString();
+                                            MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+
                                         }
                                     }
                                 }
@@ -3764,10 +3879,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                         if(DutchAmountsGameObjects[ad + 13] != null)
                                         {
                                             DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "/" + DutchAmountsStarting[ad + 13].ToString() + "x";
+                                            changeColorOfObjectWithText(DutchAmountsGameObjects[ad + 13], WishlistColorRegular);
+
 
                                             if (DutchAmounts[ad + 13] < 0)
                                             {
                                                 DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[ad + 13]).ToString();
+                                                DutchAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+
                                             }
                                         }
                                         
@@ -3778,10 +3897,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                         if (PhilipsesAmountsGameObjects[ad + 13] != null)
                                         {
                                             PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "/" + PhilipsesAmountsStarting[ad + 13].ToString() + "x";
+                                            changeColorOfObjectWithText(PhilipsesAmountsGameObjects[ad + 13], WishlistColorRegular);
 
                                             if (PhilipsesAmounts[ad + 13] < 0)
                                             {
                                                 PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[ad + 13]).ToString();
+                                                PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+
                                             }
                                         }
                                     }
@@ -3791,10 +3913,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                         if (SixNationsAmountsGameObjects[ad + 13] != null)
                                         {
                                             SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "/" + SixNationsAmountsStarting[ad + 13].ToString() + "x";
+                                            changeColorOfObjectWithText(SixNationsAmountsGameObjects[ad + 13], WishlistColorRegular);
 
                                             if (SixNationsAmounts[ad + 13] < 0)
                                             {
                                                 SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[ad + 13]).ToString();
+                                                SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+
                                             }
                                         }
                                     }
@@ -3804,10 +3929,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                                         if (MunseeAmountsGameObjects[ad + 13] != null)
                                         {
                                             MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "/" + MunseeAmountsStarting[ad + 13].ToString() + "x";
+                                            changeColorOfObjectWithText(MunseeAmountsGameObjects[ad + 13], WishlistColorRegular);
 
                                             if (MunseeAmounts[ad + 13] < 0)
                                             {
                                                 MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[ad + 13]).ToString();
+                                                MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+
                                             }
                                         }
                                     }
@@ -3898,18 +4026,26 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 if (DutchAmounts[zb + 13] < 0 && DutchAmountsGameObjects[zb+13] != null)
                 {
                     DutchAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[zb + 13]).ToString();
+                    DutchAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+
                 }
                 if (PhilipsesAmounts[zb + 13] < 0 && PhilipsesAmountsGameObjects[zb + 13] != null)
                 {
                     PhilipsesAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[zb + 13]).ToString();
+                    PhilipsesAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+
                 }
                 if (SixNationsAmounts[zb + 13] < 0 && SixNationsAmountsGameObjects[zb + 13] != null)
                 {
                     SixNationsAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[zb + 13]).ToString();
+                    SixNationsAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+
                 }
                 if (MunseeAmounts[zb + 13] < 0 && MunseeAmountsGameObjects[zb + 13] != null)
                 {
                     MunseeAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[zb + 13]).ToString();
+                    MunseeAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+
                 }
             }
             
@@ -4497,34 +4633,51 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             if (DutchAmountsGameObjects[ag] != null && ag >= 13)
             {
                 DutchAmountsGameObjects[ag].GetComponent<Text>().text = DutchAmounts[ag].ToString() + "/" + DutchAmountsStarting[ag].ToString() + "x";
+                changeColorOfObjectWithText(DutchAmountsGameObjects[ag], WishlistColorRegular);
+
                 if (DutchAmounts[ag] < 0)
                 {
                     DutchAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[ag]).ToString();
+                    DutchAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+
+
                 }
             }
             if (PhilipsesAmountsGameObjects[ag] != null && ag >= 13)
             {
                 PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = PhilipsesAmounts[ag].ToString() + "/" + PhilipsesAmountsStarting[ag].ToString() + "x";
+                changeColorOfObjectWithText(PhilipsesAmountsGameObjects[ag], WishlistColorRegular);
+
                 if (PhilipsesAmounts[ag] < 0)
                 {
                     PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[ag]).ToString();
+                    PhilipsesAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+
                 }
             }
 
             if (SixNationsAmountsGameObjects[ag] != null && ag >= 13)
             {
                 SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = SixNationsAmounts[ag].ToString() + "/" + SixNationsAmountsStarting[ag].ToString() + "x";
+                changeColorOfObjectWithText(SixNationsAmountsGameObjects[ag], WishlistColorRegular);
+
                 if (SixNationsAmounts[ag] < 0)
                 {
                     SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[ag]).ToString();
+                    SixNationsAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+
                 }
             }
             if (MunseeAmountsGameObjects[ag] != null && ag >= 13)
             {
                 MunseeAmountsGameObjects[ag].GetComponent<Text>().text = MunseeAmounts[ag].ToString() + "/" + MunseeAmountsStarting[ag].ToString() + "x";
+                changeColorOfObjectWithText(MunseeAmountsGameObjects[ag], WishlistColorRegular);
+
                 if (MunseeAmounts[ag] < 0)
                 {
                     MunseeAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[ag]).ToString();
+                    MunseeAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+
                 }
             }
 
@@ -4618,7 +4771,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         time = turnTimeLength;
     }
 
+    private void changeColorOfObjectWithText(GameObject objectWithText, Color color1)
+    {
+        objectWithText.GetComponent<Text>().color = color1;
 
+    }
 
 
 
@@ -4839,9 +4996,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 Debug.Log(DutchAmountsGameObjects[ag]);
                 Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
                 DutchAmountsGameObjects[ag].GetComponent<Text>().text = DutchAmounts[ag].ToString() + "/" + DutchAmountsStarting[ag].ToString() + "x";
+                changeColorOfObjectWithText(DutchAmountsGameObjects[ag], WishlistColorRegular);
+
                 if (DutchAmounts[ag] < 0)
                 {
                     DutchAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[ag]).ToString();
+                    DutchAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+
+
                 }
 
                 Debug.Log(DutchAmountsGameObjects[ag].GetComponent<Text>().text);
@@ -4849,9 +5011,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             else if (PhilipsesAmountsGameObjects[ag] != null && ag >= 13)
             {
                 PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = PhilipsesAmounts[ag].ToString() + "/" + PhilipsesAmountsStarting[ag].ToString() + "x";
+                changeColorOfObjectWithText(PhilipsesAmountsGameObjects[ag], WishlistColorRegular);
+
                 if (PhilipsesAmounts[ag] < 0)
                 {
                     PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[ag]).ToString();
+                    PhilipsesAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+
                 }
 
                 Debug.Log("sub: " + ag);
@@ -4861,18 +5027,26 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             {
                 Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
                 SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = SixNationsAmounts[ag].ToString() + "/" + SixNationsAmountsStarting[ag].ToString() + "x";
+                changeColorOfObjectWithText(SixNationsAmountsGameObjects[ag], WishlistColorRegular);
+
                 if (SixNationsAmounts[ag] < 0)
                 {
                     SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[ag]).ToString();
+                    SixNationsAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+
                 }
                 Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
             }
             else if (MunseeAmountsGameObjects[ag] != null && ag >= 13)
             {
                 MunseeAmountsGameObjects[ag].GetComponent<Text>().text = MunseeAmounts[ag].ToString() + "/" + MunseeAmountsStarting[ag].ToString() + "x";
+                changeColorOfObjectWithText(MunseeAmountsGameObjects[ag], WishlistColorRegular);
+
                 if (MunseeAmounts[ag] < 0)
                 {
                     MunseeAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[ag]).ToString();
+                    MunseeAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+
                 }
             }
 
