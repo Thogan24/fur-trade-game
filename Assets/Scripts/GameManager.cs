@@ -307,6 +307,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
      */
 
     public string[] imageDescriptionTags = { "DutchDescription", "PhilipsesDescription", "SixNationsDescription", "MunseeDescription", "BeaverDescription", "DeerSkinDescription", "BearDescription", "FisherDescription", "FoxDescription", "SchepelsDescription", "DuffelsDescription", "LinenDescription", "StockingsDescription", "StroudsDescription", "AxesDescription", "BeadsDescription", "ScissorsDescription" };
+    public string[] checkmarkTags = {"BeaverCheckmark", "DeerSkinCheckmark", "BearCheckmark", "FisherCheckmark", "FoxCheckmark", "SchepelsCheckmark", "DuffelsCheckmark", "LinenCheckmark", "StockingsCheckmark", "StroudsCheckmark", "AxesCheckmark", "BeadsCheckmark", "ScissorsCheckmark" };
+    public string[] AmountWishlistTags = { "Beaver Amount Wishlist", "DeerSkin Amount Wishlist", "Bear Amount Wishlist", "Fisher Amount Wishlist", "Fox Amount Wishlist", "Schepels Amount Wishlist", "Duffels Amount Wishlist", "Linen Amount Wishlist", "Stockings Amount Wishlist", "Strouds Amount Wishlist", "Axes Amount Wishlist", "Beads Amount Wishlist", "Scissors Amount Wishlist" };
+
     public bool sceneChange = false;
     public bool opened = false;
 
@@ -4771,20 +4774,79 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         time = turnTimeLength;
     }
 
-    private void changeColorOfObjectWithText(GameObject objectWithText, Color color1)
+    private void changeColorOfObjectWithText(GameObject objectWithText, Color color1) // For wishlist values that are already completed
     {
-        objectWithText.GetComponent<Text>().color = color1;
+        objectWithText.GetComponent<Text>().color = color1; //Originally what this function was supposed to do
+
+
         Debug.Log("The text is: " + objectWithText.GetComponent<Text>().text.Substring(0, 1));
+
+        int index = findIndex(AmountWishlistTags, objectWithText.gameObject.tag);
+        GameObject[] checkMarkArrayWithIndividualTags = GameObject.FindGameObjectsWithTag(checkmarkTags[index]);
         if (objectWithText.GetComponent<Text>().text.Substring(0, 1) == "0")
         {
+            Color visible = new Color (1, 1, 1, 1);
+            for(int asw = 0; asw < checkMarkArrayWithIndividualTags.Length; asw++)
+            {
+                if (objectWithText.transform.parent.parent.parent.tag == "Dutch" && checkMarkArrayWithIndividualTags[asw].transform.parent.parent.parent.tag == "Dutch" && turn == 1)
+                {
+                    checkMarkArrayWithIndividualTags[asw].GetComponent<Image>().color = visible;
+                }
+                else if (objectWithText.transform.parent.parent.parent.tag == "Philipses" && checkMarkArrayWithIndividualTags[asw].transform.parent.parent.parent.tag == "Philipses" && turn == 2)
+                {
+                    checkMarkArrayWithIndividualTags[asw].GetComponent<Image>().color = visible;
+                }
+                else if (objectWithText.transform.parent.parent.parent.tag == "Six Nations" && checkMarkArrayWithIndividualTags[asw].transform.parent.parent.parent.tag == "Six Nations" && turn == 3)
+                {
+                    checkMarkArrayWithIndividualTags[asw].GetComponent<Image>().color = visible;
+                }
+                else if (objectWithText.transform.parent.parent.parent.tag == "Munsee" && checkMarkArrayWithIndividualTags[asw].transform.parent.parent.parent.tag == "Munsee" && turn == 4)
+                {
+                    checkMarkArrayWithIndividualTags[asw].GetComponent<Image>().color = visible;
+                }
+
+                
+            }
             objectWithText.GetComponent<Text>().text = "0";
             objectWithText.GetComponent<Text>().color = WishlistColor;
 
         }
+        else if (objectWithText.GetComponent<Text>().text.Substring(0, 1) != "+" && objectWithText.GetComponent<Text>().text.Substring(0, 1) != "-")
+        {
+            Debug.Log("I was called with a color of: " + color1 + " and a text of: " + objectWithText.GetComponent<Text>().text + " | " + objectWithText.GetComponent<Text>().text.Substring(0, 1) != "-");
+            Color invisible = new Color(0, 0, 0, 0);
+            for (int asf = 0; asf < checkMarkArrayWithIndividualTags.Length; asf++)
+            {
+                checkMarkArrayWithIndividualTags[asf].GetComponent<Image>().color = invisible;
+            }
+        }
     }
 
+/*    private void eraseCheckmark(GameObject objectWithText) // For wishlist values that are already completed
+    {
+        //objectWithText.GetComponent<Text>().color = color1;
+        int index = findIndex(AmountWishlistTags, objectWithText.gameObject.tag);
+        GameObject[] checkMarkArrayWithIndividualTags = GameObject.FindGameObjectsWithTag(checkmarkTags[index]);
+        Color invisible = new Color(0, 0, 0, 0);
+        for (int asf = 0; asf < checkMarkArrayWithIndividualTags.Length; asf++)
+        {
+            checkMarkArrayWithIndividualTags[asf].GetComponent<Image>().color = invisible;
+        }
+
+    }*/
 
 
+    private int findIndex(string[] s, String theString)
+    {
+        for (int jjj = 0; jjj < s.Length; jjj++)
+        {
+            if (s[jjj].Equals(theString))
+            {
+                return jjj;
+            }
+        }
+        return -1;
+    }
 
 
 
@@ -5008,6 +5070,29 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 {
                     DutchAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[ag]).ToString();
                     DutchAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+                    int index = findIndex(AmountWishlistTags, DutchAmountsGameObjects[ag].tag);
+                    GameObject[] checkMarkArrayWithIndividualTags = GameObject.FindGameObjectsWithTag(checkmarkTags[index]);
+                    Color visible = new Color(1, 1, 1, 1);
+                    for (int fff = 0; fff < checkMarkArrayWithIndividualTags.Length; fff++)
+                    {
+                        //checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        if (DutchAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Dutch" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Dutch" && turn == 2) // Ahead for a reason
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (DutchAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Philipses" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Philipses" && turn == 3)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (DutchAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Six Nations" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Six Nations" && turn == 4)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (DutchAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Munsee" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Munsee" && turn == 1)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                    }
 
 
                 }
@@ -5023,6 +5108,29 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 {
                     PhilipsesAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[ag]).ToString();
                     PhilipsesAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+                    int index = findIndex(AmountWishlistTags, PhilipsesAmountsGameObjects[ag].tag);
+                    GameObject[] checkMarkArrayWithIndividualTags = GameObject.FindGameObjectsWithTag(checkmarkTags[index]);
+                    Color visible = new Color(1, 1, 1, 1);
+                    for (int fff = 0; fff < checkMarkArrayWithIndividualTags.Length; fff++)
+                    {
+                        //checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        if (PhilipsesAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Dutch" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Dutch" && turn == 2) // Ahead for a reason
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (PhilipsesAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Philipses" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Philipses" && turn == 3)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (PhilipsesAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Six Nations" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Six Nations" && turn == 4)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (PhilipsesAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Munsee" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Munsee" && turn == 1)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                    }
 
                 }
 
@@ -5037,8 +5145,32 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
                 if (SixNationsAmounts[ag] < 0)
                 {
+                    Debug.Log("Problems at the bottom Six Nations");
                     SixNationsAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[ag]).ToString();
                     SixNationsAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+                    int index = findIndex(AmountWishlistTags, SixNationsAmountsGameObjects[ag].tag);
+                    GameObject[] checkMarkArrayWithIndividualTags = GameObject.FindGameObjectsWithTag(checkmarkTags[index]);
+                    Color visible = new Color(1, 1, 1, 1);
+                    for (int fff = 0; fff < checkMarkArrayWithIndividualTags.Length; fff++)
+                    {
+                        //checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        if (SixNationsAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Dutch" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Dutch" && turn == 2) // Ahead for a reason
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (SixNationsAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Philipses" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Philipses" && turn == 3)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (SixNationsAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Six Nations" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Six Nations" && turn == 4)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (SixNationsAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Munsee" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Munsee" && turn == 1)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                    }
 
                 }
                 Debug.Log(SixNationsAmountsGameObjects[ag].GetComponent<Text>().text);
@@ -5050,8 +5182,34 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
                 if (MunseeAmounts[ag] < 0)
                 {
+                    Debug.Log("Problems at the bottom Munsee");
                     MunseeAmountsGameObjects[ag].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[ag]).ToString();
                     MunseeAmountsGameObjects[ag].GetComponent<Text>().color = WishlistColor;
+                    int index = findIndex(AmountWishlistTags, MunseeAmountsGameObjects[ag].tag);
+                    GameObject[] checkMarkArrayWithIndividualTags = GameObject.FindGameObjectsWithTag(checkmarkTags[index]);
+                    Color visible = new Color(1, 1, 1, 1);
+                    for (int fff = 0; fff < checkMarkArrayWithIndividualTags.Length; fff++)
+                    {
+                        //checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        if (MunseeAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Dutch" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Dutch" && turn == 2) // Ahead for a reason
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (MunseeAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Philipses" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Philipses" && turn == 3)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (MunseeAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Six Nations" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Six Nations" && turn == 4)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                        else if (MunseeAmountsGameObjects[ag].transform.parent.parent.parent.tag == "Munsee" && checkMarkArrayWithIndividualTags[fff].transform.parent.parent.parent.tag == "Munsee" && turn == 1)
+                        {
+                            checkMarkArrayWithIndividualTags[fff].GetComponent<Image>().color = visible;
+                        }
+                    }
+
+
 
                 }
             }

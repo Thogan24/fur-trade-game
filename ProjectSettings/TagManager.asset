@@ -155,6 +155,19 @@ TagManager:
   - SixNationsPlayerName
   - MunseePlayerName
   - Alert
+  - BeaverCheckmark
+  - DeerSkinCheckmark
+  - BearCheckmark
+  - FisherCheckmark
+  - FoxCheckmark
+  - SchepelsCheckmark
+  - DuffelsCheckmark
+  - LinenCheckmark
+  - StockingsCheckmark
+  - StroudsCheckmark
+  - AxesCheckmark
+  - BeadsCheckmark
+  - ScissorsCheckmark
   layers:
   - Default
   - TransparentFX
