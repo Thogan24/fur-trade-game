@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public bool IAmTheCrasher = false;
     public bool OnPlayerEnteredRoomRan = false;
     public bool playerMissing = false;
-    public Color WishlistColor = Color.green;
+    public Color WishlistColor = new Color(0.291f, 1f, 0f);
     public Color WishlistColorRegular = new Color(0.1960784f, 0.1960784f, 0.1960784f);
     public String playerMissingName = "";
     public Player[] playerList = PhotonNetwork.PlayerList;
@@ -4774,7 +4774,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     private void changeColorOfObjectWithText(GameObject objectWithText, Color color1)
     {
         objectWithText.GetComponent<Text>().color = color1;
+        Debug.Log("The text is: " + objectWithText.GetComponent<Text>().text.Substring(0, 1));
+        if (objectWithText.GetComponent<Text>().text.Substring(0, 1) == "0")
+        {
+            objectWithText.GetComponent<Text>().text = "0";
+            objectWithText.GetComponent<Text>().color = WishlistColor;
 
+        }
     }
 
 
