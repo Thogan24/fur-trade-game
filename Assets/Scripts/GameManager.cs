@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public bool OnPlayerEnteredRoomRan = false;
     public bool playerMissing = false;
     public Color WishlistColor = Color.green;
-    public Color WishlistColorRegular = Color.grey; //323232
+    public Color WishlistColorRegular = new Color(0.1960784f, 0.1960784f, 0.1960784f);
     public String playerMissingName = "";
     public Player[] playerList = PhotonNetwork.PlayerList;
     public bool DebugStart;
