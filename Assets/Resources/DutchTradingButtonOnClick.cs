@@ -162,8 +162,10 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         }
         for (int ind = 0; ind < gameManager.receivingTeamLabels.Length; ind++)
         {
-            this.GetComponent<PhotonView>().RPC("Debugr", RpcTarget.All, ind);
-            if (gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.givingTeam || gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.receivingTeam)
+            string s = gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag.ToString() + " " + gameManager.givingTeam.ToString() + " " + gameManager.receivingTeam.ToString();
+            string s2 = (gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.givingTeam).ToString();
+            this.GetComponent<PhotonView>().RPC("Debugr", RpcTarget.All, ind, PhotonNetwork.LocalPlayer.ToString(), s, s2);
+            if (gameManager.receivingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.givingTeam || gameManager.receivingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.receivingTeam)
             {
                 gameManager.receivingTeamLabels[ind].GetComponent<Text>().text = "Cards you receive";
             }
@@ -176,10 +178,11 @@ public class DutchTradingButtonOnClick : MonoBehaviour
     }
 
     [PunRPC]
-    void Debugr(int ind)
+    void Debugr(int ind, string userIDOfClicker, string message, string message2)
     {
-        Debug.Log(gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag + " " + gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.givingTeam + " " + gameManager.givingTeam + " " + gameManager.receivingTeam);
-        Debug.Log("Sender is " + ((gameManager.Dutch == PhotonNetwork.LocalPlayer.ToString()) ? "Dutch" : " ") + ((gameManager.Philipses == PhotonNetwork.LocalPlayer.ToString()) ? "Philipses" : " ") + ((gameManager.SixNations == PhotonNetwork.LocalPlayer.ToString()) ? "SixNations" : " ") + ((gameManager.Munsee == PhotonNetwork.LocalPlayer.ToString()) ? "Munsee" : " "));
+        Debug.Log(message);
+        Debug.Log("message 2: " + message2);
+        Debug.Log("Sender is " + ((gameManager.Dutch == userIDOfClicker) ? "Dutch" : " ") + ((gameManager.Philipses == userIDOfClicker) ? "Philipses" : " ") + ((gameManager.SixNations == userIDOfClicker) ? "SixNations" : " ") + ((gameManager.Munsee == userIDOfClicker) ? "Munsee" : " "));
     }
 
     // Update is called once per frame
