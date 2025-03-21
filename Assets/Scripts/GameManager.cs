@@ -4987,10 +4987,43 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
 
+    [PunRPC]
+    public void RightLeftFadeAnimation(PhotonMessageInfo info)
+    {
 
+    }
 
+    public IEnumerator MoveRight(float t, GameObject top, int distance)
+    {
+        top.transform.position = new Vector3(distance/t, 0, 0);
+        yield return null;
+    }
+    public IEnumerator MoveLeft(float t, GameObject bottom, int distance)
+    {
+        bottom.transform.position = new Vector3(distance / t, 0, 0);
 
+        yield return null;
+    }
+    public IEnumerator FadeTextToZeroAlpha(float t, GameObject top, GameObject bottom)
+    {
+        TMPro.TMP_Text i = top.GetComponent<TMPro.TMP_Text>();
+        TMPro.TMP_Text i2 = bottom.GetComponent<TMPro.TMP_Text>();
+        Debug.Log("Setting alpha to 1");
 
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        yield return new WaitForSeconds(1);
+        while (i.color.a > 0.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+        }
+        while(i2.color.a > 0.0f)
+        {
+            i2.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+
+        }
+        yield return null;
+
+    }
 
 
 
