@@ -321,7 +321,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
     public Image publicImage;
 
-
+    public string givingTeam;
+    public string receivingTeam;
+    public GameObject[] givingTeamLabels;
+    public GameObject[] receivingTeamLabels;
 
     void Start()
     {
@@ -448,11 +451,21 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 }
             }
 
+            givingTeamLabels = GameObject.FindGameObjectsWithTag("GivingLabel");
+            receivingTeamLabels = GameObject.FindGameObjectsWithTag("ReceivingLabel");
+
+
+            for (int inde = 0; inde < givingTeamLabels.Length; inde++)
+            {
+                givingTeamLabels[inde].GetComponent<Text>().text = "No teams trading";
+                receivingTeamLabels[inde].GetComponent<Text>().text = "No teams trading";
+            }
+
         }
-/*        if (playerList.Length != PhotonNetwork.PlayerList.Length)
-        {
-            Debug.Log("SOMETHINGS WRONG!");
-        }*/
+        /*        if (playerList.Length != PhotonNetwork.PlayerList.Length)
+                {
+                    Debug.Log("SOMETHINGS WRONG!");
+                }*/
         /*for (int i = 0; i < playerList.Length; i++)
         {
             
@@ -4057,6 +4070,12 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                     j++;
                 }*/
             }
+        }
+
+        for (int inde = 0; inde < givingTeamLabels.Length; inde++)
+        {
+            givingTeamLabels[inde].GetComponent<Text>().text = "No teams trading";
+            receivingTeamLabels[inde].GetComponent<Text>().text = "No teams trading";
         }
 
         if (clearTradeButton)

@@ -58,6 +58,7 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         
         gameManager.SixNationsTrading = true;
+        gameManager.receivingTeam = "Six Nations";
         string team = gameManager.findPlayerTeam(userIDOfClicker);
 
         Debug.LogError("Team Selected: " + team);
@@ -65,22 +66,27 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
         {
             Debug.LogError("Dutch is Trading");
             gameManager.DutchTrading = true;
-            Debug.LogError(gameManager.DutchTrading);
+            gameManager.givingTeam = "Dutch";
         }
         if (team == "Philipses")
         {
             Debug.LogError("Philipses is Trading");
             gameManager.PhilipsesTrading = true;
+            gameManager.givingTeam = "Philipses";
         }
         if (team == "SixNations")
         {
             Debug.LogError("Six Nations is Trading");
             gameManager.SixNationsTrading = true;
+            gameManager.givingTeam = "Six Nations";
+
         }
         if (team == "Munsee")
         {
             Debug.LogError("Munsee is Trading");
             gameManager.MunseeTrading = true;
+            gameManager.givingTeam = "Munsee";
+
         }
         if (PhotonNetwork.IsMasterClient)
         {
@@ -90,6 +96,7 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
 
         }
         greyOutButtons();
+        setLabels();
         gameManager.CallReactivateTeamFlagsRPC();
         return;
     
@@ -128,6 +135,43 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
             }
         }
     }
+
+    void setLabels()
+    {
+        for (int ind = 0; ind < gameManager.givingTeamLabels.Length; ind++)
+        {
+            if (gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.givingTeam || gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.receivingTeam)
+            {
+                gameManager.givingTeamLabels[ind].GetComponent<Text>().text = "Cards you give";
+            }
+            else
+            {
+                gameManager.givingTeamLabels[ind].GetComponent<Text>().text = gameManager.givingTeam + "\u2192" + gameManager.receivingTeam;
+            }
+
+        }
+        for (int ind = 0; ind < gameManager.receivingTeamLabels.Length; ind++)
+        {
+            this.GetComponent<PhotonView>().RPC("Debugr", RpcTarget.All, ind);
+            Debug.Log(gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag + " " + gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.givingTeam + " " + gameManager.givingTeam + " " + gameManager.receivingTeam);
+            if (gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.givingTeam || gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.receivingTeam)
+            {
+                gameManager.receivingTeamLabels[ind].GetComponent<Text>().text = "Cards you receive";
+            }
+            else
+            {
+                gameManager.receivingTeamLabels[ind].GetComponent<Text>().text = gameManager.receivingTeam + "\u2192" + gameManager.givingTeam;
+            }
+
+        }
+    }
+    [PunRPC]
+    void Debugr(int ind)
+    {
+        Debug.Log(gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag + " " + gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.givingTeam + " " + gameManager.givingTeam + " " + gameManager.receivingTeam);
+        Debug.Log("Sender is " + ((gameManager.Dutch == PhotonNetwork.LocalPlayer.ToString()) ? "Dutch" : " ") + ((gameManager.Philipses == PhotonNetwork.LocalPlayer.ToString()) ? "Philipses" : " ") + ((gameManager.SixNations == PhotonNetwork.LocalPlayer.ToString()) ? "SixNations" : " ") + ((gameManager.Munsee == PhotonNetwork.LocalPlayer.ToString()) ? "Munsee" : " "));
+    }
+
 
     // Update is called once per frame
     void Update()

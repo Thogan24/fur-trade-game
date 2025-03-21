@@ -21,6 +21,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private bool _ready = false;
 
     public GameObject HostText;
+    public GameObject PlayerText;
 
 
     /*[SerializeField] private Text _readyUpText;
@@ -147,11 +148,16 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     
     public void OnClick_StartGame()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient && playerCount == 4)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel("TeamSelect");
+        }
+        else if (PhotonNetwork.IsMasterClient)
+        {
+            TMPro.TextMeshProUGUI ThePlayerText = PlayerText.GetComponent<TMPro.TextMeshProUGUI>();
+            StartCoroutine(FadeTextToZeroAlpha(1f, ThePlayerText));
         }
         else
         {

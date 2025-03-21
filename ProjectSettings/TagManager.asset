@@ -168,6 +168,8 @@ TagManager:
   - AxesCheckmark
   - BeadsCheckmark
   - ScissorsCheckmark
+  - GivingLabel
+  - ReceivingLabel
   layers:
   - Default
   - TransparentFX
