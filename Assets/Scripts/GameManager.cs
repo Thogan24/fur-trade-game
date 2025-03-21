@@ -309,6 +309,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public string[] imageDescriptionTags = { "DutchDescription", "PhilipsesDescription", "SixNationsDescription", "MunseeDescription", "BeaverDescription", "DeerSkinDescription", "BearDescription", "FisherDescription", "FoxDescription", "SchepelsDescription", "DuffelsDescription", "LinenDescription", "StockingsDescription", "StroudsDescription", "AxesDescription", "BeadsDescription", "ScissorsDescription" };
     public string[] checkmarkTags = {"BeaverCheckmark", "DeerSkinCheckmark", "BearCheckmark", "FisherCheckmark", "FoxCheckmark", "SchepelsCheckmark", "DuffelsCheckmark", "LinenCheckmark", "StockingsCheckmark", "StroudsCheckmark", "AxesCheckmark", "BeadsCheckmark", "ScissorsCheckmark" };
     public string[] AmountWishlistTags = { "Beaver Amount Wishlist", "DeerSkin Amount Wishlist", "Bear Amount Wishlist", "Fisher Amount Wishlist", "Fox Amount Wishlist", "Schepels Amount Wishlist", "Duffels Amount Wishlist", "Linen Amount Wishlist", "Stockings Amount Wishlist", "Strouds Amount Wishlist", "Axes Amount Wishlist", "Beads Amount Wishlist", "Scissors Amount Wishlist" };
+    public string[] AmountTags = { "BeaverAmount", "DeerSkinAmount", "BearAmount", "FisherAmount", "FoxAmount", "SchepelsAmount", "DuffelsAmount", "LinenAmount", "StockingsAmount", "StroudsAmount", "AxesAmount", "BeadsAmount", "ScissorsAmount" };
+    public List<GameObject> AllAmountGameObjects;
 
     public bool sceneChange = false;
     public bool opened = false;
@@ -426,6 +428,26 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
             }
             Alert = GameObject.FindGameObjectsWithTag("Alert");
+            
+            for (int ii = 0; ii < AmountWishlistTags.Length; ii++)
+            {
+                GameObject[] a = GameObject.FindGameObjectsWithTag(AmountWishlistTags[ii]);
+                for(int iii = 0; iii < a.Length; iii++)
+                {
+                    AllAmountGameObjects.Add(a[iii]);
+
+                }
+            }
+            for (int ii = 0; ii < AmountTags.Length; ii++)
+            {
+                GameObject[] a = GameObject.FindGameObjectsWithTag(AmountTags[ii]);
+                for (int iii = 0; iii < a.Length; iii++)
+                {
+                    AllAmountGameObjects.Add(a[iii]);
+
+                }
+            }
+
         }
 /*        if (playerList.Length != PhotonNetwork.PlayerList.Length)
         {
@@ -441,18 +463,17 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             Debug.Log(playerList[i].ToString());
         }*/
         //Debug.Log("");
-        if (SceneManager.GetActiveScene().name == "Main_Scene" && PhotonNetwork.PlayerList != playerList)
+        if (SceneManager.GetActiveScene().name == "Main_Scene")
         {
-/*            for(int i = 0; i < playerList.Length; i++)
+          for (int zzz = 0; zzz < AllAmountGameObjects.Count; zzz++)
             {
-                Debug.Log(playerList[i].ToString());
-            }*/
-            //Debug.Log("SOMEONE LEFT!!!");
+                if(AllAmountGameObjects[zzz].GetComponent<Text>().color == WishlistColor)
+                {
+                    placeCheckmarkWentPastZero(AllAmountGameObjects[zzz]);
+                }
+            }
         }
-        /*if(Dutch == PhotonNetwork.LocalPlayer.ToString()) 
-        {
-            OnPlayerLeftRoom();
-        }*/
+       
         
 
         // Team Select Scene
@@ -4857,6 +4878,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             for(int asw = 0; asw < checkMarkArrayWithIndividualTags.Length; asw++)
             {
                 Debug.Log("Maybe making it visible: " + objectWithText.name + ", " + objectWithText.transform.parent.parent.parent.tag + " " + checkMarkArrayWithIndividualTags[asw].transform.parent.parent.parent.tag);
+                Debug.Log("The name of the checkmark is: " + checkMarkArrayWithIndividualTags[asw]);
                 if (objectWithText.transform.parent.parent.parent.tag == "Dutch" && checkMarkArrayWithIndividualTags[asw].transform.parent.parent.parent.tag == "Dutch")
                 {
 
@@ -4870,9 +4892,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 {
                     checkMarkArrayWithIndividualTags[asw].GetComponent<Image>().color = visible;
                 }
-                else if (objectWithText.transform.parent.parent.parent.tag == "Munsee" && checkMarkArrayWithIndividualTags[asw].transform.parent.parent.parent.tag == "Munsee")
+                if (objectWithText.transform.parent.parent.parent.tag == "Munsee" && checkMarkArrayWithIndividualTags[asw].transform.parent.parent.parent.tag == "Munsee")
                 {
+                    
                     checkMarkArrayWithIndividualTags[asw].GetComponent<Image>().color = visible;
+                    Debug.Log("Actually made it visible: " + checkMarkArrayWithIndividualTags[asw].GetComponent<Image>().color);
                 }
 
                 
