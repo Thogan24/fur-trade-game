@@ -4987,31 +4987,71 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
 
-    [PunRPC]
-    public void RightLeftFadeAnimation(PhotonMessageInfo info)
+    //[PunRPC]
+    public void RightLeftFadeAnimation()
     {
+        GameObject[] tops = GameObject.FindGameObjectsWithTag("top");
+        GameObject[] bottoms = GameObject.FindGameObjectsWithTag("bottom");
 
+        for (int i = 0; i < tops.Length; i++) // YOU ARE DOING THIS IN THE SAME PLACE REMEMBER IF IT DOESN'T WORK
+        {
+            Debug.Log("Running the IEnumerators");
+            tops[i].GetComponent<Text>().text = givingTeam;
+            bottoms[i].GetComponent<Text>().text = receivingTeam;
+            StartCoroutine(MoveRight(3, tops[i], 0.1f));
+            StartCoroutine(MoveLeft(3, bottoms[i], 0.1f));
+            StartCoroutine(FadeTextsToZeroAlpha(3, tops[i], bottoms[i])); //  could just do both seperately if doesn't look nice
+        }
     }
 
-    public IEnumerator MoveRight(float t, GameObject top, int distance)
+    public IEnumerator MoveRight(float t, GameObject top, float distance)
     {
-        top.transform.position = new Vector3(distance/t, 0, 0);
+        Vector3 startingPos = top.transform.position;
+        Debug.Log(top.transform.position.x + " " + top.transform.position.y + " " + top.transform.position.z);
+        bool stopTheProcess = false;
+        while (top.transform.position.x - startingPos.x <= distance && !stopTheProcess)
+        {
+            Debug.Log("I'm still running on: " + top.gameObject.name);
+            top.transform.position = new Vector3(top.transform.position.x + (distance * Time.deltaTime / t), top.transform.position.y, top.transform.position.z);
+        }
+        
+        yield return new WaitForSeconds(8);
+        stopTheProcess = true;
+        Debug.Log("running reset on top: " + top.gameObject.name);
+
+        Debug.Log(top.transform.position.x + " " + top.transform.position.y + " " + top.transform.position.z);
+        top.transform.position = startingPos;
+        Debug.Log(top.transform.position.x + " " + top.transform.position.y + " " + top.transform.position.z);
+
         yield return null;
     }
-    public IEnumerator MoveLeft(float t, GameObject bottom, int distance)
+    public IEnumerator MoveLeft(float t, GameObject bottom, float distance)
     {
-        bottom.transform.position = new Vector3(distance / t, 0, 0);
+        Vector3 startingPos = bottom.transform.position;
+        bool stopTheProcess = false;
+        while (bottom.transform.position.x - startingPos.x <= distance && !stopTheProcess)
+        {
+            Debug.Log("I'm still running on: " + bottom.gameObject.name);
+            bottom.transform.position = new Vector3(bottom.transform.position.x + (distance * Time.deltaTime / t), bottom.transform.position.y, bottom.transform.position.z);
+        }
 
+        yield return new WaitForSeconds(8);
+        stopTheProcess = true;
+        Debug.Log("running reset on bottom: "  + bottom.gameObject.name);
+
+        bottom.transform.position = startingPos;
+        //yield return new WaitForSeconds(1);
         yield return null;
     }
-    public IEnumerator FadeTextToZeroAlpha(float t, GameObject top, GameObject bottom)
+    public IEnumerator FadeTextsToZeroAlpha(float t, GameObject top, GameObject bottom)
     {
-        TMPro.TMP_Text i = top.GetComponent<TMPro.TMP_Text>();
-        TMPro.TMP_Text i2 = bottom.GetComponent<TMPro.TMP_Text>();
+        Text i = top.GetComponent<Text>();
+        Text i2 = bottom.GetComponent<Text>();
         Debug.Log("Setting alpha to 1");
 
         i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
-        yield return new WaitForSeconds(1);
+        i2.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        //yield return new WaitForSeconds(1);
         while (i.color.a > 0.0f)
         {
             i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
@@ -5075,7 +5115,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         System.Array.Copy(PhilipsesAmounts, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmounts.Length);
         System.Array.Copy(SixNationsAmounts, SixNationsAmountsSubtractedDuringTrade, SixNationsAmounts.Length);
         System.Array.Copy(MunseeAmounts, MunseeAmountsSubtractedDuringTrade, MunseeAmounts.Length);
-
 
         DeactivateTeamFlags();
         Debug.Log("This was sent by: " + info.Sender.ToString() + "; This is running on " + PhotonNetwork.LocalPlayer.ToString() + "; theSender: " + theSender);
@@ -5311,6 +5350,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
         imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
         StartCountDown();
+
+        Debug.Log("did i call this four times?");
+        RightLeftFadeAnimation();
+
 
         for (int ak = 0; ak < tags.Length; ak++)
         {

@@ -170,6 +170,8 @@ TagManager:
   - ScissorsCheckmark
   - GivingLabel
   - ReceivingLabel
+  - top
+  - bottom
   layers:
   - Default
   - TransparentFX
