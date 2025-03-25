@@ -440,6 +440,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         if ((tutorialFinishedDutch && tutorialFinishedPhilipses && tutorialFinishedSixNations && tutorialFinishedMunsee) && tutorialFinishedGameSetup == false)
         {
             Debug.Log("Tutorial finished!");
+            StartCoroutine("tutorialFinished");
             // Call the Game will start in 54321
             StartCountDown();
             tutorialFinishedGameSetup = true;
@@ -5973,6 +5974,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public void startAcceptButtonBackgroundFadeInFadeOutTutorial()
     {
         StartCoroutine("AcceptButtonBackgroundFadeInFadeOutTutorial");
+        StartCoroutine("continueTutorial4");
     }
     public void AcceptButtonBackgroundFadeInFadeOutTutorial()
     {
@@ -6736,6 +6738,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         Coroutine inst7 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         StopCoroutine(inst7);
+
         TutorialAlertText.text = "The Fur Trade game is a game centralized around trading, we will show you how to send a trade";
         StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
@@ -6743,7 +6746,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         inst7 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); 
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         StopCoroutine(inst7);
-        TutorialAlertText.text = "First select a team you would like to trade with (other teams will not see your actions while in tutorial)";
+
+        TutorialAlertText.text = "First select a team you would like to trade with (other teams will not see your actions in tutorial)";
         StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
 
@@ -6782,25 +6786,245 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             Image i = g.transform.GetChild(j).GetComponent<Image>();
             StartCoroutine(FadeBackgroundToFullAlphaTutorial(1, i, panelAlpha));
         }
+        // Your goal is to obtain your "Wishlist" cards from trading with other teams
         StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
         StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
         yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
 
         yield return new WaitForSeconds(tutorialTextWaitTime);
         TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
-        StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
+        Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
 
+        TutorialAlertText.text = "The amount under each Wishlist card is the amount you need, whereas the amount under each Inverntory card is the amount you have";
+        StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        StopCoroutine(inst8);
+
+        TutorialAlertText.text = "Once you have enough Wishlist cards, the label will turn green and the amount under will indicate any excess cards";
+        StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        StopCoroutine(inst8);
+
+        TutorialAlertText.text = "Start a trade by giving inventory cards (left click) and requesting wishlist cards (right click)";
+        StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        
+
+    }
+
+    public IEnumerator continueTutorial2()
+    {
+        tutorial3.SetActive(true);
+        GameObject g = GameObject.FindGameObjectWithTag("Tutorial2");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+        }
+        StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+
+        tutorial2.SetActive(false);
+
+
+        g = GameObject.FindGameObjectWithTag("Tutorial3");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToFullAlphaTutorial(1, i, panelAlpha));
+        }
+        // 
+        StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+        yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
+
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+        Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+
+        StartCoroutine("continueTutorial3");
+
+    }
+
+    public IEnumerator continueTutorial3()
+    {
+        tutorial4.SetActive(true);
+        GameObject g = GameObject.FindGameObjectWithTag("Tutorial3");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+        }
+        StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+
+        tutorial1.SetActive(false);
+
+
+        g = GameObject.FindGameObjectWithTag("Tutorial4");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToFullAlphaTutorial(1, i, panelAlpha));
+        }
+        // Your goal is to obtain your "Wishlist" cards from trading with other teams
+        StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+        yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
+
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+        Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+    }
+
+    public IEnumerator continueTutorial4() // accept pt 2
+    {
+
+        // Your goal is to obtain your "Wishlist" cards from trading with other teams
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+
+        Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+
+        TutorialAlertText.text = "The button will flash green until the other team accepts, you can cancel anytime by pressing X";
+        StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        yield return new WaitForSeconds(3);
+        inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        StopCoroutine(inst8);
+
+        TutorialAlertText.text = "Once both teams accept, the cards will be added to both inventories and wishlist will be updated";
+        StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        StopCoroutine(inst8);
+
+        StartCoroutine("continueTutorial3");
+    }
+
+    public IEnumerator continueTutorial5() // Info
+    {
+        tutorial5.SetActive(true);
+        GameObject g = GameObject.FindGameObjectWithTag("Tutorial4");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+        }
+        StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+
+        tutorial4.SetActive(false);
+
+
+        g = GameObject.FindGameObjectWithTag("Tutorial5");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToFullAlphaTutorial(1, i, panelAlpha));
+        }
+        // Your goal is to obtain your "Wishlist" cards from trading with other teams
+        StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+        yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
+
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+        Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+
+
+        StartCoroutine("continueTutorial6");
+
+    }
+
+    public IEnumerator continueTutorial6() // Record
+    {
+        tutorial6.SetActive(true);
+        GameObject g = GameObject.FindGameObjectWithTag("Tutorial5");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+        }
+        StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+
+        tutorial6.SetActive(false);
+
+
+        g = GameObject.FindGameObjectWithTag("Tutorial6");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToFullAlphaTutorial(1, i, panelAlpha));
+        }
+        // Your goal is to obtain your "Wishlist" cards from trading with other teams
+        StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+        yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
+
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+        Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+
+
+        StartCoroutine("continueTutorial6");
+
+    }
+
+    public IEnumerator continueTutorial7()
+    {
+        tutorial7.SetActive(true);
+        GameObject g = GameObject.FindGameObjectWithTag("Tutorial6");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+        }
+        StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+
+        tutorial6.SetActive(false);
+
+
+        g = GameObject.FindGameObjectWithTag("Tutorial7");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToFullAlphaTutorial(1, i, panelAlpha));
+        }
+        // Your goal is to obtain your "Wishlist" cards from trading with other teams
+        StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+        yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
+
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+        Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
     }
 
 
 
+    public IEnumerator tutorialFinished()
+    {
 
-
-
-
-
-
+        yield return null;
+    }
 
 
 
