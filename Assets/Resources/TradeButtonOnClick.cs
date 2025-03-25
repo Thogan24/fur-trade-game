@@ -164,7 +164,10 @@ public class TradeButtonOnClick : MonoBehaviour
         gameManager.clearTradeTutorial();
         for (int iterator = 0; iterator < gameManager.tutorialEndButtons.Length; iterator++)
         {
-            gameManager.tutorialEndButtons[iterator].SetActive(true);
+            if(this.gameObject.transform.parent.parent == gameManager.tutorialEndButtons[iterator].gameObject)
+            {
+                gameManager.tutorialEndButtons[iterator].SetActive(true);
+            }
         }
 
     }

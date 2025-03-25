@@ -173,6 +173,7 @@ TagManager:
   - top
   - bottom
   - TutorialButtonFInish
+  - TutorialButtonFinish
   layers:
   - Default
   - TransparentFX

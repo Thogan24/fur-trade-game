@@ -407,11 +407,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             #endregion
             //countDownFinished = false; NOO!!!
             //StartCountDown();
-            tutorialEndButtons = GameObject.FindGameObjectsWithTag("TutorialButtonFinish");
-            for(int iterator = 0; iterator < tutorialEndButtons.Length; iterator++)
-            {
-                tutorialEndButtons[iterator].SetActive(false);
-            }
 
             Debug.Log("StartCountDown");
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
@@ -479,6 +474,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             givingTeamLabels = GameObject.FindGameObjectsWithTag("GivingLabel");
             receivingTeamLabels = GameObject.FindGameObjectsWithTag("ReceivingLabel");
 
+            tutorialEndButtons = GameObject.FindGameObjectsWithTag("TutorialButtonFinish");
+            for (int iterator = 0; iterator < tutorialEndButtons.Length; iterator++)
+            {
+                tutorialEndButtons[iterator].SetActive(false);
+            }
 
             for (int inde = 0; inde < givingTeamLabels.Length; inde++)
             {
