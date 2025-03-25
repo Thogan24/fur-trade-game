@@ -326,6 +326,20 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public GameObject[] givingTeamLabels;
     public GameObject[] receivingTeamLabels;
 
+
+    public bool tutorialFinishedGameSetup = false;
+
+    public bool tutorialFinishedDutch = false;
+    public bool tutorialFinishedPhilipses = false;
+    public bool tutorialFinishedSixNations = false;
+    public bool tutorialFinishedMunsee = false;
+
+
+
+
+
+
+
     void Start()
     {
         Debug.Log(Prefabs.Length);
@@ -386,29 +400,28 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             }*/
             #endregion
             //countDownFinished = false; NOO!!!
-            StartCountDown();
-            
+            //StartCountDown();
             Debug.Log("StartCountDown");
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
             Debug.Log("mainSceneCameraRPC");
-/*            if (!AlreadyLoaded)
-            {*/
             this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
-            Debug.Log("mainSceneSetInventoryAmountsRPC");
-            Debug.Log("Calling flag button in out");
             if (PhotonNetwork.IsMasterClient)
             {
                 this.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOut", RpcTarget.All);
             }
-            
-
-            DeactivateAllOtherButtons();
-            Debug.Log("DeactivateAllOtherButtons");
+            DeactivateAllOtherButtons(); // deactivates objects on other teams screens
             DeactivateTeamFlags();
-            Debug.Log("DeactivateTeamFlags");
             AlreadyLoaded = true;
             /*}*/
 
+        }
+
+        if ((tutorialFinishedDutch && tutorialFinishedPhilipses && tutorialFinishedSixNations && tutorialFinishedMunsee) && tutorialFinishedGameSetup == false)
+        {
+            Debug.Log("Tutorial finished!");
+            // Call the Game will start in 54321
+            StartCountDown();
+            tutorialFinishedGameSetup = true;
         }
 
 
@@ -5067,6 +5080,19 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
 
+    
+
+    // TUTORIAL STUFF
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5351,8 +5377,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
         StartCountDown();
 
+
+
+
+
+
         Debug.Log("did i call this four times?");
-        RightLeftFadeAnimation();
+        //RightLeftFadeAnimation();    // Uncomment when we get back to trying the animation again
 
 
         for (int ak = 0; ak < tags.Length; ak++)

@@ -21,8 +21,15 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
     {
         Debug.Log("Hello");
         Debug.LogError("Six Nations Button Clicked");
-        this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
-        
+        if (gameManager.tutorialFinishedGameSetup)
+        {
+            this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
+        }
+        else
+        {
+            greyOutButtonsTutorial();
+            setLabelsTutorial();
+        }
 
     }
 
@@ -170,6 +177,101 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
 
         }
     }
+
+    void greyOutButtonsTutorial()
+    {
+        if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Dutch)
+        {
+            Debug.Log("Inside Dutch");
+            gameManager.givingTeam = "Dutch";
+            for (int i = 0; i < gameManager.PhilipsesTradeButton.Length; i++)
+            {
+                Debug.Log("The tag is:" + gameManager.PhilipsesTradeButton[i].transform.parent.parent.tag + " name: " + gameManager.SixNationsTradeButton[i].transform.name);
+                if (gameManager.PhilipsesTradeButton[i].transform.parent.parent.tag == "Dutch")
+                {
+                    gameManager.PhilipsesTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+                }
+            }
+            for (int i = 0; i < gameManager.MunseeTradeButton.Length; i++)
+            {
+                Debug.Log("The tag is:" + gameManager.MunseeTradeButton[i].transform.parent.parent.tag);
+                if (gameManager.MunseeTradeButton[i].transform.parent.parent.tag == "Dutch")
+                {
+                    gameManager.MunseeTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+                }
+            }
+        }
+
+        if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Philipses)
+        {
+            Debug.Log("Inside Philipses");
+            gameManager.givingTeam = "Philipses";
+            for (int i = 0; i < gameManager.DutchTradeButton.Length; i++)
+            {
+                Debug.Log("The tag is:" + gameManager.DutchTradeButton[i].transform.parent.parent.tag + " name: " + gameManager.SixNationsTradeButton[i].transform.name);
+                if (gameManager.DutchTradeButton[i].transform.parent.parent.tag == "Philipses")
+                {
+                    gameManager.DutchTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+                }
+            }
+            for (int i = 0; i < gameManager.MunseeTradeButton.Length; i++)
+            {
+                Debug.Log("The tag is:" + gameManager.MunseeTradeButton[i].transform.parent.parent.tag);
+                if (gameManager.MunseeTradeButton[i].transform.parent.parent.tag == "Philipses")
+                {
+                    gameManager.MunseeTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+                }
+            }
+        }
+
+        else if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Munsee)
+        {
+            gameManager.givingTeam = "Munsee";
+            for (int i = 0; i < gameManager.PhilipsesTradeButton.Length; i++)
+            {
+                if (gameManager.PhilipsesTradeButton[i].transform.parent.parent.tag == "Munsee")
+                {
+                    gameManager.PhilipsesTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+                }
+            }
+            for (int i = 0; i < gameManager.DutchTradeButton.Length; i++)
+            {
+                if (gameManager.DutchTradeButton[i].transform.parent.parent.tag == "Munsee")
+                {
+                    gameManager.DutchTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 0.4f);
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Not correct player");
+        }
+    }
+
+    void setLabelsTutorial()
+    {
+        for (int ind = 0; ind < gameManager.givingTeamLabels.Length; ind++)
+        {
+            if (gameManager.givingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.givingTeam)
+            {
+                gameManager.givingTeamLabels[ind].GetComponent<Text>().text = "Cards you give";
+            }
+
+
+        }
+        for (int ind = 0; ind < gameManager.receivingTeamLabels.Length; ind++)
+        {
+
+            if (gameManager.receivingTeamLabels[ind].transform.parent.parent.parent.tag == gameManager.givingTeam)
+            {
+                gameManager.receivingTeamLabels[ind].GetComponent<Text>().text = "Cards you receive";
+            }
+
+        }
+    }
+
+
+
     [PunRPC]
     void Debugr(int ind, string userIDOfClicker, string message, string message2)
     {

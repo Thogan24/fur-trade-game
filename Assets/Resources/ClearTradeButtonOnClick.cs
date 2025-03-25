@@ -9,16 +9,6 @@ public class ClearTradeButtonOnClick : MonoBehaviour
 {
     public GameManager gameManager;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
     public void ClearTradeButtonOnClicked()
     {
 
