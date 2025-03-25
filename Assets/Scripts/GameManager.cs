@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public String playerMissingName = "";
     public Player[] playerList = PhotonNetwork.PlayerList;
     public bool DebugStart;
-    Coroutine inst = null;
+    public Coroutine inst = null;
     public Coroutine inst2 = null;
     public Coroutine inst3 = null;
     public Coroutine inst4 = null;
@@ -4498,11 +4498,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         }
 
             Debug.Log("ClearTradeButton Clicked, reactivating team flags & removing all trading");
-            if (inst != null)
+/*            if (inst != null)
             {
                 Debug.Log("Inst is NOT equal to null");
                 StopCoroutine(inst); // OK?
-            }
+            }*/
 
             if (tutorialStartedTrading) // NOT OK
             {
@@ -4511,107 +4511,108 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 FlagButtonBackgroundFadeInFadeOutTutorial();
                 tutorialStartedTrading = false;
 
+        }
 
-            // NO RPC
+        if (clearTradeButton)
+        {
+            nextTurnChangeColorToNothing = true;
+            Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
+            imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
+        }
+            
+
+            
+        DutchTrading = false;
+        PhilipsesTrading = false;
+        SixNationsTrading = false;
+        MunseeTrading = false;
+        DutchAccepted = false;
+        PhilipsesAccepted = false;
+        SixNationsAccepted = false;
+        MunseeAccepted = false;
+        numberOfAcceptedTeams = 0;
+        clearTradeButton = false;
+
+        // Dutch Amounts subtracted during trade become dutch amounts and the amount subtracted is now no longer subtracted
+        System.Array.Copy(DutchAmounts, DutchAmountsSubtractedDuringTrade, DutchAmounts.Length);
+        System.Array.Copy(PhilipsesAmounts, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmounts.Length);
+        System.Array.Copy(SixNationsAmounts, SixNationsAmountsSubtractedDuringTrade, SixNationsAmounts.Length);
+        System.Array.Copy(MunseeAmounts, MunseeAmountsSubtractedDuringTrade, MunseeAmounts.Length);
+
+        for (int zb = 0; zb < 13; zb++)
+        {
+            if (DutchAmounts[zb + 13] < 0 && DutchAmountsGameObjects[zb + 13] != null)
+            {
+                DutchAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[zb + 13]).ToString();
+                DutchAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+                placeCheckmarkWentPastZero(DutchAmountsGameObjects[zb + 13]);
+
+
+            }
+            if (PhilipsesAmounts[zb + 13] < 0 && PhilipsesAmountsGameObjects[zb + 13] != null)
+            {
+                PhilipsesAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[zb + 13]).ToString();
+                PhilipsesAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+                placeCheckmarkWentPastZero(PhilipsesAmountsGameObjects[zb + 13]);
+
+
+            }
+            if (SixNationsAmounts[zb + 13] < 0 && SixNationsAmountsGameObjects[zb + 13] != null)
+            {
+                SixNationsAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[zb + 13]).ToString();
+                SixNationsAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+                placeCheckmarkWentPastZero(SixNationsAmountsGameObjects[zb + 13]);
+
+
+            }
+            if (MunseeAmounts[zb + 13] < 0 && MunseeAmountsGameObjects[zb + 13] != null)
+            {
+                MunseeAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[zb + 13]).ToString();
+                MunseeAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+                placeCheckmarkWentPastZero(MunseeAmountsGameObjects[zb + 13]);
+
+
+            }
+        }
+
+        /*            DutchAmountsSubtractedDuringTrade = DutchAmounts;
+                    PhilipsesAmountsSubtractedDuringTrade = PhilipsesAmounts;
+                    SixNationsAmountsSubtractedDuringTrade = SixNationsAmounts;
+                    MunseeAmountsSubtractedDuringTrade = MunseeAmounts;*/
+
+        for (int i = 0; i < DutchTradeButton.Length; i++) // If its changing on other screens you know why
+        {
+            DutchTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+        }
+
+        for (int i = 0; i < PhilipsesTradeButton.Length; i++)
+        {
+            PhilipsesTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
         }
 
 
-        nextTurnChangeColorToNothing = true;
-            Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
-            imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
+        for (int i = 0; i < MunseeTradeButton.Length; i++)
+        {
+            MunseeTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+        }
+        for (int i = 0; i < SixNationsTradeButton.Length; i++)
+        {
+            SixNationsTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+        }
 
-            
-            DutchTrading = false;
-            PhilipsesTrading = false;
-            SixNationsTrading = false;
-            MunseeTrading = false;
-            DutchAccepted = false;
-            PhilipsesAccepted = false;
-            SixNationsAccepted = false;
-            MunseeAccepted = false;
-            numberOfAcceptedTeams = 0;
-            clearTradeButton = false;
+        InventoryCardsInTrade = 0;
+        WishlistCardsInTrade = 0;
 
-            // Dutch Amounts subtracted during trade become dutch amounts and the amount subtracted is now no longer subtracted
-            System.Array.Copy(DutchAmounts, DutchAmountsSubtractedDuringTrade, DutchAmounts.Length);
-            System.Array.Copy(PhilipsesAmounts, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmounts.Length);
-            System.Array.Copy(SixNationsAmounts, SixNationsAmountsSubtractedDuringTrade, SixNationsAmounts.Length);
-            System.Array.Copy(MunseeAmounts, MunseeAmountsSubtractedDuringTrade, MunseeAmounts.Length);
-
-            for (int zb = 0; zb < 13; zb++)
-            {
-                if (DutchAmounts[zb + 13] < 0 && DutchAmountsGameObjects[zb + 13] != null)
+        for (int ak = 0; ak < tags.Length; ak++) // OK
+        {
+            GameObject[] extraCards = GameObject.FindGameObjectsWithTag(tags[ak]);
+            for (int am = 0; am < extraCards.Length; am++)
+                if (extraCards[am].gameObject.transform.parent == null && extraCards[am].GetComponent<PhotonView>().IsMine)
                 {
-                    DutchAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[zb + 13]).ToString();
-                    DutchAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
-                    placeCheckmarkWentPastZero(DutchAmountsGameObjects[zb + 13]);
-
-
+                    //Debug.Log("Destroyed: " + extraCards[am].gameObject);
+                    PhotonNetwork.Destroy(extraCards[am].gameObject);
                 }
-                if (PhilipsesAmounts[zb + 13] < 0 && PhilipsesAmountsGameObjects[zb + 13] != null)
-                {
-                    PhilipsesAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[zb + 13]).ToString();
-                    PhilipsesAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
-                    placeCheckmarkWentPastZero(PhilipsesAmountsGameObjects[zb + 13]);
-
-
-                }
-                if (SixNationsAmounts[zb + 13] < 0 && SixNationsAmountsGameObjects[zb + 13] != null)
-                {
-                    SixNationsAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[zb + 13]).ToString();
-                    SixNationsAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
-                    placeCheckmarkWentPastZero(SixNationsAmountsGameObjects[zb + 13]);
-
-
-                }
-                if (MunseeAmounts[zb + 13] < 0 && MunseeAmountsGameObjects[zb + 13] != null)
-                {
-                    MunseeAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[zb + 13]).ToString();
-                    MunseeAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
-                    placeCheckmarkWentPastZero(MunseeAmountsGameObjects[zb + 13]);
-
-
-                }
-            }
-
-            /*            DutchAmountsSubtractedDuringTrade = DutchAmounts;
-                        PhilipsesAmountsSubtractedDuringTrade = PhilipsesAmounts;
-                        SixNationsAmountsSubtractedDuringTrade = SixNationsAmounts;
-                        MunseeAmountsSubtractedDuringTrade = MunseeAmounts;*/
-
-            for (int i = 0; i < DutchTradeButton.Length; i++) // If its changing on other screens you know why
-            {
-                DutchTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-            }
-
-            for (int i = 0; i < PhilipsesTradeButton.Length; i++)
-            {
-                PhilipsesTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-            }
-
-
-            for (int i = 0; i < MunseeTradeButton.Length; i++)
-            {
-                MunseeTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-            }
-            for (int i = 0; i < SixNationsTradeButton.Length; i++)
-            {
-                SixNationsTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
-            }
-
-            InventoryCardsInTrade = 0;
-            WishlistCardsInTrade = 0;
-
-            for (int ak = 0; ak < tags.Length; ak++) // OK
-            {
-                GameObject[] extraCards = GameObject.FindGameObjectsWithTag(tags[ak]);
-                for (int am = 0; am < extraCards.Length; am++)
-                    if (extraCards[am].gameObject.transform.parent == null && extraCards[am].GetComponent<PhotonView>().IsMine)
-                    {
-                        //Debug.Log("Destroyed: " + extraCards[am].gameObject);
-                        PhotonNetwork.Destroy(extraCards[am].gameObject);
-                    }
-            }
+        }
         
     }
 
@@ -5918,8 +5919,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         }
     }
 
-
-
+    public void startAcceptButtonBackgroundFadeInFadeOutTutorial()
+    {
+        StartCoroutine("AcceptButtonBackgroundFadeInFadeOutTutorial");
+    }
+    public void AcceptButtonBackgroundFadeInFadeOutTutorial()
+    {
+        Debug.Log("starting the fade in fade out tutorial");
+        inst = StartCoroutine(FadeInFadeOut(0.5f, GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>()));
+    }
 
 
 
@@ -5930,8 +5938,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     void AcceptButtonBackgroundFadeInFadeOut(PhotonMessageInfo info)
     {
         inst = StartCoroutine(FadeInFadeOut(0.5f, GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>()));
-        
-        
     }
 
     [PunRPC]
@@ -5967,7 +5973,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         nextTurnChangeColorToNothing = false;
         while (SceneManager.GetActiveScene().name == "Main_Scene")
         {
-            Debug.Log("Still running this!");
+            Debug.Log("Fade in fade out: " + i.gameObject.name);
             inst2 = StartCoroutine(FadeBackgroundToFullAlpha(t, i));
             yield return new WaitForSeconds(t);
             StartCoroutine(FadeBackgroundToZeroAlpha(t, i));

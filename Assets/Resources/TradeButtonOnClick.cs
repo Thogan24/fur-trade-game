@@ -38,9 +38,9 @@ public class TradeButtonOnClick : MonoBehaviour
 
 
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        if(gameManager.tutorialFinishedGameSetup == false)
+        if (gameManager.tutorialFinishedGameSetup == false)
         {
-            tutorialClickClearButton();
+            tutorialClickFinishButton();
         }
         else if (this.gameObject.tag == "clearButton")
         {
@@ -154,22 +154,47 @@ public class TradeButtonOnClick : MonoBehaviour
         }
     }
 
-    void tutorialClickClearButton()
+    void tutorialClickFinishButton()
     {
         //Flash in and out for a few seconds.
-
+        Debug.Log("starting the coroutine");
+        StartCoroutine("flashInFlashOutForAFewSeconds");
         //Stop flash
         // Clear cards and stuff
 
-        gameManager.clearTradeTutorial();
+
+
+    }
+    IEnumerator flashInFlashOutForAFewSeconds()
+    {
+        Debug.Log("turning on the flash");
+        gameManager.startAcceptButtonBackgroundFadeInFadeOutTutorial();
+        yield return new WaitForSeconds(3);
+
+
+        if (gameManager.inst != null)
+        {
+            Debug.Log("Inst is NOT equal to null");
+            gameManager.StopCoroutine(gameManager.inst); // OK?
+        }
+        Debug.Log("turning it off");
+        gameManager.nextTurnChangeColorToNothing = true;
+        Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
+        imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
+
+
+
         for (int iterator = 0; iterator < gameManager.tutorialEndButtons.Length; iterator++)
         {
-            if(this.gameObject.transform.parent.parent == gameManager.tutorialEndButtons[iterator].gameObject)
+            Debug.Log("running the tutorial end button setActives");
+            if (this.gameObject.transform.parent.parent.tag == gameManager.tutorialEndButtons[iterator].transform.parent.parent.parent.parent.tag)
             {
                 gameManager.tutorialEndButtons[iterator].SetActive(true);
             }
         }
 
+        gameManager.clearTradeTutorial();
+        
     }
 
 }
