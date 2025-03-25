@@ -333,9 +333,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public bool tutorialFinishedPhilipses = false;
     public bool tutorialFinishedSixNations = false;
     public bool tutorialFinishedMunsee = false;
+    public bool tutorialStartedTrading = false;
+    public static int MWT = 3; // Max amount wishlist tutorial
+    public int[] DutchAmountsWishlistTutorial = { MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT,/**/ MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT };
+    public int[] PhilipsesAmountsWishlistTutorial = { MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT,/**/ MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT };
+    public int[] SixNationsAmountsWishlistTutorial = { MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT,/**/ MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT };
+    public int[] MunseeAmountsWishlistTutorial = { MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT,/**/ MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT };
 
 
-
+    public GameObject[] tutorialEndButtons = { };
 
 
 
@@ -401,6 +407,12 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             #endregion
             //countDownFinished = false; NOO!!!
             //StartCountDown();
+            tutorialEndButtons = GameObject.FindGameObjectsWithTag("TutorialButtonFinish");
+            for(int iterator = 0; iterator < tutorialEndButtons.Length; iterator++)
+            {
+                tutorialEndButtons[iterator].SetActive(false);
+            }
+
             Debug.Log("StartCountDown");
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
             Debug.Log("mainSceneCameraRPC");
@@ -4097,7 +4109,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             if(inst != null)
             {
                 Debug.Log("Inst is NOT equal to null");
-                StopCoroutine(inst);
+                StopCoroutine(inst); 
             }
             
             if((DutchTrading || PhilipsesTrading || SixNationsTrading || MunseeTrading) && PhotonNetwork.LocalPlayer.IsMasterClient)
@@ -4205,6 +4217,1470 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         
 
     }
+
+
+
+
+    //TUTORIAL CLEAR TRADE
+    public void clearTradeTutorial()
+    {
+            for (int ae = 0; ae < tradeGivingCardsParent.Length; ae++) // For every Trade giving card object, set inactive    AE DESCRIBES THE PARENTS FOR EACH TEAM
+            {
+                Debug.Log("RUN 3");
+                int b = 0;
+                while (tradeGivingCardsParent[ae].transform.childCount != b && b < 1000)
+                {
+                    if (tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.activeSelf == true) // If the card is activated
+                    {
+                        Debug.Log("Details about object: " + tradeGivingCardsParent[ae] + " " + tradeGivingCardsParent[ae].transform.GetChild(b) + " " + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject);
+
+                        for (int ad = 0; ad < tags.Length; ad++)
+                        {
+                            if (tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad])
+                            {
+                                Debug.Log("Running Giving Card Parent Adding back. Adding to value: " + (ad).ToString() + "");
+                                if (PhotonNetwork.LocalPlayer.ToString() == Dutch && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Dutch")
+                                {
+                                    DutchAmounts[ad] += 1;
+                                    DutchAmounts[ad + 13] -= 1;
+                                    DutchAmountsGameObjects[ad].GetComponent<Text>().text = DutchAmounts[ad].ToString() + "x";
+                                    if (DutchAmountsGameObjects[ad + 13] != null)
+                                    {
+                                        DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "/" + DutchAmountsStarting[ad + 13].ToString() + "x";
+                                        changeColorOfObjectWithText(DutchAmountsGameObjects[ad + 13], WishlistColorRegular);
+
+
+                                        if (DutchAmounts[ad + 13] < 0)
+                                        {
+                                            DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[ad + 13]).ToString();
+                                            DutchAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+                                            placeCheckmarkWentPastZero(DutchAmountsGameObjects[ad + 13]);
+
+                                        }
+                                    }
+                                }
+                                else if (PhotonNetwork.LocalPlayer.ToString() == Philipses && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Philipses")
+                                {
+                                    PhilipsesAmounts[ad] += 1;
+                                    PhilipsesAmounts[ad + 13] -= 1;
+                                    PhilipsesAmountsGameObjects[ad].GetComponent<Text>().text = PhilipsesAmounts[ad].ToString() + "x";
+                                    if (PhilipsesAmountsGameObjects[ad + 13] != null)
+                                    {
+                                        PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "/" + PhilipsesAmountsStarting[ad + 13].ToString() + "x";
+                                        changeColorOfObjectWithText(PhilipsesAmountsGameObjects[ad + 13], WishlistColorRegular);
+
+
+                                        if (PhilipsesAmounts[ad + 13] < 0)
+                                        {
+                                            PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[ad + 13]).ToString();
+                                            PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+                                            placeCheckmarkWentPastZero(PhilipsesAmountsGameObjects[ad + 13]);
+
+
+                                        }
+                                    }
+
+                                }
+                                else if (PhotonNetwork.LocalPlayer.ToString() == SixNations && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Six Nations")
+                                {
+                                    SixNationsAmounts[ad] += 1;
+                                    SixNationsAmounts[ad + 13] -= 1;
+                                    SixNationsAmountsGameObjects[ad].GetComponent<Text>().text = SixNationsAmounts[ad].ToString() + "x";
+                                    if (SixNationsAmountsGameObjects[ad + 13] != null)
+                                    {
+                                        SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "/" + SixNationsAmountsStarting[ad + 13].ToString() + "x";
+                                        changeColorOfObjectWithText(SixNationsAmountsGameObjects[ad + 13], WishlistColorRegular);
+
+                                        if (SixNationsAmounts[ad + 13] < 0)
+                                        {
+                                            SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[ad + 13]).ToString();
+                                            SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+                                            placeCheckmarkWentPastZero(SixNationsAmountsGameObjects[ad + 13]);
+
+
+                                        }
+                                    }
+                                }
+                                else if (PhotonNetwork.LocalPlayer.ToString() == Munsee && tradeGivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Munsee")
+                                {
+                                    MunseeAmounts[ad] += 1;
+                                    MunseeAmounts[ad + 13] -= 1;
+                                    MunseeAmountsGameObjects[ad].GetComponent<Text>().text = MunseeAmounts[ad].ToString() + "x";
+                                    if (MunseeAmountsGameObjects[ad + 13] != null)
+                                    {
+                                        MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "/" + MunseeAmountsStarting[ad + 13].ToString() + "x";
+                                        changeColorOfObjectWithText(MunseeAmountsGameObjects[ad + 13], WishlistColorRegular);
+
+                                        if (MunseeAmounts[ad + 13] < 0)
+                                        {
+                                            MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[ad + 13]).ToString();
+                                            MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+                                            placeCheckmarkWentPastZero(MunseeAmountsGameObjects[ad + 13]);
+
+
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                        if (tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.GetComponent<PhotonView>().IsMine)
+                        {
+                            //Debug.Log("Destroyed:" + tradeGivingCardsParent[ae].transform.GetChild(b).gameObject);
+                            PhotonNetwork.Destroy(tradeGivingCardsParent[ae].transform.GetChild(b).gameObject);
+                        }
+                        else
+                        {
+                            Debug.Log("Find player which this object is his");
+                        }
+                        if (tradeGivingCardsParent[ae].transform.GetChild(b).gameObject != null)
+                        {
+                            tradeGivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
+                        }
+
+
+
+
+
+                    }
+                    b++;
+
+                }
+
+
+
+
+                b = 0;
+                while (tradeReceivingCardsParent[ae].transform.childCount != b && b < 1000) // For every Trade receiving card object, set inactive
+                {
+
+                    if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.activeSelf == true) // If the card is activated
+                    {
+                        if (ae == (turn - 1))
+                        {
+
+                            for (int ad = 0; ad < tags.Length; ad++)
+                            {
+                                /*if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad] && !clearTradeButton) // FOR WAMPUM CALCULATION CHANGE THIS #WAMPUM
+                                {
+                                    if (turn == 1)
+                                    {
+                                        trader = Dutch;
+                                    }
+                                    else if (turn == 2)
+                                    {
+                                        trader = Philipses;
+                                    }
+                                    else if (turn == 3)
+                                    {
+                                        trader = SixNations;
+                                    }
+                                    else if (turn == 4)
+                                    {
+                                        trader = Munsee;
+                                    }
+
+                                    Debug.Log("We got here, " + PhotonNetwork.LocalPlayer.ToString());
+                                    this.GetComponent<PhotonView>().RPC("addWampumValues", RpcTarget.All);
+                                }*/
+                                if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]) // Add back values to wishlist
+                                {
+                                    Debug.Log("Running Receiving Card Parent Adding back. Adding to value: " + (ad + 13).ToString() + "");
+                                    if (PhotonNetwork.LocalPlayer.ToString() == Dutch && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Dutch")
+                                    {
+                                        DutchAmounts[ad + 13] += 1;
+                                        if (DutchAmountsGameObjects[ad + 13] != null)
+                                        {
+                                            DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = DutchAmounts[ad + 13].ToString() + "/" + DutchAmountsStarting[ad + 13].ToString() + "x";
+                                            changeColorOfObjectWithText(DutchAmountsGameObjects[ad + 13], WishlistColorRegular);
+
+
+                                            if (DutchAmounts[ad + 13] < 0)
+                                            {
+                                                DutchAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[ad + 13]).ToString();
+                                                DutchAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+                                                placeCheckmarkWentPastZero(DutchAmountsGameObjects[ad + 13]);
+
+
+                                            }
+                                        }
+
+                                    }
+                                    else if (PhotonNetwork.LocalPlayer.ToString() == Philipses && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Philipses")
+                                    {
+                                        PhilipsesAmounts[ad + 13] += 1;
+                                        if (PhilipsesAmountsGameObjects[ad + 13] != null)
+                                        {
+                                            PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = PhilipsesAmounts[ad + 13].ToString() + "/" + PhilipsesAmountsStarting[ad + 13].ToString() + "x";
+                                            changeColorOfObjectWithText(PhilipsesAmountsGameObjects[ad + 13], WishlistColorRegular);
+
+                                            if (PhilipsesAmounts[ad + 13] < 0)
+                                            {
+                                                PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[ad + 13]).ToString();
+                                                PhilipsesAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+                                                placeCheckmarkWentPastZero(PhilipsesAmountsGameObjects[ad + 13]);
+
+
+                                            }
+                                        }
+                                    }
+                                    else if (PhotonNetwork.LocalPlayer.ToString() == SixNations && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Six Nations")
+                                    {
+                                        SixNationsAmounts[ad + 13] += 1;
+                                        if (SixNationsAmountsGameObjects[ad + 13] != null)
+                                        {
+                                            SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = SixNationsAmounts[ad + 13].ToString() + "/" + SixNationsAmountsStarting[ad + 13].ToString() + "x";
+                                            changeColorOfObjectWithText(SixNationsAmountsGameObjects[ad + 13], WishlistColorRegular);
+
+                                            if (SixNationsAmounts[ad + 13] < 0)
+                                            {
+                                                SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[ad + 13]).ToString();
+                                                SixNationsAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+                                                placeCheckmarkWentPastZero(SixNationsAmountsGameObjects[ad + 13]);
+
+
+                                            }
+                                        }
+                                    }
+                                    else if (PhotonNetwork.LocalPlayer.ToString() == Munsee && tradeReceivingCardsParent[ae].gameObject.transform.parent.parent.tag == "Munsee")
+                                    {
+                                        MunseeAmounts[ad + 13] += 1;
+                                        if (MunseeAmountsGameObjects[ad + 13] != null)
+                                        {
+                                            MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = MunseeAmounts[ad + 13].ToString() + "/" + MunseeAmountsStarting[ad + 13].ToString() + "x";
+                                            changeColorOfObjectWithText(MunseeAmountsGameObjects[ad + 13], WishlistColorRegular);
+
+                                            if (MunseeAmounts[ad + 13] < 0)
+                                            {
+                                                MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[ad + 13]).ToString();
+                                                MunseeAmountsGameObjects[ad + 13].GetComponent<Text>().color = WishlistColor;
+                                                placeCheckmarkWentPastZero(MunseeAmountsGameObjects[ad + 13]);
+
+
+                                            }
+                                        }
+                                    }
+                                }
+                                Debug.Log(tags[ad] + " " + tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag + " ae: " + ae.ToString());
+                                Debug.Log(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.tag == tags[ad]);
+                            }
+                        }
+
+                        if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.GetComponent<PhotonView>().IsMine)
+                        {
+                            //Debug.Log("Destroyed: " + tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject);
+                            PhotonNetwork.Destroy(tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject);
+                        }
+                        else
+                        {
+                            Debug.Log("Find player which this object is his");
+                        }
+                        if (tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject != null)
+                        {
+                            tradeReceivingCardsParent[ae].transform.GetChild(b).gameObject.SetActive(false);
+                        }
+                    }
+
+                    b++;
+                }
+            }
+        
+
+        for (int inde = 0; inde < givingTeamLabels.Length; inde++)
+        {
+            if ((givingTeamLabels[inde].transform.parent.parent.tag == "Dutch" && PhotonNetwork.LocalPlayer.ToString() == Dutch) || (givingTeamLabels[inde].transform.parent.parent.tag == "Philipses" && PhotonNetwork.LocalPlayer.ToString() == Philipses) || (givingTeamLabels[inde].transform.parent.parent.tag == "Six Nations" && PhotonNetwork.LocalPlayer.ToString() == SixNations) || (givingTeamLabels[inde].transform.parent.parent.tag == "Munsee" && PhotonNetwork.LocalPlayer.ToString() == Munsee)) {
+                givingTeamLabels[inde].GetComponent<Text>().text = "No teams trading";
+            }
+            if ((receivingTeamLabels[inde].transform.parent.parent.tag == "Dutch" && PhotonNetwork.LocalPlayer.ToString() == Dutch) || (receivingTeamLabels[inde].transform.parent.parent.tag == "Philipses" && PhotonNetwork.LocalPlayer.ToString() == Philipses) || (receivingTeamLabels[inde].transform.parent.parent.tag == "Six Nations" && PhotonNetwork.LocalPlayer.ToString() == SixNations) || (receivingTeamLabels[inde].transform.parent.parent.tag == "Munsee" && PhotonNetwork.LocalPlayer.ToString() == Munsee))
+            {
+                receivingTeamLabels[inde].GetComponent<Text>().text = "No teams trading";
+            }
+        }
+
+            Debug.Log("ClearTradeButton Clicked, reactivating team flags & removing all trading");
+            if (inst != null)
+            {
+                Debug.Log("Inst is NOT equal to null");
+                StopCoroutine(inst); // OK?
+            }
+
+            if (tutorialStartedTrading) // NOT OK
+            {
+                Debug.Log("Clear button, white background coming back");
+            //this.GetComponent<PhotonView>().RPC("FlagButtonBackgroundFadeInFadeOut", RpcTarget.All);
+                FlagButtonBackgroundFadeInFadeOutTutorial();
+                tutorialStartedTrading = false;
+
+
+            // NO RPC
+        }
+
+
+        nextTurnChangeColorToNothing = true;
+            Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
+            imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
+
+            
+            DutchTrading = false;
+            PhilipsesTrading = false;
+            SixNationsTrading = false;
+            MunseeTrading = false;
+            DutchAccepted = false;
+            PhilipsesAccepted = false;
+            SixNationsAccepted = false;
+            MunseeAccepted = false;
+            numberOfAcceptedTeams = 0;
+            clearTradeButton = false;
+
+            // Dutch Amounts subtracted during trade become dutch amounts and the amount subtracted is now no longer subtracted
+            System.Array.Copy(DutchAmounts, DutchAmountsSubtractedDuringTrade, DutchAmounts.Length);
+            System.Array.Copy(PhilipsesAmounts, PhilipsesAmountsSubtractedDuringTrade, PhilipsesAmounts.Length);
+            System.Array.Copy(SixNationsAmounts, SixNationsAmountsSubtractedDuringTrade, SixNationsAmounts.Length);
+            System.Array.Copy(MunseeAmounts, MunseeAmountsSubtractedDuringTrade, MunseeAmounts.Length);
+
+            for (int zb = 0; zb < 13; zb++)
+            {
+                if (DutchAmounts[zb + 13] < 0 && DutchAmountsGameObjects[zb + 13] != null)
+                {
+                    DutchAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[zb + 13]).ToString();
+                    DutchAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+                    placeCheckmarkWentPastZero(DutchAmountsGameObjects[zb + 13]);
+
+
+                }
+                if (PhilipsesAmounts[zb + 13] < 0 && PhilipsesAmountsGameObjects[zb + 13] != null)
+                {
+                    PhilipsesAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[zb + 13]).ToString();
+                    PhilipsesAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+                    placeCheckmarkWentPastZero(PhilipsesAmountsGameObjects[zb + 13]);
+
+
+                }
+                if (SixNationsAmounts[zb + 13] < 0 && SixNationsAmountsGameObjects[zb + 13] != null)
+                {
+                    SixNationsAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[zb + 13]).ToString();
+                    SixNationsAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+                    placeCheckmarkWentPastZero(SixNationsAmountsGameObjects[zb + 13]);
+
+
+                }
+                if (MunseeAmounts[zb + 13] < 0 && MunseeAmountsGameObjects[zb + 13] != null)
+                {
+                    MunseeAmountsGameObjects[zb + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[zb + 13]).ToString();
+                    MunseeAmountsGameObjects[zb + 13].GetComponent<Text>().color = WishlistColor;
+                    placeCheckmarkWentPastZero(MunseeAmountsGameObjects[zb + 13]);
+
+
+                }
+            }
+
+            /*            DutchAmountsSubtractedDuringTrade = DutchAmounts;
+                        PhilipsesAmountsSubtractedDuringTrade = PhilipsesAmounts;
+                        SixNationsAmountsSubtractedDuringTrade = SixNationsAmounts;
+                        MunseeAmountsSubtractedDuringTrade = MunseeAmounts;*/
+
+            for (int i = 0; i < DutchTradeButton.Length; i++) // If its changing on other screens you know why
+            {
+                DutchTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+
+            for (int i = 0; i < PhilipsesTradeButton.Length; i++)
+            {
+                PhilipsesTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+
+
+            for (int i = 0; i < MunseeTradeButton.Length; i++)
+            {
+                MunseeTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+            for (int i = 0; i < SixNationsTradeButton.Length; i++)
+            {
+                SixNationsTradeButton[i].GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
+            }
+
+            InventoryCardsInTrade = 0;
+            WishlistCardsInTrade = 0;
+
+            for (int ak = 0; ak < tags.Length; ak++) // OK
+            {
+                GameObject[] extraCards = GameObject.FindGameObjectsWithTag(tags[ak]);
+                for (int am = 0; am < extraCards.Length; am++)
+                    if (extraCards[am].gameObject.transform.parent == null && extraCards[am].GetComponent<PhotonView>().IsMine)
+                    {
+                        //Debug.Log("Destroyed: " + extraCards[am].gameObject);
+                        PhotonNetwork.Destroy(extraCards[am].gameObject);
+                    }
+            }
+        
+    }
+
+
+
+
+
+
+    public bool findifTeamBeingTradedWithHasEnoughCardsTutorial(int index)
+    {
+        string s = PhotonNetwork.LocalPlayer.ToString();
+        if (s == Dutch)
+        {
+            return DutchAmountsWishlistTutorial[index] > 0;
+        }
+        else if (s == Philipses)
+        {
+            return PhilipsesAmountsWishlistTutorial[index] > 0;
+        }
+        else if (s == SixNations)
+        {
+            return SixNationsAmountsWishlistTutorial[index] > 0;
+        }
+        else if (s == Munsee)
+        {
+            return MunseeAmountsWishlistTutorial[index] > 0;
+        }
+        Debug.LogError("Cannot find team that is being traded with");
+        return false;
+    }
+
+
+
+
+
+
+    public void addCardToTradeTutorial(string tag, string parentTag, bool leftClicked)
+    {
+        string playerString = PhotonNetwork.LocalPlayer.ToString();
+
+        //Vector3[] enemyTeamButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+        bool[] addToReceiving = { false, false, false, false }; // Add to the receiving side of the trade (right) instead of the giving side (left)
+        #region
+            
+
+        GameObject[] instantiatePos = GameObject.FindGameObjectsWithTag("InstantiatePos");
+
+
+        Vector3[] topButtonPos = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+        GameObject[] sixNationsButtons = GameObject.FindGameObjectsWithTag("InstantiatePos"); //Six Nations Trading
+        for (int ab = 0; ab < sixNationsButtons.Length; ab++)
+        {
+            if (sixNationsButtons[ab].transform.parent.parent.name == "Dutch")
+            {
+                topButtonPos[0] = sixNationsButtons[ab].transform.position;
+            }
+            else if (sixNationsButtons[ab].transform.parent.parent.name == "Philipses")
+            {
+                topButtonPos[1] = sixNationsButtons[ab].transform.position;
+            }
+            else if (sixNationsButtons[ab].transform.parent.parent.name == "Munsee")
+            {
+                topButtonPos[3] = sixNationsButtons[ab].transform.position;
+            }
+        }
+        GameObject[] philipsesButtons = GameObject.FindGameObjectsWithTag("InstantiatePos"); // Philipses Trading
+        for (int ab = 0; ab < philipsesButtons.Length; ab++)
+        {
+            if (philipsesButtons[ab].transform.parent.parent.name == "Six Nations")
+            {
+                topButtonPos[2] = philipsesButtons[ab].transform.position;
+            }
+
+        }
+
+        Vector3[] topButtonPosWishlist = { new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) };
+        GameObject[] InstantiatePosWishlist = GameObject.FindGameObjectsWithTag("InstantiatePosReceiving"); //Six Nations Trading
+        for (int ab = 0; ab < sixNationsButtons.Length; ab++)
+        {
+            if (InstantiatePosWishlist[ab].transform.parent.parent.name == "Dutch")
+            {
+                topButtonPosWishlist[0] = InstantiatePosWishlist[ab].transform.position;
+            }
+            else if (InstantiatePosWishlist[ab].transform.parent.parent.name == "Philipses")
+            {
+                topButtonPosWishlist[1] = InstantiatePosWishlist[ab].transform.position;
+            }
+            else if (InstantiatePosWishlist[ab].transform.parent.parent.name == "Munsee")
+            {
+                topButtonPosWishlist[3] = InstantiatePosWishlist[ab].transform.position;
+            }
+            if (InstantiatePosWishlist[ab].transform.parent.parent.name == "Six Nations")
+            {
+                topButtonPosWishlist[2] = InstantiatePosWishlist[ab].transform.position;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #endregion // This  
+
+        //
+        // 
+        // ACTUALLY ADDING CARD PORTION
+        //
+        //
+
+        Debug.LogError("Adding card...");
+        /*GameObject[] instantiatedCard = { null, null, null, null };*/
+        int isParentWishlist = 0;
+        int isParentInventory = 1;
+
+
+        if (parentTag == "Wishlist")
+        {
+            isParentWishlist = 1;
+            isParentInventory = 0;
+        }
+
+
+        Debug.Log("Is inventory: " + isParentInventory + "| Is wishlist: " + isParentWishlist);
+        Debug.Log("equals: " + playerString == Dutch);
+        Debug.Log(playerString + " " + PhotonNetwork.LocalPlayer.ToString());
+        Debug.Log(Dutch);
+        
+
+        Debug.Log("equals2: " + playerString == Philipses); 
+        // The Dutch Region
+        #region
+        if (playerString == Dutch)
+        {
+
+
+
+            for (int z = 0; z < tags.Length; z++)
+            {
+                Debug.Log("Checking at iteration" + z + "; Tag:" + tag + "; tags[z]" + tags[z] + "; DutchAmounts[z]" + DutchAmounts[z]);
+                if (tag == tags[z])
+                {
+                    Debug.Log("The Card being traded has a tag of: " + tag + "; It has an amount of " + DutchAmounts[z]);
+                }
+
+                //Debug.Log(tag + " " + tags[z]);
+                if (tag == tags[z] && ((DutchAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCardsTutorial(z)))) // If the card amounts are greater than zero or is in their wishlist
+                {
+                    if (isParentInventory == 1)
+                    {
+                        for (int b = 0; b < topButtonPos.Length; b++)
+                        {
+                            if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
+                            {
+                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[b] + new Vector3(distanceFromLineReceiving + (float)0.3 * (InventoryCardsInTrade % cardsPerLine), YAxisLineDistance - (InventoryCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                Debug.Log("addToReceiving card has been instantiated");
+                            }
+                            else
+                            { // Shouldn't do anything if we get rid of the isparentwishlist side
+                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3((distanceFromLineGiving + ((float)0.3 * (InventoryCardsInTrade % cardsPerLine))), YAxisLineDistance - (InventoryCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                Debug.Log("regular card has been instantiated");
+                            }
+
+                        }
+                        Debug.Log(DutchAmounts[z]);
+                        DutchAmounts[z]--;
+                        DutchAmountsGameObjects[z].GetComponent<Text>().text = DutchAmounts[z].ToString() + "x";
+
+                        DutchAmounts[z + 13]++;
+                        if (DutchAmountsStarting[z + 13] > 0)
+                        {
+                            DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z + 13].ToString() + "x";
+                            changeColorOfObjectWithText(DutchAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
+                            if (DutchAmounts[z + 13] < 0)
+                            {
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[z + 13]).ToString();
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                placeCheckmarkWentPastZero(DutchAmountsGameObjects[z + 13]);
+                            }
+
+
+                        }
+                    }
+                    else //isWishlist
+                    {
+                        Debug.Log(DutchAmounts[z + 13]);
+                        if (leftClicked)
+                        {
+                            Debug.Log("IN LEFT CLICKED");
+                            for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                            {
+                                Debug.Log("Adding the card to each players screen");
+                                if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                {
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % cardsPerLine)), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                    Debug.Log("addToReceiving card has been instantiated");
+                                }
+                                else
+                                {
+
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[j] + new Vector3((distanceFromLineReceiving + ((float)0.3 * (WishlistCardsInTrade % cardsPerLine))), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                    Debug.Log("regular card has been instantiated");
+                                }
+
+                            }
+                            DutchAmounts[z + 13]--;
+
+
+
+                            //findTeamBeingTradedWithAndSubtractFromInventory(z);
+
+
+
+                            if (DutchAmountsStarting[z + 13] > 0)
+                            {
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z + 13].ToString() + "x";
+                                changeColorOfObjectWithText(DutchAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
+                                if (DutchAmounts[z + 13] < 0)
+                                {
+                                    DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[z + 13]).ToString();
+                                    DutchAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                    placeCheckmarkWentPastZero(DutchAmountsGameObjects[z + 13]);
+
+                                }
+
+
+                            }
+                            break;
+                        }
+                        else if (DutchAmountsGameObjects[z + 13] != null) // Clicking on wishlist cards (potentially remove)
+                        {
+
+                            for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                            {
+                                if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                {
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3(distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % cardsPerLine)), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                    Debug.Log("addToReceiving card has been instantiated");
+                                }
+                                else
+                                {
+
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[j] + new Vector3((distanceFromLineReceiving + ((float)0.3 * (WishlistCardsInTrade % cardsPerLine))), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                    Debug.Log("regular card has been instantiated");
+                                }
+
+                            }
+                            DutchAmounts[z + 13]--;
+
+
+
+
+                            //findTeamBeingTradedWithAndSubtractFromInventory(z);
+
+
+
+
+                            DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = DutchAmounts[z + 13].ToString() + "/" + DutchAmountsStarting[z + 13].ToString() + "x";
+                            changeColorOfObjectWithText(DutchAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
+                            if (DutchAmounts[z + 13] < 0)
+                            {
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(DutchAmounts[z + 13]).ToString();
+                                DutchAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                placeCheckmarkWentPastZero(DutchAmountsGameObjects[z + 13]);
+
+                            }
+
+                            break;
+                        }
+                        else
+                        {
+                            Debug.LogError("None of specified card left");
+                            GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                            for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                            {
+                                try
+                                {
+                                    Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                                    if (cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                    {
+                                        Debug.Log("Team does not have enough cards, starting animation for Dutch");
+                                        StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                        return;
+                                    }
+                                }
+                                catch (NullReferenceException ex)
+                                {
+                                    Debug.Log("Card came back with null parents");
+                                    cardsWithTag[ah].gameObject.SetActive(false);
+                                }
+
+                            }
+                            return;
+                        }
+                    }
+
+
+                    break;
+                }
+
+                else if (tag == tags[z])
+                {
+                    Debug.LogError("None of specified card left");
+                    GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                    for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                    {
+                        try
+                        {
+                            Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                            Debug.Log(cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch");
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Dutch" && ((((cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked) && isParentWishlist == 1)) || (isParentInventory == 1 && cardsWithTag[ah].transform.parent.tag == "Inventory")))
+                            {
+                                Debug.Log("Team does not have enough cards, starting animation for Dutch");
+                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                return;
+                            }
+
+                        }
+                        catch (NullReferenceException ex)
+                        {
+                            Debug.Log("Card came back with null parents");
+                            cardsWithTag[ah].gameObject.SetActive(false);
+                        }
+                        if (ah == cardsWithTag.Length - 1)
+                        {
+                            Debug.Log("Not correct team");
+                            return;
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    Debug.Log("Not correct iteration?");
+                }
+            }
+        }
+        #endregion
+        // The Philipses Region
+
+        #region 
+        if (playerString == Philipses)
+        {
+            for (int z = 0; z < tags.Length; z++)
+            {
+                //Debug.Log(tag + " " + tags[z]);
+                if (tag == tags[z] && ((PhilipsesAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCardsTutorial(z)))) // If the card amounts are greater than zero or is in their wishlist
+                {
+
+                    if (isParentInventory == 1)
+                    {
+                        for (int b = 0; b < topButtonPos.Length; b++)
+                        {
+                            if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
+                            {
+                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[b] + new Vector3(distanceFromLineReceiving + (float)0.3 * (InventoryCardsInTrade % cardsPerLine), YAxisLineDistance - (InventoryCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                            }
+                            else
+                            {
+                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3((distanceFromLineGiving + ((float)0.3 * (InventoryCardsInTrade % cardsPerLine))), YAxisLineDistance - (InventoryCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                            }
+
+                        }
+                        Debug.Log(PhilipsesAmounts[z]);
+                        PhilipsesAmounts[z]--;
+                        PhilipsesAmountsGameObjects[z].GetComponent<Text>().text = PhilipsesAmounts[z].ToString() + "x";
+
+                        PhilipsesAmounts[z + 13]++;
+                        if (PhilipsesAmountsStarting[z + 13] > 0)
+                        {
+                            PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "/" + PhilipsesAmountsStarting[z + 13].ToString() + "x";
+                            changeColorOfObjectWithText(PhilipsesAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
+                            if (PhilipsesAmounts[z + 13] < 0)
+                            {
+                                PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[z + 13]).ToString();
+                                PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                placeCheckmarkWentPastZero(PhilipsesAmountsGameObjects[z + 13]);
+
+
+                            }
+
+
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log(PhilipsesAmounts[z + 13]);
+                        if (leftClicked)
+                        {
+                            for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                            {
+                                if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                {
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % cardsPerLine))), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+                                else
+                                {
+
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % cardsPerLine), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+
+                            }
+                            PhilipsesAmounts[z + 13]--;
+
+
+
+                            //findTeamBeingTradedWithAndSubtractFromInventory(z);
+
+
+
+                            if (PhilipsesAmountsStarting[z + 13] > 0)
+                            {
+                                PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "/" + PhilipsesAmountsStarting[z + 13].ToString() + "x";
+                                changeColorOfObjectWithText(PhilipsesAmountsGameObjects[z + 13], WishlistColorRegular);
+
+                                if (PhilipsesAmounts[z + 13] < 0)
+                                {
+                                    PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[z + 13]).ToString();
+                                    PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                    placeCheckmarkWentPastZero(PhilipsesAmountsGameObjects[z + 13]);
+
+
+                                }
+
+
+                            }
+                            break;
+
+                        }
+                        else if (PhilipsesAmountsGameObjects[z + 13] != null)
+                        {
+
+                            for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                            {
+                                if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                {
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % cardsPerLine))), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+                                else
+                                {
+
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % cardsPerLine), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+
+                            }
+                            PhilipsesAmounts[z + 13]--;
+
+
+                            //findTeamBeingTradedWithAndSubtractFromInventory(z);
+
+
+                            PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = PhilipsesAmounts[z + 13].ToString() + "/" + PhilipsesAmountsStarting[z + 13].ToString() + "x";
+                            changeColorOfObjectWithText(PhilipsesAmountsGameObjects[z + 13], WishlistColorRegular);
+
+                            if (PhilipsesAmounts[z + 13] < 0)
+                            {
+                                PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(PhilipsesAmounts[z + 13]).ToString();
+                                PhilipsesAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                placeCheckmarkWentPastZero(PhilipsesAmountsGameObjects[z + 13]);
+
+                            }
+
+                            break;
+                        }
+                        else
+                        {
+                            Debug.LogError("None of specified card left");
+                            GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                            for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                            {
+                                try
+                                {
+                                    Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                                    if (cardsWithTag[ah].transform.parent.parent.parent.name == "Philipses" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                    {
+                                        Debug.Log("Team does not have enough cards, starting animation for Philipses");
+                                        StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                        return;
+                                    }
+                                }
+                                catch (NullReferenceException ex)
+                                {
+                                    Debug.Log("Card came back with null parents");
+                                    cardsWithTag[ah].gameObject.SetActive(false);
+                                }
+
+                            }
+                            return;
+                        }
+                    }
+                    //
+
+
+                    break;
+                }
+                /*                    else if (tag == tags[z] && (isParentWishlist == 1 && !findifTeamBeingTradedWithHasEnoughCards(z)))
+                                    {
+                                        GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                                        for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                                        {
+                                            try
+                                            {
+                                                Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                                                if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Philipses" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                                {
+                                                    Debug.Log("Team does not have enough cards, starting animation");
+                                                    StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                                    return;
+                                                }
+                                            }
+                                            catch (NullReferenceException ex)
+                                            {
+                                                Debug.Log("Card came back with null parents");
+                                                cardsWithTag[ah].gameObject.SetActive(false);
+                                            }
+
+
+
+                                        }
+
+                                    }*/
+                else if (tag == tags[z])
+                {
+                    Debug.LogError("None of specified card left");
+                    if (z + 1 == tags.Length)
+                    {
+                        return;
+                    }
+                    GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                    for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                    {
+                        try
+                        {
+                            Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Philipses" && ((((cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked) && isParentWishlist == 1)) || (isParentInventory == 1 && cardsWithTag[ah].transform.parent.tag == "Inventory")))
+                            {
+                                Debug.Log("Team does not have enough cards, starting animation for Philipses");
+                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                return;
+                            }
+
+                        }
+                        catch (NullReferenceException ex)
+                        {
+                            Debug.Log("Card came back with null parents");
+                            cardsWithTag[ah].gameObject.SetActive(false);
+                        }
+                        if (ah == cardsWithTag.Length - 1)
+                        {
+                            Debug.Log("Not correct team");
+                            return;
+                        }
+
+
+
+                    }
+                }
+                else
+                {
+                    Debug.Log("Not correct iteration?");
+                }
+            }
+        }
+        #endregion
+        // The Six Nations Region
+        #region
+        if (playerString == SixNations)
+        {
+            for (int z = 0; z < tags.Length; z++)
+            {
+                //Debug.Log(tag + " " + tags[z]);
+                if (tag == tags[z] && ((SixNationsAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCardsTutorial(z)))) // If the card amounts are greater than zero or is in their wishlist
+                {
+
+                    if (isParentInventory == 1)
+                    {
+                        for (int b = 0; b < topButtonPos.Length; b++)
+                        {
+                            if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
+                            {
+                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[b] + new Vector3(distanceFromLineReceiving + (float)0.3 * (InventoryCardsInTrade % cardsPerLine), YAxisLineDistance - (InventoryCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                            }
+                            else
+                            {
+                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3((distanceFromLineGiving + ((float)0.3 * (InventoryCardsInTrade % cardsPerLine))), YAxisLineDistance - (InventoryCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                            }
+
+                        }
+                        Debug.Log(SixNationsAmounts[z]);
+                        SixNationsAmounts[z]--;
+                        SixNationsAmountsGameObjects[z].GetComponent<Text>().text = SixNationsAmounts[z].ToString() + "x";
+
+                        SixNationsAmounts[z + 13]++;
+
+                        if (SixNationsAmountsStarting[z + 13] > 0)
+                        {
+                            SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "/" + SixNationsAmountsStarting[z + 13].ToString() + "x";
+                            changeColorOfObjectWithText(SixNationsAmountsGameObjects[z + 13], WishlistColorRegular);
+
+                            if (SixNationsAmounts[z + 13] < 0)
+                            {
+                                SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[z + 13]).ToString();
+                                SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                placeCheckmarkWentPastZero(SixNationsAmountsGameObjects[z + 13]);
+
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log(SixNationsAmounts[z + 13]);
+                        if (leftClicked)
+                        {
+                            for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                            {
+                                if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                {
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % cardsPerLine))), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+                                else
+                                {
+
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % cardsPerLine), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+
+                            }
+                            SixNationsAmounts[z + 13]--;
+
+
+                            //findTeamBeingTradedWithAndSubtractFromInventory(z);
+                                
+
+                            if (SixNationsAmountsStarting[z + 13] > 0)
+                            {
+                                SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "/" + SixNationsAmountsStarting[z + 13].ToString() + "x";
+                                changeColorOfObjectWithText(SixNationsAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
+                                if (SixNationsAmounts[z + 13] < 0)
+                                {
+                                    SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[z + 13]).ToString();
+                                    SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                    placeCheckmarkWentPastZero(SixNationsAmountsGameObjects[z + 13]);
+
+
+                                }
+                            }
+
+                            break;
+                        }
+                        else if (SixNationsAmountsGameObjects[z + 13] != null)
+                        {
+
+                            for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                            {
+                                if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                {
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % cardsPerLine))), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+                                else
+                                {
+
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % cardsPerLine), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+
+                            }
+                            SixNationsAmounts[z + 13]--;
+
+
+                            //findTeamBeingTradedWithAndSubtractFromInventory(z);
+
+
+                            SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = SixNationsAmounts[z + 13].ToString() + "/" + SixNationsAmountsStarting[z + 13].ToString() + "x";
+                            changeColorOfObjectWithText(SixNationsAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
+
+                            if (SixNationsAmounts[z + 13] < 0)
+                            {
+                                SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(SixNationsAmounts[z + 13]).ToString();
+                                SixNationsAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                placeCheckmarkWentPastZero(SixNationsAmountsGameObjects[z + 13]);
+
+
+                            }
+
+                            break;
+                        }
+                        else
+                        {
+                            Debug.LogError("None of specified card left");
+                            GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                            for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                            {
+                                try
+                                {
+                                    Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                                    if (cardsWithTag[ah].transform.parent.parent.parent.name == "Six Nations" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                    {
+                                        Debug.Log("Team does not have enough cards, starting animation for Six Nations");
+                                        StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                        return;
+                                    }
+
+                                }
+                                catch (NullReferenceException ex)
+                                {
+                                    Debug.Log("Card came back with null parents");
+                                    cardsWithTag[ah].gameObject.SetActive(false);
+                                }
+
+                            }
+                            return;
+                        }
+                    }
+                    //
+
+
+                    break;
+                }
+                else if (tag == tags[z])
+                {
+                    Debug.LogError("None of specified card left");
+                    if (z + 1 == tags.Length)
+                    {
+                        return;
+                    }
+                    GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                    for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                    {
+                        try
+                        {
+                            Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Six Nations" && ((((cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked) && isParentWishlist == 1)) || (isParentInventory == 1 && cardsWithTag[ah].transform.parent.tag == "Inventory")))
+                            {
+                                Debug.Log("Team does not have enough cards, starting animation for Six Nations");
+                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                return;
+                            }
+                        }
+                        catch (NullReferenceException ex)
+                        {
+                            Debug.Log("Card came back with null parents");
+                            cardsWithTag[ah].gameObject.SetActive(false);
+                        }
+                        if (ah == cardsWithTag.Length - 1)
+                        {
+                            Debug.Log("Not correct team");
+                            return;
+                        }
+
+
+
+                    }
+                }
+                else
+                {
+                    Debug.Log("Not correct iteration?");
+                }
+            }
+        }
+        #endregion
+        // The Munsee Region
+        #region
+        if (playerString == Munsee)
+        {
+            for (int z = 0; z < tags.Length; z++)
+            {
+                //Debug.Log(tag + " " + tags[z]);
+                if (tag == tags[z] && ((MunseeAmounts[z] > 0 && isParentInventory == 1) || (isParentWishlist == 1 && findifTeamBeingTradedWithHasEnoughCardsTutorial(z)))) // If the card amounts are greater than zero or is in their wishlist
+                {
+
+                    if (isParentInventory == 1)
+                    {
+                        for (int b = 0; b < topButtonPos.Length; b++)
+                        {
+
+                            if (addToReceiving[b] == true) // Pretend that it is a isParentWishlist side, yet counts the number of InventoryCardsInTrade
+                            {
+                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[b] + new Vector3(distanceFromLineReceiving + (float)0.3 * (InventoryCardsInTrade % cardsPerLine), YAxisLineDistance - (InventoryCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                            }
+                            else
+                            {
+                                instantiatedCard[b] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[b] + new Vector3((distanceFromLineGiving + ((float)0.3 * (InventoryCardsInTrade % cardsPerLine))), YAxisLineDistance - (InventoryCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                            }
+
+                        }
+                        Debug.Log(MunseeAmounts[z]);
+                        MunseeAmounts[z]--;
+                        MunseeAmountsGameObjects[z].GetComponent<Text>().text = MunseeAmounts[z].ToString() + "x";
+
+                        MunseeAmounts[z + 13]++;
+                        if (MunseeAmountsStarting[z + 13] > 0)
+                        {
+                            MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "/" + MunseeAmountsStarting[z + 13].ToString() + "x";
+                            changeColorOfObjectWithText(MunseeAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
+                            if (MunseeAmounts[z + 13] < 0)
+                            {
+                                MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[z + 13]).ToString();
+                                MunseeAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                placeCheckmarkWentPastZero(MunseeAmountsGameObjects[z + 13]);
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log(MunseeAmounts[z + 13]);
+                        if (leftClicked)
+                        {
+                            for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                            {
+                                if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                {
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % cardsPerLine))), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+                                else
+                                {
+
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % cardsPerLine), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+
+                            }
+                            MunseeAmounts[z + 13]--;
+
+
+
+                            //findTeamBeingTradedWithAndSubtractFromInventory(z);
+
+
+
+                            if (MunseeAmountsStarting[z + 13] > 0)
+                            {
+                                MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "/" + MunseeAmountsStarting[z + 13].ToString() + "x";
+                                changeColorOfObjectWithText(MunseeAmountsGameObjects[z + 13], WishlistColorRegular);
+
+                                if (MunseeAmounts[z + 13] < 0)
+                                {
+                                    MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[z + 13]).ToString();
+                                    MunseeAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                    placeCheckmarkWentPastZero(MunseeAmountsGameObjects[z + 13]);
+
+
+                                }
+                            }
+                            break;
+                        }
+                        else if (MunseeAmountsGameObjects[z + 13] != null)
+                        {
+
+                            for (int j = 0; j < enemyTeamButtonPos.Length; j++)
+                            {
+                                if (addToReceiving[j] == true) // Pretend that it is a isParentInventory side, yet counts the number of WishlistCardsInTrade
+                                {
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPos[j] + new Vector3((distanceFromLineGiving + ((float)0.3 * (WishlistCardsInTrade % cardsPerLine))), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+                                else
+                                {
+
+                                    instantiatedCard[j] = PhotonNetwork.Instantiate(Prefabs[z].ToString().Remove(Prefabs[z].ToString().Length - 25), topButtonPosWishlist[j] + new Vector3(distanceFromLineReceiving + (float)0.3 * (WishlistCardsInTrade % cardsPerLine), YAxisLineDistance - (WishlistCardsInTrade / cardsPerLine), ZAxisLineDistance), Quaternion.identity);
+                                }
+
+                            }
+                            MunseeAmounts[z + 13]--;
+
+
+                            //findTeamBeingTradedWithAndSubtractFromInventory(z);
+
+
+                            MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = MunseeAmounts[z + 13].ToString() + "/" + MunseeAmountsStarting[z + 13].ToString() + "x";
+                            changeColorOfObjectWithText(MunseeAmountsGameObjects[z + 13], WishlistColorRegular);
+
+
+                            if (MunseeAmounts[z + 13] < 0)
+                            {
+                                MunseeAmountsGameObjects[z + 13].GetComponent<Text>().text = "+" + Mathf.Abs(MunseeAmounts[z + 13]).ToString();
+                                MunseeAmountsGameObjects[z + 13].GetComponent<Text>().color = WishlistColor;
+                                placeCheckmarkWentPastZero(MunseeAmountsGameObjects[z + 13]);
+
+
+                            }
+
+                            break;
+                        }
+                        else
+                        {
+                            Debug.LogError("None of specified card left");
+                            GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                            for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                            {
+                                try
+                                {
+                                    Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                                    if (cardsWithTag[ah].transform.parent.parent.parent.name == "Munsee" && cardsWithTag[ah].transform.parent.tag == "Wishlist")
+                                    {
+                                        Debug.Log("Team does not have enough cards, starting animation for Munsee");
+                                        StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                        return;
+                                    }
+                                }
+                                catch (NullReferenceException ex)
+                                {
+                                    Debug.Log("Card came back with null parents");
+                                    cardsWithTag[ah].gameObject.SetActive(false);
+                                }
+
+                            }
+                            return;
+                        }
+                    }
+                    //
+
+
+                    break;
+                }
+                else if (tag == tags[z])
+                {
+                    Debug.LogError("None of specified card left");
+                    if (z + 1 == tags.Length)
+                    {
+                        return;
+                    }
+                    GameObject[] cardsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+                    for (int ah = 0; ah < cardsWithTag.Length; ah++)
+                    {
+                        try
+                        {
+                            Debug.Log("ah: " + ah + " " + cardsWithTag[ah].transform.parent.parent.parent.name + " " + cardsWithTag[ah].transform.parent.tag);
+                            if (cardsWithTag[ah].transform.parent.parent.parent.name != null && cardsWithTag[ah].transform.parent.parent.parent.name == "Munsee" && ((((cardsWithTag[ah].transform.parent.tag == "Wishlist" || leftClicked) && isParentWishlist == 1)) || (isParentInventory == 1 && cardsWithTag[ah].transform.parent.tag == "Inventory")))
+                            {
+                                Debug.Log("Team does not have enough cards, starting animation for Munsee");
+                                StartCoroutine(redCardAnimation(cardsWithTag[ah]));
+                                return;
+                            }
+
+                        }
+                        catch (NullReferenceException ex)
+                        {
+                            Debug.Log("Card came back with null parents");
+                            cardsWithTag[ah].gameObject.SetActive(false);
+                        }
+
+                        if (ah == cardsWithTag.Length - 1)
+                        {
+                            Debug.Log("Not correct team");
+                            return;
+                        }
+
+
+
+                    }
+                }
+                else
+                {
+                    Debug.Log("Not correct iteration?");
+                }
+            }
+        }
+        #endregion
+        CardsCanvasObjects[0] = DutchCardsCanvasObject;
+        CardsCanvasObjects[1] = PhilipsesCardsCanvasObject;
+        CardsCanvasObjects[2] = SixNationsCardsCanvasObject;
+        CardsCanvasObjects[3] = MunseeCardsCanvasObject;
+        /*CardsCanvasObjects = {DutchCardsCanvasObject, PhilipsesCardsCanvasObject, SixNationsCardsCanvasObject, MunseeCardsCanvasObject };*/
+
+        if (parentTag == "Wishlist")
+        {
+            WishlistCardsInTrade++;
+        }
+        else
+        {
+            InventoryCardsInTrade++;
+        }
+        for (int j = 0; j < instantiatedCard.Length; j++)
+        {
+            instantiatedCard[j].GetComponent<Button>().enabled = false;
+
+            instantiatedCard[j].transform.position = new Vector3(instantiatedCard[j].transform.position.x, instantiatedCard[j].transform.position.y, 10);
+            Debug.Log("Card Instantiated at: " + instantiatedCard[j].transform.position);
+
+            if (parentTag == "Wishlist")
+            {
+
+                Debug.Log(WishlistCardsInTrade);
+                if (addToReceiving[j] == true)
+                {
+                    Debug.Log(CardsCanvasObjects[j].tag);
+                    Debug.Log(j);
+                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(0)); // SETS IT TO GIVING CARD
+                }
+                else
+                {
+                    Debug.Log(CardsCanvasObjects[j].tag);
+                    Debug.Log(j);
+                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(1)); // SETS IT TO RECEIVING CARD
+                }
+
+            }
+            else
+            {
+                Debug.Log(InventoryCardsInTrade);
+                if (addToReceiving[j] == true)
+                {
+                    Debug.Log(CardsCanvasObjects[j].tag);
+                    Debug.Log(j);
+                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(1)); // SETS IT TO RECEIVING CARD
+                }
+                else
+                {
+                    Debug.Log(CardsCanvasObjects[j].tag);
+                    Debug.Log(j);
+                    instantiatedCard[j].transform.SetParent(CardsCanvasObjects[j].transform.GetChild(0)); // SETS IT TO GIVING CARD
+                }
+
+            }
+
+            DutchAccepted = false;
+            PhilipsesAccepted = false;
+            MunseeAccepted = false;
+            SixNationsAccepted = false;
+            numberOfAcceptedTeams = 0;
+        }
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
 
     [PunRPC]
     void addWampumValues(PhotonMessageInfo info)
@@ -4430,6 +5906,21 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         }
         
     }
+
+
+
+    void FlagButtonBackgroundFadeInFadeOutTutorial()
+    {
+        Debug.Log("Starting white background fade in and out, tutorial");
+        if (inst4 == null)
+        {
+            inst4 = StartCoroutine(FadeInFadeOutFlags(0.5f, GameObject.FindGameObjectWithTag("TeamFlagsButtonBackground").GetComponent<Image>()));
+        }
+    }
+
+
+
+
 
 
 
@@ -5371,7 +6862,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         {
             StopCoroutine(inst);
         }
-        nextTurnChangeColorToNothing = true;
+
+        nextTurnChangeColorToNothing = true; // OK?
         
         Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
         imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);

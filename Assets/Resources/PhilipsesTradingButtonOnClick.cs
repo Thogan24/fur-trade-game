@@ -20,14 +20,19 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
     public void PhilipsesTradingOnClick()
     {
         Debug.LogError("Philipses Trading button clicked");
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
         if (gameManager.tutorialFinishedGameSetup)
         {
             this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
         }
         else
         {
+            gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
             greyOutButtonsTutorial();
             setLabelsTutorial();
+            gameManager.tutorialStartedTrading = true;
+
         }
 
     }

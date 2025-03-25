@@ -21,14 +21,19 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
     {
         Debug.Log("Hello");
         Debug.LogError("Munsee trade button clicked");
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
         if (gameManager.tutorialFinishedGameSetup)
         {
             this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped
         }
         else
         {
+            gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
             greyOutButtonsTutorial();
             setLabelsTutorial();
+            gameManager.tutorialStartedTrading = true;
         }
     }
 

@@ -14,10 +14,18 @@ public class ClearTradeButtonOnClick : MonoBehaviour
 
         Debug.Log("Clear Trade Button Clicked");
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        if (gameManager.turn == 1 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Dutch || gameManager.turn == 2 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Philipses || gameManager.turn == 3 && PhotonNetwork.LocalPlayer.ToString() == gameManager.SixNations || gameManager.turn == 4 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Munsee)
+        if (gameManager.tutorialFinishedGameSetup)
         {
-            this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString());
+            if (gameManager.turn == 1 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Dutch || gameManager.turn == 2 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Philipses || gameManager.turn == 3 && PhotonNetwork.LocalPlayer.ToString() == gameManager.SixNations || gameManager.turn == 4 && PhotonNetwork.LocalPlayer.ToString() == gameManager.Munsee)
+            {
+                this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString());
+            }
         }
+        else
+        {
+            tutorialClickClearButton();
+        }
+            
     }
 
     [PunRPC]
@@ -26,8 +34,13 @@ public class ClearTradeButtonOnClick : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         gameManager.clearTradeButton = true;
         gameManager.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
+    }
 
+    void tutorialClickClearButton()
+    {
+        // Clear cards and stuff
 
-        
+        gameManager.clearTradeTutorial();
+
     }
 }

@@ -11,17 +11,6 @@ using UnityEngine.EventSystems;
 public class CardOnClick : MonoBehaviour, IPointerClickHandler
 {
     public GameManager gameManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -34,10 +23,18 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
         {
             Debug.Log("Right click");
             gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+            if (!gameManager.tutorialFinishedGameSetup)
+            {
+                string t = this.gameObject.tag;
+                string pT = "Wishlist";
+                gameManager.addCardToTradeTutorial(t, pT, true);
+
+            }
             if (!gameManager.DutchTrading && !gameManager.PhilipsesTrading && !gameManager.SixNationsTrading && !gameManager.MunseeTrading)
             {
                 Debug.LogError("Bruh no ones trading");
             }
+            
             else
             {
 
@@ -54,7 +51,19 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
         Debug.LogError("Card Clicked");
         // REMEMBER THIS IS HERE
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        if(!gameManager.DutchTrading && !gameManager.PhilipsesTrading && !gameManager.SixNationsTrading && !gameManager.MunseeTrading)
+        if (!gameManager.tutorialFinishedGameSetup) {
+            string tag = this.gameObject.tag;
+            string parentTag = this.gameObject.transform.parent.tag;
+            Debug.Log("Card tutorial clicked 1");
+            gameManager.addCardToTradeTutorial(tag, parentTag, false);
+            
+           
+
+        }
+
+
+
+        if (!gameManager.DutchTrading && !gameManager.PhilipsesTrading && !gameManager.SixNationsTrading && !gameManager.MunseeTrading)
         {
             Debug.LogError("Bruh no ones trading");
         }
@@ -63,58 +72,12 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
             string tag = this.gameObject.tag;
             string parentTag = this.gameObject.transform.parent.tag;
             Debug.Log(tag);
-            if (CanWishlist())
-            {
-                gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag, false);
-            } else
-            {
-                StartCoroutine(FlashRedCoroutine());
-            }
+            gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, tag, parentTag, false);
+            
         }
 
     }
 
-    public bool CanWishlist()
-    {
-        //if (player_ID == gameManager.Dutch && gameManager.PhilipsesTrading)
-        //{
-        //    int index = FindIndexOfTag(gameManager.tags, this.gameObject.tag);
-        //    if (gameManager.PhilipsesAmounts[index] == 0)
-        //    {
-        //        return false;
-        //    }
-        //}
-        //if (player_ID == gameManager.Dutch && gameManager.MunseeTrading)
-        //{
-        //    int index = FindIndexOfTag(gameManager.tags, this.gameObject.tag);
-        //    if (gameManager.MunseeAmounts[index] == 0)
-        //    {
-        //        return false;
-        //    }
-        //if (player_ID == gameManager.Dutch && gameManager.SixNationsTrading)
-        //{
-        //    int index = FindIndexOfTag(gameManager.tags, this.gameObject.tag);
-        //    if (gameManager.SixNationsAmounts[index] == 0)
-        //    {
-        //        return false;
-        //    }
-        //if (player_ID == gameManager.Phillipses && gameManager.MunseeTrading)
-        //{
-        //    int index = FindIndexOfTag(gameManager.tags, this.gameObject.tag);
-        //    if (gameManager.MunseeAmounts[index] == 0)
-        //    {
-        //        return false;
-        //    }
-        //if (player_ID == gameManager.Phillipses && gameManager.SixNationsTrading)
-        //{
-        //    int index = FindIndexOfTag(gameManager.tags, this.gameObject.tag);
-        //    if (gameManager.SixNationsAmounts[index] == 0)
-        //    {
-        //        return false;
-        //    }
-        //}
-        return true;
-    }
 
     public int FindIndexOfTag(string[] arr, string str)
     {
@@ -126,9 +89,5 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
             }
         }
         return -1;
-    }
-    private IEnumerator FlashRedCoroutine()
-    {
-        yield return null;
     }
 }

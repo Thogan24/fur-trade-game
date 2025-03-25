@@ -35,11 +35,16 @@ public class TradeButtonOnClick : MonoBehaviour
         {
             Debug.Log(this.gameObject.name + this.gameObject.tag + this.gameObject.transform.parent.name + this.gameObject.transform.parent.parent.name + this.gameObject.transform.parent.parent.parent.name);
         }*/
-        
-        if(this.gameObject.tag == "clearButton")
+
+
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        if(gameManager.tutorialFinishedGameSetup == false)
+        {
+            tutorialClickClearButton();
+        }
+        else if (this.gameObject.tag == "clearButton")
         {
             Debug.Log("W");
-            gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
             gameManager.clearTradeButton = true;
             gameManager.GetComponent<PhotonView>().RPC("clearAllTrades", RpcTarget.All);
         }
@@ -148,4 +153,20 @@ public class TradeButtonOnClick : MonoBehaviour
             }
         }
     }
+
+    void tutorialClickClearButton()
+    {
+        //Flash in and out for a few seconds.
+
+        //Stop flash
+        // Clear cards and stuff
+
+        gameManager.clearTradeTutorial();
+        for (int iterator = 0; iterator < gameManager.tutorialEndButtons.Length; iterator++)
+        {
+            gameManager.tutorialEndButtons[iterator].SetActive(true);
+        }
+
+    }
+
 }

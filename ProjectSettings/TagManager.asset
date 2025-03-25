@@ -172,6 +172,7 @@ TagManager:
   - ReceivingLabel
   - top
   - bottom
+  - TutorialButtonFInish
   layers:
   - Default
   - TransparentFX
