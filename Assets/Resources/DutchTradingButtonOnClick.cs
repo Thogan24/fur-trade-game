@@ -10,6 +10,7 @@ public class DutchTradingButtonOnClick : MonoBehaviour
 {
     public GameObject DutchTradingButton;
     public GameManager gameManager;
+    public bool firstClick = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +49,11 @@ public class DutchTradingButtonOnClick : MonoBehaviour
             greyOutButtonsTutorial();
             setLabelsTutorial();
             gameManager.tutorialStartedTrading = true;
+            if(firstClick == false)
+            {
+                gameManager.startContinueTutorial1();
+                firstClick = true;
+            }
 
         }
 

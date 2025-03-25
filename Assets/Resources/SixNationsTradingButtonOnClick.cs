@@ -10,6 +10,8 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
 {
     public GameObject sixNationsTradingButton;
     public GameManager gameManager;
+    public bool firstClick = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,11 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
             greyOutButtonsTutorial();
             setLabelsTutorial();
             gameManager.tutorialStartedTrading = true;
+            if (firstClick == false)
+            {
+                gameManager.startContinueTutorial1();
+                firstClick = true;
+            }
 
         }
 

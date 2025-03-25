@@ -97,21 +97,29 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public GameObject DutchSecondBackgroundCanvasObject;
     public GameObject DutchCardsCanvasObject;
     public GameObject DutchInstructionsCanvasObject;
+    public GameObject DutchTutorialPanels;
+
     public GameObject SixNationsTextCanvasObject;
     public GameObject SixNationsBackgroundCanvasObject;
     public GameObject SixNationsSecondBackgroundCanvasObject;
     public GameObject SixNationsCardsCanvasObject;
     public GameObject SixNationsInstructionsCanvasObject;
+    public GameObject SixNationsTutorialPanels;
+
     public GameObject MunseeTextCanvasObject;
     public GameObject MunseeBackgroundCanvasObject;
     public GameObject MunseeSecondBackgroundCanvasObject;
     public GameObject MunseeCardsCanvasObject;
     public GameObject MunseeInstructionsCanvasObject;
+    public GameObject MunseeTutorialPanels;
+
     public GameObject PhilipsesTextCanvasObject;
     public GameObject PhilipsesBackgroundCanvasObject;
     public GameObject PhilipsesSecondBackgroundCanvasObject;
     public GameObject PhilipsesCardsCanvasObject;
     public GameObject PhilipsesInstructionsCanvasObject;
+    public GameObject PhilipsesTutorialPanels;
+
     public GameObject DutchObject;
     public GameObject PhilipsesObject;
     public GameObject SixNationsObject;
@@ -343,6 +351,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
     public GameObject[] tutorialEndButtons = { };
 
+    public static int tutorialTextWaitTime = 5;
+    public static float tutorialTextFadeOutFadeInTime = 0.5f;
+    public static float tutorialBackgroundFadeOutFadeInTime = 1f;
+    public static float panelAlpha = 0.75f;
+
+
+
 
 
 
@@ -408,7 +423,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             //countDownFinished = false; NOO!!!
             //StartCountDown();
 
-            Debug.Log("StartCountDown");
             this.GetComponent<PhotonView>().RPC("mainSceneCameraRPC", RpcTarget.All);
             Debug.Log("mainSceneCameraRPC");
             this.GetComponent<PhotonView>().RPC("mainSceneSetInventoryAmountsRPC", RpcTarget.All);
@@ -485,6 +499,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 givingTeamLabels[inde].GetComponent<Text>().text = "No teams trading";
                 receivingTeamLabels[inde].GetComponent<Text>().text = "No teams trading";
             }
+
+            StartCoroutine("startTutorial");
 
         }
         /*        if (playerList.Length != PhotonNetwork.PlayerList.Length)
@@ -751,6 +767,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         SixNationsCardsCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Card Canvas");
         MunseeCardsCanvasObject = GameObject.FindGameObjectWithTag("Munsee Card Canvas");
 
+        DutchTutorialPanels = GameObject.FindGameObjectWithTag("DutchTutorialPanels");
+        SixNationsTutorialPanels = GameObject.FindGameObjectWithTag("SixNationsTutorialPanels");
+        MunseeTutorialPanels = GameObject.FindGameObjectWithTag("MunseeTutorialPanels");
+        PhilipsesTutorialPanels = GameObject.FindGameObjectWithTag("PhilipsesTutorialPanels");
+
+
+
+
+
         GameObject[] DutchCamerasCheckArray = GameObject.FindGameObjectsWithTag("DWIC Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == Dutch && AlreadyLoaded == false && DutchCamerasCheckArray.Length <= 1)
         {
@@ -784,13 +809,20 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             DutchBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Background Canvas");
             DutchSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Dutch Second Background Canvas");
             DutchInstructionsCanvasObject = GameObject.FindGameObjectWithTag("DutchInstructionsCanvas");
+
+
             DutchCamera.transform.parent = DutchTextCanvasObject.transform.parent;
             DutchTextCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchCardsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
             DutchInstructionsCanvasObject.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
-            
+            DutchTutorialPanels.GetComponent<Canvas>().worldCamera = DutchCamera.gameObject.GetComponent<Camera>();
+
+            PhilipsesTutorialPanels.SetActive(false);
+            SixNationsTutorialPanels.SetActive(false);
+            MunseeTutorialPanels.SetActive(false);
+
 
             //DutchCamera.SetActive(true);
         }
@@ -825,13 +857,19 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             SixNationsBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Background Canvas");
             SixNationsSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Six Nations Second Background Canvas");
             SixNationsInstructionsCanvasObject = GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas");
+
             SixNationsCamera.transform.parent = SixNationsTextCanvasObject.transform.parent;
             SixNationsTextCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsCardsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
             SixNationsInstructionsCanvasObject.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
-            
+            SixNationsTutorialPanels.GetComponent<Canvas>().worldCamera = SixNationsCamera.gameObject.GetComponent<Camera>();
+
+            DutchTutorialPanels.SetActive(false);
+            PhilipsesTutorialPanels.SetActive(false);
+            MunseeTutorialPanels.SetActive(false);
+
 
         }
         GameObject[] MunseeCamerasCheckArray = GameObject.FindGameObjectsWithTag("Munsee Camera");
@@ -866,13 +904,20 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             MunseeBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Background Canvas");
             MunseeSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Munsee Second Background Canvas");
             MunseeInstructionsCanvasObject = GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas");
+
             MunseeCamera.transform.parent = MunseeTextCanvasObject.transform.parent;
             MunseeTextCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeCardsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
             MunseeInstructionsCanvasObject.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
-            
+            MunseeTutorialPanels.GetComponent<Canvas>().worldCamera = MunseeCamera.gameObject.GetComponent<Camera>();
+
+
+            DutchTutorialPanels.SetActive(false);
+            PhilipsesTutorialPanels.SetActive(false);
+            SixNationsTutorialPanels.SetActive(false);
+
         }
         GameObject[] PhilipsesCamerasCheckArray = GameObject.FindGameObjectsWithTag("Philipse Camera");
         if (PhotonNetwork.LocalPlayer.ToString() == Philipses && AlreadyLoaded == false && PhilipsesCamerasCheckArray.Length <= 1)
@@ -905,13 +950,19 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             PhilipsesBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Background Canvas");
             PhilipsesSecondBackgroundCanvasObject = GameObject.FindGameObjectWithTag("Philipses Second Background Canvas");
             PhilipsesInstructionsCanvasObject = GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas");
+
             PhilipsesCamera.transform.parent = PhilipsesTextCanvasObject.transform.parent;
             PhilipsesTextCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesCardsCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesSecondBackgroundCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
             PhilipsesInstructionsCanvasObject.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
-            
+            PhilipsesTutorialPanels.GetComponent<Canvas>().worldCamera = PhilipsesCamera.gameObject.GetComponent<Camera>();
+
+            DutchTutorialPanels.SetActive(false);
+            SixNationsTutorialPanels.SetActive(false);
+            MunseeTutorialPanels.SetActive(false);
+
         }
 
 
@@ -6577,12 +6628,170 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
 
-    
+
 
     // TUTORIAL STUFF
 
+    public IEnumerator FadeBackgroundToFullAlphaTutorial(float t, Image i, float alpha)
+    {
+        Debug.Log("This ran again");
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
+        while (i.color.a < alpha)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime * alpha / t));
+/*            if (inst2 != null)
+            {
+                Debug.Log("NexTurn, stopping inst2");
+                StopCoroutine(inst2);
+            }*/
+            yield return null;
+        }
+    }
+
+    public IEnumerator FadeBackgroundToZeroAlphaTutorial(float t, Image i, float alpha)
+    {
 
 
+        
+            if (SceneManager.GetActiveScene().name == "Main_Scene")
+            {
+                i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+                while (i.color.a > 0.0f)
+                {
+                    i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime * alpha / t));
+                    yield return null;
+                }
+            }
+        
+    }
+
+    public IEnumerator FadeTextToZeroAlpha(float t, TMPro.TextMeshProUGUI i)
+    {
+        Debug.Log("Setting alpha to 0");
+
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        while (i.color.a > 0.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+            yield return null;
+        }
+    }
+
+
+    public IEnumerator FadeTextToFullAlpha(float t, TMPro.TextMeshProUGUI i)
+    {
+        Debug.Log("Setting alpha to 1");
+
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
+        while (i.color.a < 1.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+            yield return null;
+        }
+    }
+
+
+    GameObject tutorial1;
+    GameObject tutorial2;
+    GameObject tutorial3;
+    GameObject tutorial4;
+    GameObject tutorial5;
+    GameObject tutorial6;
+    GameObject tutorial7;
+
+    public IEnumerator startTutorial()
+    {
+        Debug.Log("Tutorial starting!");
+        // Fade in tutorial 1
+        tutorial1 = GameObject.FindGameObjectWithTag("Tutorial1");
+        tutorial2 = GameObject.FindGameObjectWithTag("Tutorial2");
+        tutorial3 = GameObject.FindGameObjectWithTag("Tutorial3");
+        tutorial4 = GameObject.FindGameObjectWithTag("Tutorial4");
+        tutorial5 = GameObject.FindGameObjectWithTag("Tutorial5");
+        tutorial6 = GameObject.FindGameObjectWithTag("Tutorial6");
+        tutorial7 = GameObject.FindGameObjectWithTag("Tutorial7");
+        tutorial2.SetActive(false);
+        tutorial3.SetActive(false);
+        tutorial4.SetActive(false);
+        tutorial5.SetActive(false);
+        tutorial6.SetActive(false);
+        tutorial7.SetActive(false);
+
+
+
+        GameObject g = GameObject.FindGameObjectWithTag("Tutorial1");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+        }
+        yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
+
+        StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+
+        yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+        Coroutine inst7 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        StopCoroutine(inst7);
+        TutorialAlertText.text = "The Fur Trade game is a game centralized around trading, we will show you how to send a trade";
+        StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        inst7 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); 
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        StopCoroutine(inst7);
+        TutorialAlertText.text = "First select a team you would like to trade with (other teams will not see your actions while in tutorial)";
+        StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+
+
+
+        // Wait 3 seconds
+        // Fade in 
+
+        
+        yield return null;
+
+    }
+
+    public void startContinueTutorial1()
+    {
+        StartCoroutine("continueTutorial1");
+    }
+    public IEnumerator continueTutorial1()
+    {
+        tutorial2.SetActive(true);
+        GameObject g = GameObject.FindGameObjectWithTag("Tutorial1");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+        }
+        StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+
+        tutorial1.SetActive(false);
+
+
+        g = GameObject.FindGameObjectWithTag("Tutorial2");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToFullAlphaTutorial(1, i, panelAlpha));
+        }
+        StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+        yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
+
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+        StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+
+    }
 
 
 
