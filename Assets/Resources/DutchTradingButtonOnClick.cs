@@ -27,6 +27,10 @@ public class DutchTradingButtonOnClick : MonoBehaviour
         Debug.Log(this.gameObject.transform.parent.parent.name);
         Debug.Log(this.gameObject.transform.parent.name);
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        if (gameManager.CannotAccessFlags)
+        {
+            return;
+        }
         // bandage fix
         if (gameManager.tutorialFinishedGameSetup)
         {

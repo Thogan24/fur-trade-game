@@ -21,9 +21,15 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
 
     public void SixNationsTradingOnClick()
     {
-        Debug.Log("Hello");
+        
         Debug.LogError("Six Nations Button Clicked");
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        if (gameManager.CannotAccessFlags)
+        {
+            return;
+        }
+
+
 
         if (gameManager.tutorialFinishedGameSetup)
         {

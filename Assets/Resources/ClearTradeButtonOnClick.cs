@@ -39,8 +39,9 @@ public class ClearTradeButtonOnClick : MonoBehaviour
     void tutorialClickClearButton()
     {
         // Clear cards and stuff
-        gameManager.clearTradeButton = true;
+        /*gameManager.clearTradeButton = true;
         gameManager.clearTradeTutorial();
-
+*/
+        return; // functionality disabled during tutorial
     }
 }

@@ -22,7 +22,10 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
     {
         Debug.LogError("Philipses Trading button clicked");
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-
+        if (gameManager.CannotAccessFlags)
+        {
+            return;
+        }
         if (gameManager.tutorialFinishedGameSetup)
         {
             this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString()); //  After being mapped

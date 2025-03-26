@@ -11,19 +11,24 @@ public class TradeButtonOnClick : MonoBehaviour
 
     public GameManager gameManager;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
     public void TradeButtonOnClicked()
     {
+
         Debug.Log("Trade Button Clicked");
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        if (gameManager.CannotAccessTradeButton)
+        {
+            Debug.Log("You cannot access the trades");
+            return;
+        }
+        if (gameManager.tutorialFinishedGameSetup == false)
+        {
+            Debug.Log("tutorialClickFinishButton");
+            tutorialClickFinishButton();
+            return;
+        }
+        
+
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString());
 
     }
@@ -37,12 +42,8 @@ public class TradeButtonOnClick : MonoBehaviour
         }*/
 
 
-        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        if (gameManager.tutorialFinishedGameSetup == false)
-        {
-            tutorialClickFinishButton();
-        }
-        else if (this.gameObject.tag == "clearButton")
+        
+        if (this.gameObject.tag == "clearButton")
         {
             Debug.Log("W");
             gameManager.clearTradeButton = true;

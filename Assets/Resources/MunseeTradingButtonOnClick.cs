@@ -23,6 +23,10 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
         Debug.Log("Hello");
         Debug.LogError("Munsee trade button clicked");
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        if (gameManager.CannotAccessFlags)
+        {
+            return;
+        }
 
         if (gameManager.tutorialFinishedGameSetup)
         {

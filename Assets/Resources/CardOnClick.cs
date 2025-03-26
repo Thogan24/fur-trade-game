@@ -14,6 +14,12 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        if (gameManager.CannotAccessCards)
+        {
+            return;
+        }
+
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             Debug.Log("Left click");
@@ -22,11 +28,14 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
             Debug.Log("Right click");
-            gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
             if (!gameManager.tutorialFinishedGameSetup)
             {
                 string t = this.gameObject.tag;
-                string pT = "Wishlist";
+                string pT = "Wishlist"; 
+                if (gameManager.firstWishlistCardClicked == false)
+                {
+                    gameManager.firstWishlistCardClicked = true;
+                }
                 gameManager.addCardToTradeTutorial(t, pT, true);
 
             }
@@ -37,7 +46,6 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
             
             else
             {
-
                 string t = this.gameObject.tag;
                 string pT = "Wishlist";
                 gameManager.gameObject.GetComponent<PhotonView>().RPC("addCardToTrade", RpcTarget.All, t, pT, true);
@@ -51,14 +59,29 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
         Debug.LogError("Card Clicked");
         // REMEMBER THIS IS HERE
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
+        if (gameManager.CannotAccessCards)
+        {
+            return;
+        }
+
         if (!gameManager.tutorialFinishedGameSetup) {
             string tag = this.gameObject.tag;
             string parentTag = this.gameObject.transform.parent.tag;
             Debug.Log("Card tutorial clicked 1");
+            if(parentTag == "Wishlist" && gameManager.firstWishlistCardClicked == false)
+            {
+                gameManager.firstWishlistCardClicked = true;
+            }
+            else if (parentTag == "Inventory" && gameManager.firstInventoryCardClicked == false)
+            {
+                gameManager.firstInventoryCardClicked = true;
+            }
             gameManager.addCardToTradeTutorial(tag, parentTag, false);
-            
-           
-
+            if (gameManager.firstWishlistCardClicked && gameManager.firstInventoryCardClicked)
+            {
+                gameManager.startContinueTutorial2();
+            }
         }
 
 
