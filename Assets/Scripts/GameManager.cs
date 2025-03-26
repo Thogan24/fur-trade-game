@@ -7022,8 +7022,37 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
     public IEnumerator tutorialFinished()
     {
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+        Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); 
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        StopCoroutine(inst8);
 
-        yield return null;
+        TutorialAlertText.text = "The Game Will Now Start in 5";
+        StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+
+        yield return new WaitForSeconds(1);
+        TutorialAlertText.text = "The Game Will Now Start in 4";
+        yield return new WaitForSeconds(1);
+        TutorialAlertText.text = "The Game Will Now Start in 3";
+        yield return new WaitForSeconds(1);
+        TutorialAlertText.text = "The Game Will Now Start in 2";
+        yield return new WaitForSeconds(1);
+        TutorialAlertText.text = "The Game Will Now Start in 1";
+        yield return new WaitForSeconds(1);
+        TutorialAlertText.text = "Good Luck!";
+        yield return new WaitForSeconds(1);
+
+        GameObject g = GameObject.FindGameObjectWithTag("Tutorial7");
+        for (int j = 0; j < g.transform.childCount; j++)
+        {
+            Image i = g.transform.GetChild(j).GetComponent<Image>();
+            StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+        }
+        inst8 = StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+        StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+        yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
+        tutorial7.SetActive(false);
     }
 
 
