@@ -29,7 +29,11 @@ public class MainMenuButtons : MonoBehaviour
     public void PauseGame()
     {
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        gameManager.GetComponent<PhotonView>().RPC("PauseGameRPC", RpcTarget.All);
+        if (gameManager.tutorialFinishedGameSetup)
+        {
+            gameManager.GetComponent<PhotonView>().RPC("PauseGameRPC", RpcTarget.All);
+
+        }
 
     }
     public void ExitPauseGame()
@@ -75,22 +79,24 @@ public class MainMenuButtons : MonoBehaviour
         {
             // CHANGE!!!
             GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-
-            if (gameManager.Dutch == PhotonNetwork.LocalPlayer.ToString())
+            if (gameManager.tutorialFinishedGameSetup)
             {
-                InstructionsGameObject = Instantiate(Instructions, this.transform.parent.transform);
-            }
-            else if (gameManager.Philipses == PhotonNetwork.LocalPlayer.ToString())
-            {
-                InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").transform);
-            }
-            else if (gameManager.SixNations == PhotonNetwork.LocalPlayer.ToString())
-            {
-                InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").transform);
-            }
-            else if (gameManager.Munsee == PhotonNetwork.LocalPlayer.ToString())
-            {
-                InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").transform);
+                if (gameManager.Dutch == PhotonNetwork.LocalPlayer.ToString())
+                {
+                    InstructionsGameObject = Instantiate(Instructions, this.transform.parent.transform);
+                }
+                else if (gameManager.Philipses == PhotonNetwork.LocalPlayer.ToString())
+                {
+                    InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("PhilipsesInstructionsCanvas").transform);
+                }
+                else if (gameManager.SixNations == PhotonNetwork.LocalPlayer.ToString())
+                {
+                    InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("SixNationsInstructionsCanvas").transform);
+                }
+                else if (gameManager.Munsee == PhotonNetwork.LocalPlayer.ToString())
+                {
+                    InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").transform);
+                }
             }
         }
         

@@ -23,18 +23,42 @@ public class TutorialFinishedButtonOnClick : MonoBehaviour
         if (userIDOfClicker == gameManager.Dutch)
         {
             gameManager.tutorialFinishedDutch = true;
+            TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+            if(!(gameManager.tutorialFinishedPhilipses == true && gameManager.tutorialFinishedDutch == true && gameManager.tutorialFinishedSixNations && gameManager.tutorialFinishedMunsee))
+            {
+                TutorialAlertText.text = "You have completed the tutorial. Please wait for competitors to finish.";
+            }
+
         }
         else if (userIDOfClicker == gameManager.Philipses)
         {
             gameManager.tutorialFinishedPhilipses = true;
+            TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+
+            if (!(gameManager.tutorialFinishedPhilipses == true && gameManager.tutorialFinishedDutch == true && gameManager.tutorialFinishedSixNations && gameManager.tutorialFinishedMunsee))
+            {
+                TutorialAlertText.text = "You have completed the tutorial. Please wait for competitors to finish.";
+            }
         }
         else if (userIDOfClicker == gameManager.SixNations)
         {
             gameManager.tutorialFinishedSixNations = true;
+            TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+
+            if (!(gameManager.tutorialFinishedPhilipses == true && gameManager.tutorialFinishedDutch == true && gameManager.tutorialFinishedSixNations && gameManager.tutorialFinishedMunsee))
+            {
+                TutorialAlertText.text = "You have completed the tutorial. Please wait for competitors to finish.";
+            }
         }
         else if (userIDOfClicker == gameManager.Munsee)
         {
             gameManager.tutorialFinishedMunsee = true;
+            TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+
+            if (!(gameManager.tutorialFinishedPhilipses == true && gameManager.tutorialFinishedDutch == true && gameManager.tutorialFinishedSixNations && gameManager.tutorialFinishedMunsee))
+            {
+                TutorialAlertText.text = "You have completed the tutorial. Please wait for competitors to finish.";
+            }
         }
         else
         {

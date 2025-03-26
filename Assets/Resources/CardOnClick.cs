@@ -38,6 +38,10 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
                 }
                 gameManager.addCardToTradeTutorial(t, pT, true);
 
+                if (gameManager.firstWishlistCardClicked && gameManager.firstInventoryCardClicked)
+                {
+                    gameManager.startContinueTutorial2();
+                }
             }
             if (!gameManager.DutchTrading && !gameManager.PhilipsesTrading && !gameManager.SixNationsTrading && !gameManager.MunseeTrading)
             {
@@ -69,11 +73,8 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
             string tag = this.gameObject.tag;
             string parentTag = this.gameObject.transform.parent.tag;
             Debug.Log("Card tutorial clicked 1");
-            if(parentTag == "Wishlist" && gameManager.firstWishlistCardClicked == false)
-            {
-                gameManager.firstWishlistCardClicked = true;
-            }
-            else if (parentTag == "Inventory" && gameManager.firstInventoryCardClicked == false)
+
+            if (parentTag == "Inventory" && gameManager.firstInventoryCardClicked == false)
             {
                 gameManager.firstInventoryCardClicked = true;
             }

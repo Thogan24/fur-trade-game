@@ -42,6 +42,8 @@ public class SixNationsTradingButtonOnClick : MonoBehaviour
             greyOutButtonsTutorial();
             setLabelsTutorial();
             gameManager.tutorialStartedTrading = true;
+            gameManager.FlagButtonBackgroundFadeInFadeOutTutorialEnd();
+
             if (firstClick == false)
             {
                 gameManager.startContinueTutorial1();

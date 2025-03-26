@@ -336,6 +336,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
     public bool tutorialFinishedGameSetup = false;
+    public bool startingGameStartCountDown = false;
 
     public bool tutorialFinishedDutch = false;
     public bool tutorialFinishedPhilipses = false;
@@ -444,12 +445,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
         }
 
-        if ((tutorialFinishedDutch && tutorialFinishedPhilipses && tutorialFinishedSixNations && tutorialFinishedMunsee) && tutorialFinishedGameSetup == false)
+        if ((tutorialFinishedDutch && tutorialFinishedPhilipses && tutorialFinishedSixNations && tutorialFinishedMunsee) && startingGameStartCountDown == false)
         {
             Debug.Log("Tutorial finished!");
             StartCoroutine("tutorialFinished");
+            startingGameStartCountDown = true;
             // Call the Game will start in 54321
-            
+
         }
 
 
@@ -506,6 +508,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
                 givingTeamLabels[inde].GetComponent<Text>().text = "No teams trading";
                 receivingTeamLabels[inde].GetComponent<Text>().text = "No teams trading";
             }
+
+            String s = "Hi!";
+            this.GetComponent<PhotonView>().RPC("MunseePublicDebugger", RpcTarget.All, s);
 
             StartCoroutine("startTutorial");
 
@@ -5977,6 +5982,21 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         }
     }
 
+    public void FlagButtonBackgroundFadeInFadeOutTutorialEnd()
+    {
+        Debug.Log("Stopping white background fade in and out");
+        nextTurnChangeColorToNothingFlag = true;
+        if (inst4 != null)
+        {
+            Debug.Log("It really stopped.");
+            StopCoroutine(inst4);
+            inst4 = null;
+        }
+
+
+
+    }
+
     public void startAcceptButtonBackgroundFadeInFadeOutTutorial()
     {
         StartCoroutine("AcceptButtonBackgroundFadeInFadeOutTutorial");
@@ -6709,6 +6729,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
     public IEnumerator startTutorial()
     {
+        if(PhotonNetwork.LocalPlayer.ToString() == Munsee)
+        {
+            String s = "TutorialStarted";
+            this.GetComponent<PhotonView>().RPC("MunseePublicDebugger", RpcTarget.All, s);
+        }
         Debug.Log("Tutorial starting!");
         // Fade in tutorial 1
         tutorial1 = GameObject.FindGameObjectWithTag("Tutorial1");
@@ -6728,12 +6753,32 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
         GameObject g = GameObject.FindGameObjectWithTag("Tutorial1");
+
+        if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
+        {
+            this.GetComponent<PhotonView>().RPC("MunseePublicDebugger", RpcTarget.All, g.name + " " + g.transform.parent.name + " " + g.transform.childCount);
+            this.GetComponent<PhotonView>().RPC("MunseePublicDebugger", RpcTarget.All, g.transform.GetChild(1).name);
+
+        }
+
         for (int j = 0; j < g.transform.childCount; j++)
         {
+            if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
+            {
+                this.GetComponent<PhotonView>().RPC("MunseePublicDebugger", RpcTarget.All, g.transform.GetChild(j).name + " " + j);
+            }
+
             Image i = g.transform.GetChild(j).GetComponent<Image>();
             StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
         }
         yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
+
+        if (PhotonNetwork.LocalPlayer.ToString() == Munsee)
+        {
+            this.GetComponent<PhotonView>().RPC("MunseePublicDebugger", RpcTarget.All, g.transform.GetChild(0).GetChild(0).name);
+            this.GetComponent<PhotonView>().RPC("MunseePublicDebugger", RpcTarget.All, g.transform.GetChild(0).GetChild(1).name);
+
+        }
 
         StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
         StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
@@ -6745,7 +6790,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         StopCoroutine(inst7);
 
-        TutorialAlertText.text = "The Fur Trade game is a game centralized around trading, we will show you how to send a trade";
+        TutorialAlertText.text = "The Fur Trade game is a game about trading. This tutorial will show you how to send a trade";
         StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         yield return new WaitForSeconds(tutorialTextWaitTime);
@@ -6803,7 +6848,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
 
-        TutorialAlertText.text = "The amount under each Wishlist card is the amount you need, whereas the amount under each Inverntory card is the amount you have";
+        TutorialAlertText.text = "The amount under each Wishlist card is the amount you of that card you need to obtain by trading with other teams";
         StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         yield return new WaitForSeconds(tutorialTextWaitTimeLong);
@@ -6811,7 +6856,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         StopCoroutine(inst8);
 
-        TutorialAlertText.text = "Once you have enough Wishlist cards, the label will turn green and the amount under will indicate any excess cards";
+        TutorialAlertText.text = "The amount under each Inverntory card is the amount you have of that card";
+        StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        yield return new WaitForSeconds(tutorialTextWaitTime);
+        inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
+        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
+        StopCoroutine(inst8);
+
+        TutorialAlertText.text = "Once you have enough Wishlist cards, the label will turn <color=#4AFF00>green</color> and the amount under will indicate any excess cards";
         StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         yield return new WaitForSeconds(tutorialTextWaitTimeLong);
@@ -6867,6 +6920,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
     }
 
+    Coroutine inst10;
+    Coroutine inst11;
     public IEnumerator continueTutorial3() // accept pt 1
     {
         tutorial4.SetActive(true);
@@ -6915,11 +6970,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
         Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
-
+        StopCoroutine(inst8);
         TutorialAlertText.text = "The button will flash green until the other team accepts, you can cancel anytime by pressing X";
         StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
-        yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         StopCoroutine(inst8);
@@ -6983,7 +7037,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
         StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
 
-        tutorial6.SetActive(false);
+        tutorial5.SetActive(false);
 
 
         g = GameObject.FindGameObjectWithTag("Tutorial6");
@@ -7003,7 +7057,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
 
 
-        StartCoroutine("continueTutorial6");
+        StartCoroutine("continueTutorial7");
 
     }
 
@@ -7028,9 +7082,17 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             Image i = g.transform.GetChild(j).GetComponent<Image>();
             StartCoroutine(FadeBackgroundToFullAlphaTutorial(1, i, panelAlpha));
         }
+        for(int ko = 0; ko < tutorialEndButtons.Length; ko++)
+        {
+            tutorialEndButtons[ko].SetActive(true);
+            StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, tutorialEndButtons[ko].GetComponent<Image>(), 1));
+
+        }
+
         // Your goal is to obtain your "Wishlist" cards from trading with other teams
         StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
         StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+        
         yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
 /*
         yield return new WaitForSeconds(tutorialTextWaitTime);
@@ -7044,11 +7106,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public IEnumerator tutorialFinished()
     {
         TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
-        TutorialAlertText.color = WishlistColor;
         Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); 
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         StopCoroutine(inst8);
-
+        TutorialAlertText.color = WishlistColor;
         TutorialAlertText.text = "The Game Will Now Start in 5";
         StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, TutorialAlertText));
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
@@ -7065,24 +7126,39 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         TutorialAlertText.text = "Good Luck!";
         yield return new WaitForSeconds(1);
 
-        GameObject g = GameObject.FindGameObjectWithTag("Tutorial7");
-        for (int j = 0; j < g.transform.childCount; j++)
+        GameObject[] tutorialButtonsFinished = GameObject.FindGameObjectsWithTag("TutorialButtonFinish");
+        for(int sas = 0; sas < tutorialButtonsFinished.Length; sas++)
         {
-            Image i = g.transform.GetChild(j).GetComponent<Image>();
-            StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+            tutorialButtonsFinished[sas].SetActive(false);
         }
+        GameObject g = GameObject.FindGameObjectWithTag("Tutorial7");
+        Image i = g.transform.GetChild(0).GetComponent<Image>();
+        StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+
         inst8 = StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
         Coroutine inst9 = StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
         yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
         StopCoroutine(inst8);
         StopCoroutine(inst9);
         tutorial7.SetActive(false);
+        Image imaginary = GameObject.FindGameObjectWithTag("AcceptButtonBackground").GetComponent<Image>();
+        imaginary.color = new Color(imaginary.color.r, imaginary.color.g, imaginary.color.b, 0);
+
 
         StartCountDown();
         tutorialFinishedGameSetup = true;
         CannotAccessCards = false;
         CannotAccessFlags = false;
         CannotAccessTradeButton = false;
+    }
+
+
+
+    [PunRPC]
+    void MunseePublicDebugger(String DebugInfo)
+    {
+        Debug.LogError("Munsee Debugger: " + DebugInfo);
+        return;
     }
 
 
@@ -7107,11 +7183,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
 
-
-
-
-
-    [PunRPC]
+        [PunRPC]
     void MoveTurns(PhotonMessageInfo info)
     {
         Debug.Log("Moving turns");

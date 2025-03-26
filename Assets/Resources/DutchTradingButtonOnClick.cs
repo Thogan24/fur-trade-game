@@ -53,7 +53,9 @@ public class DutchTradingButtonOnClick : MonoBehaviour
             greyOutButtonsTutorial();
             setLabelsTutorial();
             gameManager.tutorialStartedTrading = true;
-            if(firstClick == false)
+            gameManager.FlagButtonBackgroundFadeInFadeOutTutorialEnd();
+
+            if (firstClick == false)
             {
                 gameManager.startContinueTutorial1();
                 firstClick = true;

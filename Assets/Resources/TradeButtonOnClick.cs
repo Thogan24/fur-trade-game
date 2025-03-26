@@ -170,7 +170,7 @@ public class TradeButtonOnClick : MonoBehaviour
     {
         Debug.Log("turning on the flash");
         gameManager.startAcceptButtonBackgroundFadeInFadeOutTutorial();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
 
         if (gameManager.inst != null)
@@ -185,14 +185,14 @@ public class TradeButtonOnClick : MonoBehaviour
 
 
 
-        for (int iterator = 0; iterator < gameManager.tutorialEndButtons.Length; iterator++)
+        /*for (int iterator = 0; iterator < gameManager.tutorialEndButtons.Length; iterator++)
         {
             Debug.Log("running the tutorial end button setActives");
             if (this.gameObject.transform.parent.parent.tag == gameManager.tutorialEndButtons[iterator].transform.parent.parent.parent.parent.tag)
             {
                 gameManager.tutorialEndButtons[iterator].SetActive(true);
             }
-        }
+        }*/
 
         gameManager.clearTradeTutorial();
         
