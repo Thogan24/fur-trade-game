@@ -152,6 +152,8 @@ MonoBehaviour:
   WampumValueList: {fileID: 0}
   WampumValueListGameObject: {fileID: 0}
   InputFieldText: {fileID: 0}
+  SettingsScreenPrefab: {fileID: 0}
+  settingsOpened: 0
 --- !u!1 &1070444788886548666
 GameObject:
   m_ObjectHideFlags: 0

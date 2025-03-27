@@ -75,6 +75,8 @@ MonoBehaviour:
   - Debugr
   - RightLeftFadeAnimation
   - MunseePublicDebugger
+  - EndGameRPC
+  - EndGameCancelationRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -183,6 +183,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
     GameObject[] debuggers;
 
+
+
     /*
     STARTING INVENTORIES
 
@@ -363,9 +365,16 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public bool CannotAccessTradeButton = true;
     public bool CannotAccessCards = true;
 
+    public bool dutchEndGame = false;
+    public bool philipsesEndGame = false;
+    public bool sixNationsEndGame = false;
+    public bool munseeEndGame = false;
+
+    public int playersThatWantToEndTheGame = 0;
 
 
-
+    public float volume;
+    public bool skippedOverTutorial = false;
 
 
 
@@ -3709,7 +3718,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     void moveToCalculationScene(PhotonMessageInfo info)
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        debugger.GetComponent<Text>().text = "Moved Scenes!";
         if (PhotonNetwork.IsMasterClient && !loadedCalculationOnMasterClient)
         {
             
@@ -5918,6 +5926,79 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     }
 
     [PunRPC]
+    public void EndGameRPC(string presser, PhotonMessageInfo info)
+    {
+        if(presser == Dutch && dutchEndGame == false)
+        {
+            dutchEndGame = true;
+            playersThatWantToEndTheGame += 1;
+        }
+        else if (presser == Philipses && philipsesEndGame == false)
+        {
+            philipsesEndGame = true;
+            playersThatWantToEndTheGame += 1;
+        }
+        else if (presser == SixNations && sixNationsEndGame == false)
+        {
+            sixNationsEndGame = true;
+            playersThatWantToEndTheGame += 1;
+        }
+        else if (presser == Munsee && munseeEndGame == false)
+        {
+            munseeEndGame = true;
+            playersThatWantToEndTheGame += 1;
+        }
+
+        GameObject[] EndGameButtonsCurrentlyOnScreen = GameObject.FindGameObjectsWithTag("EndGameButton");
+        for(int AAA = 0; AAA < EndGameButtonsCurrentlyOnScreen.Length; AAA++)
+        {
+            EndGameButtonsCurrentlyOnScreen[AAA].transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = (playersThatWantToEndTheGame > 0) ? "End Game " + playersThatWantToEndTheGame + "/4" : "End Game";
+        }
+
+        Debug.Log(playersThatWantToEndTheGame);
+        if(playersThatWantToEndTheGame == 4 && PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            Debug.Log("moving to calculation scene!!!!");
+            this.GetComponent<PhotonView>().RPC("moveToCalculationScene", RpcTarget.All);
+        }
+    }
+
+    public void callEndGameCancelation(string message)
+    {
+        this.GetComponent<PhotonView>().RPC("EndGameCancelationRPC", RpcTarget.All, message);
+    }
+
+    [PunRPC]
+    public void EndGameCancelationRPC(string presser, PhotonMessageInfo info)
+    {
+        if (presser == Dutch && dutchEndGame == true)
+        {
+            dutchEndGame = false;
+            playersThatWantToEndTheGame -= 1;
+        }
+        else if (presser == Philipses && philipsesEndGame == true)
+        {
+            philipsesEndGame = false;
+            playersThatWantToEndTheGame -= 1;
+        }
+        else if (presser == SixNations && sixNationsEndGame == true)
+        {
+            sixNationsEndGame = false;
+            playersThatWantToEndTheGame -= 1;
+        }
+        else if (presser == Munsee && munseeEndGame == true)
+        {
+            munseeEndGame = false;
+            playersThatWantToEndTheGame -= 1;
+        }
+        GameObject[] EndGameButtonsCurrentlyOnScreen = GameObject.FindGameObjectsWithTag("EndGameButton");
+        for (int AAA = 0; AAA < EndGameButtonsCurrentlyOnScreen.Length; AAA++)
+        {
+            EndGameButtonsCurrentlyOnScreen[AAA].transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = (playersThatWantToEndTheGame > 0) ? "End Game " + playersThatWantToEndTheGame + "/4" : "End Game";
+        }
+    }
+
+    [PunRPC]
     public void PauseGameCrashRPC()
     {
         Debug.Log("Pausing game because of crash");
@@ -7055,25 +7136,30 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
         Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
-
+        GameObject.FindGameObjectWithTag("SkipTutorial").SetActive(false);
+        GameObject.FindGameObjectWithTag("PauseTutorial").SetActive(false);
 
         StartCoroutine("continueTutorial7");
 
     }
-
     public IEnumerator continueTutorial7()  // click finish
     {
         tutorial7.SetActive(true);
-        GameObject g = GameObject.FindGameObjectWithTag("Tutorial6");
-        for (int j = 0; j < g.transform.childCount; j++)
+        GameObject g;
+        if (!skippedOverTutorial)
         {
-            Image i = g.transform.GetChild(j).GetComponent<Image>();
-            StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
-        }
-        StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
-        StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
+            g = GameObject.FindGameObjectWithTag("Tutorial6");
+            for (int j = 0; j < g.transform.childCount; j++)
+            {
+                Image i = g.transform.GetChild(j).GetComponent<Image>();
+                StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, i, panelAlpha));
+            }
+            StartCoroutine(FadeBackgroundToZeroAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
+            StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
 
-        tutorial6.SetActive(false);
+            tutorial6.SetActive(false);
+        }
+        
 
 
         g = GameObject.FindGameObjectWithTag("Tutorial7");
@@ -7162,7 +7248,30 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     }
 
 
+    public void skipTutorial()
+    {
+        if (tutorial1.activeSelf == true || tutorial2.activeSelf == true || tutorial3.activeSelf == true || tutorial4.activeSelf == true || tutorial5.activeSelf == true || tutorial6.activeSelf == true )
+        {
+            GameObject.FindGameObjectWithTag("PauseTutorial").SetActive(false);
+            GameObject.FindGameObjectWithTag("SkipTutorial").SetActive(false);
+            skippedOverTutorial = true;
+            tutorial1.SetActive(false);
+            tutorial2.SetActive(false);
+            tutorial3.SetActive(false);
+            tutorial4.SetActive(false);
+            tutorial5.SetActive(false);
+            tutorial6.SetActive(false);
+            CannotAccessCards = true;
+            CannotAccessFlags = true;
+            CannotAccessTradeButton = true;
+            FlagButtonBackgroundFadeInFadeOutTutorialEnd();
+            StopAllCoroutines();
+            StartCoroutine("continueTutorial7");
 
+
+        }
+
+    }
 
 
 

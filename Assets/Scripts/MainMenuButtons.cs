@@ -13,6 +13,10 @@ public class MainMenuButtons : MonoBehaviour
     public GameObject WampumValueList;
     public GameObject WampumValueListGameObject;
     public GameObject InputFieldText;
+    public GameObject SettingsScreenPrefab;
+    public bool settingsOpened = false;
+    public GameObject settingsScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +29,17 @@ public class MainMenuButtons : MonoBehaviour
         
     }
 
+    public void PauseTutorial()
+    {
 
+    }
+
+    public void SkipTutorial()
+    {
+        Debug.Log(this.name);
+        GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        gameManager.skipTutorial();
+    }
     public void PauseGame()
     {
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
@@ -36,6 +50,75 @@ public class MainMenuButtons : MonoBehaviour
         }
 
     }
+
+    public void SettingsButtonOnClick()
+    {
+        GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        Debug.Log("Opening settings");
+
+        if(settingsOpened == false)
+        {
+            if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Dutch)
+            {
+                settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.DutchInstructionsCanvasObject.transform);
+                settingsScreen.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = (gameManager.playersThatWantToEndTheGame > 0) ? "End Game " + gameManager.playersThatWantToEndTheGame + "/4": "End Game";
+            }
+            else if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Philipses)
+            {
+                settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.PhilipsesInstructionsCanvasObject.transform);
+                settingsScreen.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = (gameManager.playersThatWantToEndTheGame > 0) ? "End Game " + gameManager.playersThatWantToEndTheGame + "/4" : "End Game";
+
+            }
+            else if (PhotonNetwork.LocalPlayer.ToString() == gameManager.SixNations)
+            {
+                settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.SixNationsInstructionsCanvasObject.transform);
+                settingsScreen.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = (gameManager.playersThatWantToEndTheGame > 0) ? "End Game " + gameManager.playersThatWantToEndTheGame + "/4" : "End Game";
+
+            }
+            else if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Munsee)
+            {
+                settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.MunseeInstructionsCanvasObject.transform);
+                settingsScreen.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = (gameManager.playersThatWantToEndTheGame > 0) ? "End Game " + gameManager.playersThatWantToEndTheGame + "/4" : "End Game";
+
+            }
+        }
+        settingsOpened = true;
+    }
+
+    public void EndGameOnClick()
+    {
+        GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        gameManager.GetComponent<PhotonView>().RPC("EndGameRPC", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString());
+
+
+        
+    }
+
+
+
+    public void ExitSettingsButton()
+    {
+
+        GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        //gameManager.GetComponent<PhotonView>().RPC("EndGameCancelationRPC", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString());
+        gameManager.callEndGameCancelation(PhotonNetwork.LocalPlayer.ToString());
+        Debug.Log("Closing settings");
+        settingsScreen = GameObject.FindGameObjectWithTag("SettingsScreen");
+        settingsScreen.SetActive(false);
+        settingsOpened = false;
+/*        if (settingsScreen != null)
+        {
+            settingsScreen.SetActive(false);
+        }
+        else
+        {
+            settingsScreen = GameObject.FindGameObjectWithTag("SettingsScreen");
+            settingsScreen.SetActive(false);
+        }*/
+    }
+
+
+
     public void ExitPauseGame()
     {
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();

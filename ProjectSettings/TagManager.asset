@@ -186,6 +186,10 @@ TagManager:
   - Tutorial5
   - Tutorial6
   - Tutorial7
+  - EndGameButton
+  - PauseTutorial
+  - SkipTutorial
+  - SettingsScreen
   layers:
   - Default
   - TransparentFX
