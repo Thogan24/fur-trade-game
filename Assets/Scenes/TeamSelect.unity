@@ -4703,6 +4703,7 @@ MonoBehaviour:
   playersThatWantToEndTheGame: 0
   volume: 1
   skippedOverTutorial: 0
+  settingsTutorial: []
   test: {fileID: 0}
   MunseeCamerasCheckArray: []
   enemyTeamButtonPos:
@@ -4793,6 +4794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tradeCard: {fileID: 8300000, guid: 4f16886b7f9c35448a9190b56c689d76, type: 3}
+  buttonClick: {fileID: 8300000, guid: 547fa68d56226bb49b6e3704d6705c16, type: 3}
   musicFile: {fileID: 8300000, guid: 4b1575f6424a5e64d93f31909098d6c2, type: 3}
 --- !u!82 &1290858080
 AudioSource:

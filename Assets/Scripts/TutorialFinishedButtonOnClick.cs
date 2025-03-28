@@ -12,7 +12,11 @@ public class TutorialFinishedButtonOnClick : MonoBehaviour
 
     public void TutorialFinishedOnClick()
     {
+        
+
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString());
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
         this.gameObject.SetActive(false);
     }
 

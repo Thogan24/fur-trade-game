@@ -148,6 +148,11 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     
     public void OnClick_StartGame()
     {
+        if (SceneManager.GetActiveScene().name == "RoomSelect")
+        {
+            AudioSource buttonSounds = GameObject.FindGameObjectWithTag("ButtonSound").GetComponent<AudioSource>();
+            buttonSounds.Play();
+        }
         if (PhotonNetwork.IsMasterClient && playerCount == 4)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;

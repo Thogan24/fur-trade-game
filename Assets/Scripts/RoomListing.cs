@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using Photon.Realtime;
 using Photon.Pun;
@@ -24,5 +25,11 @@ public class RoomListing : MonoBehaviour
     {
         Debug.Log("Trying to join the room");
         PhotonNetwork.JoinRoom(RoomInfo.Name);
+
+        if (SceneManager.GetActiveScene().name == "RoomSelect")
+        {
+            AudioSource buttonSounds = GameObject.FindGameObjectWithTag("ButtonSound").GetComponent<AudioSource>();
+            buttonSounds.Play();
+        }
     }
 }

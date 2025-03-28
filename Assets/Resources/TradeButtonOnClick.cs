@@ -27,7 +27,9 @@ public class TradeButtonOnClick : MonoBehaviour
             tutorialClickFinishButton();
             return;
         }
-        
+
+
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
 
         this.GetComponent<PhotonView>().RPC("WhenClicked", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString());
 
@@ -85,7 +87,17 @@ public class TradeButtonOnClick : MonoBehaviour
                     
                 }
             }
-            
+            else
+            {
+                GameObject[] Alert = gameManager.Alert;
+                for (int harold = 0; harold < Alert.Length; harold++)
+                {
+                    Alert[harold].GetComponent<TMPro.TMP_Text>().color = new Color(1f, 1f, 1f, 1f);
+                    Alert[harold].GetComponent<TMPro.TMP_Text>().text = "You are not trading!";
+                    gameManager.StartCoroutine(gameManager.FadeTextToZeroAlpha(1f, Alert[harold].GetComponent<TMPro.TMP_Text>()));
+                }
+
+            }
         }
         if (team == "Philipses")
         {
@@ -107,6 +119,17 @@ public class TradeButtonOnClick : MonoBehaviour
                     Debug.LogError("Cards being switched, calling RPC");
                     gameManager.gameObject.GetComponent<PhotonView>().RPC("cardSwitchTeams", RpcTarget.All);
                 }
+            }
+            else
+            {
+                GameObject[] Alert = gameManager.Alert;
+                for (int harold = 0; harold < Alert.Length; harold++)
+                {
+                    Alert[harold].GetComponent<TMPro.TMP_Text>().color = new Color(1f, 1f, 1f, 1f);
+                    Alert[harold].GetComponent<TMPro.TMP_Text>().text = "You are not trading!";
+                    gameManager.StartCoroutine(gameManager.FadeTextToZeroAlpha(1f, Alert[harold].GetComponent<TMPro.TMP_Text>()));
+                }
+
             }
         }
         if (team == "SixNations")
@@ -130,6 +153,17 @@ public class TradeButtonOnClick : MonoBehaviour
                     gameManager.gameObject.GetComponent<PhotonView>().RPC("cardSwitchTeams", RpcTarget.All);
                 }
             }
+            else
+            {
+                GameObject[] Alert = gameManager.Alert;
+                for (int harold = 0; harold < Alert.Length; harold++)
+                {
+                    Alert[harold].GetComponent<TMPro.TMP_Text>().color = new Color(1f, 1f, 1f, 1f);
+                    Alert[harold].GetComponent<TMPro.TMP_Text>().text = "You are not trading!";
+                    gameManager.StartCoroutine(gameManager.FadeTextToZeroAlpha(1f, Alert[harold].GetComponent<TMPro.TMP_Text>()));
+                }
+
+            }
         }
         if (team == "Munsee")
         {
@@ -151,6 +185,17 @@ public class TradeButtonOnClick : MonoBehaviour
                     Debug.LogError("Cards being switched, calling RPC");
                     gameManager.gameObject.GetComponent<PhotonView>().RPC("cardSwitchTeams", RpcTarget.All);
                 }
+            }
+            else
+            {
+                GameObject[] Alert = gameManager.Alert;
+                for (int harold = 0; harold < Alert.Length; harold++)
+                {
+                    Alert[harold].GetComponent<TMPro.TMP_Text>().color = new Color(1f, 1f, 1f, 1f);
+                    Alert[harold].GetComponent<TMPro.TMP_Text>().text = "You are not trading!";
+                    gameManager.StartCoroutine(gameManager.FadeTextToZeroAlpha(1f, Alert[harold].GetComponent<TMPro.TMP_Text>()));
+                }
+
             }
         }
     }

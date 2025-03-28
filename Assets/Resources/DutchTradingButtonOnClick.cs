@@ -63,6 +63,9 @@ public class DutchTradingButtonOnClick : MonoBehaviour
 
         }
 
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
+
+
 
 
     }
@@ -70,6 +73,8 @@ public class DutchTradingButtonOnClick : MonoBehaviour
     [PunRPC]
     void WhenClicked(string userIDOfClicker, PhotonMessageInfo info) // 
     {
+        Debug.Log("It got into whenclicked");
+
         Debug.Log(info.Sender.ToString());
         Debug.Log(PhotonNetwork.LocalPlayer.ToString());
         Debug.Log("UserID of Clicker: " + userIDOfClicker);
@@ -90,6 +95,16 @@ public class DutchTradingButtonOnClick : MonoBehaviour
                 this.GetComponent<PhotonView>().RPC("teamsThatAreTrading", RpcTarget.All, userIDOfClicker);
             }
 
+        }
+        else
+        {
+            GameObject[] Alert = gameManager.Alert;
+            for (int harold = 0; harold < Alert.Length; harold++)
+            {
+                Alert[harold].GetComponent<TMPro.TMP_Text>().color = new Color(1f, 1f, 1f, 1f);
+                Alert[harold].GetComponent<TMPro.TMP_Text>().text = "It is not your turn!";
+                gameManager.StartCoroutine(gameManager.FadeTextToZeroAlpha(1f, Alert[harold].GetComponent<TMPro.TMP_Text>()));
+            }
         }
     }
 

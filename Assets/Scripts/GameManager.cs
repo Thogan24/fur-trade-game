@@ -1518,10 +1518,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     [PunRPC]
     void addCardToTrade(string tag, string parentTag, bool leftClicked, PhotonMessageInfo info)
     {
-        if(PhotonNetwork.LocalPlayer.ToString() == Dutch)
-        {
-            this.gameObject.GetComponent<SoundEffectsPlayer>().playCardButtonSoundEffect();
-        }
+       this.gameObject.GetComponent<SoundEffectsPlayer>().playCardButtonSoundEffect();
+        
 
         
 
@@ -2949,6 +2947,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         {
             for(int harold = 0; harold < Alert.Length; harold++)
             {
+                Alert[harold].GetComponent<TMPro.TMP_Text>().color = new Color(1f, 1f, 1f, 1f);
                 Alert[harold].GetComponent<TMPro.TMP_Text>().text = "It is not your turn!";
                 StartCoroutine(FadeTextToZeroAlpha(1f, Alert[harold].GetComponent<TMPro.TMP_Text>()));
             }
@@ -6347,6 +6346,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             {
                 Debug.Log("Alert: " + Alert[i].GetComponent<TMPro.TMP_Text>().text);
                 Debug.Log(Alert[i].transform.parent.parent.parent);
+                Alert[i].GetComponent<TMPro.TMP_Text>().color = new Color(0.007843138f, 0.9254902f, 0, 1);
                 Alert[i].GetComponent<TMPro.TMP_Text>().text = playerMissingName + " rejoined the game!";
                 StartCoroutine(FadeTextToZeroAlpha(1f, Alert[i].GetComponent<TMPro.TMP_Text>()));
             }
@@ -6373,6 +6373,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         {
             Debug.Log("Alert: " + Alert[i].GetComponent<TMPro.TMP_Text>().text);
             Debug.Log(Alert[i].transform.parent.parent.parent);
+            Alert[i].GetComponent<TMPro.TMP_Text>().color = new Color(0.007843138f, 0.9254902f, 0, 1);
+
             Alert[i].GetComponent<TMPro.TMP_Text>().text = "You rejoined the game!";
             StartCoroutine(FadeTextToZeroAlpha(1f, Alert[i].GetComponent<TMPro.TMP_Text>()));
         }
@@ -6817,13 +6819,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     }
 
 
-    GameObject tutorial1;
-    GameObject tutorial2;
-    GameObject tutorial3;
-    GameObject tutorial4;
-    GameObject tutorial5;
-    GameObject tutorial6;
-    GameObject tutorial7;
+    public GameObject tutorial1;
+    public GameObject tutorial2;
+    public GameObject tutorial3;
+    public GameObject tutorial4;
+    public GameObject tutorial5;
+    public GameObject tutorial6;
+    public GameObject tutorial7;
+    public bool restarted = false;
 
     public IEnumerator startTutorial()
     {
@@ -6834,19 +6837,24 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         }
         Debug.Log("Tutorial starting!");
         // Fade in tutorial 1
-        tutorial1 = GameObject.FindGameObjectWithTag("Tutorial1");
-        tutorial2 = GameObject.FindGameObjectWithTag("Tutorial2");
-        tutorial3 = GameObject.FindGameObjectWithTag("Tutorial3");
-        tutorial4 = GameObject.FindGameObjectWithTag("Tutorial4");
-        tutorial5 = GameObject.FindGameObjectWithTag("Tutorial5");
-        tutorial6 = GameObject.FindGameObjectWithTag("Tutorial6");
-        tutorial7 = GameObject.FindGameObjectWithTag("Tutorial7");
-        tutorial2.SetActive(false);
-        tutorial3.SetActive(false);
-        tutorial4.SetActive(false);
-        tutorial5.SetActive(false);
-        tutorial6.SetActive(false);
-        tutorial7.SetActive(false);
+        if (restarted == false)
+        {
+            tutorial1 = GameObject.FindGameObjectWithTag("Tutorial1");
+            tutorial2 = GameObject.FindGameObjectWithTag("Tutorial2");
+            tutorial3 = GameObject.FindGameObjectWithTag("Tutorial3");
+            tutorial4 = GameObject.FindGameObjectWithTag("Tutorial4");
+            tutorial5 = GameObject.FindGameObjectWithTag("Tutorial5");
+            tutorial6 = GameObject.FindGameObjectWithTag("Tutorial6");
+            tutorial7 = GameObject.FindGameObjectWithTag("Tutorial7");
+        }
+            tutorial2.SetActive(false);
+            tutorial3.SetActive(false);
+            tutorial4.SetActive(false);
+            tutorial5.SetActive(false);
+            tutorial6.SetActive(false);
+            tutorial7.SetActive(false);
+        
+        
 
 
 
@@ -6878,12 +6886,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
         }
 
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+        TutorialAlertText.text = "Welcome to\nThe Fur Trade Game!";
         StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
         StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
 
         yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
         yield return new WaitForSeconds(tutorialTextWaitTime);
-        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
         Coroutine inst7 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         StopCoroutine(inst7);
@@ -6929,6 +6938,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
         tutorial1.SetActive(false);
 
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
+
 
         g = GameObject.FindGameObjectWithTag("Tutorial2");
         for (int j = 0; j < g.transform.childCount; j++)
@@ -6937,12 +6948,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             StartCoroutine(FadeBackgroundToFullAlphaTutorial(1, i, panelAlpha));
         }
         // Your goal is to obtain your "Wishlist" cards from trading with other teams
+        TutorialAlertText.text = "Your goal is to obtain your \"Wishlist\" cards from trading with other teams";
+
         StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
         StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
         yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
 
         yield return new WaitForSeconds(tutorialTextWaitTime);
-        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
         Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
 
@@ -6954,7 +6966,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         StopCoroutine(inst8);
 
-        TutorialAlertText.text = "The amount under each Inverntory card is the amount you have of that card";
+        TutorialAlertText.text = "The amount under each Inventory card is the amount you have of that card";
         StartCoroutine(FadeTextToFullAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         yield return new WaitForSeconds(tutorialTextWaitTime);
@@ -6996,6 +7008,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
 
         tutorial2.SetActive(false);
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
 
 
         g = GameObject.FindGameObjectWithTag("Tutorial3");
@@ -7010,7 +7023,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
 
         yield return new WaitForSeconds(tutorialTextWaitTime);
-        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
         Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText));
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
 
@@ -7033,6 +7045,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         StartCoroutine(FadeTextToZeroAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
 
         tutorial3.SetActive(false);
+        TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
 
         // Fade out last everything
 
@@ -7044,6 +7057,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             StartCoroutine(FadeBackgroundToFullAlphaTutorial(1, i, panelAlpha));
         }
         // Click the accept button
+        TutorialAlertText.text = "Press the checkmark to complete the trade. (You can reset your trade with X in the actual game)";
+
         StartCoroutine(FadeBackgroundToFullAlphaTutorial(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(0).GetComponent<Image>(), 1));
         StartCoroutine(FadeTextToFullAlpha(tutorialBackgroundFadeOutFadeInTime, g.transform.GetChild(0).GetChild(1).GetComponent<TMPro.TextMeshProUGUI>()));
         yield return new WaitForSeconds(tutorialBackgroundFadeOutFadeInTime);
@@ -7065,7 +7080,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         CannotAccessTradeButton = true;
         // Your goal is to obtain your "Wishlist" cards from trading with other teams
         TMPro.TextMeshProUGUI TutorialAlertText = GameObject.FindGameObjectWithTag("TutorialAlert").GetComponent<TMPro.TextMeshProUGUI>();
-
+        
         Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         StopCoroutine(inst8);
@@ -7154,6 +7169,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         Coroutine inst8 = StartCoroutine(FadeTextToZeroAlpha(tutorialTextFadeOutFadeInTime, TutorialAlertText)); // Welcome
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         GameObject.FindGameObjectWithTag("SkipTutorial").SetActive(false);
+        Debug.Log("Deactivative pause button");
         GameObject.FindGameObjectWithTag("PauseTutorial").SetActive(false);
         settingsTutorial = GameObject.FindGameObjectsWithTag("SettingsTutorial");
         Debug.Log("settingsTutorial buttons destroying: " + settingsTutorial.Length);
@@ -7275,10 +7291,19 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
     public void skipTutorial()
     {
+        StopAllCoroutines();
         if (tutorial1.activeSelf == true || tutorial2.activeSelf == true || tutorial3.activeSelf == true || tutorial4.activeSelf == true || tutorial5.activeSelf == true || tutorial6.activeSelf == true )
         {
-            GameObject.FindGameObjectWithTag("PauseTutorial").SetActive(false);
+            clearTradeTutorial();
+            GameObject.FindGameObjectWithTag("RestartTutorial").SetActive(false);
             GameObject.FindGameObjectWithTag("SkipTutorial").SetActive(false);
+            settingsTutorial = GameObject.FindGameObjectsWithTag("SettingsTutorial");
+            Debug.Log("settingsTutorial buttons destroying: " + settingsTutorial.Length);
+            for (int x = 0; x < settingsTutorial.Length; x++)
+            {
+                Debug.Log("this is running on: " + settingsTutorial[x]);
+                settingsTutorial[x].SetActive(false);
+            }
             skippedOverTutorial = true;
             tutorial1.SetActive(false);
             tutorial2.SetActive(false);
@@ -7292,6 +7317,45 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             FlagButtonBackgroundFadeInFadeOutTutorialEnd();
             StopAllCoroutines();
             StartCoroutine("continueTutorial7");
+
+
+        }
+
+    }
+
+    public void restartTutorial()
+    {
+        Debug.Log(tutorial1.name);
+        restarted = true;
+        StopAllCoroutines();
+        if (tutorial1.activeSelf == true || tutorial2.activeSelf == true || tutorial3.activeSelf == true || tutorial4.activeSelf == true || tutorial5.activeSelf == true || tutorial6.activeSelf == true || tutorial7.activeSelf == true)
+        {
+            clearTradeTutorial();
+            firstWishlistCardClicked = false;
+            firstInventoryCardClicked = false;
+            //GameObject.FindGameObjectWithTag("RestartTutorial").SetActive(false);
+            //GameObject.FindGameObjectWithTag("SkipTutorial").SetActive(false);
+            /*settingsTutorial = GameObject.FindGameObjectsWithTag("SettingsTutorial");
+            Debug.Log("settingsTutorial buttons destroying: " + settingsTutorial.Length);
+            for (int x = 0; x < settingsTutorial.Length; x++)
+            {
+                Debug.Log("this is running on: " + settingsTutorial[x]);
+                settingsTutorial[x].SetActive(false);
+            }*/
+            tutorial1.SetActive(true);
+            tutorial2.SetActive(false);
+            tutorial3.SetActive(false);
+            tutorial4.SetActive(false);
+            tutorial5.SetActive(false);
+            tutorial6.SetActive(false);
+            tutorial7.SetActive(false);
+
+            CannotAccessCards = true;
+            CannotAccessFlags = true;
+            CannotAccessTradeButton = true;
+            FlagButtonBackgroundFadeInFadeOutTutorialEnd();
+            FlagButtonBackgroundFadeInFadeOutTutorial();
+            StartCoroutine("startTutorial");
 
 
         }
@@ -7317,7 +7381,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
 
-        [PunRPC]
+    [PunRPC]
     void MoveTurns(PhotonMessageInfo info)
     {
         Debug.Log("Moving turns");

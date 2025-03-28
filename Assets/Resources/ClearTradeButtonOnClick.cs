@@ -25,7 +25,8 @@ public class ClearTradeButtonOnClick : MonoBehaviour
         {
             tutorialClickClearButton();
         }
-            
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
+
     }
 
     [PunRPC]

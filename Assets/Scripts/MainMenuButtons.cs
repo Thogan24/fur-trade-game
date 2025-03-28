@@ -34,9 +34,12 @@ public class MainMenuButtons : MonoBehaviour
         
     }
 
-    public void PauseTutorial()
+    public void RestartTutorial()
     {
-
+        Debug.Log(this.name);
+        GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        gameManager.restartTutorial();
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
     }
 
     public void SkipTutorial()
@@ -44,10 +47,14 @@ public class MainMenuButtons : MonoBehaviour
         Debug.Log(this.name);
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         gameManager.skipTutorial();
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
+
     }
     public void PauseGame()
     {
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
+
         if (gameManager.tutorialFinishedGameSetup)
         {
             gameManager.GetComponent<PhotonView>().RPC("PauseGameRPC", RpcTarget.All);
@@ -75,6 +82,7 @@ public class MainMenuButtons : MonoBehaviour
     {
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
 
         //Debug.Log("Opening settings. settingsOpened = " + settingsOpened + " " + this.transform.parent.parent.tag + " " + GameObject.FindGameObjectsWithTag("SettingsScreen").Length);
         GameObject[] settingsArray = (GameObject.FindGameObjectsWithTag("SettingsScreen"));
@@ -193,9 +201,10 @@ public class MainMenuButtons : MonoBehaviour
     {
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         gameManager.GetComponent<PhotonView>().RPC("EndGameRPC", RpcTarget.All, PhotonNetwork.LocalPlayer.ToString());
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
 
 
-        
+
     }
 
 
@@ -212,15 +221,17 @@ public class MainMenuButtons : MonoBehaviour
         settingsScreen = GameObject.FindGameObjectWithTag("SettingsScreen");
         settingsScreen.SetActive(false);
         settingsOpened = false;
-/*        if (settingsScreen != null)
-        {
-            settingsScreen.SetActive(false);
-        }
-        else
-        {
-            settingsScreen = GameObject.FindGameObjectWithTag("SettingsScreen");
-            settingsScreen.SetActive(false);
-        }*/
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
+
+        /*        if (settingsScreen != null)
+                {
+                    settingsScreen.SetActive(false);
+                }
+                else
+                {
+                    settingsScreen = GameObject.FindGameObjectWithTag("SettingsScreen");
+                    settingsScreen.SetActive(false);
+                }*/
     }
 
 
@@ -229,11 +240,25 @@ public class MainMenuButtons : MonoBehaviour
     {
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
         gameManager.GetComponent<PhotonView>().RPC("ExitPauseGameRPC", RpcTarget.All);
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
+
     }
     public void StartGameOnClick()
     {
         GameObject.FindGameObjectWithTag("MainMenu").GetComponent<Canvas>().sortingOrder = -10;
         GameObject.FindGameObjectWithTag("MainMenu").SetActive(false);
+
+        if (SceneManager.GetActiveScene().name == "RoomSelect")
+        {
+            AudioSource buttonSounds = GameObject.FindGameObjectWithTag("ButtonSound").GetComponent<AudioSource>();
+            buttonSounds.Play();
+        }
+        else
+        {
+            GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+            gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
+        }
+
         //SceneManager.LoadScene("RoomSelect");
     }
 
@@ -241,6 +266,12 @@ public class MainMenuButtons : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("NameCanvas").GetComponent<Canvas>().sortingOrder = -10;
         PhotonNetwork.NickName = InputFieldText.GetComponent<TextMeshProUGUI>().text;
+        if (SceneManager.GetActiveScene().name == "RoomSelect")
+        {
+            AudioSource buttonSounds = GameObject.FindGameObjectWithTag("ButtonSound").GetComponent<AudioSource>();
+            buttonSounds.Play();
+        }
+        
     }
 
 
@@ -258,7 +289,12 @@ public class MainMenuButtons : MonoBehaviour
     }
     public void InstructionsOnClick()
     {
-        if(SceneManager.GetActiveScene().name != "Main_Scene")
+        if (SceneManager.GetActiveScene().name == "RoomSelect")
+        {
+            AudioSource buttonSounds = GameObject.FindGameObjectWithTag("ButtonSound").GetComponent<AudioSource>();
+            buttonSounds.Play();
+        }
+        if (SceneManager.GetActiveScene().name != "Main_Scene")
         {
             Debug.Log(this.transform.parent.name);
             Debug.Log(GameObject.FindGameObjectWithTag(this.transform.parent.name));
@@ -287,16 +323,30 @@ public class MainMenuButtons : MonoBehaviour
                     InstructionsGameObject = Instantiate(Instructions, GameObject.FindGameObjectWithTag("MunseeInstructionsCanvas").transform);
                 }
             }
+
+            gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
+
         }
-        
+
     }
     public void QuitOnClick()
     {
+        if (SceneManager.GetActiveScene().name == "RoomSelect")
+        {
+            AudioSource buttonSounds = GameObject.FindGameObjectWithTag("ButtonSound").GetComponent<AudioSource>();
+            buttonSounds.Play();
+        }
         Application.Quit();
     }
     public void CloseOutInstructionsOnClick()
     {
-        if (GameObject.FindGameObjectWithTag("Instructions") != null)
+        if (SceneManager.GetActiveScene().name == "RoomSelect")
+        {
+            AudioSource buttonSounds = GameObject.FindGameObjectWithTag("ButtonSound").GetComponent <AudioSource>();
+            buttonSounds.Play();
+        }
+
+            if (GameObject.FindGameObjectWithTag("Instructions") != null)
         {
             //Destroy(GameObject.FindGameObjectWithTag("Instructions")); //GameObject.FindGameObjectWithTag("Instructions")
             GameObject[] instructionArray = GameObject.FindGameObjectsWithTag("Instructions");
@@ -352,10 +402,13 @@ public class MainMenuButtons : MonoBehaviour
             //string[] imageDescriptionTags = { "BeaverDescription", "DeerSkinDescription", "BearDescription", "FisherDescription", "FoxDescription", "SchepelsDescription", "DuffelsDescription", "LinenDescription", "StockingsDescription", "StroudsDescription", "AxesDescription", "BeadsDescription", "ScissorsDescription" };
             InformationButtons informationButtons = new InformationButtons();
             informationButtons.closeInfo();
+            GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
+            gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
 
         }
-        
-        
+
+
 
 
     }

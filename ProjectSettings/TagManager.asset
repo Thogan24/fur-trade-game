@@ -193,6 +193,8 @@ TagManager:
   - Music
   - theTeamSelectCanvas
   - SettingsTutorial
+  - ButtonSound
+  - RestartTutorial
   layers:
   - Default
   - TransparentFX

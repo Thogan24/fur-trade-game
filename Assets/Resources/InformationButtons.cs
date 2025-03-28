@@ -50,13 +50,12 @@ public class InformationButtons : MonoBehaviour
     public void infoOnClicked()
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-        if (gameManager.tutorialFinishedGameSetup == false)
-        {
-            return;
-        }
+        
 
-        Debug.Log("Clicked");
-        Debug.Log("Running through the array, searching for index with tag: " + this.gameObject.tag);
+        
+
+/*        Debug.Log("Clicked");
+        Debug.Log("Running through the array, searching for index with tag: " + this.gameObject.tag);*/
         var newColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         for (int i = 0; i < tagArray.Length; i++)
         {
@@ -74,11 +73,18 @@ public class InformationButtons : MonoBehaviour
             //GameObject.FindGameObjectWithTag(imageDescriptionTags[index]).gameObject.GetComponent<Image>().color = newColor;
             Instantiate(Black, CanvasTransform);
             Instantiate(images[index], CanvasTransform);
+            gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
+
 
             //GameObject.FindGameObjectWithTag("black").gameObject.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         }
-        else if (SceneManager.GetActiveScene().name == "Main_Scene" && gameManager.opened == false)
+        if (gameManager.tutorialFinishedGameSetup == false)
         {
+            return;
+        }
+        if (SceneManager.GetActiveScene().name == "Main_Scene" && gameManager.opened == false)
+        {
+            gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
             GameObject[] descriptionArray = GameObject.FindGameObjectsWithTag(imageDescriptionTags[index]);
             if (descriptionArray != null)
             {
@@ -106,6 +112,7 @@ public class InformationButtons : MonoBehaviour
     public void closeInfo()
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        gameManager.gameObject.GetComponent<SoundEffectsPlayer>().playButtonSoundEffect();
         var newColor = new Color(1.0f, 1.0f, 1.0f, 0f);
 
         for (int j = 0; j < imageDescriptionTags.Length; j++)

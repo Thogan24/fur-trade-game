@@ -6,9 +6,11 @@ public class SoundEffectsPlayer : MonoBehaviour
 {
     AudioSource src;
     public AudioClip tradeCard;
-
+    public AudioClip buttonClick;
     AudioSource src2;
     public AudioClip musicFile;
+
+    
 
     public void Awake()
     {
@@ -18,6 +20,13 @@ public class SoundEffectsPlayer : MonoBehaviour
     {
         Debug.Log("Playing card sound effect");
         src.clip = tradeCard;
+        src.Play();
+    }
+
+    public void playButtonSoundEffect()
+    {
+        Debug.Log("Playing button sound effect");
+        src.clip = buttonClick;
         src.Play();
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CreateRoomMenu : MonoBehaviourPunCallbacks
@@ -25,6 +26,12 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
         {
             return;
         }
+        if (SceneManager.GetActiveScene().name == "RoomSelect")
+        {
+            AudioSource buttonSounds = GameObject.FindGameObjectWithTag("ButtonSound").GetComponent<AudioSource>();
+            buttonSounds.Play();
+        }
+
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 4;
 
