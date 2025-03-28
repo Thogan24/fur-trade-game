@@ -192,6 +192,7 @@ TagManager:
   - SettingsScreen
   - Music
   - theTeamSelectCanvas
+  - SettingsTutorial
   layers:
   - Default
   - TransparentFX

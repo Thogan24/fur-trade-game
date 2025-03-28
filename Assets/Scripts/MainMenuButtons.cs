@@ -102,10 +102,18 @@ public class MainMenuButtons : MonoBehaviour
 
 
             }
-            if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Dutch)
+            else if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Dutch)
             {
                 Debug.Log("Inside the Dutch instantiation");
-                settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.DutchInstructionsCanvasObject.transform);
+                if (gameManager.tutorialFinishedGameSetup == false) {
+                    settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.DutchTutorialPanels.transform);
+
+                }
+                else
+                {
+                    settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.DutchInstructionsCanvasObject.transform);
+
+                }
                 Debug.Log(settingsScreen.name + " " + settingsScreen.transform.parent);
                 if(settingsScreen == null)
                 {
@@ -116,19 +124,46 @@ public class MainMenuButtons : MonoBehaviour
             }
             else if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Philipses)
             {
-                settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.PhilipsesInstructionsCanvasObject.transform);
+                if (gameManager.tutorialFinishedGameSetup == false)
+                {
+                    settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.PhilipsesTutorialPanels.transform);
+
+                }
+                else
+                {
+                    settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.PhilipsesInstructionsCanvasObject.transform);
+
+                }
                 settingsScreen.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = (gameManager.playersThatWantToEndTheGame > 0) ? "End Game " + gameManager.playersThatWantToEndTheGame + "/4" : "End Game";
 
             }
             else if (PhotonNetwork.LocalPlayer.ToString() == gameManager.SixNations)
             {
-                settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.SixNationsInstructionsCanvasObject.transform);
+                if (gameManager.tutorialFinishedGameSetup == false)
+                {
+                    settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.SixNationsTutorialPanels.transform);
+
+                }
+                else
+                {
+                    settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.SixNationsInstructionsCanvasObject.transform);
+
+                }
                 settingsScreen.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = (gameManager.playersThatWantToEndTheGame > 0) ? "End Game " + gameManager.playersThatWantToEndTheGame + "/4" : "End Game";
 
             }
             else if (PhotonNetwork.LocalPlayer.ToString() == gameManager.Munsee)
             {
-                settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.MunseeInstructionsCanvasObject.transform);
+                if (gameManager.tutorialFinishedGameSetup == false)
+                {
+                    settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.MunseeTutorialPanels.transform);
+
+                }
+                else
+                {
+                    settingsScreen = Instantiate(SettingsScreenPrefab, gameManager.MunseeInstructionsCanvasObject.transform);
+
+                }
                 settingsScreen.transform.GetChild(0).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = (gameManager.playersThatWantToEndTheGame > 0) ? "End Game " + gameManager.playersThatWantToEndTheGame + "/4" : "End Game";
 
             }
@@ -137,6 +172,15 @@ public class MainMenuButtons : MonoBehaviour
                 volumeSlider = settingsScreen.transform.GetChild(1).GetComponent<Slider>();            
                 musicVolumeSlider = settingsScreen.transform.GetChild(2).GetComponent<Slider>();
             }
+            volumeSlider.value = gameManager.volume;
+
+            if (musicAudioSource == null)
+            {
+                musicAudioSource = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioSource>();
+            }
+            musicVolumeSlider.value = musicAudioSource.volume;
+
+           
             volumeSlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
             musicVolumeSlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
 

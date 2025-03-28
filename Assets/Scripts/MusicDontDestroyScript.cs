@@ -19,7 +19,7 @@ public class MusicDontDestroyScript : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
-
+            Debug.Log("Making music don't destroy on load");
         }
         else
         {

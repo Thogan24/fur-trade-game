@@ -28,7 +28,7 @@ public class SoundEffectsPlayer : MonoBehaviour
         {
             src2 = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioSource>();
         }
-        src.clip = musicFile;
-        src.Play();
+        src2.clip = musicFile;
+        src2.Play();
     }
 }

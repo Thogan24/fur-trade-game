@@ -374,8 +374,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public int playersThatWantToEndTheGame = 0;
 
 
-    public float volume;
+    public float volume = 1f;
     public bool skippedOverTutorial = false;
+
+    public GameObject[] settingsTutorial;
 
 
 
@@ -468,7 +470,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
         if (SceneManager.GetActiveScene().name == "Main_Scene" && sceneChange == false)
         {
-            this.GetComponent<SoundEffectsPlayer>().playMusic();
+            //this.GetComponent<SoundEffectsPlayer>().playMusic();
             playerList = PhotonNetwork.PlayerList;
             for (int i = 0; i < playerList.Length; i++)
             {
@@ -7153,6 +7155,14 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         GameObject.FindGameObjectWithTag("SkipTutorial").SetActive(false);
         GameObject.FindGameObjectWithTag("PauseTutorial").SetActive(false);
+        settingsTutorial = GameObject.FindGameObjectsWithTag("SettingsTutorial");
+        Debug.Log("settingsTutorial buttons destroying: " + settingsTutorial.Length);
+        for(int x = 0; x < settingsTutorial.Length; x++)
+        {
+            Debug.Log("this is running on: " + settingsTutorial[x]);
+            settingsTutorial[x].SetActive(false);
+        }
+        
 
         StartCoroutine("continueTutorial7");
 
