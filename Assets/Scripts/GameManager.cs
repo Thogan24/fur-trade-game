@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
+            
         }
         else
         {
@@ -182,7 +183,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public bool TurnTimerRanOut = false;
 
     GameObject[] debuggers;
-
+    
 
 
     /*
@@ -380,6 +381,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
     void Start()
     {
+
         Debug.Log(Prefabs.Length);
         gameManager = this.gameObject;
         Debug.Log(Prefabs[0]);
@@ -466,6 +468,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
         if (SceneManager.GetActiveScene().name == "Main_Scene" && sceneChange == false)
         {
+            this.GetComponent<SoundEffectsPlayer>().playMusic();
             playerList = PhotonNetwork.PlayerList;
             for (int i = 0; i < playerList.Length; i++)
             {
@@ -1513,6 +1516,15 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     [PunRPC]
     void addCardToTrade(string tag, string parentTag, bool leftClicked, PhotonMessageInfo info)
     {
+        if(PhotonNetwork.LocalPlayer.ToString() == Dutch)
+        {
+            this.gameObject.GetComponent<SoundEffectsPlayer>().playCardButtonSoundEffect();
+        }
+
+        
+
+
+
         string playerString = info.Sender.ToString();
         Debug.Log("Player: " + playerString);
         Debug.Log("Sender: " + info.Sender.ToString());
@@ -4295,6 +4307,9 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     //TUTORIAL CLEAR TRADE
     public void clearTradeTutorial()
     {
+
+
+
             for (int ae = 0; ae < tradeGivingCardsParent.Length; ae++) // For every Trade giving card object, set inactive    AE DESCRIBES THE PARENTS FOR EACH TEAM
             {
                 Debug.Log("RUN 3");

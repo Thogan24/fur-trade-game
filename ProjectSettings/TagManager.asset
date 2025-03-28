@@ -190,6 +190,8 @@ TagManager:
   - PauseTutorial
   - SkipTutorial
   - SettingsScreen
+  - Music
+  - theTeamSelectCanvas
   layers:
   - Default
   - TransparentFX
