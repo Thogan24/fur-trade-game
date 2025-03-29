@@ -1284,7 +1284,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         SeasonalTimers = GameObject.FindGameObjectsWithTag("Seasonal Timer");
         for (int k = 0; k < SeasonalTimers.Length; k++)
         {
-            SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " \nTurn: " + teamNames[turn - 1].ToString();
+            SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1647).ToString() + " \nTurn: " + teamNames[turn - 1].ToString();
         }
     }
 
@@ -6564,7 +6564,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
             for (int k = 0; k < SeasonalTimers.Length; k++)
             {
-                SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " \nTurn: " + teamNames[(turn - 1)].ToString();
+                SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1647).ToString() + " \nTurn: " + teamNames[(turn - 1)].ToString();
             }
         }
         time = turnTimeLength;
@@ -7462,7 +7462,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
             for (int k = 0; k < SeasonalTimers.Length; k++)
             {
-                SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1600).ToString() + " \nTurn: " + teamNames[(turn - 1)].ToString();
+                SeasonalTimers[k].GetComponent<Text>().text = "Year: " + (totalTurnNumber + 1647).ToString() + " \nTurn: " + teamNames[(turn - 1)].ToString();
             }
 
             numberOfAcceptedTeams = 0;
