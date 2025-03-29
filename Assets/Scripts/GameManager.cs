@@ -6738,10 +6738,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     {
         Text i = top.GetComponent<Text>();
         Text i2 = bottom.GetComponent<Text>();
-        Debug.Log("Setting alpha to 1");
+        Debug.Log("Setting alpha to 1");    
 
         i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
-        i2.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        i2.color = new Color(i2.color.r, i2.color.g, i2.color.b, 1);
         //yield return new WaitForSeconds(1);
         while (i.color.a > 0.0f)
         {
@@ -7172,7 +7172,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         GameObject.FindGameObjectWithTag("SkipTutorial").SetActive(false);
         Debug.Log("Deactivative pause button");
-        GameObject.FindGameObjectWithTag("ResetTutorial").SetActive(false);
+        GameObject.FindGameObjectWithTag("RestartTutorial").SetActive(false);
         settingsTutorial = GameObject.FindGameObjectsWithTag("SettingsTutorial");
         Debug.Log("settingsTutorial buttons destroying: " + settingsTutorial.Length);
         for(int x = 0; x < settingsTutorial.Length; x++)

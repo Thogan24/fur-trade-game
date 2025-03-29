@@ -95,19 +95,23 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
             string playerString = PhotonNetwork.LocalPlayer.ToString();
             for (int harold = 0; harold < Alert.Length; harold++)
             {
-                Alert[harold].GetComponent<TMPro.TMP_Text>().color = new Color(1f, 1f, 1f, 1f);
                 if (gameManager.tutorialFinishedGameSetup && ((gameManager.turn == 1 && playerString == gameManager.Dutch) || (gameManager.turn == 2 && playerString == gameManager.Philipses) || (gameManager.turn == 3 && playerString == gameManager.SixNations) || (gameManager.turn == 4 && playerString == gameManager.Munsee)))
                 {
+                    Alert[harold].GetComponent<TMPro.TMP_Text>().color = new Color(1f, 1f, 1f, 1f);
                     Debug.Log("How did I get in here: " + gameManager.tutorialFinishedGameSetup);
                     Alert[harold].GetComponent<TMPro.TMP_Text>().text = "Select a team first!";
+                    gameManager.StartCoroutine(gameManager.FadeTextToZeroAlpha(1f, Alert[harold].GetComponent<TMPro.TMP_Text>()));
+
                 }
                 else if (gameManager.tutorialFinishedGameSetup)
                 {
+                    Alert[harold].GetComponent<TMPro.TMP_Text>().color = new Color(1f, 1f, 1f, 1f);
                     Debug.Log("How did I get in here2: " + gameManager.tutorialFinishedGameSetup);
                     Alert[harold].GetComponent<TMPro.TMP_Text>().text = "It is not your turn to trade!";
+                    gameManager.StartCoroutine(gameManager.FadeTextToZeroAlpha(1f, Alert[harold].GetComponent<TMPro.TMP_Text>()));
+
                 }
 
-                gameManager.StartCoroutine(gameManager.FadeTextToZeroAlpha(1f, Alert[harold].GetComponent<TMPro.TMP_Text>()));
             }
         }
         else
