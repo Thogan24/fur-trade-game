@@ -65,6 +65,7 @@ public class MainMenuButtons : MonoBehaviour
     public void ValueChangeCheck()
     {
         GameManager gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        Debug.Log("setting gameManager volume to :" + volumeSlider.value);
         gameManager.volume = volumeSlider.value;
         gameManager.GetComponent<AudioSource>().volume = volumeSlider.value;
         Debug.Log("setting game manager volume to: " + gameManager.volume);
@@ -180,6 +181,7 @@ public class MainMenuButtons : MonoBehaviour
                 volumeSlider = settingsScreen.transform.GetChild(1).GetComponent<Slider>();            
                 musicVolumeSlider = settingsScreen.transform.GetChild(2).GetComponent<Slider>();
             }
+            Debug.Log("setting volume slider to :" + gameManager.volume);
             volumeSlider.value = gameManager.volume;
 
             if (musicAudioSource == null)

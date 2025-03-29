@@ -10,7 +10,6 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
 {
     public GameObject MunseeTradingButton;
     public GameManager gameManager;
-    public bool firstClick = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +39,10 @@ public class MunseeTradingButtonOnClick : MonoBehaviour
             setLabelsTutorial();
             gameManager.tutorialStartedTrading = true;
             gameManager.FlagButtonBackgroundFadeInFadeOutTutorialEnd();
-            if (firstClick == false)
+            if (gameManager.firstClickFlags == false)
             {
                 gameManager.startContinueTutorial1();
-                firstClick = true;
+                gameManager.firstClickFlags = true;
             }
         }
 

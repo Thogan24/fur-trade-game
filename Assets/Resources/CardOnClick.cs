@@ -98,10 +98,12 @@ public class CardOnClick : MonoBehaviour, IPointerClickHandler
                 Alert[harold].GetComponent<TMPro.TMP_Text>().color = new Color(1f, 1f, 1f, 1f);
                 if (gameManager.tutorialFinishedGameSetup && ((gameManager.turn == 1 && playerString == gameManager.Dutch) || (gameManager.turn == 2 && playerString == gameManager.Philipses) || (gameManager.turn == 3 && playerString == gameManager.SixNations) || (gameManager.turn == 4 && playerString == gameManager.Munsee)))
                 {
+                    Debug.Log("How did I get in here: " + gameManager.tutorialFinishedGameSetup);
                     Alert[harold].GetComponent<TMPro.TMP_Text>().text = "Select a team first!";
                 }
                 else if (gameManager.tutorialFinishedGameSetup)
                 {
+                    Debug.Log("How did I get in here2: " + gameManager.tutorialFinishedGameSetup);
                     Alert[harold].GetComponent<TMPro.TMP_Text>().text = "It is not your turn to trade!";
                 }
 

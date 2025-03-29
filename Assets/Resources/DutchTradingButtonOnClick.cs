@@ -10,7 +10,6 @@ public class DutchTradingButtonOnClick : MonoBehaviour
 {
     public GameObject DutchTradingButton;
     public GameManager gameManager;
-    public bool firstClick = false;
 
     // Start is called before the first frame update
     void Start()
@@ -55,10 +54,10 @@ public class DutchTradingButtonOnClick : MonoBehaviour
             gameManager.tutorialStartedTrading = true;
             gameManager.FlagButtonBackgroundFadeInFadeOutTutorialEnd();
 
-            if (firstClick == false)
+            if (gameManager.firstClickFlags == false)
             {
                 gameManager.startContinueTutorial1();
-                firstClick = true;
+                gameManager.firstClickFlags = true;
             }
 
         }

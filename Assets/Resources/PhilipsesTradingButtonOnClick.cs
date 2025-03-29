@@ -10,7 +10,6 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
 {
     public GameObject PhilipsesTradingButton;
     public GameManager gameManager;
-    public bool firstClick = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +38,10 @@ public class PhilipsesTradingButtonOnClick : MonoBehaviour
             gameManager.FlagButtonBackgroundFadeInFadeOutTutorialEnd();
 
 
-            if (firstClick == false)
+            if (gameManager.firstClickFlags == false)
             {
                 gameManager.startContinueTutorial1();
-                firstClick = true;
+                gameManager.firstClickFlags = true;
             }
 
         }

@@ -346,6 +346,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public bool tutorialFinishedSixNations = false;
     public bool tutorialFinishedMunsee = false;
     public bool tutorialStartedTrading = false;
+    public bool firstClickFlags = false;
+
     public static int MWT = 3; // Max amount wishlist tutorial
     public int[] DutchAmountsWishlistTutorial = { MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT,/**/ MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT };
     public int[] PhilipsesAmountsWishlistTutorial = { MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT,/**/ MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT, MWT };
@@ -374,7 +376,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
     public int playersThatWantToEndTheGame = 0;
 
 
-    public float volume = 1f;
+    public float volume = 0.5f;
     public bool skippedOverTutorial = false;
 
     public GameObject[] settingsTutorial;
@@ -6687,8 +6689,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             Debug.Log("Running the IEnumerators");
             tops[i].GetComponent<Text>().text = givingTeam;
             bottoms[i].GetComponent<Text>().text = receivingTeam;
-            StartCoroutine(MoveRight(3, tops[i], 0.1f));
-            StartCoroutine(MoveLeft(3, bottoms[i], 0.1f));
+            //StartCoroutine(MoveRight(3, tops[i], 0.1f));
+            //StartCoroutine(MoveLeft(3, bottoms[i], 0.1f));
             StartCoroutine(FadeTextsToZeroAlpha(3, tops[i], bottoms[i])); //  could just do both seperately if doesn't look nice
         }
     }
@@ -7170,7 +7172,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
         yield return new WaitForSeconds(tutorialTextFadeOutFadeInTime);
         GameObject.FindGameObjectWithTag("SkipTutorial").SetActive(false);
         Debug.Log("Deactivative pause button");
-        GameObject.FindGameObjectWithTag("PauseTutorial").SetActive(false);
+        GameObject.FindGameObjectWithTag("ResetTutorial").SetActive(false);
         settingsTutorial = GameObject.FindGameObjectsWithTag("SettingsTutorial");
         Debug.Log("settingsTutorial buttons destroying: " + settingsTutorial.Length);
         for(int x = 0; x < settingsTutorial.Length; x++)
@@ -7353,6 +7355,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
             CannotAccessCards = true;
             CannotAccessFlags = true;
             CannotAccessTradeButton = true;
+            tutorialStartedTrading = false;
+            firstClickFlags = false;
             FlagButtonBackgroundFadeInFadeOutTutorialEnd();
             FlagButtonBackgroundFadeInFadeOutTutorial();
             StartCoroutine("startTutorial");
@@ -7643,7 +7647,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
         Debug.Log("did i call this four times?");
-        //RightLeftFadeAnimation();    // Uncomment when we get back to trying the animation again
+        if(tutorialFinishedGameSetup == true)
+        {
+            RightLeftFadeAnimation();
+        }
+            // Uncomment when we get back to trying the animation again
 
 
         for (int ak = 0; ak < tags.Length; ak++)
