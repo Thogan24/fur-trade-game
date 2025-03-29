@@ -7647,10 +7647,10 @@ public class GameManager : MonoBehaviourPunCallbacks, IConnectionCallbacks, IMat
 
 
         Debug.Log("did i call this four times?");
-        if(tutorialFinishedGameSetup == true)
+/*        if(tutorialFinishedGameSetup == true)
         {
             RightLeftFadeAnimation();
-        }
+        }*/
             // Uncomment when we get back to trying the animation again
 
 
