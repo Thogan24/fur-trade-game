@@ -4,10 +4,10 @@ This project utilizes multiple pieces of software: The Unity Game Engine editor,
 If you would like a version of the game, a version must be requested from us (email thogan1924@gmail.com) as this is an exe file made for specific users.
 
 Host Private Games & Customize Your Rooms! 
-![Demo](./CustomizableRooms.gif)
+![Demo](./CustomizableRooms2.gif)
 
 Guided Tutorial for new players!
-![Demo](./InteractiveTutorial.gif)
+![Demo](./InteractiveTutorial2.gif)
 
 Fast-Paced Multiplayer Card Negotiations!
 ![Demo](./Gameplay3.gif)
